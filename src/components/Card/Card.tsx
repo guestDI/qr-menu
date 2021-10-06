@@ -6,9 +6,10 @@ import styles from "./styles.module.css"
 
 interface CardProps {
     title: string
+    price: string
 }
 
-const Card: React.FC<CardProps> = ({title}) => {
+const Card: React.FC<CardProps> = ({title, price}) => {
     return (
         <div className={styles.card}>
             <Image
@@ -19,10 +20,13 @@ const Card: React.FC<CardProps> = ({title}) => {
                 layout="responsive"
             />
             <div className={styles.content}>
-                <h3 className={styles.cardTitle}>{title}</h3>
+                <p className={styles.cardTitle}>{title}</p>
                 <p>Text with some information</p>
-                <p>Price</p>
-                <Button title="Add to order"/>
+                <p>{price}</p>
+                <div className={styles.btnContainer}>
+                    <Button title="Add to order" onClick={() => {}}/>
+                </div>
+                
             </div>
         </div>
     )

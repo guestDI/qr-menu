@@ -14,3 +14,14 @@
 .content {
     padding: 8px;
 }
+
+.btnContainer {
+    width: 100%;
+}
+
+@media (min-width: 300px) and (max-width: 1200px) {
+    .btnContainer {     
+        display: flex;
+        justify-content: center; 
+    }
+  }

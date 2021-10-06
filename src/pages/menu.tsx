@@ -7,9 +7,9 @@ const Menu: React.FC = () => {
         <>
             <h1>Menu</h1>
             <div className={styles.container}>
-                <Card title="Soup"/>
-                <Card title="Meat"/>
-                <Card title="Chicken"/>
+                <Card title="Soup" price="3.00"/>
+                <Card title="Meat" price="5.50"/>
+                <Card title="Chicken"price="10.00"/>
             </div>
         </>
     )
