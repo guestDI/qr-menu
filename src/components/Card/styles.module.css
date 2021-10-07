@@ -1,6 +1,7 @@
 .card {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     border: 1px solid #eaeaeadc;
     transition: 0.3s;
     border-radius: 3px; /* 5px rounded corners */
@@ -8,11 +9,27 @@
 }
 
 .cardTitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.desc {
+    color: #555555b6;
+    font-size: 14px;
+}
+
+.price {
+    margin-top: 0;
+    font-size: 18px;
     font-weight: 600;
 }
 
 .content {
-    padding: 8px;
+    padding: 0 8px;
+}
+
+.footer {
+    padding: 0 8px 8px;
 }
 
 .btnContainer {
@@ -20,8 +37,20 @@
 }
 
 @media (min-width: 300px) and (max-width: 1200px) {
+    .card {
+        min-height: 320px;
+    }
+
     .btnContainer {     
         display: flex;
         justify-content: center; 
+    }
+
+    .cardTitle {
+        font-size: 13px;
+    }
+
+    .desc {
+        font-size: 10px;
     }
   }
