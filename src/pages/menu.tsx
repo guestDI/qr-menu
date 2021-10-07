@@ -10,12 +10,9 @@ const Menu: React.FC = () => {
     }, [arr])
 
     return (
-        <>
-            <h1>Menu</h1>
             <div className={styles.container}>
                 {menuCards}
             </div>
-        </>
     )
 }
 

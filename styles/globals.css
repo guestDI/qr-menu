@@ -1,9 +1,11 @@
 html,
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    color: var(--dark);
 }
 
 a {
@@ -11,6 +13,30 @@ a {
   text-decoration: none;
 }
 
+p, footer {
+  font-size: var(--font-size-md);
+}
+
+p, article, section {
+  line-height: 1.5;
+}
+
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --green: #3FE79E;
+  --dark: #282d32;
+  --off-white: #F5F5F3;
+  --off-grey: #555555B6;
+  --off-grey-light: #e4e4e480;
+
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+
+  --font-size-sm: 0.5rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 2rem;
 }
