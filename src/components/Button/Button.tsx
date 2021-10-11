@@ -1,18 +1,20 @@
 // import clsx from "clsx"
 
-import React from "react"
-import styles from "./styles.module.css"
+import React from 'react'
+import styles from './styles.module.css'
 
 interface ButtonProps {
-    content: React.ReactNode
-    onClick: () => void
-    round?: boolean
+  content: React.ReactNode
+  onClick: () => void
+  round?: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({content, onClick}) => {
-    return (
-        <button onClick={onClick} className={styles.btn}>{content}</button>
-    )
+const Button: React.FC<ButtonProps> = ({ content, onClick }) => {
+  return (
+    <button onClick={onClick} className={styles.btn}>
+      {content}
+    </button>
+  )
 }
 
 export default Button

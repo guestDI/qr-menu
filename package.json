@@ -8,12 +8,16 @@
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "next lint",
     "lint:ext": "eslint --ext .ts,.tsx",
-    "prettier:fix": "prettier --config .prettierrc 'src/**/*.ts' --write"
+    "prettier:fix": "prettier --config .prettierrc \"**/*.{css,js,json,jsx,md,ts,tsx,html}\" --write"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && yarn prettier:fix && yarn run lint:ext"
-     }
+      "pre-commit": "yarn lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{css,js,json,jsx,md,ts,tsx,html}": "prettier --write",
+    "*.{js,jsx,ts,tsx,json}": "eslint --fix"
   },
   "dependencies": {
     "clsx": "^1.1.1",

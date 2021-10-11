@@ -11,6 +11,6 @@ module.exports = {
     include: path.resolve(__dirname, 'src/inline-img/svg'),
     webpack(config, options) {
       return config
-    }
-  })
+    },
+  }),
 }

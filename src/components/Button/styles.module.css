@@ -1,19 +1,19 @@
 .btn {
-    padding: 0.8rem 1.8rem;
-    background-color: #fff;
-    border: 1px solid #b6b6b6;
-    font-size: 14px;
-    font-weight: 600;
+  padding: 0.8rem 1.8rem;
+  background-color: #fff;
+  border: 1px solid #b6b6b6;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .roundBtn {
-    border-radius: 50%;
-    padding: 1rem;
+  border-radius: 50%;
+  padding: 1rem;
 }
 
 @media (min-width: 300px) and (max-width: 1200px) {
-    .btn {
-        width: 100%;
-        font-size: 12px;
-    }
+  .btn {
+    width: 100%;
+    font-size: 12px;
   }
+}

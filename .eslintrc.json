@@ -1,4 +1,3 @@
-
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
@@ -9,11 +8,7 @@
     "plugin:prettier/react",
     "plugin:prettier/@typescript-eslint"
   ],
-  "plugins": [
-    "@typescript-eslint",
-    "react/recommended",
-    "prettier"
-  ],
+  "plugins": ["@typescript-eslint", "react/recommended", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off"
   },
