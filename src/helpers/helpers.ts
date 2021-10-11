@@ -1,5 +1,3 @@
 const currencySignMap = {}
 
-export const getCurrencySign = (currency: string) => {
-
-}
+export const getCurrencySign = (currency: string) => {}

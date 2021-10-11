@@ -7,11 +7,12 @@
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "next lint",
-    "lint:ext": "eslint --ext .ts,.tsx"
+    "lint:ext": "eslint --ext .ts,.tsx",
+    "prettier:fix": "prettier --config .prettierrc 'src/**/*.ts' --write"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && yarn run lint:ext"
+      "pre-commit": "pretty-quick --staged && && yarn prettier:fix && yarn run lint:ext"
      }
   },
   "dependencies": {
