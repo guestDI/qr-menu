@@ -6,6 +6,11 @@
     font-weight: 600;
 }
 
+.roundBtn {
+    border-radius: 50%;
+    padding: 1rem;
+}
+
 @media (min-width: 300px) and (max-width: 1200px) {
     .btn {
         width: 100%;

@@ -4,7 +4,6 @@
 
 .main {
     height: calc(100vh - 56px);
-    background: var(--off-grey-light);
 }
 
 .header, .footer {

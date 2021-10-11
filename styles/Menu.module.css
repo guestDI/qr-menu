@@ -8,5 +8,5 @@
 }
 
  @media (min-width: 300px) and (max-width: 1200px) {
-    .container { padding: 0 0.6rem; }
+    .container { padding: 0 1rem; margin: 2rem 0;}
   }
