@@ -13,7 +13,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({name, price, shortDescription}) => {
     return (
-        <div className={styles.menuCard}>
+        <div className={styles.card}>
             <div>
             <Image
                 alt="Dishes"
@@ -21,12 +21,12 @@ const Card: React.FC<CardProps> = ({name, price, shortDescription}) => {
                 width={1200}
                 height={1200}
                 loading="eager" //check this property in future
-                className={styles.menuCard__image}
+                className={styles.cardImage}
                 quality={50}
             />
-                <div className={styles.menuCard__content}>
-                    <p className={styles.menuCard__title}>{name}</p>
-                    <p className={styles.menuCard__desc}>
+                <div className={styles.cardContent}>
+                    <p className={styles.cardContent__title}>{name}</p>
+                    <p className={styles.cardContent__desc}>
                         {shortDescription}
                     </p>
                 </div>                
