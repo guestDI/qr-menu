@@ -20,11 +20,11 @@ footer {
   font-size: var(--font-size-md);
 }
 
-p,
+/* p,
 article,
 section {
   line-height: 1.5;
-}
+} */
 
 * {
   box-sizing: border-box;

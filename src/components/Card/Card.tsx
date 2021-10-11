@@ -4,6 +4,7 @@ import React from 'react'
 import Button from '../Button/Button'
 import styles from './styles.module.css'
 import ShoppingCart from '../../inline-img/svg/shoppingbasket.svg'
+import clsx from 'clsx'
 
 interface CardProps {
   name: string
@@ -29,15 +30,15 @@ const Card: React.FC<CardProps> = ({
           quality={50}
         />
         <div className={styles.cardContent}>
-          <p className={styles.cardContent__title}>{name}</p>
-          <p className={styles.cardContent__desc}>
+          <p className={clsx([styles.cardContent__title, styles.lineClamp])}>{name}</p>
+          <p className={clsx([styles.cardContent__desc, styles.lineClamp])}>
             {shortDescription}
           </p>
         </div>
       </div>
 
-      <div className={styles.menuCard__footer}>
-        <p className={styles.price}>{price}</p>
+      <div className={styles.cardFooter}>
+        <p className={styles.cardFooter__price}>{price}</p>
         <div className={styles.btnContainer}>
           <Button
             content={<ShoppingCart height={24} />}

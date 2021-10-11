@@ -3,7 +3,7 @@ import { Card } from '../components'
 import styles from '../../styles/Menu.module.css'
 
 const arr = [
-  { uid: 1, name: 'Soup' },
+  { uid: 1, name: 'Soup with frikadels cand mushrooms very tasty' },
   { uid: 2, name: 'Meat' },
   { uid: 3, name: 'Chicken' },
   { uid: 4, name: 'Something else' },
@@ -17,7 +17,7 @@ const Menu: React.FC = () => {
         key={item.uid}
         name={item.name}
         price="5.50"
-        shortDescription="Shorttt sd fs fsd fsd fs fs fs fs df dfs sdfsdfsdf"
+        shortDescription="Shorttt sd fs fsd fsd fs fs fs fs df dfs sdfsdfsdf sdf s"
       />
     ))
   }, [arr])
