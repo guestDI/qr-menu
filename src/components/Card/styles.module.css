@@ -28,31 +28,31 @@
   font-size: 1.2rem;
 }
 
- .cardFooter {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 0 0.8rem 0.8rem;
+.cardFooter {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 0.8rem 0;
 }
 
 .cardFooter__price {
-    margin-top: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
+  margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .cardFooter__btn {
-    width: 100%;
+  width: 100%;
 }
 
 .lineClamp {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-  }
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
-@media (min-width: 300px) and (max-width: 1200px) {
+/* @media (min-width: 300px) and (max-width: 1200px) {
     .menuCard {
         min-height: 320px;
     }
@@ -69,4 +69,4 @@
     .menuCard__desc {
         font-size: 10px;
     }
-  } 
+  }  */

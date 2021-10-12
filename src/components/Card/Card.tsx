@@ -1,36 +1,59 @@
 import Image from 'next/image'
 
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import Button from '../Button/Button'
 import styles from './styles.module.css'
-import {Add} from '../../inline-img/svg'
+import { Add } from '../../inline-img/svg'
 import clsx from 'clsx'
+import { getCurrencySign } from '../../helpers/helpers'
 
 interface CardProps {
   name: string
   price: string
+  priceCurrency?: string
   shortDescription: string
+  onCardClick: () => void
+  addToBasket: () => void
 }
 
 const Card: React.FC<CardProps> = ({
   name,
   price,
+  priceCurrency,
   shortDescription,
+  onCardClick,
+  addToBasket,
 }) => {
+  const onAddToBasket = useCallback(
+    (e) => {
+      e.stopPropagation()
+
+      addToBasket()
+    },
+    [addToBasket],
+  )
+
+  const currencySign = useMemo(
+    () => getCurrencySign(priceCurrency || ''),
+    [priceCurrency],
+  )
+
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={onCardClick}>
       <div>
         <Image
           alt="Dishes"
-          src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3570&q=80"
-          width={1200}
-          height={1000}
+          src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/mexican-chicken-burger_1-b5cca6f.jpg?quality=90&resize=440,400"
+          width={400}
+          height={400}
           loading="eager" //check this property in future
           className={styles.cardImage}
           quality={50}
         />
         <div className={styles.cardContent}>
-          <p className={clsx([styles.cardContent__title, styles.lineClamp])}>{name}</p>
+          <p className={clsx([styles.cardContent__title, styles.lineClamp])}>
+            {name}
+          </p>
           <p className={clsx([styles.cardContent__desc, styles.lineClamp])}>
             {shortDescription}
           </p>
@@ -38,11 +61,13 @@ const Card: React.FC<CardProps> = ({
       </div>
 
       <div className={styles.cardFooter}>
-        <p className={styles.cardFooter__price}>{price}</p>
+        <p className={styles.cardFooter__price}>
+          {price} {currencySign}
+        </p>
         <div className={styles.btnContainer}>
           <Button
-            content={<Add width={18} height={18}/>}
-            onClick={() => {}}
+            content={<Add width={22} height={22} />}
+            onClick={onAddToBasket}
             round={true}
           />
         </div>
