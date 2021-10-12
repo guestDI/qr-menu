@@ -1,0 +1,44 @@
+[
+  {
+    "category": "Main Dishes",
+    "items": [
+      {
+        "uid": 1,
+        "name": "Soup with frikadels cand mushrooms very tasty",
+        "priceCurrency": "USD"
+      },
+      { "uid": 2, "name": "Meat", "priceCurrency": "EURO" },
+      { "uid": 3, "name": "Chicken", "priceCurrency": "POUND" },
+      { "uid": 4, "name": "Something else", "priceCurrency": "ROUBLE" },
+      { "uid": 5, "name": "New dish", "priceCurrency": "USD" },
+      { "uid": 6, "name": "New", "priceCurrency": "USD" },
+      { "uid": 7, "name": "Fish", "priceCurrency": "USD" },
+      { "uid": 8, "name": "New", "priceCurrency": "USD" },
+      { "uid": 9, "name": "New", "priceCurrency": "USD" },
+      { "uid": 10, "name": "New", "priceCurrency": "USD" }
+    ]
+  },
+  {
+    "category": "Drinks",
+    "items": [
+      {
+        "uid": 1,
+        "name": "Vodka",
+        "priceCurrency": "USD"
+      },
+      { "uid": 2, "name": "Wisky", "priceCurrency": "EURO" },
+      { "uid": 3, "name": "Jean", "priceCurrency": "POUND" }
+    ]
+  },
+  {
+    "category": "Deserts",
+    "items": [
+      {
+        "uid": 1,
+        "name": "Pie",
+        "priceCurrency": "USD"
+      },
+      { "uid": 2, "name": "Puding", "priceCurrency": "EURO" }
+    ]
+  }
+]
