@@ -44,6 +44,7 @@ section {
   --font-size-xs: 0.5rem;
   --font-size-sm: 1rem;
   --font-size-md: 1.2rem;
-  /* --font-size-md: 1rem;
-  --font-size-lg: 2rem; */
+  --font-size-lg: 1.4rem;
+  --font-size-xlg: 1.6rem;
+  /* --font-size-lg: 2rem; */
 }

@@ -1,0 +1,21 @@
+.container {
+  padding: 2rem 0 1rem;
+  display: flex;
+  color: var(--off-grey);
+  overflow-x: auto;
+}
+
+.container > li {
+  list-style: none;
+  font-size: var(--font-size-lg);
+  border: 1px solid var(--off-grey-mid);
+  padding: 0.8rem 1rem;
+  border-radius: 3rem;
+  min-width: 11rem;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.container > li:last-child {
+  margin-right: 0rem;
+}

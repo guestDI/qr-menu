@@ -40,5 +40,16 @@
       },
       { "uid": 2, "name": "Puding", "priceCurrency": "EURO" }
     ]
+  },
+  {
+    "category": "Happy hours",
+    "items": [
+      {
+        "uid": 1,
+        "name": "Margarita",
+        "priceCurrency": "USD"
+      },
+      { "uid": 2, "name": "Puding", "priceCurrency": "EURO" }
+    ]
   }
 ]
