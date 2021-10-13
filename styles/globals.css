@@ -30,6 +30,7 @@ section {
 }
 
 :root {
+  --yellow: rgb(247, 220, 102);
   --green: #3fe79e;
   --dark: #282d32;
   --off-white: #f5f5f3;

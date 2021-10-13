@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { Card, CategoriesPanel } from '../components'
 import styles from '../../styles/Menu.module.css'
 import menu from '../../__fixtures__/menu.json'
+import { Element } from 'react-scroll'
 
 const openDetails = (id: string | number) => {
   console.log(id)
@@ -33,16 +34,18 @@ const Menu: React.FC = () => {
 
   const menuCards = menu.map((menuItem, i) => {
     return (
-      <section
-        id={menuItem.category}
+      <Element
         key={menuItem.category}
-        className={styles.categoryContainer}
+        id={menuItem.category}
+        name={menuItem.category}
       >
-        <h1 className={styles.categoryTitle}>{menuItem.category}</h1>
-        <div className={styles.cardsContainer}>
-          {renderCards(menuItem.items)}
-        </div>
-      </section>
+        <section className={styles.categoryContainer}>
+          <h1 className={styles.categoryTitle}>{menuItem.category}</h1>
+          <div className={styles.cardsContainer}>
+            {renderCards(menuItem.items)}
+          </div>
+        </section>
+      </Element>
     )
   })
 

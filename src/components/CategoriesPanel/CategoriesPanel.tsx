@@ -1,3 +1,4 @@
+import { Link, Button } from 'react-scroll'
 import React, { useCallback, useRef } from 'react'
 import styles from './styles.module.css'
 
@@ -23,9 +24,17 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
   return (
     <ul ref={ref} className={styles.container}>
       {categories.map((category, i) => (
-        <li onClick={() => onClick(category)} key={i}>
+        <Link
+          key={i}
+          activeClass={styles.active}
+          to={category}
+          offset={-100}
+          duration={500}
+          spy={true}
+          smooth={true}
+        >
           {category}
-        </li>
+        </Link>
       ))}
     </ul>
   )

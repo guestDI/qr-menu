@@ -7,23 +7,31 @@
   position: fixed;
   padding-top: calc(var(--header-height) - 1rem);
   z-index: 900;
-  width: 95%;
+  width: calc(100% - 2rem);
   top: 0;
+  left: 0;
+  margin-left: 1rem;
   padding-left: 0;
 }
 
-.container > li {
+.container > a {
   list-style: none;
-  font-size: var(--font-size-lg);
+  font-size: 1.3rem;
   border: 1px solid var(--off-grey);
   padding: 0.8rem 1rem;
   border-radius: 3rem;
-  min-width: 11rem;
+  min-width: 10.5rem;
   text-align: center;
   margin-right: 0.6rem;
   cursor: pointer;
 }
 
-.container > li:last-child {
+.container > a:last-child {
   margin-right: 0rem;
+}
+
+.active {
+  background: var(--yellow);
+  border: 1px solid var(--yellow) !important;
+  color: #fff;
 }
