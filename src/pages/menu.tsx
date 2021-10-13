@@ -48,7 +48,7 @@ const Menu: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <CategoriesPanel categories={categories} />
+      <CategoriesPanel onClick={() => {}} categories={categories} />
       {menuCards}
     </div>
   )

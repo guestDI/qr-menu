@@ -8,7 +8,7 @@
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "next lint",
     "lint:ext": "eslint --ext .ts,.tsx",
-    "prettier:fix": "prettier --config .prettierrc \"**/*.{css,json,ts,tsx,html}\" --write"
+    "prettier:fix": "prettier --config .prettierrc \"**/*.{css,ts,tsx,html}\" --write"
   },
   "husky": {
     "hooks": {
@@ -16,7 +16,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{css,json,md,ts,tsx,html}": "prettier --config .prettierrc --write",
+    "**/*.{css,md,ts,tsx,html}": "prettier --config .prettierrc --write",
     "*.{js,jsx,ts,tsx,json}": "eslint --fix"
   },
   "dependencies": {
