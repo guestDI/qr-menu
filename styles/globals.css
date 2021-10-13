@@ -47,4 +47,6 @@ section {
   --font-size-lg: 1.4rem;
   --font-size-xlg: 1.6rem;
   /* --font-size-lg: 2rem; */
+
+  --header-height: 5.6rem;
 }

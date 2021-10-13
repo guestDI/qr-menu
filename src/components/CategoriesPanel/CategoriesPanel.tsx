@@ -21,17 +21,13 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
   // }, [])
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      {/* <div onClick={() => handleScroll("left")}>{' < '}</div> */}
-      <ul ref={ref} className={styles.container}>
-        {categories.map((category, i) => (
-          <li onClick={() => onClick(category)} key={i}>
-            {category}
-          </li>
-        ))}
-      </ul>
-      {/* <div onClick={() => handleScroll("right")}>{' > '}</div> */}
-    </div>
+    <ul ref={ref} className={styles.container}>
+      {categories.map((category, i) => (
+        <li onClick={() => onClick(category)} key={i}>
+          {category}
+        </li>
+      ))}
+    </ul>
   )
 }
 

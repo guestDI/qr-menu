@@ -1,19 +1,27 @@
 .container {
-  padding: 2rem 0 1rem;
+  padding-bottom: 1.2rem;
   display: flex;
+  background: #fff;
   color: var(--off-grey);
   overflow-x: auto;
+  position: fixed;
+  padding-top: calc(var(--header-height) - 1rem);
+  z-index: 900;
+  width: 95%;
+  top: 0;
+  padding-left: 0;
 }
 
 .container > li {
   list-style: none;
   font-size: var(--font-size-lg);
-  border: 1px solid var(--off-grey-mid);
+  border: 1px solid var(--off-grey);
   padding: 0.8rem 1rem;
   border-radius: 3rem;
   min-width: 11rem;
   text-align: center;
   margin-right: 0.6rem;
+  cursor: pointer;
 }
 
 .container > li:last-child {
