@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react'
-import { Card, CategoriesPanel } from '../components'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Button, Card, CategoriesPanel } from '../components'
 import styles from '../../styles/Menu.module.css'
 import menu from '../../__fixtures__/menu.json'
-import { Element } from 'react-scroll'
+import { Element, animateScroll as scroll } from 'react-scroll'
+import { ChevronDoubleUp } from '../inline-img/svg'
 
 const openDetails = (id: string | number) => {
   console.log(id)
@@ -27,6 +28,18 @@ const renderCards = (items: Array<Record<string, any>>) => {
 }
 
 const Menu: React.FC = () => {
+  const [showButton, setShowButton] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 350) {
+        setShowButton(true)
+      } else {
+        setShowButton(false)
+      }
+    })
+  }, [])
+
   const categories = useMemo(
     () => menu.map((menuItem) => menuItem.category),
     [],
@@ -34,11 +47,7 @@ const Menu: React.FC = () => {
 
   const menuCards = menu.map((menuItem, i) => {
     return (
-      <Element
-        key={menuItem.category}
-        id={menuItem.category}
-        name={menuItem.category}
-      >
+      <Element key={i} id={menuItem.category} name={menuItem.category}>
         <section className={styles.categoryContainer}>
           <h1 className={styles.categoryTitle}>{menuItem.category}</h1>
           <div className={styles.cardsContainer}>
@@ -53,6 +62,15 @@ const Menu: React.FC = () => {
     <div className={styles.container}>
       <CategoriesPanel onClick={() => {}} categories={categories} />
       {menuCards}
+      {showButton && (
+        <Button
+          content={<ChevronDoubleUp height={24} />}
+          onClick={() => scroll.scrollToTop()}
+          round={true}
+          size="lg"
+          className={styles.backToTop}
+        />
+      )}
     </div>
   )
 }

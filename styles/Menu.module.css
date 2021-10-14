@@ -20,6 +20,18 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
+.backToTop {
+  position: fixed;
+  right: 3rem;
+  bottom: 3rem;
+  background-color: var(--yellow);
+  color: white;
+}
+
+.backToTop > svg {
+  filter: invert(100%);
+}
+
 @media (min-width: 300px) and (max-width: 1200px) {
   .cardsContainer {
     margin: 2rem 0;
