@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Button, Card, CategoriesPanel } from '../components'
 import styles from '../../styles/Menu.module.css'
 import menu from '../../__fixtures__/menu.json'
@@ -30,15 +30,19 @@ const renderCards = (items: Array<Record<string, any>>) => {
 const Menu: React.FC = () => {
   const [showButton, setShowButton] = useState(false)
 
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 350) {
-        setShowButton(true)
-      } else {
-        setShowButton(false)
-      }
-    })
+  const setButtonState = useCallback(() => {
+    if (window.pageYOffset > 350) {
+      setShowButton(true)
+    } else {
+      setShowButton(false)
+    }
   }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', setButtonState)
+
+    return () => window.removeEventListener('scroll', setButtonState)
+  }, [setButtonState])
 
   const categories = useMemo(
     () => menu.map((menuItem) => menuItem.category),

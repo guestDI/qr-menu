@@ -2,13 +2,13 @@
   padding-bottom: 1.2rem;
   display: flex;
   background: #fff;
-  color: var(--off-grey);
+  color: var(--grey-blue);
   overflow-x: auto;
   position: fixed;
   padding-top: calc(var(--header-height) - 1rem);
   z-index: 900;
   width: calc(100% - 2rem);
-  top: 0;
+  top: 1.5rem;
   left: 0;
   margin-left: 1rem;
   padding-left: 0;
@@ -17,7 +17,7 @@
 .container > a {
   list-style: none;
   font-size: 1.3rem;
-  border: 1px solid var(--off-grey);
+  border: 1px solid var(--grey-blue);
   padding: 0.8rem 1rem;
   border-radius: 3rem;
   min-width: 10.5rem;
@@ -31,7 +31,21 @@
 }
 
 .active {
-  background: var(--yellow);
-  border: 1px solid var(--yellow) !important;
+  background: var(--grey-blue);
+  border: 1px solid var(--grey-blue) !important;
   color: #fff;
+}
+
+@media (min-width: 650px) {
+  .container {
+    margin-left: 0;
+    left: unset;
+  }
+
+  .container > a {
+    font-size: var(--font-size-lg);
+    padding: 1rem;
+    min-width: 12rem;
+    margin-right: 1.2rem;
+  }
 }

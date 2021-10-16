@@ -32,6 +32,7 @@ section {
 :root {
   --yellow: rgb(247, 220, 102);
   --green: #3fe79e;
+  --grey-blue: #9ac6db;
   --dark: #282d32;
   --off-white: #f5f5f3;
   --off-grey: #555555b6;
@@ -47,7 +48,6 @@ section {
   --font-size-md: 1.2rem;
   --font-size-lg: 1.4rem;
   --font-size-xlg: 1.6rem;
-  /* --font-size-lg: 2rem; */
 
-  --header-height: 5.6rem;
+  --header-height: 4.8rem;
 }

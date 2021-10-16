@@ -5,7 +5,7 @@
 }
 
 .categoryContainer {
-  margin-top: 3rem;
+  margin-top: 2rem;
   border-bottom: 1px solid var(--off-grey-mid);
 }
 
@@ -24,8 +24,12 @@
   position: fixed;
   right: 3rem;
   bottom: 3rem;
-  background-color: var(--yellow);
+  background-color: var(--grey-blue);
   color: white;
+}
+
+.backToTop:hover {
+  cursor: pointer;
 }
 
 .backToTop > svg {
@@ -35,5 +39,27 @@
 @media (min-width: 300px) and (max-width: 1200px) {
   .cardsContainer {
     margin: 2rem 0;
+  }
+}
+
+@media (min-width: 650px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8rem;
+  }
+
+  .cardsContainer {
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+  }
+
+  .categoryContainer {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--off-grey-mid);
+  }
+
+  .categoryTitle {
+    font-size: 2.5rem;
+    font-weight: 500;
   }
 }
