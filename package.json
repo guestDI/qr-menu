@@ -16,7 +16,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{css,md,ts,tsx,html}": "prettier --config .prettierrc --write",
+    "**/*.{css,md,ts,tsx,html}": "prettier --config .prettierrc \"**/*.{css,ts,tsx,html}\" --write",
     "*.{js,jsx,ts,tsx,json}": "eslint --fix"
   },
   "dependencies": {
