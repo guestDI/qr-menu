@@ -1,10 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { Button, Card, CategoriesPanel, Modal } from "../components"
+import {
+  Button,
+  Card,
+  CategoriesPanel,
+  Modal,
+  DetailsView,
+} from "../components"
 import styles from "../../styles/Menu.module.css"
 import menu from "../../__fixtures__/menu.json"
 import { Element, animateScroll as scroll } from "react-scroll"
 import { ChevronDoubleUp } from "../inline-img/svg"
-import { DetailsView } from "./components"
 
 const addToBasket = (id: string | number) => {
   console.log("added", id)
