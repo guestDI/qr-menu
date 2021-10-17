@@ -93,7 +93,11 @@ const Menu: React.FC = () => {
           className={styles.backToTop}
         />
       )}
-      <Modal onClose={toggleModal} show={showModal}>
+      <Modal
+        onClose={toggleModal}
+        show={showModal}
+        className={styles.modalContent}
+      >
         <DetailsView />
       </Modal>
     </div>

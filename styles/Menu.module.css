@@ -36,6 +36,11 @@
   filter: invert(100%);
 }
 
+.modalContent {
+  border-radius: 0.6rem;
+  /* background: var(--dark); */
+}
+
 @media (min-width: 300px) and (max-width: 1200px) {
   .cardsContainer {
     margin: 2rem 0;

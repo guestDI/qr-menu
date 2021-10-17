@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "next lint",
-    "lint:ext": "eslint --ext .ts,.tsx",
+    "lint:ext": "eslint --ext .ts,.tsx --fix",
     "prettier:fix": "prettier --config .prettierrc \"**/*.{css,ts,tsx,html}\" --write"
   },
   "husky": {

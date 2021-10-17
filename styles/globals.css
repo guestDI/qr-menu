@@ -19,6 +19,10 @@ footer {
   font-size: var(--font-size-md);
 }
 
+/* p {
+  margin: 0;
+} */
+
 /* p,
 article,
 section {
