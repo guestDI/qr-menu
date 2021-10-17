@@ -1,26 +1,30 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { Button, Card, CategoriesPanel } from '../components'
-import styles from '../../styles/Menu.module.css'
-import menu from '../../__fixtures__/menu.json'
-import { Element, animateScroll as scroll } from 'react-scroll'
-import { ChevronDoubleUp } from '../inline-img/svg'
+import React, { useCallback, useEffect, useMemo, useState } from "react"
+import { Button, Card, CategoriesPanel, Modal } from "../components"
+import styles from "../../styles/Menu.module.css"
+import menu from "../../__fixtures__/menu.json"
+import { Element, animateScroll as scroll } from "react-scroll"
+import { ChevronDoubleUp } from "../inline-img/svg"
+import { DetailsView } from "./components"
 
 const openDetails = (id: string | number) => {
   console.log(id)
 }
 
 const addToBasket = (id: string | number) => {
-  console.log('added', id)
+  console.log("added", id)
 }
 
-const renderCards = (items: Array<Record<string, any>>) => {
+const renderCards = (
+  items: Array<Record<string, any>>,
+  onCardClick: (id: string | number) => void,
+) => {
   return items.map(({ uid, name, priceCurrency }) => (
     <Card
       key={uid}
       name={name}
       price="5.50"
       priceCurrency={priceCurrency}
-      onCardClick={() => openDetails(uid)}
+      onCardClick={() => onCardClick(uid)}
       shortDescription="Shorttt sd fs fsd fsd fs fs fs fs df dfs sdfsdfsdf sdf s"
       addToBasket={() => addToBasket(uid)}
     />
@@ -28,20 +32,33 @@ const renderCards = (items: Array<Record<string, any>>) => {
 }
 
 const Menu: React.FC = () => {
-  const [showButton, setShowButton] = useState(false)
+  const [showBackToTopButton, setShowBackToTopButton] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [selectedMenuItem, setSelectedMenuItem] = useState<string | number>("")
 
   const setButtonState = useCallback(() => {
     if (window.pageYOffset > 350) {
-      setShowButton(true)
+      setShowBackToTopButton(true)
     } else {
-      setShowButton(false)
+      setShowBackToTopButton(false)
     }
   }, [])
 
-  useEffect(() => {
-    window.addEventListener('scroll', setButtonState)
+  const toggleModal = useCallback(
+    (itemId?: string | number) => {
+      setShowModal((prevState) => !prevState)
+      if (itemId) {
+        setSelectedMenuItem(itemId)
+      }
+    },
+    [showModal],
+  )
 
-    return () => window.removeEventListener('scroll', setButtonState)
+  // TODO: check how to avaoid re-render on button appearence
+  useEffect(() => {
+    window.addEventListener("scroll", setButtonState)
+
+    return () => window.removeEventListener("scroll", setButtonState)
   }, [setButtonState])
 
   const categories = useMemo(
@@ -55,7 +72,7 @@ const Menu: React.FC = () => {
         <section className={styles.categoryContainer}>
           <h1 className={styles.categoryTitle}>{menuItem.category}</h1>
           <div className={styles.cardsContainer}>
-            {renderCards(menuItem.items)}
+            {renderCards(menuItem.items, toggleModal)}
           </div>
         </section>
       </Element>
@@ -66,7 +83,7 @@ const Menu: React.FC = () => {
     <div className={styles.container}>
       <CategoriesPanel onClick={() => {}} categories={categories} />
       {menuCards}
-      {showButton && (
+      {showBackToTopButton && (
         <Button
           content={<ChevronDoubleUp height={24} />}
           onClick={() => scroll.scrollToTop()}
@@ -75,6 +92,9 @@ const Menu: React.FC = () => {
           className={styles.backToTop}
         />
       )}
+      <Modal onClose={toggleModal} show={showModal}>
+        <DetailsView />
+      </Modal>
     </div>
   )
 }

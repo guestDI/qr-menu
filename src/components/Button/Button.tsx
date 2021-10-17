@@ -1,13 +1,13 @@
-import clsx from 'clsx'
+import clsx from "clsx"
 
-import React from 'react'
-import styles from './styles.module.css'
+import React from "react"
+import styles from "./styles.module.css"
 
 interface ButtonProps {
   content: React.ReactNode
   onClick: (e: any) => void
   round?: boolean
-  size?: 'sm' | 'md' | 'lg'
+  size?: "sm" | "md" | "lg"
   className?: any
 }
 
@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   content,
   onClick,
   round,
-  size = 'md',
+  size = "md",
   className,
 }) => {
   const roundBtnSize = `roundBtn__${size}`
