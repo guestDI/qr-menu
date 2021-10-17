@@ -1,9 +1,9 @@
-import { Link, Button } from "react-scroll"
-import React, { useCallback, useRef } from "react"
+import { Link } from "react-scroll"
+import React, { useRef } from "react"
 import styles from "./styles.module.css"
 
 interface CategoriesPanelProps {
-  onClick: (category: string) => void
+  onClick?: (category: string) => void
   categories: string[]
 }
 

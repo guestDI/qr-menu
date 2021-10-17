@@ -6,10 +6,6 @@ import { Element, animateScroll as scroll } from "react-scroll"
 import { ChevronDoubleUp } from "../inline-img/svg"
 import { DetailsView } from "./components"
 
-const openDetails = (id: string | number) => {
-  console.log(id)
-}
-
 const addToBasket = (id: string | number) => {
   console.log("added", id)
 }
@@ -34,7 +30,7 @@ const renderCards = (
 const Menu: React.FC = () => {
   const [showBackToTopButton, setShowBackToTopButton] = useState(false)
   const [showModal, setShowModal] = useState(false)
-  const [selectedMenuItem, setSelectedMenuItem] = useState<string | number>("")
+  // const [selectedMenuItem, setSelectedMenuItem] = useState<string | number>("")
 
   const setButtonState = useCallback(() => {
     if (window.pageYOffset > 350) {
@@ -47,9 +43,9 @@ const Menu: React.FC = () => {
   const toggleModal = useCallback(
     (itemId?: string | number) => {
       setShowModal((prevState) => !prevState)
-      if (itemId) {
-        setSelectedMenuItem(itemId)
-      }
+      // if (itemId) {
+      //   setSelectedMenuItem(itemId)
+      // }
     },
     [showModal],
   )
