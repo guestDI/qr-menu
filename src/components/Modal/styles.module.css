@@ -13,7 +13,6 @@
   background: white;
   width: 90%;
   height: auto;
-  min-height: 60%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -34,8 +33,23 @@
   cursor: pointer;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 500px) and (max-width: 800px) {
+  .modalMain {
+    width: 70%;
+    height: 55%;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1100px) {
   .modalMain {
     width: 50%;
+    height: 55%;
+  }
+}
+
+@media (min-width: 1101px) {
+  .modalMain {
+    width: 35%;
+    height: 55%;
   }
 }

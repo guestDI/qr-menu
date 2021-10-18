@@ -1,0 +1,36 @@
+.inputContainer {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-lg);
+}
+
+.btn {
+  height: 4rem;
+  width: 5rem;
+  border: 1px solid var(--off-grey-light);
+  font-size: var(--font-size-xlg);
+  cursor: pointer;
+}
+
+.btn:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-right-color: var(--off-grey-mid);
+}
+
+.btn:last-child {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border-left-color: var(--off-grey-mid);
+}
+
+.valueContainer {
+  display: inline-block;
+  border: 1px solid var(--off-grey-light);
+  padding: 1rem;
+  width: 5rem;
+  height: 4rem;
+  text-align: center;
+  background: var(--off-grey-light);
+  cursor: default;
+}
