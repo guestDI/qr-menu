@@ -7,9 +7,9 @@ import {
   DetailsView,
 } from "../components"
 import styles from "../../styles/Menu.module.css"
-import menu from "../../__fixtures__/menu.json"
 import { Element, animateScroll as scroll } from "react-scroll"
 import { ChevronDoubleUp } from "../inline-img/svg"
+import { useDataLayerContext } from "../context/DataLayerContext"
 
 const addToBasket = (id: string | number) => {
   console.log("added", id)
@@ -35,6 +35,7 @@ const renderCards = (
 const Menu: React.FC = () => {
   const [showBackToTopButton, setShowBackToTopButton] = useState(false)
   const [showModal, setShowModal] = useState(false)
+  const { items } = useDataLayerContext()
   // const [selectedMenuItem, setSelectedMenuItem] = useState<string | number>("")
 
   const setButtonState = useCallback(() => {
@@ -63,11 +64,11 @@ const Menu: React.FC = () => {
   }, [setButtonState])
 
   const categories = useMemo(
-    () => menu.map((menuItem) => menuItem.category),
-    [],
+    () => items.map((menuItem: any) => menuItem.category),
+    [items],
   )
 
-  const menuCards = menu.map((menuItem, i) => {
+  const menuCards = items.map((menuItem: any, i: number) => {
     return (
       <Element key={i} id={menuItem.category} name={menuItem.category}>
         <section className={styles.categoryContainer}>

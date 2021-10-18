@@ -5,10 +5,14 @@ import { getCurrencySign } from "../../helpers/helpers"
 import { Add } from "../../inline-img/svg"
 import Button from "../Button/Button"
 import classes from "./styles.module.css"
+import { useDataLayerContext } from "../../context/DataLayerContext"
 
 const DetailsView = () => {
   const [count, setCount] = useState(0)
+  const { items } = useDataLayerContext()
   const currencySign = useMemo(() => getCurrencySign("USD" || ""), [])
+
+  console.log(items)
 
   const increaseCount = useCallback(() => {
     setCount((prevState) => prevState + 1)
