@@ -6,6 +6,7 @@ import styles from "./styles.module.css"
 import { Add } from "../../inline-img/svg"
 import clsx from "clsx"
 import { getCurrencySign } from "../../helpers/helpers"
+import InputCounter from "../InputCounter/InputCounter"
 
 interface CardProps {
   name: string
@@ -65,10 +66,10 @@ const Card: React.FC<CardProps> = ({
           {price} {currencySign}
         </p>
         <div className={styles.btnContainer}>
-          <Button
-            content={<Add width={22} height={22} />}
-            onClick={onAddToBasket}
-            round={true}
+          <InputCounter
+            value={0}
+            increaseCount={() => {}}
+            decreaseCount={() => {}}
           />
         </div>
       </div>

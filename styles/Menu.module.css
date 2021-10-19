@@ -20,19 +20,27 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
-.backToTop {
+.floatBtn {
   position: fixed;
   right: 3rem;
-  bottom: 3rem;
   background-color: var(--grey-blue);
   color: white;
 }
 
-.backToTop:hover {
+.backToTop {
+  bottom: 3rem;
+}
+
+.shoppingCart {
+  top: 13rem;
+  z-index: 900;
+}
+
+.floatBtn:hover {
   cursor: pointer;
 }
 
-.backToTop > svg {
+.floatBtn > svg {
   filter: invert(100%);
 }
 

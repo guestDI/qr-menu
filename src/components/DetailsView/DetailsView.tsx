@@ -2,8 +2,6 @@ import Image from "next/image"
 import React, { useCallback, useMemo, useState } from "react"
 import { InputCounter } from ".."
 import { getCurrencySign } from "../../helpers/helpers"
-import { Add } from "../../inline-img/svg"
-import Button from "../Button/Button"
 import classes from "./styles.module.css"
 import { useDataLayerContext } from "../../context/DataLayerContext"
 
@@ -68,19 +66,11 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
             {itemDetails?.price}{" "}
             {getCurrencySign(itemDetails?.priceCurrency || "")}
           </span>
-          {!count ? (
-            <Button
-              content={<Add width={22} height={22} />}
-              onClick={increaseCount}
-              round={true}
-            />
-          ) : (
-            <InputCounter
-              value={count}
-              increaseCount={increaseCount}
-              decreaseCount={decreaseCount}
-            />
-          )}
+          <InputCounter
+            value={count}
+            increaseCount={increaseCount}
+            decreaseCount={decreaseCount}
+          />
         </div>
       </div>
     </div>

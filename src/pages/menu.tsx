@@ -5,11 +5,13 @@ import {
   CategoriesPanel,
   Modal,
   DetailsView,
+  ShoppingCart,
 } from "../components"
 import styles from "../../styles/Menu.module.css"
 import { Element, animateScroll as scroll } from "react-scroll"
-import { ChevronDoubleUp } from "../inline-img/svg"
+import { ChevronDoubleUp, ShoppingBag } from "../inline-img/svg"
 import { useDataLayerContext } from "../context/DataLayerContext"
+import clsx from "clsx"
 
 const addToBasket = (category: string, id: string | number) => {
   console.log("added", category, id)
@@ -37,6 +39,7 @@ const renderCards = (
 
 const Menu: React.FC = () => {
   const [showBackToTopButton, setShowBackToTopButton] = useState(false)
+  const [showCartButton, setShowCartButton] = useState(true)
   const [showModal, setShowModal] = useState(false)
   const { items } = useDataLayerContext()
   const [selectedMenuItem, setSelectedMenuItem] = useState<
@@ -88,9 +91,25 @@ const Menu: React.FC = () => {
     )
   })
 
+  const itemIsSelected = !!Object.keys(selectedMenuItem).length
+  const modalContent = itemIsSelected ? (
+    <DetailsView selectedItem={selectedMenuItem} />
+  ) : (
+    <ShoppingCart />
+  )
+
   return (
     <div className={styles.container}>
       <CategoriesPanel categories={categories} />
+      {showCartButton && (
+        <Button
+          content={<ShoppingBag height={24} />}
+          onClick={toggleModal}
+          round={true}
+          size="lg"
+          className={clsx(styles.floatBtn, styles.shoppingCart)}
+        />
+      )}
       {menuCards}
       {showBackToTopButton && (
         <Button
@@ -98,16 +117,16 @@ const Menu: React.FC = () => {
           onClick={() => scroll.scrollToTop()}
           round={true}
           size="lg"
-          className={styles.backToTop}
+          className={clsx(styles.floatBtn, styles.backToTop)}
         />
       )}
       <Modal
         onClose={toggleModal}
         show={showModal}
         className={styles.modalContent}
-        placement="bottom"
+        placement={itemIsSelected ? "center" : "bottom"}
       >
-        <DetailsView selectedItem={selectedMenuItem} />
+        {modalContent}
       </Modal>
     </div>
   )

@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React, { useCallback, useEffect } from "react"
+import React, { useCallback, useEffect, useMemo } from "react"
 import { Close } from "../../inline-img/svg"
 import styles from "./styles.module.css"
 import Button from "../Button/Button"
@@ -29,24 +29,35 @@ const ModalOverlay: React.FC<ModalProps> = ({
     [onClose],
   )
 
+  const displayStyle = useMemo(
+    () => (show ? styles.displayBlock : styles.displayNone),
+    [show],
+  )
+
   return (
-    <div
-      onClick={closeOnBackdrop ? handleClose : () => {}}
-      className={clsx(
-        styles.modal,
-        show ? styles.displayBlock : styles.displayNone,
-      )}
-    >
-      <Button
-        className={styles.btnClose}
-        round={true}
-        onClick={handleClose}
-        content={<Close width={20} height={20} />}
-      />
-      <section className={clsx(styles.modalMain, styles[placement], className)}>
+    <>
+      <div
+        onClick={closeOnBackdrop ? handleClose : () => {}}
+        className={clsx(styles.modal, displayStyle)}
+      >
+        <Button
+          className={styles.btnClose}
+          round={true}
+          onClick={handleClose}
+          content={<Close width={20} height={20} />}
+        />
+      </div>
+      <section
+        className={clsx(
+          styles.modalMain,
+          styles[placement],
+          displayStyle,
+          className,
+        )}
+      >
         {children}
       </section>
-    </div>
+    </>
   )
 }
 
