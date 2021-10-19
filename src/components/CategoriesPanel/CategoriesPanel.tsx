@@ -7,10 +7,7 @@ interface CategoriesPanelProps {
   categories: string[]
 }
 
-const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
-  categories,
-  onClick,
-}) => {
+const CategoriesPanel: React.FC<CategoriesPanelProps> = ({ categories }) => {
   const ref = useRef<any>(null)
 
   // const handleScroll = useCallback((direction: "right" | "left") => {

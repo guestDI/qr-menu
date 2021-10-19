@@ -7,12 +7,24 @@ import Button from "../Button/Button"
 import classes from "./styles.module.css"
 import { useDataLayerContext } from "../../context/DataLayerContext"
 
-const DetailsView = () => {
+interface DetailsViewProp {
+  selectedItem: Record<string, string | number>
+}
+
+const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
   const [count, setCount] = useState(0)
   const { items } = useDataLayerContext()
-  const currencySign = useMemo(() => getCurrencySign("USD" || ""), [])
 
-  console.log(items)
+  const [category, itemId] = Object.values(selectedItem)
+  const categoryItems = useMemo(
+    () => items.find((item: any) => item.category === category),
+    [items, category],
+  )
+
+  const itemDetails = useMemo(
+    () => categoryItems?.items.find((item: any) => item.uid === itemId),
+    [items, category, itemId],
+  )
 
   const increaseCount = useCallback(() => {
     setCount((prevState) => prevState + 1)
@@ -40,13 +52,14 @@ const DetailsView = () => {
       </div>
       <div className={classes.mainContainer}>
         <div className={classes.content}>
-          <p className={classes.contentTitle}>Title</p>
-          <p className={classes.contentDesc}>
-            Mennu menu ingredientscsdasdasdasd asdasdasdasqwe
-          </p>
+          <p className={classes.contentTitle}>{itemDetails?.name}</p>
+          <p className={classes.contentDesc}>{itemDetails?.shortDescription}</p>
         </div>
         <div className={classes.footer}>
-          <span className={classes.footerPrice}>5 {currencySign}</span>
+          <span className={classes.footerPrice}>
+            {itemDetails?.price}{" "}
+            {getCurrencySign(itemDetails?.priceCurrency || "")}
+          </span>
           {!count ? (
             <Button
               content={<Add width={22} height={22} />}

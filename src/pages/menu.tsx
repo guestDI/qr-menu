@@ -11,13 +11,14 @@ import { Element, animateScroll as scroll } from "react-scroll"
 import { ChevronDoubleUp } from "../inline-img/svg"
 import { useDataLayerContext } from "../context/DataLayerContext"
 
-const addToBasket = (id: string | number) => {
-  console.log("added", id)
+const addToBasket = (category: string, id: string | number) => {
+  console.log("added", category, id)
 }
 
 const renderCards = (
+  category: string,
   items: Array<Record<string, any>>,
-  onCardClick: (id: string | number) => void,
+  onCardClick: (category: string, id: string | number) => void,
 ) => {
   return items.map(({ uid, name, priceCurrency }) => (
     <Card
@@ -25,9 +26,9 @@ const renderCards = (
       name={name}
       price="5.50"
       priceCurrency={priceCurrency}
-      onCardClick={() => onCardClick(uid)}
+      onCardClick={() => onCardClick(category, uid)}
       shortDescription="Shorttt sd fs fsd fsd fs fs fs fs df dfs sdfsdfsdf sdf s"
-      addToBasket={() => addToBasket(uid)}
+      addToBasket={() => addToBasket(category, uid)}
     />
   ))
 }
@@ -36,7 +37,9 @@ const Menu: React.FC = () => {
   const [showBackToTopButton, setShowBackToTopButton] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const { items } = useDataLayerContext()
-  // const [selectedMenuItem, setSelectedMenuItem] = useState<string | number>("")
+  const [selectedMenuItem, setSelectedMenuItem] = useState<
+    Record<string, string | number>
+  >({})
 
   const setButtonState = useCallback(() => {
     if (window.pageYOffset > 350) {
@@ -47,11 +50,13 @@ const Menu: React.FC = () => {
   }, [])
 
   const toggleModal = useCallback(
-    (itemId?: string | number) => {
+    (category?: string, itemId?: string | number) => {
       setShowModal((prevState) => !prevState)
-      // if (itemId) {
-      //   setSelectedMenuItem(itemId)
-      // }
+      if (category && itemId) {
+        setSelectedMenuItem({ category, itemId })
+      } else {
+        setSelectedMenuItem({})
+      }
     },
     [showModal],
   )
@@ -74,7 +79,7 @@ const Menu: React.FC = () => {
         <section className={styles.categoryContainer}>
           <h1 className={styles.categoryTitle}>{menuItem.category}</h1>
           <div className={styles.cardsContainer}>
-            {renderCards(menuItem.items, toggleModal)}
+            {renderCards(menuItem.category, menuItem.items, toggleModal)}
           </div>
         </section>
       </Element>
@@ -83,7 +88,7 @@ const Menu: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <CategoriesPanel onClick={() => {}} categories={categories} />
+      <CategoriesPanel categories={categories} />
       {menuCards}
       {showBackToTopButton && (
         <Button
@@ -99,7 +104,7 @@ const Menu: React.FC = () => {
         show={showModal}
         className={styles.modalContent}
       >
-        <DetailsView />
+        <DetailsView selectedItem={selectedMenuItem} />
       </Modal>
     </div>
   )
