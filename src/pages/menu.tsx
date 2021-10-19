@@ -20,17 +20,19 @@ const renderCards = (
   items: Array<Record<string, any>>,
   onCardClick: (category: string, id: string | number) => void,
 ) => {
-  return items.map(({ uid, name, priceCurrency }) => (
-    <Card
-      key={uid}
-      name={name}
-      price="5.50"
-      priceCurrency={priceCurrency}
-      onCardClick={() => onCardClick(category, uid)}
-      shortDescription="Shorttt sd fs fsd fsd fs fs fs fs df dfs sdfsdfsdf sdf s"
-      addToBasket={() => addToBasket(category, uid)}
-    />
-  ))
+  return items.map(
+    ({ uid, name, price, priceCurrency, shortDescription = "" }) => (
+      <Card
+        key={uid}
+        name={name}
+        price={price}
+        priceCurrency={priceCurrency}
+        onCardClick={() => onCardClick(category, uid)}
+        shortDescription={shortDescription}
+        addToBasket={() => addToBasket(category, uid)}
+      />
+    ),
+  )
 }
 
 const Menu: React.FC = () => {
