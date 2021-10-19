@@ -10,6 +10,7 @@
   border: 1px solid var(--off-grey-light);
   font-size: var(--font-size-xlg);
   cursor: pointer;
+  color: inherit;
 }
 
 .btn:first-child {

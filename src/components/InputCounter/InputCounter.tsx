@@ -3,8 +3,12 @@ import classes from "./styles.module.css"
 
 interface InputCounterProps {
   value: number
-  increaseCount: () => void
-  decreaseCount: () => void
+  increaseCount: (
+    e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>,
+  ) => void
+  decreaseCount: (
+    e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>,
+  ) => void
 }
 
 const InputCounter: React.FC<InputCounterProps> = ({

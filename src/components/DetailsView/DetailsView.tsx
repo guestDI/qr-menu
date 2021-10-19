@@ -26,13 +26,21 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
     [items, category, itemId],
   )
 
-  const increaseCount = useCallback(() => {
-    setCount((prevState) => prevState + 1)
-  }, [count])
+  const increaseCount = useCallback(
+    (e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
+      e.stopPropagation()
+      setCount((prevState) => prevState + 1)
+    },
+    [count],
+  )
 
-  const decreaseCount = useCallback(() => {
-    setCount((prevState) => prevState - 1)
-  }, [count])
+  const decreaseCount = useCallback(
+    (e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
+      e.stopPropagation()
+      setCount((prevState) => prevState - 1)
+    },
+    [count],
+  )
 
   return (
     <div className={classes.detailsContainer}>

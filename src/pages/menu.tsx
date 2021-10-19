@@ -105,6 +105,7 @@ const Menu: React.FC = () => {
         onClose={toggleModal}
         show={showModal}
         className={styles.modalContent}
+        placement="bottom"
       >
         <DetailsView selectedItem={selectedMenuItem} />
       </Modal>

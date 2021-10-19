@@ -10,6 +10,7 @@ interface ModalProps {
   children: React.ReactNode
   closeOnBackdrop?: boolean
   className?: string
+  placement: "center" | "bottom"
 }
 
 const ModalOverlay: React.FC<ModalProps> = ({
@@ -17,7 +18,8 @@ const ModalOverlay: React.FC<ModalProps> = ({
   onClose,
   className,
   children,
-  closeOnBackdrop = "true"
+  closeOnBackdrop = "true",
+  placement,
 }) => {
   const handleClose = useCallback(
     (e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
@@ -41,7 +43,7 @@ const ModalOverlay: React.FC<ModalProps> = ({
         onClick={handleClose}
         content={<Close width={20} height={20} />}
       />
-      <section className={clsx(styles.modalMain, className)}>
+      <section className={clsx(styles.modalMain, styles[placement], className)}>
         {children}
       </section>
     </div>
@@ -53,6 +55,7 @@ const Modal: React.FC<ModalProps> = ({
   onClose,
   className,
   children,
+  placement = "center",
 }) => {
   // hack to prevent scrolling when modal is open
   useEffect(() => {
@@ -61,7 +64,12 @@ const Modal: React.FC<ModalProps> = ({
   }, [show])
 
   return (
-    <ModalOverlay onClose={onClose} show={show} className={className}>
+    <ModalOverlay
+      placement={placement}
+      onClose={onClose}
+      show={show}
+      className={className}
+    >
       {children}
     </ModalOverlay>
   )
