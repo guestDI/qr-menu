@@ -21,7 +21,9 @@ const Layout: React.FC = ({ children }) => {
 						<i className="icon ion-social-instagram"></i>
 					</a>
 				</div>
-				<p className={styles.company}>Copyright &copy; 2021 The RvDi Company.</p>
+				<p className={styles.company}>
+					Copyright &copy; 2021 The RvDi Company.
+				</p>
 			</footer>
 		</div>
 	)

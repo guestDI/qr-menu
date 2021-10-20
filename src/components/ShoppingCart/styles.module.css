@@ -5,3 +5,14 @@
 	padding: 1rem;
 	border-top: 1px solid var(--off-grey-mid);
 }
+
+.footerTotalLabel {
+	font-size: var(--font-size-xlg);
+	font-weight: 600;
+	padding-bottom: 0.6rem;
+}
+
+.footerTotalPrice {
+	font-size: var(--font-size-md);
+	font-weight: 500;
+}

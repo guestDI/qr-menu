@@ -18,7 +18,8 @@ const Home: NextPage = () => {
 				</h1>
 
 				<p className={styles.description}>
-					Get started by editing <code className={styles.code}>pages/index.js</code>
+					Get started by editing{" "}
+					<code className={styles.code}>pages/index.js</code>
 				</p>
 
 				<div className={styles.grid}>
@@ -45,7 +46,9 @@ const Home: NextPage = () => {
 						className={styles.card}
 					>
 						<h2>Deploy &rarr;</h2>
-						<p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
+						<p>
+							Instantly deploy your Next.js site to a public URL with Vercel.
+						</p>
 					</a>
 				</div>
 			</main>

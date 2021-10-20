@@ -26,7 +26,6 @@ const Card: React.FC<CardProps> = ({
 	const onAddToBasket = useCallback(
 		(e) => {
 			e.stopPropagation()
-
 			addToBasket()
 		},
 		[addToBasket]
