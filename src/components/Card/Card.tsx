@@ -64,7 +64,11 @@ const Card: React.FC<CardProps> = ({
 					{price} {currencySign}
 				</p>
 				<div className={styles.btnContainer}>
-					<InputCounter value={0} increaseCount={} decreaseCount={() => {}} />
+					<InputCounter
+						value={0}
+						increaseCount={onAddToBasket}
+						decreaseCount={() => {}}
+					/>
 				</div>
 			</div>
 		</div>

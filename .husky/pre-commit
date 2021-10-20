@@ -1,4 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm test
+yarn run check-types
+
+yarn run check-format
+
+yarn run check-lint
