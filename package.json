@@ -16,12 +16,8 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "yarn lint-staged"
+			"pre-commit": "yarn test-all"
 		}
-	},
-	"lint-staged": {
-		"**/*.{css,md,ts,tsx,html}": "prettier --config .prettierrc \"**/*.{css,ts,tsx,html}\" --write",
-		"*.{js,jsx,ts,tsx,json}": "eslint --fix"
 	},
 	"dependencies": {
 		"clsx": "^1.1.1",
