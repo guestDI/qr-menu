@@ -92,6 +92,7 @@ const Menu: React.FC = () => {
   })
 
   const itemIsSelected = !!Object.keys(selectedMenuItem).length
+  const placement = itemIsSelected ? "center" : "bottom"
   const modalContent = itemIsSelected ? (
     <DetailsView selectedItem={selectedMenuItem} />
   ) : (
@@ -123,8 +124,10 @@ const Menu: React.FC = () => {
       <Modal
         onClose={toggleModal}
         show={showModal}
-        className={styles.modalContent}
-        placement={itemIsSelected ? "center" : "bottom"}
+        className={clsx(
+          placement === "center" ? styles.modalCenter : styles.modalBottom,
+        )}
+        placement={placement}
       >
         {modalContent}
       </Modal>

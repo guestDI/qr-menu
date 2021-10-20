@@ -44,9 +44,13 @@
   filter: invert(100%);
 }
 
-.modalContent {
+.modalCenter {
   border-radius: 0.8rem;
-  /* background: var(--dark); */
+}
+
+.modalBottom {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 @media (min-width: 300px) and (max-width: 1200px) {

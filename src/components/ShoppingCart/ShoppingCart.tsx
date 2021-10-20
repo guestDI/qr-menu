@@ -1,11 +1,15 @@
 import React from "react"
+import styles from "./styles.module.css"
 
 const ShoppingCart = () => {
   return (
-    <div>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
+    <div className={styles.container}>
+      <div className={styles.header}>1</div>
+      <div className={styles.content}>2</div>
+      <div className={styles.footer}>
+        <div>Total</div>
+        <div>34</div>
+      </div>
     </div>
   )
 }
