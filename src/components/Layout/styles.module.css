@@ -1,22 +1,22 @@
 .header,
 .footer {
-  height: var(--header-height);
-  color: var(--off-white);
-  background-color: var(--dark);
+	height: var(--header-height);
+	color: var(--off-white);
+	background-color: var(--dark);
 }
 
 .header {
-  padding: 1rem;
-  position: sticky;
-  top: 0;
-  z-index: 800;
+	padding: 1rem;
+	position: sticky;
+	top: 0;
+	z-index: 800;
 }
 
 .footer {
-  text-align: center;
+	text-align: center;
 }
 
 .company {
-  margin: 0 auto;
-  padding: 1rem 0;
+	margin: 0 auto;
+	padding: 1rem 0;
 }

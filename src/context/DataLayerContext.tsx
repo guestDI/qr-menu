@@ -2,28 +2,26 @@ import React, { useContext } from "react"
 import menu from "../../__fixtures__/menu.json"
 
 interface DataLayerContextProviderProps {
-  children: React.ReactNode
+	children: React.ReactNode
 }
 
 interface DataLayerCtx {
-  items: any
+	items: any
 }
 
 const DataLayerContext = React.createContext<DataLayerCtx>({
-  items: [],
+	items: [],
 })
 
 export const useDataLayerContext = () => useContext(DataLayerContext)
 
 export const DataLayerContextProvider: React.FC<DataLayerContextProviderProps> =
-  ({ children }) => {
-    const ctx = {
-      items: [...menu],
-    }
+	({ children }) => {
+		const ctx = {
+			items: [...menu],
+		}
 
-    return (
-      <DataLayerContext.Provider value={ctx}>
-        {children}
-      </DataLayerContext.Provider>
-    )
-  }
+		return (
+			<DataLayerContext.Provider value={ctx}>{children}</DataLayerContext.Provider>
+		)
+	}

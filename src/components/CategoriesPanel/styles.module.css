@@ -1,51 +1,51 @@
 .container {
-  padding-bottom: 1.2rem;
-  display: flex;
-  background: #fff;
-  color: var(--grey-blue);
-  overflow-x: auto;
-  position: fixed;
-  padding-top: calc(var(--header-height) - 1rem);
-  z-index: 700;
-  width: calc(100% - 2rem);
-  top: 2rem;
-  left: 0;
-  margin-left: 1rem;
-  padding-left: 0;
+	padding-bottom: 1.2rem;
+	display: flex;
+	background: #fff;
+	color: var(--grey-blue);
+	overflow-x: auto;
+	position: fixed;
+	padding-top: calc(var(--header-height) - 1rem);
+	z-index: 700;
+	width: calc(100% - 2rem);
+	top: 2rem;
+	left: 0;
+	margin-left: 1rem;
+	padding-left: 0;
 }
 
 .container > a {
-  list-style: none;
-  font-size: 1.3rem;
-  border: 1px solid var(--grey-blue);
-  padding: 0.8rem 1rem;
-  border-radius: 3rem;
-  min-width: 10.5rem;
-  text-align: center;
-  margin-right: 0.6rem;
-  cursor: pointer;
+	list-style: none;
+	font-size: 1.3rem;
+	border: 1px solid var(--grey-blue);
+	padding: 0.8rem 1rem;
+	border-radius: 3rem;
+	min-width: 10.5rem;
+	text-align: center;
+	margin-right: 0.6rem;
+	cursor: pointer;
 }
 
 .container > a:last-child {
-  margin-right: 0rem;
+	margin-right: 0rem;
 }
 
 .active {
-  background: var(--grey-blue);
-  border: 1px solid var(--grey-blue) !important;
-  color: #fff;
+	background: var(--grey-blue);
+	border: 1px solid var(--grey-blue) !important;
+	color: #fff;
 }
 
 @media (min-width: 650px) {
-  .container {
-    margin-left: 0;
-    left: unset;
-  }
+	.container {
+		margin-left: 0;
+		left: unset;
+	}
 
-  .container > a {
-    font-size: var(--font-size-lg);
-    padding: 1rem;
-    min-width: 12rem;
-    margin-right: 1.2rem;
-  }
+	.container > a {
+		font-size: var(--font-size-lg);
+		padding: 1rem;
+		min-width: 12rem;
+		margin-right: 1.2rem;
+	}
 }

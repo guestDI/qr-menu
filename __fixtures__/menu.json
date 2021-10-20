@@ -1,59 +1,64 @@
 [
-  {
-    "category": "Main Dishes",
-    "items": [
-      {
-        "uid": 1,
-        "name": "Soup with frikadels cand mushrooms very tasty",
-        "shortDescription": "Here is description",
-        "price": 3,
-        "priceCurrency": "USD"
-      },
-      { "uid": 2, "name": "Meat", "price": 10, "priceCurrency": "EURO" },
-      { "uid": 3, "name": "Chicken", "price": 7, "priceCurrency": "POUND" },
-      { "uid": 4, "name": "Something else", "price": 6, "priceCurrency": "ROUBLE" },
-      { "uid": 5, "name": "New dish", "price": 12, "priceCurrency": "USD" },
-      { "uid": 6, "name": "New", "price": 4, "priceCurrency": "USD" },
-      { "uid": 7, "name": "Fish", "price": 7, "priceCurrency": "USD" },
-      { "uid": 8, "name": "New", "price": 8, "priceCurrency": "USD" },
-      { "uid": 9, "name": "New", "price": 100, "priceCurrency": "USD" },
-      { "uid": 10, "name": "New", "price": 3, "priceCurrency": "USD" }
-    ]
-  },
-  {
-    "category": "Drinks",
-    "items": [
-      {
-        "uid": 1,
-        "name": "Vodka",
-        "priceCurrency": "USD"
-      },
-      { "uid": 2, "name": "Wisky", "priceCurrency": "EURO" },
-      { "uid": 3, "name": "Jean", "priceCurrency": "POUND" }
-    ]
-  },
-  {
-    "category": "Deserts",
-    "items": [
-      {
-        "uid": 1,
-        "name": "Pie",
-        "priceCurrency": "USD"
-      },
-      { "uid": 2, "name": "Puding", "priceCurrency": "EURO" }
-    ]
-  },
-  {
-    "category": "Happy hours",
-    "items": [
-      {
-        "uid": 1,
-        "name": "Margarita",
-        "shortDescription": "New cocktail with new ingredients. You will never forgot this",
-        "price": 7,
-        "priceCurrency": "USD"
-      },
-      { "uid": 2, "name": "Puding", "priceCurrency": "EURO" }
-    ]
-  }
+	{
+		"category": "Main Dishes",
+		"items": [
+			{
+				"uid": 1,
+				"name": "Soup with frikadels cand mushrooms very tasty",
+				"shortDescription": "Here is description",
+				"price": 3,
+				"priceCurrency": "USD"
+			},
+			{ "uid": 2, "name": "Meat", "price": 10, "priceCurrency": "EURO" },
+			{ "uid": 3, "name": "Chicken", "price": 7, "priceCurrency": "POUND" },
+			{
+				"uid": 4,
+				"name": "Something else",
+				"price": 6,
+				"priceCurrency": "ROUBLE"
+			},
+			{ "uid": 5, "name": "New dish", "price": 12, "priceCurrency": "USD" },
+			{ "uid": 6, "name": "New", "price": 4, "priceCurrency": "USD" },
+			{ "uid": 7, "name": "Fish", "price": 7, "priceCurrency": "USD" },
+			{ "uid": 8, "name": "New", "price": 8, "priceCurrency": "USD" },
+			{ "uid": 9, "name": "New", "price": 100, "priceCurrency": "USD" },
+			{ "uid": 10, "name": "New", "price": 3, "priceCurrency": "USD" }
+		]
+	},
+	{
+		"category": "Drinks",
+		"items": [
+			{
+				"uid": 1,
+				"name": "Vodka",
+				"priceCurrency": "USD"
+			},
+			{ "uid": 2, "name": "Wisky", "priceCurrency": "EURO" },
+			{ "uid": 3, "name": "Jean", "priceCurrency": "POUND" }
+		]
+	},
+	{
+		"category": "Deserts",
+		"items": [
+			{
+				"uid": 1,
+				"name": "Pie",
+				"priceCurrency": "USD"
+			},
+			{ "uid": 2, "name": "Puding", "priceCurrency": "EURO" }
+		]
+	},
+	{
+		"category": "Happy hours",
+		"items": [
+			{
+				"uid": 1,
+				"name": "Margarita",
+				"shortDescription": "New cocktail with new ingredients. You will never forgot this",
+				"price": 7,
+				"priceCurrency": "USD"
+			},
+			{ "uid": 2, "name": "Puding", "priceCurrency": "EURO" }
+		]
+	}
 ]

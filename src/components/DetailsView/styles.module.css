@@ -1,74 +1,74 @@
 .detailsContainer {
-  display: flex;
-  flex-direction: column;
-  background: var(--dark);
-  border-radius: 0.8rem;
+	display: flex;
+	flex-direction: column;
+	background: var(--dark);
+	border-radius: 0.8rem;
 }
 
 .imageСontainer {
-  width: 50vw;
-  height: 50vh;
-  position: relative;
+	width: 50vw;
+	height: 50vh;
+	position: relative;
 }
 
 .imageСontainer .img {
-  width: 100%;
-  height: 100%;
-  position: relative !important;
-  object-fit: cover;
+	width: 100%;
+	height: 100%;
+	position: relative !important;
+	object-fit: cover;
 }
 
 .mainContainer {
-  background: #fff;
-  border-bottom-left-radius: 0.8rem;
-  border-bottom-right-radius: 0.8rem;
+	background: #fff;
+	border-bottom-left-radius: 0.8rem;
+	border-bottom-right-radius: 0.8rem;
 }
 
 .content {
-  padding: 0 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
+	padding: 0 2rem 1rem;
+	display: flex;
+	flex-direction: column;
+	background: #fff;
 }
 
 .contentTitle {
-  font-size: var(--font-size-xlg);
-  margin-bottom: 1rem;
+	font-size: var(--font-size-xlg);
+	margin-bottom: 1rem;
 }
 
 .contentDesc {
-  font-size: var(--font-size-lg);
-  color: var(--off-grey);
-  margin-top: 0rem;
-  line-height: 2rem;
-  word-wrap: break-word;
+	font-size: var(--font-size-lg);
+	color: var(--off-grey);
+	margin-top: 0rem;
+	line-height: 2rem;
+	word-wrap: break-word;
 }
 
 .footer {
-  background: #fff;
-  padding: 0 2rem 1.6rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom-left-radius: 0.8rem;
-  border-bottom-right-radius: 0.8rem;
+	background: #fff;
+	padding: 0 2rem 1.6rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom-left-radius: 0.8rem;
+	border-bottom-right-radius: 0.8rem;
 }
 
 .footerPrice {
-  margin-top: 0;
-  font-size: 2rem;
-  font-weight: 600;
+	margin-top: 0;
+	font-size: 2rem;
+	font-weight: 600;
 }
 
 @media (min-width: 650px) {
-  .detailsContainer {
-    height: 100%;
-  }
+	.detailsContainer {
+		height: 100%;
+	}
 
-  .mainContainer {
-    height: -webkit-fill-available;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+	.mainContainer {
+		height: -webkit-fill-available;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
 }
