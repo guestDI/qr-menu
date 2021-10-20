@@ -1,9 +1,7 @@
 import Image from "next/image"
 
 import React, { useCallback, useMemo } from "react"
-import Button from "../Button/Button"
 import styles from "./styles.module.css"
-import { Add } from "../../inline-img/svg"
 import clsx from "clsx"
 import { getCurrencySign } from "../../helpers/helpers"
 import InputCounter from "../InputCounter/InputCounter"
