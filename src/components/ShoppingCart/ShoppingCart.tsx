@@ -3,7 +3,7 @@ import styles from "./styles.module.css"
 
 const ShoppingCart = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <div className={styles.header}>1</div>
       <div className={styles.content}>2</div>
       <div className={styles.footer}>
