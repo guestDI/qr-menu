@@ -30,13 +30,14 @@
 
 .cardFooter {
 	display: flex;
-	align-items: baseline;
+	align-items: center;
 	justify-content: space-between;
-	padding: 0 0.8rem 0;
+	padding: 0 1rem 1rem 1rem;
 }
 
 .cardFooter__price {
 	margin-top: 0;
+	margin-bottom: 0;
 	font-size: 1.5rem;
 	font-weight: 600;
 }

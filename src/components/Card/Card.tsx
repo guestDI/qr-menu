@@ -2,8 +2,10 @@
 import clsx from "clsx"
 import Image from "next/image"
 import React, { useCallback, useMemo } from "react"
+import { Button } from ".."
+import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
-import InputCounter from "../InputCounter/InputCounter"
+import { Add } from "../../inline-img/svg"
 import styles from "./styles.module.css"
 
 interface CardProps {
@@ -23,6 +25,7 @@ const Card: React.FC<CardProps> = ({
 	onCardClick,
 	addToBasket,
 }) => {
+	const { items } = useDataLayerContext()
 	const onAddToBasket = useCallback(
 		(e) => {
 			e.stopPropagation()
@@ -63,10 +66,10 @@ const Card: React.FC<CardProps> = ({
 					{price} {currencySign}
 				</p>
 				<div className={styles.btnContainer}>
-					<InputCounter
-						value={0}
-						increaseCount={onAddToBasket}
-						decreaseCount={() => {}}
+					<Button
+						content={items.length ?? <Add height={14} />}
+						round={true}
+						onClick={onAddToBasket}
 					/>
 				</div>
 			</div>

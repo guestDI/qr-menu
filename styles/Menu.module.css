@@ -31,9 +31,20 @@
 	bottom: 3rem;
 }
 
-.shoppingCart {
+.shoppingCartBtnContainer {
+	position: fixed;
+	right: 3rem;
 	top: 13rem;
 	z-index: 900;
+	color: #fff;
+}
+
+.shoppingCart {
+	background-color: var(--grey-blue);
+}
+
+.shoppingCart > svg {
+	filter: invert(100%);
 }
 
 .floatBtn:hover {
@@ -52,6 +63,19 @@
 	border-radius: 0.8rem;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
+}
+
+.badge {
+	position: absolute;
+	height: 2.3rem;
+	width: 2.3rem;
+	bottom: 0;
+	right: 0;
+	border: 1px solid red;
+	border-radius: 50%;
+	padding: 0.5rem;
+	background: red;
+	text-align: center;
 }
 
 @media (min-width: 300px) and (max-width: 1200px) {

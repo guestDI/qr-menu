@@ -64,7 +64,6 @@ const Menu: React.FC = () => {
 		[showModal]
 	)
 
-	// TODO: check how to avaoid re-render on button appearence
 	useEffect(() => {
 		window.addEventListener("scroll", setButtonState)
 
@@ -110,13 +109,16 @@ const Menu: React.FC = () => {
 		<div className={styles.container}>
 			<CategoriesPanel categories={categories} />
 			{shoppingCart.length > 0 && (
-				<Button
-					content={<ShoppingBag height={24} />}
-					onClick={toggleModal}
-					round={true}
-					size="lg"
-					className={clsx(styles.floatBtn, styles.shoppingCart)}
-				/>
+				<div className={styles.shoppingCartBtnContainer}>
+					<Button
+						content={<ShoppingBag height={24} />}
+						onClick={toggleModal}
+						round={true}
+						size="lg"
+						className={styles.shoppingCart}
+					/>
+					<span className={styles.badge}>15</span>
+				</div>
 			)}
 			{menuCards}
 			{showBackToTopButton && (
