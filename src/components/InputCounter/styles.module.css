@@ -5,7 +5,7 @@
 }
 
 .btn {
-	height: 4rem;
+	height: 3.5rem;
 	width: 5rem;
 	border: 1px solid var(--off-grey-light);
 	font-size: var(--font-size-xlg);
@@ -14,14 +14,14 @@
 }
 
 .btn:first-child {
-	border-top-left-radius: 1rem;
-	border-bottom-left-radius: 1rem;
+	border-top-left-radius: 1.6rem;
+	border-bottom-left-radius: 1.6rem;
 	border-right-color: var(--off-grey-mid);
 }
 
 .btn:last-child {
-	border-top-right-radius: 1rem;
-	border-bottom-right-radius: 1rem;
+	border-top-right-radius: 1.6rem;
+	border-bottom-right-radius: 1.6rem;
 	border-left-color: var(--off-grey-mid);
 }
 
@@ -32,9 +32,9 @@
 .valueContainer {
 	display: inline-block;
 	border: 1px solid var(--off-grey-light);
-	padding: 1rem;
+	padding: 0.8rem 1rem;
 	width: 5rem;
-	height: 4rem;
+	height: 3.5rem;
 	text-align: center;
 	background: var(--off-grey-light);
 	cursor: default;

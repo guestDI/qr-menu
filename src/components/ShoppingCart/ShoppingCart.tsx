@@ -6,16 +6,19 @@ import styles from "./styles.module.css"
 
 const renderOrderRow = (item: any) => {
 	return (
-		<div>
-			<div>
+		<div className={styles.row}>
+			<div className={styles.itemDetails}>
 				<span>Title</span>
 				<span>5$</span>
 			</div>
-			<InputCounter
-				value={1}
-				increaseCount={() => {}}
-				decreaseCount={() => {}}
-			/>
+			<div className={styles.inputContainer}>
+				<InputCounter
+					value={1}
+					increaseCount={() => {}}
+					decreaseCount={() => {}}
+				/>
+				<span>50$</span>
+			</div>
 		</div>
 	)
 }
