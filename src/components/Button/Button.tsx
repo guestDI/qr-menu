@@ -1,5 +1,4 @@
 import clsx from "clsx"
-
 import React from "react"
 import styles from "./styles.module.css"
 
@@ -18,17 +17,19 @@ const Button: React.FC<ButtonProps> = ({
 	size = "md",
 	className,
 }) => {
+	const btnSize = `btn__${size}`
 	const roundBtnSize = `roundBtn__${size}`
-	const computedRoundBtnClass = round && [
-		styles.roundBtn,
-		styles[roundBtnSize],
-		className,
-	]
+	const computedRoundBtnClass = [styles.roundBtn, styles[roundBtnSize]]
 
 	return (
 		<button
 			onClick={onClick}
-			className={clsx(styles.btn, round && computedRoundBtnClass)}
+			className={clsx(
+				styles.btn,
+				styles[btnSize],
+				className,
+				round && computedRoundBtnClass
+			)}
 		>
 			{content}
 		</button>

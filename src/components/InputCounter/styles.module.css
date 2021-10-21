@@ -25,6 +25,10 @@
 	border-left-color: var(--off-grey-mid);
 }
 
+.btn > svg {
+	vertical-align: middle;
+}
+
 .valueContainer {
 	display: inline-block;
 	border: 1px solid var(--off-grey-light);

@@ -2,8 +2,7 @@
 	padding: 0.8rem;
 	background-color: var(--off-grey-mid);
 	border: none;
-	font-size: 14px;
-	font-weight: 600;
+	font-size: var(--font-size-md);
 }
 
 .roundBtn {
@@ -15,12 +14,10 @@
 }
 
 .roundBtn__sm {
-	height: 3rem;
 	width: 3rem;
 }
 
 .roundBtn__md {
-	height: 4rem;
 	width: 4rem;
 }
 
@@ -29,9 +26,16 @@
 	width: 6rem;
 }
 
+.btn__sm {
+	height: 3rem;
+}
+
+.btn__md {
+	height: 4rem;
+}
+
 @media (min-width: 300px) and (max-width: 1200px) {
 	.btn {
-		/* width: 100%; */
 		font-size: 12px;
 	}
 }

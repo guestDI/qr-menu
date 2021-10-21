@@ -49,6 +49,7 @@
 }
 
 .modalBottom {
+	border-radius: 0.8rem;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 }

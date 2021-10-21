@@ -1,3 +1,14 @@
+.header {
+	text-align: center;
+	border-bottom: 1px solid var(--off-grey-mid);
+	font-size: 2rem;
+	padding: 1.4rem;
+}
+
+.content {
+	padding: 0.6rem;
+}
+
 .footer {
 	display: flex;
 	flex-direction: column;
@@ -7,12 +18,24 @@
 }
 
 .footerTotalLabel {
-	font-size: var(--font-size-xlg);
-	font-weight: 600;
+	font-size: var(--font-size-md);
+	font-weight: 500;
 	padding-bottom: 0.6rem;
 }
 
 .footerTotalPrice {
-	font-size: var(--font-size-md);
-	font-weight: 500;
+	font-size: var(--font-size-xlg);
+	font-weight: 600;
+}
+
+.footerBtnContainer {
+	padding: 1rem;
+}
+
+.footerBtnContainer > button {
+	width: 100%;
+	border-radius: 2rem;
+	background: var(--grey-blue);
+	color: #fff;
+	font-size: var(--font-size-lg);
 }

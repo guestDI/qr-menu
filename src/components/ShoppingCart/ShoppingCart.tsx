@@ -27,12 +27,18 @@ const ShoppingCart = () => {
 
 	return (
 		<div>
-			{shoppingCart.map((item) => renderOrderRow(item))}
+			<div className={styles.header}>Your cart</div>
+			<div className={styles.content}>
+				{shoppingCart.map((item) => renderOrderRow(item))}
+			</div>
+
 			<div className={styles.footer}>
 				<div className={styles.footerTotalLabel}>Total</div>
 				<div className={styles.footerTotalPrice}>34</div>
 			</div>
-			<Button content="Clear" onClick={() => {}}></Button>
+			<div className={styles.footerBtnContainer}>
+				<Button content="Clear" onClick={() => {}}></Button>
+			</div>
 		</div>
 	)
 }

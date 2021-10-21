@@ -1,6 +1,6 @@
 import React from "react"
+import { Add, Minus } from "../../inline-img/svg"
 import Button from "../Button/Button"
-import { Add } from "../../inline-img/svg"
 import classes from "./styles.module.css"
 
 interface InputCounterProps {
@@ -27,11 +27,11 @@ const InputCounter: React.FC<InputCounterProps> = ({
 	) : (
 		<div className={classes.inputContainer}>
 			<button className={classes.btn} onClick={decreaseCount}>
-				-
+				<Minus height={10} width={10} />
 			</button>
 			<span className={classes.valueContainer}>{value}</span>
 			<button className={classes.btn} onClick={increaseCount}>
-				+
+				<Add height={14} width={14} />
 			</button>
 		</div>
 	)
