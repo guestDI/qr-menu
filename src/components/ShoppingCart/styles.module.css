@@ -29,6 +29,11 @@
 	padding-bottom: 1rem;
 }
 
+.itemDetails > span:last-child {
+	font-size: var(--font-size-lg);
+	color: var(--off-grey);
+}
+
 .inputContainer {
 	display: flex;
 	align-items: center;
@@ -36,8 +41,7 @@
 }
 
 .inputContainer > span {
-	color: var(--off-grey);
-	font-size: var(--font-size-lg);
+	font-size: var(--font-size-xlg);
 }
 
 .footer {

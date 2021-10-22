@@ -12,13 +12,12 @@ import {
 } from "../components"
 import { useDataLayerContext } from "../context/DataLayerContext"
 import { ChevronDoubleUp, ShoppingBag } from "../inline-img/svg"
-import { CartItemType } from "../model/types"
 
 const renderCards = (
 	category: string,
 	items: Array<Record<string, any>>,
 	onCardClick: (category: string, id: string | number) => void,
-	addToBasket: (value: CartItemType) => void
+	addToBasket: (value: any) => void
 ) => {
 	return items.map(
 		({ uid, name, price, priceCurrency, shortDescription = "" }) => (
@@ -37,9 +36,9 @@ const renderCards = (
 
 const Menu: React.FC = () => {
 	const [showBackToTopButton, setShowBackToTopButton] = useState(false)
-	// const [showCartButton, setShowCartButton] = useState(true)
 	const [showModal, setShowModal] = useState(false)
-	const { items, addItemToShoppingCart, shoppingCart } = useDataLayerContext()
+	const { items, addItemToShoppingCart, grouppedCardItems, shoppingCart } =
+		useDataLayerContext()
 	const [selectedMenuItem, setSelectedMenuItem] = useState<
 		Record<string, string | number>
 	>({})
@@ -108,7 +107,7 @@ const Menu: React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<CategoriesPanel categories={categories} />
-			{shoppingCart.length > 0 && (
+			{Object.keys(grouppedCardItems).length > 0 && (
 				<div className={styles.shoppingCartBtnContainer}>
 					<Button
 						content={<ShoppingBag height={24} />}
@@ -117,7 +116,7 @@ const Menu: React.FC = () => {
 						size="lg"
 						className={styles.shoppingCart}
 					/>
-					<span className={styles.badge}>15</span>
+					<span className={styles.badge}>{shoppingCart.length}</span>
 				</div>
 			)}
 			{menuCards}
