@@ -6,9 +6,13 @@
 }
 
 .row {
-	margin-top: 1.8rem;
+	margin-top: 1.5rem;
 	padding-bottom: 1rem;
 	border-bottom: 1px solid var(--off-grey-light);
+}
+
+.row:first-child {
+	margin-top: 0;
 }
 
 .row:last-child {
@@ -25,8 +29,12 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	font-size: var(--font-size-xlg);
+
 	padding-bottom: 1rem;
+}
+
+.title {
+	font-size: var(--font-size-xlg);
 }
 
 .itemDetails > span:last-child {
@@ -65,13 +73,13 @@
 }
 
 .footerBtnContainer {
+	display: flex;
+	justify-content: space-between;
 	padding: 1rem;
 }
 
 .footerBtnContainer > button {
-	width: 100%;
+	width: 48%;
 	border-radius: 2rem;
-	background: var(--grey-blue);
-	color: #fff;
 	font-size: var(--font-size-lg);
 }

@@ -8,6 +8,7 @@ interface ButtonProps {
 	round?: boolean
 	size?: "sm" | "md" | "lg"
 	className?: any
+	type?: "default" | "primary"
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,6 +17,7 @@ const Button: React.FC<ButtonProps> = ({
 	round,
 	size = "md",
 	className,
+	type = "default",
 }) => {
 	const btnSize = `btn__${size}`
 	const roundBtnSize = `roundBtn__${size}`
@@ -28,7 +30,8 @@ const Button: React.FC<ButtonProps> = ({
 				styles.btn,
 				styles[btnSize],
 				className,
-				round && computedRoundBtnClass
+				round && computedRoundBtnClass,
+				type === "primary" ? styles.btnPrimary : styles.btnDefault
 			)}
 		>
 			{content}

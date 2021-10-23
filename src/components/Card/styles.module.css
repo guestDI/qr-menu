@@ -53,6 +53,11 @@
 	overflow: hidden;
 }
 
+.count {
+	color: #fff;
+	background-color: var(--grey-blue);
+}
+
 /* @media (min-width: 300px) and (max-width: 1200px) {
     .menuCard {
         min-height: 320px;

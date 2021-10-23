@@ -11,6 +11,7 @@ interface DataLayerCtx {
 	shoppingCart: CartMenuItem[]
 	grouppedCardItems: Record<any, any>
 	addItemToShoppingCart: (value: CartMenuItem) => void
+	total: number
 }
 
 const DataLayerContext = React.createContext<DataLayerCtx>({
@@ -18,6 +19,7 @@ const DataLayerContext = React.createContext<DataLayerCtx>({
 	shoppingCart: [],
 	grouppedCardItems: {},
 	addItemToShoppingCart: () => {},
+	total: 0,
 })
 
 export const useDataLayerContext = () => useContext(DataLayerContext)
@@ -28,8 +30,6 @@ export const DataLayerContextProvider: React.FC<DataLayerContextProviderProps> =
 
 		// TODO: remove with real data from server
 		const itemsF = useMemo(() => [...menu], [menu])
-
-		// const itemsList = itemsF.find()
 
 		const grouppedCardItems = useMemo(() => {
 			return shoppingCart.reduce((accum: any, item: any) => {
@@ -62,15 +62,24 @@ export const DataLayerContextProvider: React.FC<DataLayerContextProviderProps> =
 		}, [shoppingCart, itemsF])
 
 		const addItemToShoppingCart = (val: CartMenuItem) => {
-			// console.log(val)
 			setShoppingCart((prevValue) => [...prevValue, val])
 		}
+
+		const total = useMemo(
+			() =>
+				Object.values(grouppedCardItems).reduce(
+					(accum: number, item: any) => accum + item.count * item.price,
+					0
+				),
+			[grouppedCardItems]
+		)
 
 		const ctx = {
 			items: itemsF,
 			shoppingCart,
 			addItemToShoppingCart,
 			grouppedCardItems,
+			total,
 		}
 
 		return (

@@ -1,8 +1,16 @@
 .btn {
 	padding: 0.8rem;
-	background-color: var(--off-grey-mid);
 	border: none;
 	font-size: var(--font-size-md);
+}
+
+.btnDefault {
+	background-color: var(--off-grey-mid);
+}
+
+.btnPrimary {
+	background-color: var(--grey-blue);
+	color: #fff;
 }
 
 .roundBtn {

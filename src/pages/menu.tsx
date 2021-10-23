@@ -14,23 +14,25 @@ import { useDataLayerContext } from "../context/DataLayerContext"
 import { ChevronDoubleUp, ShoppingBag } from "../inline-img/svg"
 
 const renderCards = (
+	// count: number,
 	category: string,
-	items: Array<Record<string, any>>,
+	item: any,
 	onCardClick: (category: string, id: string | number) => void,
 	addToBasket: (value: any) => void
 ) => {
-	return items.map(
-		({ uid, name, price, priceCurrency, shortDescription = "" }) => (
-			<Card
-				key={uid}
-				name={name}
-				price={price}
-				priceCurrency={priceCurrency}
-				onCardClick={() => onCardClick(category, uid)}
-				shortDescription={shortDescription}
-				addToBasket={() => addToBasket({ category, uid })}
-			/>
-		)
+	const { uid, name, price, priceCurrency, shortDescription = "" } = item
+
+	return (
+		<Card
+			uid={uid}
+			key={uid}
+			name={name}
+			price={price}
+			priceCurrency={priceCurrency}
+			onCardClick={() => onCardClick(category, uid)}
+			shortDescription={shortDescription}
+			addToBasket={() => addToBasket({ category, uid })}
+		/>
 	)
 }
 
@@ -82,11 +84,14 @@ const Menu: React.FC = () => {
 						<section className={styles.categoryContainer}>
 							<h1 className={styles.categoryTitle}>{menuItem.category}</h1>
 							<div className={styles.cardsContainer}>
-								{renderCards(
-									menuItem.category,
-									menuItem.items,
-									toggleModal,
-									addItemToShoppingCart
+								{menuItem.items.map((item: any) =>
+									renderCards(
+										// grouppedCardItems[item.uid].count,
+										menuItem.category,
+										item,
+										toggleModal,
+										addItemToShoppingCart
+									)
 								)}
 							</div>
 						</section>
@@ -115,6 +120,7 @@ const Menu: React.FC = () => {
 						round={true}
 						size="lg"
 						className={styles.shoppingCart}
+						type="primary"
 					/>
 					<span className={styles.badge}>{shoppingCart.length}</span>
 				</div>

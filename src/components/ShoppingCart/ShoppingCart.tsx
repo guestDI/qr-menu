@@ -1,4 +1,5 @@
 import React from "react"
+import { TextWrapper } from ".."
 import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
 import { ShoppingCartItem } from "../../model/types"
@@ -12,7 +13,9 @@ const renderOrderRow = (item: ShoppingCartItem, addItemToShoppingCart: any) => {
 	return (
 		<div key={uid} className={styles.row}>
 			<div className={styles.itemDetails}>
-				<span>{name}</span>
+				<TextWrapper className={styles.title} numberOfRows={1}>
+					{name}
+				</TextWrapper>
 				<span>
 					{price} {getCurrencySign(priceCurrency)}
 				</span>
@@ -32,7 +35,8 @@ const renderOrderRow = (item: ShoppingCartItem, addItemToShoppingCart: any) => {
 }
 
 const ShoppingCart = () => {
-	const { grouppedCardItems, addItemToShoppingCart } = useDataLayerContext()
+	const { grouppedCardItems, addItemToShoppingCart, total } =
+		useDataLayerContext()
 
 	return (
 		<div>
@@ -45,10 +49,11 @@ const ShoppingCart = () => {
 
 			<div className={styles.footer}>
 				<div className={styles.footerTotalLabel}>Total</div>
-				<div className={styles.footerTotalPrice}>34</div>
+				<div className={styles.footerTotalPrice}>{total}</div>
 			</div>
 			<div className={styles.footerBtnContainer}>
 				<Button content="Clear" onClick={() => {}}></Button>
+				<Button type="primary" content="Order" onClick={() => {}}></Button>
 			</div>
 		</div>
 	)

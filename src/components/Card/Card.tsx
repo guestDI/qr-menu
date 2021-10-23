@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import clsx from "clsx"
 import Image from "next/image"
 import React, { useCallback, useMemo } from "react"
-import { Button } from ".."
+import { Button, TextWrapper } from ".."
 import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
 import { Add } from "../../inline-img/svg"
 import styles from "./styles.module.css"
 
 interface CardProps {
+	uid: string
 	name: string
 	price: string
 	priceCurrency?: string
@@ -18,6 +18,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({
+	uid,
 	name,
 	price,
 	priceCurrency,
@@ -25,7 +26,7 @@ const Card: React.FC<CardProps> = ({
 	onCardClick,
 	addToBasket,
 }) => {
-	const { items } = useDataLayerContext()
+	const { grouppedCardItems } = useDataLayerContext()
 	const onAddToBasket = useCallback(
 		(e) => {
 			e.stopPropagation()
@@ -52,12 +53,12 @@ const Card: React.FC<CardProps> = ({
 					quality={50}
 				/>
 				<div className={styles.cardContent}>
-					<p className={clsx([styles.cardContent__title, styles.lineClamp])}>
+					<TextWrapper className={styles.cardContent__title}>
 						{name}
-					</p>
-					<p className={clsx([styles.cardContent__desc, styles.lineClamp])}>
+					</TextWrapper>
+					<TextWrapper className={styles.cardContent__desc}>
 						{shortDescription}
-					</p>
+					</TextWrapper>
 				</div>
 			</div>
 
@@ -67,9 +68,10 @@ const Card: React.FC<CardProps> = ({
 				</p>
 				<div className={styles.btnContainer}>
 					<Button
-						content={items.length ?? <Add height={14} />}
+						content={grouppedCardItems[uid]?.count ?? <Add height={14} />}
 						round={true}
 						onClick={onAddToBasket}
+						type={grouppedCardItems[uid]?.count ? "primary" : "default"}
 					/>
 				</div>
 			</div>
