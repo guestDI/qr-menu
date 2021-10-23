@@ -14,7 +14,6 @@ import { useDataLayerContext } from "../context/DataLayerContext"
 import { ChevronDoubleUp, ShoppingBag } from "../inline-img/svg"
 
 const renderCards = (
-	// count: number,
 	category: string,
 	item: any,
 	onCardClick: (category: string, id: string | number) => void,
@@ -39,8 +38,14 @@ const renderCards = (
 const Menu: React.FC = () => {
 	const [showBackToTopButton, setShowBackToTopButton] = useState(false)
 	const [showModal, setShowModal] = useState(false)
-	const { items, addItemToShoppingCart, grouppedCardItems, shoppingCart } =
-		useDataLayerContext()
+	const {
+		items,
+		addItemToShoppingCart,
+		grouppedCardItems,
+		shoppingCart,
+		clearShoppingCart,
+		removeItemFromShoppingCart,
+	} = useDataLayerContext()
 	const [selectedMenuItem, setSelectedMenuItem] = useState<
 		Record<string, string | number>
 	>({})
@@ -76,6 +81,22 @@ const Menu: React.FC = () => {
 		[items]
 	)
 
+	const clearCart = useCallback(() => {
+		clearShoppingCart()
+		setShowModal(false)
+	}, [clearShoppingCart])
+
+	const removeFromShoppingCart = useCallback(
+		(uid: string) => {
+			removeItemFromShoppingCart(uid)
+
+			if (!shoppingCart.length) {
+				setShowModal(false)
+			}
+		},
+		[removeItemFromShoppingCart]
+	)
+
 	const menuCards = useMemo(
 		() =>
 			items.map((menuItem: any, i: number) => {
@@ -86,7 +107,6 @@ const Menu: React.FC = () => {
 							<div className={styles.cardsContainer}>
 								{menuItem.items.map((item: any) =>
 									renderCards(
-										// grouppedCardItems[item.uid].count,
 										menuItem.category,
 										item,
 										toggleModal,
@@ -106,7 +126,10 @@ const Menu: React.FC = () => {
 	const modalContent = itemIsSelected ? (
 		<DetailsView selectedItem={selectedMenuItem} />
 	) : (
-		<ShoppingCart />
+		<ShoppingCart
+			clearShoppingCart={clearCart}
+			removeItemFromShoppingCart={removeFromShoppingCart}
+		/>
 	)
 
 	return (

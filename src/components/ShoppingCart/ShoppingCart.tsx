@@ -7,7 +7,11 @@ import Button from "../Button/Button"
 import InputCounter from "../InputCounter/InputCounter"
 import styles from "./styles.module.css"
 
-const renderOrderRow = (item: ShoppingCartItem, addItemToShoppingCart: any) => {
+const renderOrderRow = (
+	item: ShoppingCartItem,
+	addItemToShoppingCart: any,
+	decreaseItemCount: (uid: string) => void
+) => {
 	const { count, priceCurrency, price, name, uid, category } = item
 
 	return (
@@ -23,8 +27,8 @@ const renderOrderRow = (item: ShoppingCartItem, addItemToShoppingCart: any) => {
 			<div className={styles.inputContainer}>
 				<InputCounter
 					value={count}
-					increaseCount={() => addItemToShoppingCart(category, uid)}
-					decreaseCount={() => {}}
+					increaseCount={() => addItemToShoppingCart({ category, uid })}
+					decreaseCount={() => decreaseItemCount(uid)}
 				/>
 				<span>
 					{price * count} {getCurrencySign(priceCurrency)}
@@ -34,8 +38,14 @@ const renderOrderRow = (item: ShoppingCartItem, addItemToShoppingCart: any) => {
 	)
 }
 
-const ShoppingCart = () => {
-	const { grouppedCardItems, addItemToShoppingCart, total } =
+const ShoppingCart = ({
+	clearShoppingCart,
+	removeItemFromShoppingCart,
+}: {
+	clearShoppingCart: () => void
+	removeItemFromShoppingCart: (uid: string) => void
+}) => {
+	const { grouppedCardItems, addItemToShoppingCart, total, decreaseItemCount } =
 		useDataLayerContext()
 
 	return (
@@ -43,7 +53,7 @@ const ShoppingCart = () => {
 			<div className={styles.header}>Your cart</div>
 			<div className={styles.content}>
 				{Object.values(grouppedCardItems).map((item) =>
-					renderOrderRow(item, addItemToShoppingCart)
+					renderOrderRow(item, addItemToShoppingCart, decreaseItemCount)
 				)}
 			</div>
 
@@ -52,7 +62,7 @@ const ShoppingCart = () => {
 				<div className={styles.footerTotalPrice}>{total}</div>
 			</div>
 			<div className={styles.footerBtnContainer}>
-				<Button content="Clear" onClick={() => {}}></Button>
+				<Button content="Clear" onClick={clearShoppingCart}></Button>
 				<Button type="primary" content="Order" onClick={() => {}}></Button>
 			</div>
 		</div>

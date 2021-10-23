@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from "react"
+import React, { useCallback, useContext, useMemo, useState } from "react"
 import menu from "../../__fixtures__/menu.json"
 import { CartMenuItem, ShoppingCartItem } from "../model/types"
 
@@ -11,6 +11,9 @@ interface DataLayerCtx {
 	shoppingCart: CartMenuItem[]
 	grouppedCardItems: Record<any, any>
 	addItemToShoppingCart: (value: CartMenuItem) => void
+	removeItemFromShoppingCart: (uid: string) => void
+	decreaseItemCount: (uid: string) => void
+	clearShoppingCart: () => void
 	total: number
 }
 
@@ -19,6 +22,9 @@ const DataLayerContext = React.createContext<DataLayerCtx>({
 	shoppingCart: [],
 	grouppedCardItems: {},
 	addItemToShoppingCart: () => {},
+	removeItemFromShoppingCart: () => {},
+	decreaseItemCount: () => {},
+	clearShoppingCart: () => {},
 	total: 0,
 })
 
@@ -61,9 +67,35 @@ export const DataLayerContextProvider: React.FC<DataLayerContextProviderProps> =
 			}, {})
 		}, [shoppingCart, itemsF])
 
-		const addItemToShoppingCart = (val: CartMenuItem) => {
+		const addItemToShoppingCart = useCallback((val: CartMenuItem) => {
 			setShoppingCart((prevValue) => [...prevValue, val])
-		}
+		}, [])
+
+		const removeItemFromShoppingCart = useCallback((uid: string) => {
+			setShoppingCart((prevState: CartMenuItem[]) =>
+				prevState.filter((itemCart) => itemCart.uid !== uid)
+			)
+		}, [])
+
+		const decreaseItemCount = useCallback(
+			(uid: string) => {
+				const itemIndex = shoppingCart.findIndex(
+					(item: CartMenuItem) => item.uid === uid
+				)
+
+				if (itemIndex >= 0) {
+					const modifiedArray = [...shoppingCart]
+					modifiedArray.splice(itemIndex, 1)
+
+					setShoppingCart(modifiedArray)
+				}
+			},
+			[shoppingCart]
+		)
+
+		const clearShoppingCart = useCallback(() => {
+			setShoppingCart([])
+		}, [])
 
 		const total = useMemo(
 			() =>
@@ -78,6 +110,9 @@ export const DataLayerContextProvider: React.FC<DataLayerContextProviderProps> =
 			items: itemsF,
 			shoppingCart,
 			addItemToShoppingCart,
+			removeItemFromShoppingCart,
+			decreaseItemCount,
+			clearShoppingCart,
 			grouppedCardItems,
 			total,
 		}
