@@ -10,8 +10,7 @@ interface DetailsViewProp {
 }
 
 const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
-	const [count, setCount] = useState(0)
-	const { items, addItemToShoppingCart, decreaseItemCount } =
+	const { items, addItemToShoppingCart, decreaseItemCount, grouppedCardItems } =
 		useDataLayerContext()
 
 	const [category, uid] = Object.values(selectedItem)
@@ -19,6 +18,8 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 		() => items.find((item: any) => item.category === category),
 		[items, category]
 	)
+
+	const [count, setCount] = useState(grouppedCardItems[uid]?.count ?? 0)
 
 	const itemDetails = useMemo(
 		() => categoryItems?.items.find((item: any) => item.uid === uid),
@@ -29,7 +30,7 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 		(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
 			e.stopPropagation()
 			addItemToShoppingCart({ category, uid })
-			setCount((prevState) => prevState + 1)
+			setCount((prevState: any) => prevState + 1)
 		},
 		[count, addItemToShoppingCart]
 	)
@@ -38,7 +39,7 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 		(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
 			e.stopPropagation()
 			decreaseItemCount(uid)
-			setCount((prevState) => prevState - 1)
+			setCount((prevState: any) => prevState - 1)
 		},
 		[count, decreaseItemCount]
 	)

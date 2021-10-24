@@ -51,11 +51,13 @@ const Menu: React.FC = () => {
 		Record<string, string>
 	>({})
 
+	const itemIsSelected = !!Object.keys(selectedMenuItem).length
+
 	useEffect(() => {
-		if (!shoppingCart.length) {
+		if (!shoppingCart.length && !itemIsSelected) {
 			setShowModal(false)
 		}
-	}, [shoppingCart])
+	}, [shoppingCart, itemIsSelected])
 
 	const setButtonState = useCallback(() => {
 		if (window.pageYOffset > 350) {
@@ -131,7 +133,6 @@ const Menu: React.FC = () => {
 		[items]
 	)
 
-	const itemIsSelected = !!Object.keys(selectedMenuItem).length
 	const placement = itemIsSelected ? "center" : "bottom"
 	const modalContent = itemIsSelected ? (
 		<DetailsView selectedItem={selectedMenuItem} />
