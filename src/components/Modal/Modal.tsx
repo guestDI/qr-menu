@@ -44,7 +44,7 @@ const ModalOverlay: React.FC<ModalProps> = ({
 					className={styles.btnClose}
 					round={true}
 					onClick={handleClose}
-					content={<Close width={20} height={20} />}
+					content={<Close width={24} height={24} />}
 				/>
 			</div>
 			<section

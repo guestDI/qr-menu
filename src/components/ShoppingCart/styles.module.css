@@ -41,6 +41,18 @@
 	color: var(--off-grey);
 }
 
+.closeBtn {
+	padding: 0.6rem;
+	background: transparent;
+	border: 1px solid var(--off-grey-mid);
+	height: 2.5rem;
+	width: 2.5rem;
+}
+
+.closeBtn > svg {
+	filter: invert(60%);
+}
+
 .inputContainer {
 	display: flex;
 	align-items: center;

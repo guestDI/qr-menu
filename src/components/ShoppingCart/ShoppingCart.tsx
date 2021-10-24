@@ -2,29 +2,35 @@ import React from "react"
 import { TextWrapper } from ".."
 import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
+import { Close } from "../../inline-img/svg"
 import { ShoppingCartItem } from "../../model/types"
 import Button from "../Button/Button"
 import InputCounter from "../InputCounter/InputCounter"
-import styles from "./styles.module.css"
+import classes from "./styles.module.css"
 
 const renderOrderRow = (
 	item: ShoppingCartItem,
 	addItemToShoppingCart: any,
-	decreaseItemCount: (uid: string) => void
+	decreaseItemCount: (uid: string) => void,
+	removeItemFromShoppingCart: (uid: string) => void
 ) => {
 	const { count, priceCurrency, price, name, uid, category } = item
 
 	return (
-		<div key={uid} className={styles.row}>
-			<div className={styles.itemDetails}>
-				<TextWrapper className={styles.title} numberOfRows={1}>
+		<div key={uid} className={classes.row}>
+			<div className={classes.itemDetails}>
+				<TextWrapper className={classes.title} numberOfRows={1}>
 					{name}
 				</TextWrapper>
-				<span>
-					{price} {getCurrencySign(priceCurrency)}
-				</span>
+				<Button
+					content={<Close height={20} width={20} />}
+					onClick={() => removeItemFromShoppingCart(uid)}
+					round={true}
+					size="sm"
+					className={classes.closeBtn}
+				/>
 			</div>
-			<div className={styles.inputContainer}>
+			<div className={classes.inputContainer}>
 				<InputCounter
 					value={count}
 					increaseCount={() => addItemToShoppingCart({ category, uid })}
@@ -41,27 +47,34 @@ const renderOrderRow = (
 const ShoppingCart = ({
 	clearShoppingCart,
 	removeItemFromShoppingCart,
+	decreaseItemCount,
 }: {
 	clearShoppingCart: () => void
 	removeItemFromShoppingCart: (uid: string) => void
+	decreaseItemCount: (uid: string) => void
 }) => {
-	const { grouppedCardItems, addItemToShoppingCart, total, decreaseItemCount } =
+	const { grouppedCardItems, addItemToShoppingCart, total } =
 		useDataLayerContext()
 
 	return (
 		<div>
-			<div className={styles.header}>Your cart</div>
-			<div className={styles.content}>
+			<div className={classes.header}>Your cart</div>
+			<div className={classes.content}>
 				{Object.values(grouppedCardItems).map((item) =>
-					renderOrderRow(item, addItemToShoppingCart, decreaseItemCount)
+					renderOrderRow(
+						item,
+						addItemToShoppingCart,
+						decreaseItemCount,
+						removeItemFromShoppingCart
+					)
 				)}
 			</div>
 
-			<div className={styles.footer}>
-				<div className={styles.footerTotalLabel}>Total</div>
-				<div className={styles.footerTotalPrice}>{total}</div>
+			<div className={classes.footer}>
+				<div className={classes.footerTotalLabel}>Total</div>
+				<div className={classes.footerTotalPrice}>{total}</div>
 			</div>
-			<div className={styles.footerBtnContainer}>
+			<div className={classes.footerBtnContainer}>
 				<Button content="Clear" onClick={clearShoppingCart}></Button>
 				<Button type="primary" content="Order" onClick={() => {}}></Button>
 			</div>

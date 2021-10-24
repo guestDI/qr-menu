@@ -16,7 +16,7 @@ import { ChevronDoubleUp, ShoppingBag } from "../inline-img/svg"
 const renderCards = (
 	category: string,
 	item: any,
-	onCardClick: (category: string, id: string | number) => void,
+	onCardClick: (category: string, id: string) => void,
 	addToBasket: (value: any) => void
 ) => {
 	const { uid, name, price, priceCurrency, shortDescription = "" } = item
@@ -45,10 +45,17 @@ const Menu: React.FC = () => {
 		shoppingCart,
 		clearShoppingCart,
 		removeItemFromShoppingCart,
+		decreaseItemCount,
 	} = useDataLayerContext()
 	const [selectedMenuItem, setSelectedMenuItem] = useState<
-		Record<string, string | number>
+		Record<string, string>
 	>({})
+
+	useEffect(() => {
+		if (!shoppingCart.length) {
+			setShowModal(false)
+		}
+	}, [shoppingCart])
 
 	const setButtonState = useCallback(() => {
 		if (window.pageYOffset > 350) {
@@ -59,7 +66,7 @@ const Menu: React.FC = () => {
 	}, [])
 
 	const toggleModal = useCallback(
-		(category?: string, itemId?: string | number) => {
+		(category?: string, itemId?: string) => {
 			setShowModal((prevState) => !prevState)
 			if (category && itemId) {
 				setSelectedMenuItem({ category, itemId })
@@ -89,12 +96,15 @@ const Menu: React.FC = () => {
 	const removeFromShoppingCart = useCallback(
 		(uid: string) => {
 			removeItemFromShoppingCart(uid)
-
-			if (!shoppingCart.length) {
-				setShowModal(false)
-			}
 		},
 		[removeItemFromShoppingCart]
+	)
+
+	const decreaseCount = useCallback(
+		(uid: string) => {
+			decreaseItemCount(uid)
+		},
+		[decreaseItemCount]
 	)
 
 	const menuCards = useMemo(
@@ -129,6 +139,7 @@ const Menu: React.FC = () => {
 		<ShoppingCart
 			clearShoppingCart={clearCart}
 			removeItemFromShoppingCart={removeFromShoppingCart}
+			decreaseItemCount={decreaseCount}
 		/>
 	)
 

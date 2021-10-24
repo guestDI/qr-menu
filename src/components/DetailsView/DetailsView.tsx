@@ -1,43 +1,46 @@
 import Image from "next/image"
 import React, { useCallback, useMemo, useState } from "react"
 import { InputCounter } from ".."
+import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
 import classes from "./styles.module.css"
-import { useDataLayerContext } from "../../context/DataLayerContext"
 
 interface DetailsViewProp {
-	selectedItem: Record<string, string | number>
+	selectedItem: Record<string, string>
 }
 
 const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 	const [count, setCount] = useState(0)
-	const { items } = useDataLayerContext()
+	const { items, addItemToShoppingCart, decreaseItemCount } =
+		useDataLayerContext()
 
-	const [category, itemId] = Object.values(selectedItem)
+	const [category, uid] = Object.values(selectedItem)
 	const categoryItems = useMemo(
 		() => items.find((item: any) => item.category === category),
 		[items, category]
 	)
 
 	const itemDetails = useMemo(
-		() => categoryItems?.items.find((item: any) => item.uid === itemId),
-		[items, category, itemId]
+		() => categoryItems?.items.find((item: any) => item.uid === uid),
+		[items, category, uid]
 	)
 
 	const increaseCount = useCallback(
 		(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
 			e.stopPropagation()
+			addItemToShoppingCart({ category, uid })
 			setCount((prevState) => prevState + 1)
 		},
-		[count]
+		[count, addItemToShoppingCart]
 	)
 
 	const decreaseCount = useCallback(
 		(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
 			e.stopPropagation()
+			decreaseItemCount(uid)
 			setCount((prevState) => prevState - 1)
 		},
-		[count]
+		[count, decreaseItemCount]
 	)
 
 	return (
