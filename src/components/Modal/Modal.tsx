@@ -38,7 +38,7 @@ const ModalOverlay: React.FC<ModalProps> = ({
 		<>
 			<div
 				onClick={closeOnBackdrop ? handleClose : () => {}}
-				className={clsx(styles.modal, displayStyle)}
+				className={clsx(styles.modalBackdrop, displayStyle)}
 			>
 				<Button
 					className={styles.btnClose}
@@ -50,8 +50,8 @@ const ModalOverlay: React.FC<ModalProps> = ({
 			<section
 				className={clsx(
 					styles.modalMain,
-					styles[placement],
 					displayStyle,
+					styles[placement],
 					className
 				)}
 			>
