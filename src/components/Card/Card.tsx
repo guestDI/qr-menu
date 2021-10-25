@@ -5,7 +5,7 @@ import { Button, TextWrapper } from ".."
 import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
 import { Add } from "../../inline-img/svg"
-import styles from "./styles.module.css"
+import classes from "./styles.module.css"
 
 interface CardProps {
 	uid: string
@@ -40,8 +40,10 @@ const Card: React.FC<CardProps> = ({
 		[priceCurrency]
 	)
 
+	const itemCount = grouppedCardItems[uid]?.count
+
 	return (
-		<div className={styles.card} onClick={onCardClick}>
+		<div className={classes.card} onClick={onCardClick}>
 			<div>
 				<Image
 					alt="Dishes"
@@ -49,29 +51,34 @@ const Card: React.FC<CardProps> = ({
 					width={400}
 					height={400}
 					loading="eager" //check this property in future
-					className={styles.cardImage}
+					className={classes.cardImage}
 					quality={50}
 				/>
-				<div className={styles.cardContent}>
-					<TextWrapper className={styles.cardContent__title}>
+				<div className={classes.cardContent}>
+					<TextWrapper className={classes.cardContent__title} numberOfRows={1}>
 						{name}
 					</TextWrapper>
-					<TextWrapper className={styles.cardContent__desc}>
-						{shortDescription}
+					<TextWrapper className={classes.cardContent__desc}>
+						{shortDescription || (
+							<span style={{ fontStyle: "italic" }}>
+								No description available
+							</span>
+						)}
 					</TextWrapper>
 				</div>
 			</div>
 
-			<div className={styles.cardFooter}>
-				<p className={styles.cardFooter__price}>
-					{price} {currencySign}
+			<div className={classes.cardFooter}>
+				<p className={classes.cardFooter__price}>
+					{price} {price && currencySign}
 				</p>
-				<div className={styles.btnContainer}>
+				<div>
 					<Button
-						content={grouppedCardItems[uid]?.count ?? <Add height={14} />}
+						content={itemCount ?? <Add height={14} />}
 						round={true}
 						onClick={onAddToBasket}
-						type={grouppedCardItems[uid]?.count ? "primary" : "default"}
+						type={itemCount ? "primary" : "default"}
+						className={classes.btn}
 					/>
 				</div>
 			</div>

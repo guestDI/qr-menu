@@ -5,6 +5,7 @@
 	transition: 0.3s;
 	border-radius: 1rem;
 	background-color: #f5f5f5;
+	min-height: 28rem;
 }
 
 .cardImage {
@@ -38,12 +39,13 @@
 .cardFooter__price {
 	margin-top: 0;
 	margin-bottom: 0;
-	font-size: 1.5rem;
+	font-size: var(--font-size-xlg);
 	font-weight: 600;
 }
 
 .cardFooter__btn {
 	width: 100%;
+	font-size: var(--font-size-lg);
 }
 
 .lineClamp {
@@ -56,6 +58,10 @@
 .count {
 	color: #fff;
 	background-color: var(--grey-blue);
+}
+
+.btn {
+	font-size: var(--font-size-lg);
 }
 
 /* @media (min-width: 300px) and (max-width: 1200px) {

@@ -42,6 +42,12 @@ section {
 	--off-grey: #555555b6;
 	--off-grey-mid: #d6d6d6b0;
 	--off-grey-light: #e4e4e480;
+	--white: #fff;
+
+	/* Main colors */
+	--primary-color: #9ac6db;
+	--modal-background-secondary: #1a1a1a;
+	--modal-backdrop-background: rgba(0, 0, 0, 0.822);
 
 	--space-sm: 0.5rem;
 	--space-md: 1rem;

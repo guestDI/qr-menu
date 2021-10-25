@@ -7,7 +7,7 @@ interface ButtonProps {
 	onClick: (e: any) => void
 	round?: boolean
 	size?: "sm" | "md" | "lg"
-	className?: any
+	className?: string
 	type?: "default" | "primary"
 }
 

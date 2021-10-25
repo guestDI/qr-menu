@@ -4,16 +4,21 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.6);
+	background: var(--modal-backdrop-background);
 	z-index: 900;
 }
 
 .modalMain {
 	position: fixed;
-	background: white;
+	background: var(--modal-backdrop-background);
 	height: auto;
 	left: 50%;
 	z-index: 1000;
+	border-radius: 1rem;
+	/* -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+	-moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+	-o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+	transition: opacity 0.3s ease-out, bottom 0.3s ease-out; */
 }
 
 .center {
@@ -63,3 +68,11 @@
 		height: 55%;
 	}
 }
+
+/* @media (min-width: 1101px) {
+	.bottom {
+		top: 50%;
+		width: 90%;
+		transform: translate(-50%, -50%);
+	}
+} */

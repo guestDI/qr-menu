@@ -1,8 +1,10 @@
 import Image from "next/image"
 import React, { useCallback, useMemo, useState } from "react"
-import { InputCounter } from ".."
 import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
+import { Add } from "../../inline-img/svg"
+import Button from "../Button/Button"
+import InputCounter from "../InputCounter/InputCounter"
 import classes from "./styles.module.css"
 
 interface DetailsViewProp {
@@ -48,7 +50,7 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 		<div className={classes.detailsContainer}>
 			<div
 				className={classes.imgContainer}
-				style={{ display: "flex", alignSelf: "center" }}
+				style={{ display: "flex", alignSelf: "center", margin: "0 4rem" }}
 			>
 				<Image
 					alt="Dishes"
@@ -63,18 +65,37 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 			<div className={classes.mainContainer}>
 				<div className={classes.content}>
 					<p className={classes.contentTitle}>{itemDetails?.name}</p>
-					<p className={classes.contentDesc}>{itemDetails?.shortDescription}</p>
+					<p className={classes.contentDesc}>
+						{itemDetails?.shortDescription || (
+							<span style={{ fontStyle: "italic" }}>
+								No description available
+							</span>
+						)}
+					</p>
 				</div>
 				<div className={classes.footer}>
 					<span className={classes.footerPrice}>
 						{itemDetails?.price}{" "}
 						{getCurrencySign(itemDetails?.priceCurrency || "")}
 					</span>
-					<InputCounter
-						value={count}
-						increaseCount={increaseCount}
-						decreaseCount={decreaseCount}
-					/>
+					{!count ? (
+						<Button
+							content={
+								<span className={classes.btnContent}>
+									<Add width={18} height={18} />
+									<span>Add</span>
+								</span>
+							}
+							onClick={increaseCount}
+							className={classes.btn}
+						/>
+					) : (
+						<InputCounter
+							value={count}
+							increaseCount={increaseCount}
+							decreaseCount={decreaseCount}
+						/>
+					)}
 				</div>
 			</div>
 		</div>

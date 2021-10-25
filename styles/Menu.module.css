@@ -51,10 +51,6 @@
 	filter: invert(100%);
 }
 
-.modalCenter {
-	border-radius: 0.8rem;
-}
-
 .modalBottom {
 	border-radius: 0.8rem;
 	border-bottom-left-radius: 0;

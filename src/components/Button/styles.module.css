@@ -9,8 +9,8 @@
 }
 
 .btnPrimary {
-	background-color: var(--grey-blue);
-	color: #fff;
+	background-color: var(--primary-color);
+	color: var(--white);
 }
 
 .roundBtn {
@@ -40,10 +40,4 @@
 
 .btn__md {
 	height: 4rem;
-}
-
-@media (min-width: 300px) and (max-width: 1200px) {
-	.btn {
-		font-size: 12px;
-	}
 }
