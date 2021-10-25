@@ -29,6 +29,15 @@ const ModalOverlay: React.FC<ModalProps> = ({
 		[onClose]
 	)
 
+	const additionalStyle = {
+		transform: show
+			? placement === "center"
+				? "translate(0, -50%)"
+				: "translate(0, 0)"
+			: "translateY(100vh)",
+		// opacity: show ? "1" : "0",
+	}
+
 	const displayStyle = useMemo(
 		() => (show ? styles.displayBlock : styles.displayNone),
 		[show]
@@ -38,7 +47,7 @@ const ModalOverlay: React.FC<ModalProps> = ({
 		<>
 			<div
 				onClick={closeOnBackdrop ? handleClose : () => {}}
-				className={clsx(styles.modal, displayStyle)}
+				className={clsx(styles.modalBackdrop, displayStyle)}
 			>
 				<Button
 					className={styles.btnClose}
@@ -48,12 +57,8 @@ const ModalOverlay: React.FC<ModalProps> = ({
 				/>
 			</div>
 			<section
-				className={clsx(
-					styles.modalMain,
-					styles[placement],
-					displayStyle,
-					className
-				)}
+				className={clsx(styles.modalMain, styles[placement], className)}
+				style={additionalStyle}
 			>
 				{children}
 			</section>

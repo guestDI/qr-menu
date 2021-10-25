@@ -1,4 +1,4 @@
-.modal {
+.modalBackdrop {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -12,25 +12,20 @@
 	position: fixed;
 	background: var(--modal-backdrop-background);
 	height: auto;
-	left: 50%;
+	left: 0;
 	z-index: 1000;
 	border-radius: 1rem;
-	/* -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
-	-moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
-	-o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
-	transition: opacity 0.3s ease-out, bottom 0.3s ease-out; */
+	transition: all 0.2s ease-out;
 }
 
 .center {
+	margin: 0 1rem;
 	top: 50%;
-	width: 90%;
-	transform: translate(-50%, -50%);
 }
 
 .bottom {
 	bottom: 0;
 	width: 100%;
-	transform: translate(-50%, 0);
 }
 
 .displayBlock {
