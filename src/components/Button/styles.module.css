@@ -5,12 +5,24 @@
 }
 
 .btnDefault {
-	background-color: var(--off-grey-mid);
+	background-color: var(--secondary-color);
+	transition: background-color 0.2s linear;
 }
 
 .btnPrimary {
 	background-color: var(--primary-color);
 	color: var(--white);
+	transition: background-color 0.2s linear;
+}
+
+.btnDefault:hover {
+	background-color: var(--secondary-color-mid);
+	cursor: pointer;
+}
+
+.btnPrimary:hover {
+	background: var(--primary-color-mid);
+	cursor: pointer;
 }
 
 .roundBtn {

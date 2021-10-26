@@ -29,36 +29,36 @@
 		"category": "Drinks",
 		"items": [
 			{
-				"uid": 1,
+				"uid": 11,
 				"name": "Vodka",
 				"priceCurrency": "USD"
 			},
-			{ "uid": 2, "name": "Wisky", "priceCurrency": "EURO" },
-			{ "uid": 3, "name": "Jean", "priceCurrency": "POUND" }
+			{ "uid": 12, "name": "Wisky", "priceCurrency": "EURO" },
+			{ "uid": 13, "name": "Jean", "priceCurrency": "POUND" }
 		]
 	},
 	{
 		"category": "Deserts",
 		"items": [
 			{
-				"uid": 1,
+				"uid": 14,
 				"name": "Pie",
 				"priceCurrency": "USD"
 			},
-			{ "uid": 2, "name": "Puding", "priceCurrency": "EURO" }
+			{ "uid": 15, "name": "Puding", "priceCurrency": "EURO" }
 		]
 	},
 	{
 		"category": "Happy hours",
 		"items": [
 			{
-				"uid": 1,
+				"uid": 16,
 				"name": "Margarita",
 				"shortDescription": "New cocktail with new ingredients. You will never forgot this",
 				"price": 7,
 				"priceCurrency": "USD"
 			},
-			{ "uid": 2, "name": "Puding", "priceCurrency": "EURO" }
+			{ "uid": 17, "name": "Puding", "priceCurrency": "EURO" }
 		]
 	}
 ]

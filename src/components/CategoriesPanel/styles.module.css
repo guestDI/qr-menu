@@ -39,8 +39,9 @@
 
 @media (min-width: 650px) {
 	.container {
-		margin-left: 0;
 		left: unset;
+		transform: unset;
+		width: 100%;
 	}
 
 	.container > a {

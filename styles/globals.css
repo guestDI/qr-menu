@@ -46,6 +46,9 @@ section {
 
 	/* Main colors */
 	--primary-color: #9ac6db;
+	--primary-color-mid: #8eb7ca;
+	--secondary-color: #d6d6d6b0;
+	--secondary-color-mid: #c5c4c4b0;
 	--modal-background-secondary: #1a1a1a;
 	--modal-backdrop-background: rgba(0, 0, 0, 0.822);
 

@@ -88,3 +88,15 @@
 		font-weight: 500;
 	}
 }
+
+@media (min-width: 768px) and (max-width: 1200px) {
+	.shoppingCartBtn {
+		width: 50%;
+	}
+}
+
+@media (min-width: 1200px) {
+	.shoppingCartBtn {
+		width: 20%;
+	}
+}
