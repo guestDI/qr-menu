@@ -5,24 +5,33 @@
 }
 
 .btn {
-	height: 3.5rem;
+	height: 3.6rem;
 	width: 5rem;
 	border: 1px solid var(--off-grey-light);
 	font-size: var(--font-size-xlg);
 	cursor: pointer;
 	color: inherit;
+	background: var(--secondary-color);
 }
 
 .btn:first-child {
 	border-top-left-radius: 1.6rem;
 	border-bottom-left-radius: 1.6rem;
-	border-right-color: var(--off-grey-mid);
+	border-right-color: var(--secondary-color-mid);
 }
 
 .btn:last-child {
 	border-top-right-radius: 1.6rem;
 	border-bottom-right-radius: 1.6rem;
-	border-left-color: var(--off-grey-mid);
+	border-left-color: var(--secondary-color-mid);
+}
+
+.btn:hover {
+	background-color: var(--secondary-color-mid);
+}
+
+.btn:hover {
+	background-color: var(--secondary-color-mid);
 }
 
 .btn > svg {
@@ -34,8 +43,8 @@
 	border: 1px solid var(--off-grey-light);
 	padding: 0.8rem 1rem;
 	width: 5rem;
-	height: 3.5rem;
+	height: 3.6rem;
 	text-align: center;
-	background: var(--off-grey-light);
+	background: var(--secondary-color);
 	cursor: default;
 }

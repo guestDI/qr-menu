@@ -1,31 +1,39 @@
+import React, { useCallback, useState } from "react"
 import { Link } from "react-scroll"
-import React, { useRef } from "react"
-import styles from "./styles.module.css"
+import classes from "./styles.module.css"
 
 interface CategoriesPanelProps {
 	onClick?: (category: string) => void
 	categories: string[]
 }
 
-const CategoriesPanel: React.FC<CategoriesPanelProps> = ({ categories }) => {
-	const ref = useRef<any>(null)
+const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
+	categories,
+	onClick,
+}) => {
+	const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-	// const handleScroll = useCallback((direction: "right" | "left") => {
-	//   if(direction === "left") {
-	//     ref?.current ? (ref.current.scrollLeft -= 50) : null
-	//   } else {
-	//     ref?.current ? (ref.current.scrollLeft += 50) : null
-	//   }
-	// }, [])
+	const onButtonClick = useCallback(
+		(value: string) => {
+			setSelectedCategory(value)
+
+			if (onClick) {
+				onClick(value)
+			}
+		},
+		[onClick]
+	)
 
 	return (
-		<ul ref={ref} className={styles.container}>
+		<ul className={classes.container}>
 			{categories.map((category, i) => (
 				<Link
+					value={category}
 					key={i}
-					activeClass={styles.active}
+					onClick={() => onButtonClick(category)}
+					className={selectedCategory === category ? classes.active : undefined}
 					to={category}
-					offset={-130}
+					offset={-80}
 					duration={500}
 					spy={true}
 					smooth={true}
