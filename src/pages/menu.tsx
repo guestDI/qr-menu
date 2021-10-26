@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { animateScroll as scroll, Element } from "react-scroll"
+import { Element } from "react-scroll"
 import styles from "../../styles/Menu.module.css"
 import {
 	Button,
@@ -11,7 +11,13 @@ import {
 	ShoppingCart,
 } from "../components"
 import { useDataLayerContext } from "../context/DataLayerContext"
-import { ChevronDoubleUp, ShoppingBag } from "../inline-img/svg"
+
+const ButtonContent: React.FC<{ total: number }> = ({ total }) => (
+	<div className={styles.shoppingCartBtnContent}>
+		<span>Make order</span>
+		<span>{total}</span>
+	</div>
+)
 
 const renderCards = (
 	category: string,
@@ -36,7 +42,6 @@ const renderCards = (
 }
 
 const Menu: React.FC = () => {
-	const [showBackToTopButton, setShowBackToTopButton] = useState(false)
 	const [showModal, setShowModal] = useState(false)
 	const {
 		items,
@@ -46,6 +51,7 @@ const Menu: React.FC = () => {
 		clearShoppingCart,
 		removeItemFromShoppingCart,
 		decreaseItemCount,
+		total,
 	} = useDataLayerContext()
 	const [selectedMenuItem, setSelectedMenuItem] = useState<
 		Record<string, string>
@@ -59,14 +65,6 @@ const Menu: React.FC = () => {
 		}
 	}, [shoppingCart, itemIsSelected])
 
-	const setButtonState = useCallback(() => {
-		if (window.pageYOffset > 350) {
-			setShowBackToTopButton(true)
-		} else {
-			setShowBackToTopButton(false)
-		}
-	}, [])
-
 	const toggleModal = useCallback(
 		(category?: string, itemId?: string) => {
 			setShowModal((prevState) => !prevState)
@@ -78,12 +76,6 @@ const Menu: React.FC = () => {
 		},
 		[showModal]
 	)
-
-	useEffect(() => {
-		window.addEventListener("scroll", setButtonState)
-
-		return () => window.removeEventListener("scroll", setButtonState)
-	}, [setButtonState])
 
 	const categories = useMemo(
 		() => items.map((menuItem: any) => menuItem.category),
@@ -148,32 +140,14 @@ const Menu: React.FC = () => {
 		<div className={styles.container}>
 			<CategoriesPanel categories={categories} />
 			{Object.keys(grouppedCardItems).length > 0 && (
-				<div className={styles.shoppingCartBtnContainer}>
-					<Button
-						content={<ShoppingBag height={24} />}
-						onClick={toggleModal}
-						round={true}
-						size="lg"
-						className={styles.shoppingCart}
-						type="primary"
-					/>
-					<span className={styles.badge}>{shoppingCart.length}</span>
-				</div>
-			)}
-			{menuCards}
-			{showBackToTopButton && (
 				<Button
-					content={<ChevronDoubleUp height={24} />}
-					onClick={() => scroll.scrollToTop()}
-					round={true}
-					size="lg"
-					className={clsx(
-						styles.floatBtn,
-						styles.backToTop,
-						showBackToTopButton ? styles.displayBlock : styles.displayNone
-					)}
+					content={<ButtonContent total={total} />}
+					onClick={toggleModal}
+					className={styles.shoppingCartBtn}
+					type="primary"
 				/>
 			)}
+			{menuCards}
 			<Modal
 				onClose={toggleModal}
 				show={showModal}
