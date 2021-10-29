@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react"
-import { Link } from "react-scroll"
 import classes from "./styles.module.css"
 
 interface CategoriesPanelProps {
@@ -27,21 +26,21 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 	return (
 		<ul className={classes.container}>
 			{categories.map((category, i) => (
-				<Link
+				<li
 					value={category}
 					key={i}
 					onClick={() => onButtonClick(category)}
 					className={selectedCategory === category ? classes.active : undefined}
-					to={category}
-					offset={-80}
-					duration={500}
-					spy={true}
-					smooth={true}
-					onSetActive={(categoty: string) => setSelectedCategory(categoty)}
+					// to={category}
+					// offset={-80}
+					// duration={500}
+					// spy={true}
+					// smooth={true}
+					// onSetActive={(categoty: string) => setSelectedCategory(categoty)}
 					// activeClass={selectedCategory ? classes.active : undefined}
 				>
 					{category}
-				</Link>
+				</li>
 			))}
 		</ul>
 	)

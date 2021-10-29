@@ -1,7 +1,14 @@
 import clsx from "clsx"
 import Head from "next/head"
-import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { Element } from "react-scroll"
+import React, {
+	LegacyRef,
+	RefObject,
+	useCallback,
+	useEffect,
+	useMemo,
+	useState,
+} from "react"
+import useDynamicRefs from "use-dynamic-refs"
 import styles from "../../styles/Menu.module.css"
 import {
 	Button,
@@ -44,6 +51,8 @@ const renderCards = (
 
 const Menu: React.FC = () => {
 	const [showModal, setShowModal] = useState(false)
+	const [getRef, setRef] = useDynamicRefs()
+
 	const {
 		items,
 		addItemToShoppingCart,
@@ -102,25 +111,39 @@ const Menu: React.FC = () => {
 		[decreaseItemCount]
 	)
 
+	const moveToCategory = useCallback(
+		(category: string) => {
+			const currentRef = getRef(category) as RefObject<HTMLElement>
+			const offset = currentRef?.current?.offsetTop ?? 0
+			window.scrollTo({
+				top: offset - 80,
+				behavior: "smooth",
+			})
+		},
+		[getRef]
+	)
+
 	const menuCards = useMemo(
 		() =>
 			items.map((menuItem: any, i: number) => {
 				return (
-					<Element key={i} id={menuItem.category} name={menuItem.category}>
-						<section className={styles.categoryContainer}>
-							<h1 className={styles.categoryTitle}>{menuItem.category}</h1>
-							<div className={styles.cardsContainer}>
-								{menuItem.items.map((item: any) =>
-									renderCards(
-										menuItem.category,
-										item,
-										toggleModal,
-										addItemToShoppingCart
-									)
-								)}
-							</div>
-						</section>
-					</Element>
+					<section
+						ref={setRef(menuItem.category) as LegacyRef<HTMLElement>}
+						className={styles.categoryContainer}
+						key={i}
+					>
+						<h1 className={styles.categoryTitle}>{menuItem.category}</h1>
+						<div className={styles.cardsContainer}>
+							{menuItem.items.map((item: any) =>
+								renderCards(
+									menuItem.category,
+									item,
+									toggleModal,
+									addItemToShoppingCart
+								)
+							)}
+						</div>
+					</section>
 				)
 			}),
 		[items]
@@ -151,7 +174,7 @@ const Menu: React.FC = () => {
 					rel="stylesheet"
 				/>
 			</Head>
-			<CategoriesPanel categories={categories} />
+			<CategoriesPanel categories={categories} onClick={moveToCategory} />
 			{Object.keys(grouppedCardItems).length > 0 && (
 				<Button
 					content={<ButtonContent total={total} />}
