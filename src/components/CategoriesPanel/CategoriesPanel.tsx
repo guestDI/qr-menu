@@ -37,6 +37,8 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 					duration={500}
 					spy={true}
 					smooth={true}
+					onSetActive={(categoty: string) => setSelectedCategory(categoty)}
+					// activeClass={selectedCategory ? classes.active : undefined}
 				>
 					{category}
 				</Link>

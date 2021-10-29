@@ -1,15 +1,8 @@
 .header,
 .footer {
-	height: var(--header-height);
+	height: var(--footer-height);
 	color: var(--off-white);
 	background-color: var(--dark);
-}
-
-.header {
-	padding: 1rem;
-	position: sticky;
-	top: 0;
-	z-index: 800;
 }
 
 .footer {

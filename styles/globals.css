@@ -1,12 +1,18 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 html,
 body {
 	height: 100%;
 	padding: 0;
 	margin: 0;
 	font-size: 10px;
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	font-family: "Montserrat", sans-serif;
 	color: var(--dark);
+	background-color: var(--white);
 }
 
 a {
@@ -19,23 +25,19 @@ footer {
 	font-size: var(--font-size-md);
 }
 
-/* p {
-  margin: 0;
-} */
-
-/* p,
+p,
 article,
 section {
-  line-height: 1.5;
-} */
-
-* {
-	box-sizing: border-box;
+	line-height: 1.5;
 }
 
+:focus {
+	outline: 0.15rem dashed var(--off-white);
+	outline-offset: 0.25rem;
+}
+
+/* Main tokens */
 :root {
-	--yellow: rgb(247, 220, 102);
-	--green: #3fe79e;
 	--grey-blue: #9ac6db;
 	--dark: #282d32;
 	--off-white: #f5f5f3;
@@ -62,5 +64,5 @@ section {
 	--font-size-lg: 1.4rem;
 	--font-size-xlg: 1.6rem;
 
-	--header-height: 4.8rem;
+	--footer-height: 4.8rem;
 }
