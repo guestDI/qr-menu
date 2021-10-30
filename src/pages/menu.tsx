@@ -112,14 +112,16 @@ const Menu: React.FC = () => {
 
 	const moveToCategory = useCallback(
 		(category: string) => {
-			const currentRef: any = sectionRefs[categories.indexOf(category)]
-			const offset = currentRef?.current?.offsetTop ?? 0
-			window.scrollTo({
-				top: offset - 80,
-				behavior: "smooth",
-			})
+			if (typeof window !== "undefined") {
+				const currentRef: any = sectionRefs[categories.indexOf(category)]
+				const offset = currentRef?.current?.offsetTop ?? 0
+				window.scrollTo({
+					top: offset - 80,
+					behavior: "smooth",
+				})
+			}
 		},
-		[sectionRefs]
+		[window, sectionRefs]
 	)
 
 	const menuCards = useMemo(
