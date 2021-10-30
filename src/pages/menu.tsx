@@ -1,7 +1,6 @@
 import clsx from "clsx"
 import Head from "next/head"
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import useScrollSpy from "react-use-scrollspy"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import styles from "../../styles/Menu.module.css"
 import {
 	Button,
@@ -64,13 +63,6 @@ const Menu: React.FC = () => {
 		[items]
 	)
 
-	const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]
-
-	const activeSection = useScrollSpy({
-		sectionElementRefs: sectionRefs,
-		offsetPx: -80,
-	})
-
 	const itemIsSelected = !!Object.keys(selectedMenuItem).length
 
 	useEffect(() => {
@@ -110,26 +102,22 @@ const Menu: React.FC = () => {
 		[decreaseItemCount]
 	)
 
-	const moveToCategory = useCallback(
-		(category: string) => {
-			if (typeof window !== "undefined") {
-				const currentRef: any = sectionRefs[categories.indexOf(category)]
-				const offset = currentRef?.current?.offsetTop ?? 0
-				window.scrollTo({
-					top: offset - 80,
-					behavior: "smooth",
-				})
-			}
-		},
-		[window, sectionRefs]
-	)
+	const moveToCategory = useCallback((category: string) => {
+		// const currentRef: any = sectionRefs[categories.indexOf(category)]
+		// const offset = currentRef?.current?.offsetTop ?? 0
+		// window.scrollTo({
+		// 	top: offset - 80,
+		// 	behavior: "smooth",
+		// })
+	}, [])
 
 	const menuCards = useMemo(
 		() =>
 			items.map((menuItem: any, i: number) => {
 				return (
 					<section
-						ref={sectionRefs[i]}
+						id={menuItem.category}
+						// ref={sectionRefs[i]}
 						// ref={setRef(menuItem.category) as LegacyRef<HTMLElement>}
 						className={styles.categoryContainer}
 						key={i}
@@ -176,11 +164,7 @@ const Menu: React.FC = () => {
 					rel="stylesheet"
 				/>
 			</Head>
-			<CategoriesPanel
-				categories={categories}
-				onClick={moveToCategory}
-				activeSection={activeSection}
-			/>
+			<CategoriesPanel categories={categories} onClick={moveToCategory} />
 			{Object.keys(grouppedCardItems).length > 0 && (
 				<Button
 					content={<ButtonContent total={total} />}
