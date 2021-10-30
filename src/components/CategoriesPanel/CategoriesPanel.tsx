@@ -1,16 +1,24 @@
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import classes from "./styles.module.css"
 
 interface CategoriesPanelProps {
 	onClick?: (category: string) => void
 	categories: string[]
+	activeSection: any
 }
 
 const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 	categories,
 	onClick,
+	activeSection,
 }) => {
-	const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+	const [selectedCategory, setSelectedCategory] = useState<string | null>(
+		categories[activeSection]
+	)
+
+	useEffect(() => {
+		setSelectedCategory(categories[activeSection])
+	}, [activeSection])
 
 	const onButtonClick = useCallback(
 		(value: string) => {
@@ -22,6 +30,8 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 		},
 		[onClick]
 	)
+
+	// console.log(activeSection, "active")
 
 	return (
 		<ul className={classes.container}>

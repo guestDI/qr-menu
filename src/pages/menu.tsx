@@ -1,14 +1,7 @@
 import clsx from "clsx"
 import Head from "next/head"
-import React, {
-	LegacyRef,
-	RefObject,
-	useCallback,
-	useEffect,
-	useMemo,
-	useState,
-} from "react"
-import useDynamicRefs from "use-dynamic-refs"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import useScrollSpy from "react-use-scrollspy"
 import styles from "../../styles/Menu.module.css"
 import {
 	Button,
@@ -51,7 +44,6 @@ const renderCards = (
 
 const Menu: React.FC = () => {
 	const [showModal, setShowModal] = useState(false)
-	const [getRef, setRef] = useDynamicRefs()
 
 	const {
 		items,
@@ -66,6 +58,18 @@ const Menu: React.FC = () => {
 	const [selectedMenuItem, setSelectedMenuItem] = useState<
 		Record<string, string>
 	>({})
+
+	const categories = useMemo(
+		() => items.map((menuItem: any) => menuItem.category),
+		[items]
+	)
+
+	const sectionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]
+
+	const activeSection = useScrollSpy({
+		sectionElementRefs: sectionRefs,
+		offsetPx: -80,
+	})
 
 	const itemIsSelected = !!Object.keys(selectedMenuItem).length
 
@@ -85,11 +89,6 @@ const Menu: React.FC = () => {
 			}
 		},
 		[showModal]
-	)
-
-	const categories = useMemo(
-		() => items.map((menuItem: any) => menuItem.category),
-		[items]
 	)
 
 	const clearCart = useCallback(() => {
@@ -113,14 +112,14 @@ const Menu: React.FC = () => {
 
 	const moveToCategory = useCallback(
 		(category: string) => {
-			const currentRef = getRef(category) as RefObject<HTMLElement>
+			const currentRef: any = sectionRefs[categories.indexOf(category)]
 			const offset = currentRef?.current?.offsetTop ?? 0
 			window.scrollTo({
 				top: offset - 80,
 				behavior: "smooth",
 			})
 		},
-		[getRef]
+		[sectionRefs]
 	)
 
 	const menuCards = useMemo(
@@ -128,7 +127,8 @@ const Menu: React.FC = () => {
 			items.map((menuItem: any, i: number) => {
 				return (
 					<section
-						ref={setRef(menuItem.category) as LegacyRef<HTMLElement>}
+						ref={sectionRefs[i]}
+						// ref={setRef(menuItem.category) as LegacyRef<HTMLElement>}
 						className={styles.categoryContainer}
 						key={i}
 					>
@@ -174,7 +174,11 @@ const Menu: React.FC = () => {
 					rel="stylesheet"
 				/>
 			</Head>
-			<CategoriesPanel categories={categories} onClick={moveToCategory} />
+			<CategoriesPanel
+				categories={categories}
+				onClick={moveToCategory}
+				activeSection={activeSection}
+			/>
 			{Object.keys(grouppedCardItems).length > 0 && (
 				<Button
 					content={<ButtonContent total={total} />}
