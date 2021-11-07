@@ -49,7 +49,7 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 						spy={true}
 						smooth={true}
 						onSetActive={() =>
-							myRefs.current[i].scrollIntoView({
+							myRefs?.current[i]?.scrollIntoView({
 								inline: "center",
 							})
 						}
