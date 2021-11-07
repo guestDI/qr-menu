@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useCallback, useRef, useState } from "react"
 import { Link } from "react-scroll"
 import classes from "./styles.module.css"
 
@@ -11,7 +11,7 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 	categories,
 	// onClick,
 }) => {
-	// const [selectedCategory, setSelectedCategory] = useState<string | null>()
+	const [selectedCategory, setSelectedCategory] = useState<string | null>()
 	const myRefs = useRef<any>([])
 	// const onButtonClick = useCallback(
 	// 	(value: string) => {
@@ -30,6 +30,19 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 
 	// }, [])
 
+	const onScroll = useCallback(
+		(index: number) => {
+			setSelectedCategory(categories[index])
+
+			myRefs?.current[index]?.scrollIntoView({
+				inline: "center",
+			})
+		},
+		[selectedCategory]
+	)
+
+	console.log(selectedCategory, "sel")
+
 	return (
 		<ul className={classes.container}>
 			{categories.map((category, i) => (
@@ -37,22 +50,17 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 					key={i}
 					ref={(el) => (myRefs.current[i] = el)}
 					// className={classes.active}
+					className={selectedCategory === category ? classes.active : undefined}
 				>
 					<Link
 						// value={category}
-						key={i}
 						// onClick={() => onButtonClick(category)}
-						// className={selectedCategory === category ? classes.active : undefined}
 						to={category}
 						offset={-80}
 						duration={500}
 						spy={true}
 						smooth={true}
-						onSetActive={() =>
-							myRefs?.current[i]?.scrollIntoView({
-								inline: "center",
-							})
-						}
+						onSetActive={() => onScroll(i)}
 						activeClass={classes.active}
 					>
 						{category}
