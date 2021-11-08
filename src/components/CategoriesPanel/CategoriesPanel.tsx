@@ -49,12 +49,10 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 				<li
 					key={i}
 					ref={(el) => (myRefs.current[i] = el)}
-					// className={classes.active}
 					className={selectedCategory === category ? classes.active : undefined}
+					onClick={() => setSelectedCategory(category)}
 				>
 					<Link
-						// value={category}
-						// onClick={() => onButtonClick(category)}
 						to={category}
 						offset={-80}
 						duration={500}
