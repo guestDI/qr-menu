@@ -4,7 +4,6 @@ import styles from "./styles.module.css"
 const Layout: React.FC = ({ children }) => {
 	return (
 		<div className={styles.layout}>
-			{/* <header className={styles.header}>Hello</header> */}
 			<main className={styles.main}>{children}</main>
 			<footer className={styles.footer}>
 				<p className={styles.company}>
