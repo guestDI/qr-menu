@@ -6,3 +6,4 @@ yarn run check-types
 yarn run check-format
 
 yarn run check-lint
+yarn lint-staged
