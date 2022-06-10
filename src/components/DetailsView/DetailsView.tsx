@@ -79,16 +79,12 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 						{getCurrencySign(itemDetails?.priceCurrency || "")}
 					</span>
 					{!count ? (
-						<Button
-							content={
-								<span className={classes.btnContent}>
-									<Add width={18} height={18} />
-									<span>Add</span>
-								</span>
-							}
-							onClick={increaseCount}
-							className={classes.btn}
-						/>
+						<Button onClick={increaseCount} className={classes.btn}>
+							<span className={classes.btnContent}>
+								<Add width={18} height={18} />
+								<span>Add</span>
+							</span>
+						</Button>
 					) : (
 						<InputCounter
 							value={count}

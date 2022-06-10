@@ -1,4 +1,3 @@
-import React from "react"
 import { TextWrapper } from ".."
 import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
@@ -23,12 +22,13 @@ const renderOrderRow = (
 					{name}
 				</TextWrapper>
 				<Button
-					content={<Close height={20} width={20} />}
 					onClick={() => removeItemFromShoppingCart(uid)}
 					round={true}
 					size="sm"
 					className={classes.closeBtn}
-				/>
+				>
+					<Close height={20} width={20} />
+				</Button>
 			</div>
 			<div className={classes.inputContainer}>
 				<InputCounter
@@ -75,8 +75,10 @@ const ShoppingCart = ({
 				<div className={classes.footerTotalPrice}>{total}</div>
 			</div>
 			<div className={classes.footerBtnContainer}>
-				<Button content="Clear" onClick={clearShoppingCart}></Button>
-				<Button type="primary" content="Order" onClick={() => {}}></Button>
+				<Button onClick={clearShoppingCart}>Clear</Button>
+				<Button type="primary" onClick={() => {}}>
+					Order
+				</Button>
 			</div>
 		</div>
 	)

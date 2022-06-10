@@ -74,12 +74,13 @@ const Card: React.FC<CardProps> = ({
 				</p>
 				<div>
 					<Button
-						content={itemCount ?? <Add height={14} />}
 						round={true}
 						onClick={onAddToBasket}
 						type={itemCount ? "primary" : "default"}
 						className={classes.btn}
-					/>
+					>
+						{itemCount ?? <Add height={14} />}
+					</Button>
 				</div>
 			</div>
 		</div>

@@ -167,11 +167,12 @@ const Menu: React.FC = () => {
 			<CategoriesPanel categories={categories} onClick={moveToCategory} />
 			{Object.keys(grouppedCardItems).length > 0 && (
 				<Button
-					content={<ButtonContent total={total} />}
 					onClick={toggleModal}
 					className={styles.shoppingCartBtn}
 					type="primary"
-				/>
+				>
+					<ButtonContent total={total} />
+				</Button>
 			)}
 			{menuCards}
 			<Modal

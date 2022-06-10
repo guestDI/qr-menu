@@ -1,0 +1,26 @@
+.inputContainer {
+	width: 100%;
+}
+
+.inputContainer > input {
+	width: 100%;
+	margin-bottom: 0.6rem;
+}
+
+.sm {
+	height: 2rem;
+}
+
+.md {
+	height: 3rem;
+}
+
+.lg {
+	height: 3.6rem;
+}
+
+.error {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: red;
+}

@@ -40,12 +40,9 @@ const ModalOverlay: React.FC<ModalProps> = ({
 				onClick={closeOnBackdrop ? handleClose : () => {}}
 				className={clsx(styles.modalBackdrop, displayStyle)}
 			>
-				<Button
-					className={styles.btnClose}
-					round={true}
-					onClick={handleClose}
-					content={<Close width={24} height={24} />}
-				/>
+				<Button className={styles.btnClose} round={true} onClick={handleClose}>
+					<Close width={24} height={24} />
+				</Button>
 			</div>
 			<section
 				className={clsx(

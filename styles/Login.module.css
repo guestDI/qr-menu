@@ -1,0 +1,28 @@
+.container {
+	min-height: 100vh;
+}
+
+.header {
+	position: relative;
+	height: 4rem;
+	background: rgb(214, 214, 214);
+	background: linear-gradient(
+		128deg,
+		rgba(214, 214, 214, 1) 0%,
+		rgba(154, 198, 219, 1) 48%,
+		rgba(142, 183, 202, 1) 80%
+	);
+}
+
+.logo {
+	position: absolute;
+	margin: 0 auto !important;
+	left: 50% !important;
+	top: 2rem !important;
+	/* margin-left: -4.7rem !important; */
+}
+
+.form {
+	width: 50%;
+	margin: 0 auto;
+}
