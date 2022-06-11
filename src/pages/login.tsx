@@ -19,16 +19,18 @@ const Login: NextPage = () => {
 				<link rel="icon" href="/menu-icon.png" />
 			</Head>
 			<header className={styles.header}>
-				<Image
-					className={styles.logo}
-					src="/menu-icon.png"
-					alt="Menu Logo"
-					width={230}
-					height={160}
-				/>
+				<div className={styles.img}>
+					<Image
+						className={styles.logo}
+						src="/menu-icon.png"
+						alt="Menu Logo"
+						width={230}
+						height={160}
+					/>
+				</div>
 			</header>
 
-			<main>
+			<main className={styles.main}>
 				<form
 					className={styles.form}
 					onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
@@ -37,6 +39,7 @@ const Login: NextPage = () => {
 						placeholder="Name of your restaurant / hotel"
 						{...register("firstName")}
 						onChange={() => {}}
+						size="lg"
 					/>
 					{placeValid && (
 						<div>
@@ -44,11 +47,13 @@ const Login: NextPage = () => {
 								placeholder="Name of your restaurant / hotel"
 								{...register("firstName")}
 								onChange={() => {}}
+								size="lg"
 							/>
 							<Input
 								placeholder="Name of your restaurant / hotel"
 								{...register("firstName")}
 								onChange={() => {}}
+								size="lg"
 							/>
 						</div>
 					)}
