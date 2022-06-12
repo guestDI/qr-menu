@@ -3,13 +3,39 @@ import Head from "next/head"
 import Image from "next/image"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { Transition } from "react-transition-group"
 import styles from "../../styles/Login.module.css"
 import { Button, Input } from "../components"
+import { Arrow } from "../inline-img/svg"
+
+const duration = 300
+const defaultStyle = {
+	width: "100%",
+	transition: `opacity ${duration}ms ease-in-out`,
+	opacity: 0,
+	display: "inline-block",
+}
+
+const transitionStyles: any = {
+	entering: { opacity: 0 },
+	entered: { opacity: 1 },
+	exiting: { opacity: 1 },
+	exited: { opacity: 0 },
+}
 
 const Login: NextPage = () => {
 	const { register, handleSubmit } = useForm()
 	const [placeValid, setPlaceValid] = useState(false)
 	const [_, setData] = useState("")
+
+	const btn = (
+		<Button type="submit" onClick={() => setPlaceValid(true)}>
+			<div className={styles.btnContent}>
+				<span>Next</span>
+				<Arrow />
+			</div>
+		</Button>
+	)
 
 	return (
 		<div className={styles.container}>
@@ -40,26 +66,32 @@ const Login: NextPage = () => {
 						{...register("firstName")}
 						onChange={() => {}}
 						size="lg"
+						disabled={placeValid}
 					/>
-					{placeValid && (
-						<div>
-							<Input
-								placeholder="Name of your restaurant / hotel"
-								{...register("firstName")}
-								onChange={() => {}}
-								size="lg"
-							/>
-							<Input
-								placeholder="Name of your restaurant / hotel"
-								{...register("firstName")}
-								onChange={() => {}}
-								size="lg"
-							/>
-						</div>
-					)}
-					<Button type="submit" onClick={() => setPlaceValid(true)}>
-						Log In
-					</Button>
+					<Transition in={placeValid} timeout={300}>
+						{(state) => (
+							<div
+								style={{
+									...defaultStyle,
+									...transitionStyles[state],
+								}}
+							>
+								<Input
+									placeholder="Username"
+									{...register("firstName")}
+									onChange={() => {}}
+									size="lg"
+								/>
+								<Input
+									placeholder="Password"
+									{...register("firstName")}
+									onChange={() => {}}
+									size="lg"
+								/>
+							</div>
+						)}
+					</Transition>
+					{btn}
 				</form>
 			</main>
 		</div>
