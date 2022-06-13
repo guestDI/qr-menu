@@ -3,7 +3,6 @@ import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useCallback, useState } from "react"
-import { useForm } from "react-hook-form"
 import { Transition } from "react-transition-group"
 import styles from "../../styles/Login.module.css"
 import { Button, Input } from "../components"
@@ -28,16 +27,25 @@ const transitions: any = {
 
 const Login: NextPage = () => {
 	const router = useRouter()
-	const { register, handleSubmit } = useForm()
-	const [placeValid, setPlaceValid] = useState(false)
-	const [_, setData] = useState("")
 
-	const login = useCallback(() => {
-		router.push("/admin")
-	}, [router])
+	const [placeValid, setPlaceValid] = useState(false)
+	// const [_, setData] = useState("")
+
+	const login = useCallback(
+		(e) => {
+			e.preventDefault()
+			router.push("/admin")
+		},
+		[router]
+	)
+
+	const changeState = useCallback((e) => {
+		e.preventDefault()
+		setPlaceValid(true)
+	}, [])
 
 	const btn = (
-		<Button onClick={placeValid ? login : () => setPlaceValid(true)}>
+		<Button onClick={placeValid ? login : changeState} type="primary">
 			<div className={styles.btnContent}>
 				<span>Next</span>
 				<Arrow />
@@ -65,16 +73,13 @@ const Login: NextPage = () => {
 			</header>
 
 			<main className={styles.main}>
-				<form
-					className={styles.form}
-					onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
-				>
+				<form className={styles.form}>
 					<Input
 						placeholder="Name of your restaurant / hotel"
-						{...register("firstName")}
-						onChange={() => {}}
+						name="place"
 						size="lg"
 						disabled={placeValid}
+						type="text"
 					/>
 					<Transition in={placeValid} timeout={200}>
 						{(state) => (
@@ -88,15 +93,15 @@ const Login: NextPage = () => {
 							>
 								<Input
 									placeholder="Username"
-									{...register("firstName")}
-									onChange={() => {}}
+									name="username"
 									size="lg"
+									type="text"
 								/>
 								<Input
 									placeholder="Password"
-									{...register("firstName")}
-									onChange={() => {}}
+									name="password"
 									size="lg"
+									type="password"
 								/>
 							</div>
 						)}

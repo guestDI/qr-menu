@@ -1,10 +1,11 @@
-import React, { ChangeEventHandler } from "react"
+import React from "react"
 import styles from "./styles.module.css"
 
 interface InputProps {
 	placeholder: string
 	name: string
-	onChange: ChangeEventHandler<HTMLInputElement>
+	type: "text" | "email" | "password"
+	onChange?: () => void
 	disabled?: boolean
 	size?: "sm" | "md" | "lg"
 }
@@ -14,12 +15,12 @@ const Input: React.FC<InputProps> = ({
 	name,
 	placeholder,
 	size = "md",
+	type = "text",
 	...rest
 }) => {
 	return (
 		<div className={styles.inputContainer}>
 			<input
-				type="text"
 				placeholder={placeholder}
 				id={`${name}-input`}
 				name={name}
@@ -27,7 +28,6 @@ const Input: React.FC<InputProps> = ({
 				className={styles[size]}
 				{...rest}
 			/>
-			{/* {errors[name] && <span className={styles.error}>{errors[name].message}</span>} */}
 		</div>
 	)
 }
