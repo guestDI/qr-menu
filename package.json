@@ -15,7 +15,7 @@
 		"test-all": "yarn run check-format && yarn run check-lint && yarn run check-types"
 	},
 	"lint-staged": {
-		"*.{ts,tsx}": "yarn check-format"
+		"*.{ts,tsx}": "yarn format"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.1.1",
