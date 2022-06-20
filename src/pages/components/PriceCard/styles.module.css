@@ -2,15 +2,17 @@
 	position: relative;
 	display: block;
 	text-align: center;
-	border: 1px solid #c0c0c0;
+	border: 1px solid #f1f1f1;
+	border-radius: 10px;
 	background-color: #fff;
 	z-index: 11;
 	margin: 15px auto;
-	font-family: Montserrat, sans-serif;
 	width: 350px;
 	transition: all 0.4s ease-in-out;
 	border-top: 4px solid #f05f40;
+	box-shadow: var(--card-box-shadow);
 }
+
 .pricing_popular {
 	text-transform: uppercase;
 	font-size: 12px;
@@ -52,6 +54,13 @@
 .pricing_head {
 	position: relative;
 	margin-bottom: 20px;
+	background: rgb(214, 214, 214);
+	background: linear-gradient(
+		180deg,
+		rgba(214, 214, 214, 0.929030987394958) 24%,
+		rgba(154, 198, 219, 0.8562018557422969) 83%,
+		rgba(142, 183, 202, 0.9206276260504201) 98%
+	);
 }
 
 .pricing .price_title {

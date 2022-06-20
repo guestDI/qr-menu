@@ -8,8 +8,8 @@ const PriceCard: React.FC = () => {
 
 	return (
 		<div className={styles.pricing}>
-			<span className={styles["pricing_popular"]}>Popular</span>
 			<div className={styles["pricing_head"]}>
+				<span className={styles["pricing_popular"]}>Popular</span>
 				<span className={styles["price_title"]}>Name</span>
 				<div className={styles.price}>
 					<h4>
