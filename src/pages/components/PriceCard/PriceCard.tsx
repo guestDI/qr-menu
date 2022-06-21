@@ -8,14 +8,11 @@ const PriceCard: React.FC = () => {
 
 	return (
 		<div className={styles.pricing}>
-			<div className={styles["pricing_head"]}>
-				<span className={styles["pricing_popular"]}>Popular</span>
-				<span className={styles["price_title"]}>Name</span>
-				<div className={styles.price}>
-					<h4>
-						56
-						<span className={styles.duration}>40</span>
-					</h4>
+			<div className={styles.head}>
+				<span className={styles.popular}>Popular</span>
+				<div className={styles["price-wrapper"]}>
+					<span className={styles.price}>$56</span>
+					<span className={styles.duration}>/month</span>
 				</div>
 			</div>
 			<ul className={styles["pricing_content"]}>

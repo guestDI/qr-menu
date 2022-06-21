@@ -3,22 +3,22 @@
 	display: block;
 	text-align: center;
 	border: 1px solid #f1f1f1;
-	border-radius: 10px;
+	border-radius: 8px;
 	background-color: #fff;
 	z-index: 11;
 	margin: 15px auto;
 	width: 350px;
 	transition: all 0.4s ease-in-out;
-	border-top: 4px solid #f05f40;
+	border-top: 4px solid #8eb7ca;
 	box-shadow: var(--card-box-shadow);
 }
 
-.pricing_popular {
+.popular {
 	text-transform: uppercase;
 	font-size: 12px;
 	margin-top: 32px;
 	right: 0;
-	background: #f05f40;
+	background: #8eb7ca;
 	color: #fff;
 	padding: 2px 8px;
 	position: absolute;
@@ -28,88 +28,29 @@
 	letter-spacing: 0.1em;
 }
 
-/*.pricing:hover {*/
-/*border-top: 4px solid #f05f40;*/
-/*transform: scale(1.1);*/
-/*cursor: pointer;*/
-/*}*/
-
-/*.pricing:hover .price{*/
-/*background-color: #f05f40;*/
-/*color: #fff;*/
-/*}*/
-
-.pricing .submit_button {
-	color: #fff;
-	background-color: #f05f40;
-}
-/*.pricing:hover .submit_button{*/
-/*background-color: #f05f40;*/
-/*color: #fff;*/
-/*}*/
-/*.pricing:hover .duration{*/
-/*color: #fff;*/
-/*}*/
-
-.pricing_head {
-	position: relative;
-	margin-bottom: 20px;
+.head {
+	background: rgb(214, 214, 214);
 	background: rgb(214, 214, 214);
 	background: linear-gradient(
 		180deg,
-		rgba(214, 214, 214, 0.929030987394958) 24%,
-		rgba(154, 198, 219, 0.8562018557422969) 83%,
-		rgba(142, 183, 202, 0.9206276260504201) 98%
+		rgba(214, 214, 214, 0.40242034313725494) 33%,
+		rgba(154, 198, 219, 0.3996192226890757) 88%,
+		rgba(142, 183, 202, 0.40242034313725494) 98%
 	);
 }
 
-.pricing .price_title {
-	display: block;
-	padding: 40px 0px 20px;
-	text-transform: uppercase;
-	-webkit-transition: 0.2s color;
-	transition: 0.2s color;
-	font-weight: 700;
+.price-wrapper {
+	padding: 32px 16px;
 }
 
-.pricing .price {
-	position: relative;
-	width: 160px;
-	height: 160px;
-	line-height: 140px;
-	text-align: center;
-	margin: auto;
-	border-radius: 50%;
-	border: 1px solid #f05f40;
-	background-color: #f05f40;
+.price {
+	font-size: 48px;
+	font-weight: 600;
 }
 
-.pricing:hover .price {
-}
-
-.pricing .price h4 {
-	font-size: 25px;
-	margin: 0px;
-	-webkit-transition: 0.2s color;
-	transition: 0.2s color;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-	top: 50%;
-	color: #fff;
-	position: absolute;
-	left: 0;
-	right: 0;
-}
-
-.pricing .duration {
-	display: block;
-	font-size: 13px;
-	padding-top: 10px;
-	text-transform: uppercase;
-	color: #fff;
-	-webkit-transition: 0.2s color;
-	transition: 0.2s color;
+.duration {
+	font-size: 16px;
+	color: var(--secondary-color);
 }
 
 .pricing .pricing_content {
