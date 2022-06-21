@@ -2,7 +2,7 @@ import clsx from "clsx"
 import type { NextPage } from "next"
 import Head from "next/head"
 // import { SocialContacts } from "../types"
-import styles from "../../styles/Welcome.module.css"
+import styles from "../../styles/Welcome.module.scss"
 import { Contacts, NavigationBar, PriceCard } from "./components"
 
 const social_contacts: any = [

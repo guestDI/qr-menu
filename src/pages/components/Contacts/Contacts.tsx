@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React from "react"
 import { SocialContacts, SocialNetwork } from "../../../types"
 import { getSocialIcon } from "./helpers"
-import styles from "./styles.module.css"
+import styles from "./styles.module.scss"
 
 interface SocialContactsProps {
 	contacts: SocialContacts

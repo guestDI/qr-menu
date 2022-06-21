@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import Head from "next/head"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import styles from "../../styles/Menu.module.css"
+import styles from "../../styles/Menu.module.scss"
 import {
 	Button,
 	Card,

@@ -5,7 +5,7 @@ import { Button, TextWrapper } from ".."
 import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
 import { Add } from "../../inline-img/svg"
-import classes from "./styles.module.css"
+import classes from "./styles.module.scss"
 
 interface CardProps {
 	uid: string

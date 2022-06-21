@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from "react"
 import { Link } from "react-scroll"
-import classes from "./styles.module.css"
+import classes from "./styles.module.scss"
 
 interface CategoriesPanelProps {
 	onClick?: (category: string) => void

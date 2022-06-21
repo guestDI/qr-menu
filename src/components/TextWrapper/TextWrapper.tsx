@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import React from "react"
-import classes from "./styles.module.css"
+import classes from "./styles.module.scss"
 
 interface TextWrapperProps {
 	children: React.ReactNode

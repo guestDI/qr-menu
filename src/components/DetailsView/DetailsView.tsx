@@ -5,7 +5,7 @@ import { getCurrencySign } from "../../helpers/helpers"
 import { Add } from "../../inline-img/svg"
 import Button from "../Button/Button"
 import InputCounter from "../InputCounter/InputCounter"
-import classes from "./styles.module.css"
+import classes from "./styles.module.scss"
 
 interface DetailsViewProp {
 	selectedItem: Record<string, string>

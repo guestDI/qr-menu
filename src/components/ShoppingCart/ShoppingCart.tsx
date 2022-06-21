@@ -5,7 +5,7 @@ import { Close } from "../../inline-img/svg"
 import { ShoppingCartItem } from "../../model/types"
 import Button from "../Button/Button"
 import InputCounter from "../InputCounter/InputCounter"
-import classes from "./styles.module.css"
+import classes from "./styles.module.scss"
 
 const renderOrderRow = (
 	item: ShoppingCartItem,

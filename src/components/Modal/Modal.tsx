@@ -2,7 +2,7 @@ import clsx from "clsx"
 import React, { useCallback, useEffect, useMemo } from "react"
 import { Close } from "../../inline-img/svg"
 import Button from "../Button/Button"
-import styles from "./styles.module.css"
+import styles from "./styles.module.scss"
 
 interface ModalProps {
 	show: boolean

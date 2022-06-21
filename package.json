@@ -11,7 +11,7 @@
 		"check-types": "tsc --pretty --noEmit",
 		"check-format": "prettier --check .",
 		"check-lint": "eslint . --ext ts --ext tsx --ext js",
-		"format": "prettier --config .prettierrc \"**/*.{css,ts,tsx,html,json}\" --write",
+		"format": "prettier --config .prettierrc \"**/*.{css,scss,ts,tsx,html,json}\" --write",
 		"test-all": "yarn run check-format && yarn run check-lint && yarn run check-types"
 	},
 	"lint-staged": {
@@ -29,7 +29,8 @@
 		"react-dom": "17.0.2",
 		"react-hook-form": "^7.32.0",
 		"react-scroll": "^1.8.4",
-		"react-transition-group": "^4.4.2"
+		"react-transition-group": "^4.4.2",
+		"sass": "^1.52.3"
 	},
 	"devDependencies": {
 		"@types/node": "^16.11.1",

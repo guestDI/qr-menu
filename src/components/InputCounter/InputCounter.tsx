@@ -1,6 +1,6 @@
 import React from "react"
 import { Add, Minus } from "../../inline-img/svg"
-import classes from "./styles.module.css"
+import classes from "./styles.module.scss"
 
 interface InputCounterProps {
 	value: number

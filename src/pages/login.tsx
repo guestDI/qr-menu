@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useRouter } from "next/router"
 import { useCallback, useState } from "react"
 import { Transition } from "react-transition-group"
-import styles from "../../styles/Login.module.css"
+import styles from "../../styles/Login.module.scss"
 import { Button, Input } from "../components"
 import { Arrow } from "../inline-img/svg"
 
