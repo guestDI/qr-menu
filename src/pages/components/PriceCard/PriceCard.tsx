@@ -15,23 +15,19 @@ const PriceCard: React.FC = () => {
 					<span className={styles.duration}>/month</span>
 				</div>
 			</div>
-			<ul className={styles["pricing_content"]}>
+			<ul className={styles.content}>
 				<li>
 					<p>Работайте с системой без каких-либо ограничений</p>
 				</li>
-				<hr />
 				<li>
 					<p>Регистрация неограниченного числа клиентов</p>
 				</li>
-				<hr />
 				<li>
 					<p>Мобильный клиент с возможностью испольлзовать онлайн абонемент</p>
 				</li>
-				<hr />
 				<li>
 					<p>Формирование отчетности без каких-либо ограничений</p>
 				</li>
-				<hr />
 				<li>
 					<p>Круглосуточная поддержка</p>
 				</li>

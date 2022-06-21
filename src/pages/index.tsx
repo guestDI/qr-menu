@@ -3,7 +3,7 @@ import type { NextPage } from "next"
 import Head from "next/head"
 // import { SocialContacts } from "../types"
 import styles from "../../styles/Welcome.module.scss"
-import { Contacts, NavigationBar, PriceCard } from "./components"
+import { Contacts, NavigationBar, PriceCard, SectionLayout } from "./components"
 
 const social_contacts: any = [
 	{
@@ -32,7 +32,7 @@ const Home: NextPage = () => {
 				<NavigationBar />
 			</nav>
 			<main className={styles.main}>
-				<section id="intro" className={styles.intro}>
+				<section id="intro" className={clsx(styles.section, styles.intro)}>
 					<div className="welcome-header col-md-10 col-centered ">
 						<h1>Best app for managing your online menu</h1>
 						<p>
@@ -63,40 +63,20 @@ const Home: NextPage = () => {
 				</section>
 
 				{/* Prices section */}
-				<section id="prices" className="prices-section">
-					<div className="container">
-						<div className="row row-centered">
-							<div className="col-md-8 col-centered section-header">
-								<h1 className="text-upper-case">
-									Get awesome features, without extra charges
-								</h1>
-								<div>{/* <Switch/> */}</div>
-								<hr />
-							</div>
-						</div>
-						<div className="row price-row">
-							<div className="col-xs-12 col-sm-4 price_col">
-								{/* <PriceComponent price="Бесплатно" tariffName="Базовый" popular={true} onClick={this.onSignUpCall} duration="30 дней"/> */}
-							</div>
-							{/*<div className="col-xs-12 col-sm-4 price_col">*/}
-							{/*<PriceComponent popular tariffName="Standart" onClick={this.onSignUpCall}/>*/}
-							{/*</div>*/}
-							{/*<div className="col-xs-12 col-sm-4 price_col">*/}
-							{/*<PriceComponent tariffName="Premium" onClick={this.onSignUpCall}/>*/}
-							{/*</div>*/}
-						</div>
-					</div>
-				</section>
+				<SectionLayout
+					id="prices"
+					title="Get awesome features, without extra charges"
+					subTitle="sub"
+				>
+					<PriceCard />
+				</SectionLayout>
 
 				{/* Satisfaction section */}
-				<section id="satisfaction" className="prices-section">
+				<section id="prices" className={styles.section}>
 					<div className="container">
 						<div className="row row-centered">
 							<div className="col-md-8 col-centered section-header">
-								<h1 className="text-upper-case">
-									Get awesome features, without extra charges
-								</h1>
-								<PriceCard />
+								<h1 className="text-upper-case">satisf</h1>
 								<hr />
 							</div>
 						</div>

@@ -1,0 +1,22 @@
+.section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	p {
+		color: var(--off-grey);
+	}
+
+	hr {
+		width: 100%;
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(
+			to right,
+			rgba(123, 123, 123, 0),
+			rgba(0, 0, 0, 0.362),
+			rgba(123, 123, 123, 0)
+		);
+	}
+}

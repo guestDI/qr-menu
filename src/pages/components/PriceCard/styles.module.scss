@@ -1,34 +1,16 @@
 .pricing {
-	position: relative;
-	display: block;
 	text-align: center;
 	border: 1px solid #f1f1f1;
-	border-radius: 8px;
-	background-color: #fff;
-	z-index: 11;
+	border-radius: 10px;
 	margin: 15px auto;
-	width: 350px;
+	width: 250px;
 	transition: all 0.4s ease-in-out;
 	border-top: 4px solid #8eb7ca;
 	box-shadow: var(--card-box-shadow);
 }
 
-.popular {
-	text-transform: uppercase;
-	font-size: 12px;
-	margin-top: 32px;
-	right: 0;
-	background: #8eb7ca;
-	color: #fff;
-	padding: 2px 8px;
-	position: absolute;
-	-webkit-transform: rotate(90deg);
-	-ms-transform: rotate(90deg);
-	transform: rotate(90deg);
-	letter-spacing: 0.1em;
-}
-
 .head {
+	position: relative;
 	background: rgb(214, 214, 214);
 	background: rgb(214, 214, 214);
 	background: linear-gradient(
@@ -37,6 +19,19 @@
 		rgba(154, 198, 219, 0.3996192226890757) 88%,
 		rgba(142, 183, 202, 0.40242034313725494) 98%
 	);
+
+	.popular {
+		text-transform: uppercase;
+		top: 2.5rem;
+		right: -0.5rem;
+		background: #8eb7ca;
+		color: #fff;
+		padding: 2px 8px;
+		position: absolute;
+		-webkit-transform: rotate(90deg);
+		transform: rotate(90deg);
+		letter-spacing: 0.1em;
+	}
 }
 
 .price-wrapper {
@@ -50,13 +45,21 @@
 
 .duration {
 	font-size: 16px;
-	color: var(--secondary-color);
+	color: var(--off-grey);
 }
 
-.pricing .pricing_content {
-	margin: 0;
-	padding: 10px 20px;
+.content {
+	padding: 0 20px;
 	list-style: none;
+	color: var(--off-grey-mid);
+
+	li {
+		padding: 3px 0;
+
+		p {
+			font-size: 1.3rem;
+		}
+	}
 }
 
 .pricing .pricing_content li {
