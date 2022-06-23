@@ -2,8 +2,14 @@ import clsx from "clsx"
 import type { NextPage } from "next"
 import Head from "next/head"
 // import { SocialContacts } from "../types"
-import styles from "../../styles/Welcome.module.scss"
-import { Contacts, NavigationBar, PriceCard, SectionLayout } from "./components"
+import styles from "../../styles/index.module.scss"
+import {
+	Contacts,
+	Hero,
+	NavigationBar,
+	PriceCard,
+	SectionLayout,
+} from "./components"
 
 const social_contacts: any = [
 	{
@@ -32,7 +38,7 @@ const Home: NextPage = () => {
 				<NavigationBar />
 			</nav>
 			<main className={styles.main}>
-				<section id="intro" className={clsx(styles.section, styles.intro)}>
+				<Hero id="intro" className={clsx(styles.section, styles.intro)}>
 					<div className="welcome-header col-md-10 col-centered ">
 						<h1>Best app for managing your online menu</h1>
 						<p>
@@ -40,27 +46,7 @@ const Home: NextPage = () => {
 							restaurant business
 						</p>
 					</div>
-					{/* <div className="container">
-						<div className="row row-centered">
-							<div className="welcome-header col-md-10 col-centered ">
-							
-								<h1
-									className="text-upper-case"
-									style={{ paddingBottom: "20px" }}
-								>
-									Лучший способ управления своим бизнесом
-								</h1>
-							</div>
-							<div className="welcome-text col-md-8 col-centered">
-								<p>
-									Андромеда фитнес позволит легко управлять тренажерным залом,
-									автоматизируя все необходимые операции, а также предоставляя
-									возможность управления посещениями в один клик
-								</p>
-							</div>
-						</div>
-					</div> */}
-				</section>
+				</Hero>
 
 				{/* Prices section */}
 				<SectionLayout
@@ -68,7 +54,10 @@ const Home: NextPage = () => {
 					title="Get awesome features, without extra charges"
 					subTitle="sub"
 				>
-					<PriceCard />
+					<div className={styles.prices}>
+						<PriceCard />
+						<PriceCard />
+					</div>
 				</SectionLayout>
 
 				{/* Satisfaction section */}

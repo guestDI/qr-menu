@@ -274,24 +274,10 @@ of those sections to manage the look and feel of the site. */
 	background: #f9f9f9;
 }
 
-.prices-section {
-	height: 100vh;
-	padding: 60px 0px;
-	text-align: center;
-	background: #fff;
-}
-
-.prices-section .price-row {
-	display: flex;
-	align-items: center;
+.prices {
+	display: inline-flex;
 	flex-wrap: wrap;
-	justify-content: center;
-}
-
-.prices-section .price-row .price_col {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	gap: 1.6rem;
 }
 
 .footer-base .container > hr {
