@@ -16,8 +16,13 @@
 
 			.buttons {
 				display: flex;
-				justify-content: space-around;
+				justify-content: center;
+				align-items: center;
 				width: 60%;
+
+				button {
+					width: 15rem;
+				}
 
 				.primary {
 					background-color: #16100d;
@@ -26,12 +31,18 @@
 					padding: 1rem;
 					font-size: 1.2rem;
 					border-radius: 2rem;
+					margin-right: 3rem;
 					cursor: pointer;
 					transition: all 0.3s ease-in-out;
 					&:hover {
 						background-color: #fefdff;
 						color: #16100d;
+						border: 1px solid #504d4c86;
 					}
+				}
+
+				.secondary {
+					width: 10rem;
 				}
 			}
 		}

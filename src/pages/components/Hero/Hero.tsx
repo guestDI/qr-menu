@@ -30,7 +30,9 @@ const Hero: React.FC<HeroProps> = ({ className, id, children }) => {
 					</p>
 					<div className={styles.buttons}>
 						<Button className={styles.primary}>Try for free</Button>
-						<Button type="link">Watch demo</Button>
+						<Button className={styles.secondary} type="link">
+							Watch demo
+						</Button>
 					</div>
 				</div>
 				<div className={styles.right}>
