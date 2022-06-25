@@ -1,5 +1,7 @@
 import clsx from "clsx"
 import React from "react"
+import { Button } from "../../../components"
+import mobile from "../../../inline-img/mobile.png"
 import styles from "./styles.module.scss"
 
 interface HeroProps extends Partial<Pick<HTMLElement, "className" | "id">> {
@@ -26,8 +28,14 @@ const Hero: React.FC<HeroProps> = ({ className, id, children }) => {
 						Make life of your client easier and bring ideal service in
 						restaurant business
 					</p>
+					<div className={styles.buttons}>
+						<Button className={styles.primary}>Try for free</Button>
+						<Button type="link">Watch demo</Button>
+					</div>
 				</div>
-				<div>Image</div>
+				<div className={styles.right}>
+					<img src={mobile.src} alt="Mobile" />;
+				</div>
 			</div>
 		</section>
 	)

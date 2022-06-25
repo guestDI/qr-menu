@@ -8,7 +8,7 @@ interface ButtonProps {
 	round?: boolean
 	size?: "sm" | "md" | "lg"
 	className?: string
-	type?: "default" | "primary" | "submit"
+	type?: "default" | "primary" | "submit" | "link"
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
 	children,
 }) => {
 	const btnSize = `btn__${size}`
+	const btnClass = clsx(styles.btn, styles[btnSize], styles[type])
 	const roundBtnSize = `roundBtn__${size}`
 	const computedRoundBtnClass = [styles.roundBtn, styles[roundBtnSize]]
 
@@ -27,11 +28,10 @@ const Button: React.FC<ButtonProps> = ({
 		<button
 			onClick={onClick}
 			className={clsx(
-				styles.btn,
-				styles[btnSize],
+				btnClass,
 				className,
-				round && computedRoundBtnClass,
-				type === "primary" ? styles.btnPrimary : styles.btnDefault
+				round && computedRoundBtnClass
+				// type === "primary" ? styles.btnPrimary : styles.btnDefault
 			)}
 		>
 			{children}
