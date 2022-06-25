@@ -38,16 +38,7 @@ const Home: NextPage = () => {
 				<NavigationBar />
 			</nav>
 			<main className={styles.main}>
-				<Hero id="intro" className={clsx(styles.section, styles.intro)}>
-					<div className="welcome-header col-md-10 col-centered ">
-						<h1>Best app for managing your online menu</h1>
-						<p>
-							Make life of your client easier and bring ideal service in
-							restaurant business
-						</p>
-					</div>
-				</Hero>
-
+				<Hero id="intro" className={clsx(styles.section, styles.intro)} />
 				{/* Prices section */}
 				<SectionLayout
 					id="prices"

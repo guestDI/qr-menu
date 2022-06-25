@@ -8,10 +8,28 @@ interface HeroProps extends Partial<Pick<HTMLElement, "className" | "id">> {
 
 const Hero: React.FC<HeroProps> = ({ className, id, children }) => {
 	return (
-		<div className={clsx(styles.container, className)} id={id}>
-			<div className={styles.left}>{children}</div>
-			<div>Image</div>
-		</div>
+		<section
+			className={clsx(styles.container, className)}
+			style={{
+				backgroundImage: "url(/city_main.png)",
+				backgroundSize: "auto auto",
+				backgroundRepeat: "no-repeat",
+				width: "100%",
+				backgroundPosition: "center bottom",
+			}}
+			id={id}
+		>
+			<div className={styles.main}>
+				<div className={styles.left}>
+					<h1>Best app for managing your online menu</h1>
+					<p>
+						Make life of your client easier and bring ideal service in
+						restaurant business
+					</p>
+				</div>
+				<div>Image</div>
+			</div>
+		</section>
 	)
 }
 
