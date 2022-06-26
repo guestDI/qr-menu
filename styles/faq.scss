@@ -1,0 +1,25 @@
+.faq-row-wrapper {
+	background-color: #f5f7fa !important;
+
+	.faq-row {
+		padding: 1.6rem 3rem !important;
+
+		.row-title {
+			color: #242f51 !important;
+			font-size: 1.5rem !important;
+			font-weight: 600 !important;
+		}
+
+		.row-content {
+			.row-content-text {
+				font-size: 1.2rem !important;
+				color: var(--off-grey) !important;
+			}
+		}
+	}
+
+	.icon-wrapper {
+		top: 2.6rem !important;
+		right: 3rem !important;
+	}
+}
