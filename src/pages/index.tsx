@@ -5,6 +5,7 @@ import Head from "next/head"
 import styles from "../../styles/index.module.scss"
 import {
 	Contacts,
+	Faq,
 	Hero,
 	NavigationBar,
 	PriceCard,
@@ -74,7 +75,7 @@ const Home: NextPage = () => {
 					</div>
 				</section>
 				<SectionLayout id="faq" title="Frequently asked questions">
-					<div>hello</div>
+					<Faq />
 				</SectionLayout>
 				{/* <p className={styles.description}>
 					Get started by editing{" "}
