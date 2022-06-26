@@ -73,6 +73,9 @@ const Home: NextPage = () => {
 						</div>
 					</div>
 				</section>
+				<SectionLayout id="faq" title="Frequently asked questions">
+					<div>hello</div>
+				</SectionLayout>
 				{/* <p className={styles.description}>
 					Get started by editing{" "}
 					<code className={styles.code}>pages/index.js</code>
