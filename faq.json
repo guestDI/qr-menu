@@ -1,0 +1,20 @@
+{
+	"rows": [
+		{
+			"title": "Should I pay if not satisfied with the service?",
+			"content": "You can cancel subscription at any time. You will be charged nothing as a cancellation fee."
+		},
+		{
+			"title": "Can I customize the font, colors and menu cards layout?",
+			"content": "Yes, you can customize the font, colors and menu cards layout. Just go to the Customize section of the Settings menu, and you will find all possible options."
+		},
+		{
+			"title": "Can I upload a file with all my menu?",
+			"content": "Yes, you can upload a file with all your menu. Just click on the upload button and select the file. Application will automatically upload the file to the server and parse it. You can upload CSV file in specific format. You can find the format in the documentation."
+		},
+		{
+			"title": "How to contact with QR menu team?",
+			"content": "Please send email on email@testemail.com"
+		}
+	]
+}

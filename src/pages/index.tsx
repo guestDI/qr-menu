@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import type { NextPage } from "next"
 import Head from "next/head"
-// import { SocialContacts } from "../types"
+import questions from "../../faq.json"
 import styles from "../../styles/index.module.scss"
 import {
 	Contacts,
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
 					subTitle="The rise of mobile devices transforms the way we consume information entirely and we need to know how to use it."
 					separator={false}
 				>
-					<Faq />
+					<Faq data={questions} />
 				</SectionLayout>
 				{/* <p className={styles.description}>
 					Get started by editing{" "}
