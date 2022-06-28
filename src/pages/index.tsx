@@ -1,11 +1,13 @@
 import clsx from "clsx"
 import type { NextPage } from "next"
 import Head from "next/head"
-import questions from "../../faq.json"
+import questions from "../../data/faq.json"
+import features from "../../data/features.json"
 import styles from "../../styles/index.module.scss"
 import {
 	Contacts,
 	Faq,
+	FeaturesGrid,
 	Hero,
 	NavigationBar,
 	PriceCard,
@@ -51,6 +53,15 @@ const Home: NextPage = () => {
 			</nav>
 			<main className={styles.main}>
 				<Hero id="intro" className={clsx(styles.section, styles.intro)} />
+				{/* Features section */}
+				<SectionLayout
+					id="features"
+					title="Why you should choose our app"
+					subTitle="The rise of mobile devices transforms the way we consume information entirely."
+					separator={false}
+				>
+					<FeaturesGrid data={features} />
+				</SectionLayout>
 				{/* Prices section */}
 				<SectionLayout
 					id="prices"

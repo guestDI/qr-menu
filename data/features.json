@@ -1,0 +1,22 @@
+[
+	{
+		"imgUri": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&q=60",
+		"title": "Should I pay if not satisfied with the service?",
+		"description": "You can cancel subscription at any time. You will be charged nothing as a cancellation fee."
+	},
+	{
+		"imgUri": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&q=60",
+		"title": "Can I customize the font, colors and menu cards layout?",
+		"description": "Yes, you can customize the font, colors and menu cards layout. Just go to the Customize section of the Settings menu, and you will find all possible options."
+	},
+	{
+		"imgUri": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&q=60",
+		"title": "Can I upload a file with all my menu?",
+		"description": "Yes, you can upload a file with all your menu. Just click on the upload button and select the file. Application will automatically upload the file to the server and parse it. You can upload CSV file in specific format. You can find the format in the documentation."
+	},
+	{
+		"imgUri": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&q=60",
+		"title": "How to contact with QR menu team?",
+		"description": "Please send email on email@testemail.com"
+	}
+]
