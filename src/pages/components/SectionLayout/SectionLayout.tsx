@@ -8,6 +8,7 @@ interface SectionLayoutProps
 	children: React.ReactNode
 	subTitle?: React.ReactNode
 	separator?: boolean
+	bottomMargin?: boolean
 }
 
 const SectionLayout: React.FC<SectionLayoutProps> = ({
@@ -16,10 +17,14 @@ const SectionLayout: React.FC<SectionLayoutProps> = ({
 	subTitle,
 	separator = "true",
 	className,
+	bottomMargin = true,
 	children,
 }) => {
 	return (
-		<section id={id} className={clsx(styles.section, className)}>
+		<section
+			id={id}
+			className={clsx(styles.section, bottomMargin && styles.mb, className)}
+		>
 			<h1>{title}</h1>
 			{subTitle && <p>{subTitle}</p>}
 			{children}

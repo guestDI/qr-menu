@@ -1,22 +1,32 @@
 [
 	{
-		"imgUri": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&q=60",
-		"title": "Should I pay if not satisfied with the service?",
-		"description": "You can cancel subscription at any time. You will be charged nothing as a cancellation fee."
+		"imgUri": "app.png",
+		"title": "Digital menu",
+		"description": "You menu in digital form"
 	},
 	{
-		"imgUri": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&q=60",
-		"title": "Can I customize the font, colors and menu cards layout?",
-		"description": "Yes, you can customize the font, colors and menu cards layout. Just go to the Customize section of the Settings menu, and you will find all possible options."
+		"imgUri": "/cloud.png",
+		"title": "Cloud storage",
+		"description": "All data is saved in a separate database instance to avoid any intersections with other places."
 	},
 	{
-		"imgUri": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&q=60",
-		"title": "Can I upload a file with all my menu?",
-		"description": "Yes, you can upload a file with all your menu. Just click on the upload button and select the file. Application will automatically upload the file to the server and parse it. You can upload CSV file in specific format. You can find the format in the documentation."
+		"imgUri": "/support.png",
+		"title": "Customization",
+		"description": "You can change menu as many times as you want."
 	},
 	{
-		"imgUri": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=60&q=60",
-		"title": "How to contact with QR menu team?",
-		"description": "Please send email on email@testemail.com"
+		"imgUri": "/customer-service.png",
+		"title": "Customer support",
+		"description": "Team will jump on your request and help you with any questions you have."
+	},
+	{
+		"imgUri": "/cloud.png",
+		"title": "Orders storage",
+		"description": "You can get grouped orders to see what users order more often."
+	},
+	{
+		"imgUri": "/ui.png",
+		"title": "Customizable UI",
+		"description": "You can customize the UI to your needs, apply colors, fonts and layouts"
 	}
 ]

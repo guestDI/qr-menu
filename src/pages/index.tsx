@@ -67,77 +67,23 @@ const Home: NextPage = () => {
 					id="prices"
 					title="Get awesome features, without extra charges"
 					subTitle="sub"
+					separator={false}
 				>
 					<div className={styles.prices}>
 						<PriceCard />
 						<PriceCard />
 					</div>
 				</SectionLayout>
-
-				{/* Satisfaction section */}
-				<section id="prices" className={styles.section}>
-					<div className="container">
-						<div className="row row-centered">
-							<div className="col-md-8 col-centered section-header">
-								<h1 className="text-upper-case">satisf</h1>
-								<hr />
-							</div>
-						</div>
-						<div className="row price-row">
-							<div className="col-xs-12 col-sm-4 price_col">
-								{/* <PriceComponent price="Бесплатно" tariffName="Базовый" popular={true} onClick={this.onSignUpCall} duration="30 дней"/> */}
-							</div>
-							{/*<div className="col-xs-12 col-sm-4 price_col">*/}
-							{/*<PriceComponent popular tariffName="Standart" onClick={this.onSignUpCall}/>*/}
-							{/*</div>*/}
-							{/*<div className="col-xs-12 col-sm-4 price_col">*/}
-							{/*<PriceComponent tariffName="Premium" onClick={this.onSignUpCall}/>*/}
-							{/*</div>*/}
-						</div>
-					</div>
-				</section>
 				<SectionLayout
 					id="faq"
 					title="Frequently asked questions"
 					subTitle="The rise of mobile devices transforms the way we consume information entirely and we need to know how to use it."
 					separator={false}
+					className={styles.faq}
+					bottomMargin={false}
 				>
 					<Faq data={questions} />
 				</SectionLayout>
-				{/* <p className={styles.description}>
-					Get started by editing{" "}
-					<code className={styles.code}>pages/index.js</code>
-				</p>
-
-				<div className={styles.grid}>
-					<a href="https://nextjs.org/docs" className={styles.card}>
-						<h2>Documentation &rarr;</h2>
-						<p>Find in-depth information about Next.js features and API.</p>
-					</a>
-
-					<a href="https://nextjs.org/learn" className={styles.card}>
-						<h2>Learn &rarr;</h2>
-						<p>Learn about Next.js in an interactive course with quizzes!</p>
-					</a>
-
-					<a
-						href="https://github.com/vercel/next.js/tree/master/examples"
-						className={styles.card}
-					>
-						<h2>Examples &rarr;</h2>
-						<p>Discover and deploy boilerplate example Next.js projects.</p>
-					</a>
-
-					<a
-						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-						className={styles.card}
-					>
-						<h2>Deploy &rarr;</h2>
-						<p>
-							Instantly deploy your Next.js site to a public URL with Vercel.
-						</p>
-					</a>
-				</div> */}
 			</main>
 
 			<footer
