@@ -1,8 +1,8 @@
 import React from "react"
-import { EntityBox } from "../../../types"
+import { EntityBox } from "../../../../types"
 import styles from "./styles.module.scss"
 
-const FeatureBox: React.FC<EntityBox> = ({ imgUri, title, description }) => {
+const GoalBox: React.FC<EntityBox> = ({ imgUri, title, description }) => {
 	return (
 		<article className={styles.container}>
 			<div className={styles.imgWrapper}>
@@ -16,4 +16,4 @@ const FeatureBox: React.FC<EntityBox> = ({ imgUri, title, description }) => {
 	)
 }
 
-export default FeatureBox
+export default GoalBox

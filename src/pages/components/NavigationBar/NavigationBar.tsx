@@ -1,4 +1,5 @@
 import { Link } from "react-scroll"
+import { Button } from "../../../components"
 import styles from "./styles.module.scss"
 
 const NavigationBar: React.FC = () => {
@@ -7,24 +8,24 @@ const NavigationBar: React.FC = () => {
 			<ul className={styles.tabs}>
 				<li>
 					<Link
-						to="services"
+						to="goals"
 						spy={true}
 						smooth={true}
 						duration={500}
-						title="Demo"
+						title="Goals"
 					>
-						Key Features
+						Our goals
 					</Link>
 				</li>
 				<li>
 					<Link
-						to="projects"
+						to="features"
 						spy={true}
 						smooth={true}
 						duration={500}
-						title="Projects"
+						title="Features"
 					>
-						Our goals
+						Key Features
 					</Link>
 				</li>
 				<li>
@@ -38,11 +39,7 @@ const NavigationBar: React.FC = () => {
 						Pricing
 					</Link>
 				</li>
-				{/*<li><Link to="contact" spy={true} smooth={true} duration={600} title="Contacts">Contact Us</Link></li>*/}
-				{/*<li><NavLink to="/signUp" title="Sign Up">Sign Up</NavLink></li>*/}
-				<li>
-					<a>Try for free</a>
-				</li>
+				<Button className={styles.btn}>Try for free</Button>
 			</ul>
 		</div>
 	)

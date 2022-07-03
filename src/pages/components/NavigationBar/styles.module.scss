@@ -1,6 +1,7 @@
 .wrapper {
 	text-align: right;
 	margin: 0 3% auto;
+	padding: 1.6rem 0;
 }
 
 .tabs {
@@ -82,4 +83,24 @@
 .tabs a:focus::before {
 	transform-origin: left top;
 	transform: scale(1, 0.5);
+}
+
+.btn {
+	background-color: #16100d;
+	color: #fefdff;
+	border: none;
+	width: 12rem;
+	padding: 1rem;
+	font-size: 1.2rem;
+	font-weight: 700;
+	border-radius: 2rem;
+	margin-right: 3rem;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+
+	&:hover {
+		background-color: #fefdff;
+		color: #16100d;
+		border: 1px solid #504d4c86;
+	}
 }

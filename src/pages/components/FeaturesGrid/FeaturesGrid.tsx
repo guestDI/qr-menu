@@ -1,10 +1,10 @@
 import React from "react"
-import { Feature } from "../../../types"
+import { EntityBox } from "../../../types"
 import FeatureBox from "../FeatureBox/FeatureBox"
 import styles from "./styles.module.scss"
 
 interface FeaturesGridProps {
-	data: Feature[]
+	data: EntityBox[]
 }
 
 const FeaturesGrid: React.FC<FeaturesGridProps> = ({ data }) => {
