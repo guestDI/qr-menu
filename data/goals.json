@@ -3,5 +3,15 @@
 		"imgUri": "speed.png",
 		"title": "Faster orders",
 		"description": "Reduce time to order by up to 50%"
+	},
+	{
+		"imgUri": "bill.png",
+		"title": "Automatic bills",
+		"description": "Easier to pay for your orders"
+	},
+	{
+		"imgUri": "badge.png",
+		"title": "Instant response",
+		"description": "Possibility to see most popular items in your menu"
 	}
 ]

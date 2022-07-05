@@ -4,7 +4,7 @@ import styles from "./styles.module.scss"
 
 interface SectionLayoutProps
 	extends Partial<Pick<HTMLElement, "className" | "id">> {
-	title: React.ReactNode
+	title?: React.ReactNode
 	children: React.ReactNode
 	subTitle?: React.ReactNode
 	separator?: boolean

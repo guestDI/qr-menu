@@ -7,7 +7,7 @@
 	{
 		"imgUri": "/cloud.png",
 		"title": "Cloud storage",
-		"description": "All data is saved in a separate database instance to avoid any intersections with other places."
+		"description": "All data for a place is saved in a separate database instance."
 	},
 	{
 		"imgUri": "/support.png",

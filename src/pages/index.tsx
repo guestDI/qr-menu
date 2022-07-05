@@ -54,7 +54,7 @@ const Home: NextPage = () => {
 			</nav>
 			<main className={styles.main}>
 				<Hero id="intro" className={clsx(styles.section, styles.intro)} />
-				<SectionLayout id="goals" title="Our goals" separator={false}>
+				<SectionLayout id="goals" separator={false}>
 					<Goals data={goals} />
 				</SectionLayout>
 				{/* Features section */}
