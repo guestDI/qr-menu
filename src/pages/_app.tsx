@@ -6,6 +6,7 @@ config.autoAddCss = false
 import "../../styles/faq.scss"
 import "../../styles/globals.scss"
 import "../../styles/utilities.scss"
+import "../../styles/registration.scss"
 import { DataLayerContextProvider } from "../context/DataLayerContext"
 
 function MyApp({ Component, pageProps }: AppProps) {

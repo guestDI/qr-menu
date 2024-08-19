@@ -4,7 +4,7 @@ import styles from "./styles.module.scss"
 
 interface ButtonProps {
 	children: React.ReactNode
-	onClick?: (e: any) => void
+	onClick?: (e: Event) => void
 	round?: boolean
 	size?: "sm" | "md" | "lg"
 	className?: string

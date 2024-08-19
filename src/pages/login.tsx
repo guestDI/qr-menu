@@ -1,12 +1,12 @@
 import type { NextPage } from "next"
-import Head from "next/head"
+// import Head from "next/head"
 import Image from "next/image"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import { useCallback, useState } from "react"
 import { Transition } from "react-transition-group"
 import styles from "../../styles/Login.module.scss"
 import { Button, Input } from "../components"
-import { Arrow } from "../inline-img/svg"
+// import { Arrow } from "../inline-img/svg"
 
 const transitions: any = {
 	entering: {
@@ -48,18 +48,18 @@ const Login: NextPage = () => {
 		<Button onClick={placeValid ? login : changeState} type="primary">
 			<div className={styles.btnContent}>
 				<span>Next</span>
-				<Arrow />
+				{/*<Arrow />*/}
 			</div>
 		</Button>
 	)
 
 	return (
 		<div className={styles.container}>
-			<Head>
-				<title>Login</title>
-				<meta name="description" content="Login to manage menu" />
-				<link rel="icon" href="/menu-icon.png" />
-			</Head>
+			{/*<Head>*/}
+			{/*	<title>Login</title>*/}
+			{/*	<meta name="description" content="Login to manage menu" />*/}
+			{/*	<link rel="icon" href="/menu-icon.png" />*/}
+			{/*</Head>*/}
 			<header className={styles.header}>
 				<div className={styles.img}>
 					<Image

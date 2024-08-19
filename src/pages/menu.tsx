@@ -1,5 +1,8 @@
+"use client"
+
 import clsx from "clsx"
-import Head from "next/head"
+// import Head from "next/head"
+import { NextPage } from "next"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import styles from "../../styles/Menu.module.scss"
 import {
@@ -41,7 +44,7 @@ const renderCards = (
 	)
 }
 
-const Menu: React.FC = () => {
+const Menu: NextPage = () => {
 	const [showModal, setShowModal] = useState(false)
 
 	const {
@@ -152,18 +155,18 @@ const Menu: React.FC = () => {
 
 	return (
 		<div className={styles.container}>
-			<Head>
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link
-					rel="preconnect"
-					href="https://fonts.gstatic.com"
-					crossOrigin="true"
-				/>
-				<link
-					href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,500;0,600;0,700;1,100&display=swap"
-					rel="stylesheet"
-				/>
-			</Head>
+			{/*<Head>*/}
+			{/*	<link rel="preconnect" href="https://fonts.googleapis.com" />*/}
+			{/*	<link*/}
+			{/*		rel="preconnect"*/}
+			{/*		href="https://fonts.gstatic.com"*/}
+			{/*		crossOrigin="anonymous"*/}
+			{/*	/>*/}
+			{/*	<link*/}
+			{/*		href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,500;0,600;0,700;1,100&display=swap"*/}
+			{/*		rel="stylesheet"*/}
+			{/*	/>*/}
+			{/*</Head>*/}
 			<CategoriesPanel categories={categories} onClick={moveToCategory} />
 			{Object.keys(grouppedCardItems).length > 0 && (
 				<Button
@@ -175,16 +178,16 @@ const Menu: React.FC = () => {
 				</Button>
 			)}
 			{menuCards}
-			<Modal
-				onClose={toggleModal}
-				show={showModal}
-				className={clsx(
-					placement === "center" ? styles.modalCenter : styles.modalBottom
-				)}
-				placement={placement}
-			>
-				{modalContent}
-			</Modal>
+			{/*<Modal*/}
+			{/*	onClose={toggleModal}*/}
+			{/*	show={showModal}*/}
+			{/*	className={clsx(*/}
+			{/*		placement === "center" ? styles.modalCenter : styles.modalBottom*/}
+			{/*	)}*/}
+			{/*	placement={placement}*/}
+			{/*>*/}
+			{/*	{modalContent}*/}
+			{/*</Modal>*/}
 		</div>
 	)
 }

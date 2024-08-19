@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Image from "next/image"
 import React, { useCallback, useMemo } from "react"
-import { Button, TextWrapper } from ".."
+import Button from "../Button/Button"
 import { useDataLayerContext } from "../../context/DataLayerContext"
 import { getCurrencySign } from "../../helpers/helpers"
-import { Add } from "../../inline-img/svg"
+import addIcon from "../../inline-img/svg/add.svg"
 import classes from "./styles.module.scss"
 
 interface CardProps {
@@ -28,7 +28,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
 	const { grouppedCardItems } = useDataLayerContext()
 	const onAddToBasket = useCallback(
-		(e) => {
+		(e: Event) => {
 			e.stopPropagation()
 			addToBasket()
 		},
@@ -45,26 +45,26 @@ const Card: React.FC<CardProps> = ({
 	return (
 		<div className={classes.card} onClick={onCardClick}>
 			<div>
-				<Image
-					alt="Dishes"
-					src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/mexican-chicken-burger_1-b5cca6f.jpg?quality=90&resize=440,400"
-					width={400}
-					height={400}
-					loading="eager" //check this property in future
-					className={classes.cardImage}
-					quality={50}
-				/>
+				{/*<Image*/}
+				{/*	alt="Dishes"*/}
+				{/*	src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/mexican-chicken-burger_1-b5cca6f.jpg?quality=90&resize=440,400"*/}
+				{/*	width={400}*/}
+				{/*	height={400}*/}
+				{/*	loading="eager" //check this property in future*/}
+				{/*	className={classes.cardImage}*/}
+				{/*	quality={50}*/}
+				{/*/>*/}
 				<div className={classes.cardContent}>
-					<TextWrapper className={classes.cardContent__title} numberOfRows={1}>
-						{name}
-					</TextWrapper>
-					<TextWrapper className={classes.cardContent__desc}>
-						{shortDescription || (
-							<span style={{ fontStyle: "italic" }}>
-								No description available
-							</span>
-						)}
-					</TextWrapper>
+					{/*<TextWrapper className={classes.cardContent__title} numberOfRows={1}>*/}
+					{/*	{name}*/}
+					{/*</TextWrapper>*/}
+					{/*<TextWrapper className={classes.cardContent__desc}>*/}
+					{/*	{shortDescription || (*/}
+					{/*		<span style={{ fontStyle: "italic" }}>*/}
+					{/*			No description available*/}
+					{/*		</span>*/}
+					{/*	)}*/}
+					{/*</TextWrapper>*/}
 				</div>
 			</div>
 
@@ -79,7 +79,14 @@ const Card: React.FC<CardProps> = ({
 						type={itemCount ? "primary" : "default"}
 						className={classes.btn}
 					>
-						{itemCount ?? <Add height={14} />}
+						{itemCount ??
+							<Image
+								priority
+								src={addIcon}
+								alt="Add"
+								height={16}
+							/>
+						}
 					</Button>
 				</div>
 			</div>
