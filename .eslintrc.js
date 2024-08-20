@@ -23,7 +23,6 @@ module.exports = {
 		indent: ["error", "tab"],
 		"linebreak-style": ["error", "unix"],
 		quotes: ["error", "double"],
-		semi: ["error", "never"],
 		"react/react-in-jsx-scope": "off",
 		"no-empty-function": "off",
 		"@typescript-eslint/no-empty-function": [
