@@ -3,25 +3,46 @@ body, html {
   padding: 0;
   height: 100%;
   font-family: 'Arial', sans-serif;
+  background-size: cover;
+  color: #333;
 }
 
 .login-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  flex-direction: column;
   height: 100%;
-  background: linear-gradient(to bottom, #2e2e38, #0f0f10);
+  background: linear-gradient(95deg, rgb(29, 29, 37, 0.98) 50%, rgba(255, 255, 255, 0.07) 100%), url('../src/inline-img/bg-texture.jpg') no-repeat center center fixed;
+  background-size: cover;
+  backdrop-filter: blur(20px);
   color: #fff;
 }
 
-//.login-box {
-//  background-color: rgba(255, 255, 255, 0.1);
-//  padding: 40px;
-//  border-radius: 8px;
-//  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-//  text-align: center;
-//  position: relative;
-//}
+.login-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 300;
+  color: #ffffff;
+}
+
+.left {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.login-box  .row-input {
+  display: flex;
+}
+
+.login-box input[type="text"]::placeholder,
+.login-box input[type="email"]::placeholder,
+.login-box input[type="password"]::placeholder {
+  color: #bbb;
+}
 
 .logo {
   display: flex;
@@ -40,7 +61,7 @@ form {
 .input-group input {
   width: 100%;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 15px;
   border: none;
   outline: none;
 }
@@ -51,7 +72,7 @@ form {
   border: none;
   padding: 10px;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 50px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
