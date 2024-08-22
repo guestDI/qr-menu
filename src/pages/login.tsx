@@ -49,6 +49,9 @@ const Login: NextPage = () => {
 				<div className="header-menu">
 					<Link href="/">Home</Link>
 				</div>
+				<div className="header-menu">
+					<Link href="/">Our mission</Link>
+				</div>
 			</div>
 			<div className="left-container">
 				<div className="form-group">
