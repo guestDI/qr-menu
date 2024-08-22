@@ -82,9 +82,12 @@ const Registration: React.FC = () => {
 			<div className="header">
 				<div className="logo">
 					<Image src="/logo_2.png" alt="Logo"
-								 width={70} height={70} />
+								 width={60} height={60} />
 				</div>
 				<span>Digital menu</span>
+				<div className="header-menu">
+					<Link href="/">Home</Link>
+				</div>
 			</div>
 			<div className="left-container">
 				<div className="form-group">
