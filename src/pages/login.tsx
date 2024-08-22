@@ -1,114 +1,75 @@
 import type { NextPage } from "next"
-// import Head from "next/head"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { useCallback, useState } from "react"
-import { Transition } from "react-transition-group"
-import styles from "../../styles/Login.module.scss"
+import React, { FormEvent, useState } from "react"
 import { Button, Input } from "../components"
-// import { Arrow } from "../inline-img/svg"
-
-const transitions: any = {
-	entering: {
-		display: "block",
-	},
-	entered: {
-		opacity: 1,
-		display: "block",
-	},
-	exiting: {
-		display: "block",
-	},
-	exited: {
-		opacity: "0",
-		display: "none",
-	},
-}
+import Link from "next/link"
+import { toast, ToastContainer } from "react-toastify"
+import axiosInstance from "../api/axios"
+import { CustomEvent } from "../types"
 
 const Login: NextPage = () => {
-	const router = useRouter()
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
 
-	const [placeValid, setPlaceValid] = useState(false)
-	// const [_, setData] = useState("")
+	const onUsernameChanged = (e: CustomEvent) => {
+		e.preventDefault();
+		setUsername(e.target.value);
+	}
 
-	const login = useCallback(
-		(e) => {
-			e.preventDefault()
-			router.push("/admin")
-		},
-		[router]
-	)
+	const onPasswordChanged = (e: CustomEvent) => {
+		e.preventDefault();
+		setPassword(e.target.value);
+	}
 
-	const changeState = useCallback((e) => {
-		e.preventDefault()
-		setPlaceValid(true)
-	}, [])
+	const login = async (e: FormEvent) => {
+		e.preventDefault();
 
-	const btn = (
-		<Button onClick={placeValid ? login : changeState} type="primary">
-			<div className={styles.btnContent}>
-				<span>Next</span>
-				{/*<Arrow />*/}
-			</div>
-		</Button>
-	)
+		const data = {
+			username,
+			password,
+		};
+
+		try {
+			const response = await axiosInstance.post("/users/login", data);
+			console.log("Registration successful:", response.data);
+
+		} catch (error: any) {
+			toast("An unexpected error occurred");
+		}
+	};
 
 	return (
-		<div className={styles.container}>
-			{/*<Head>*/}
-			{/*	<title>Login</title>*/}
-			{/*	<meta name="description" content="Login to manage menu" />*/}
-			{/*	<link rel="icon" href="/menu-icon.png" />*/}
-			{/*</Head>*/}
-			<header className={styles.header}>
-				<div className={styles.img}>
-					<Image
-						className={styles.logo}
-						src="/menu-icon.png"
-						alt="Menu Logo"
-						width={230}
-						height={160}
-					/>
+		<div className="login-container">
+			<div className="header">
+				<div className="logo">
+					<Image src="/logo_2.png" alt="Logo"
+								 width={70} height={70} />
 				</div>
-			</header>
-
-			<main className={styles.main}>
-				<form className={styles.form}>
-					<Input
-						placeholder="Name of your restaurant / hotel"
-						name="place"
-						size="lg"
-						disabled={placeValid}
-						type="text"
-					/>
-					<Transition in={placeValid} timeout={200}>
-						{(state) => (
-							<div
-								style={{
-									transition: "all .2s",
-									opacity: 0,
-									display: "none",
-									...transitions[state],
-								}}
-							>
-								<Input
-									placeholder="Username"
-									name="username"
-									size="lg"
-									type="text"
-								/>
-								<Input
-									placeholder="Password"
-									name="password"
-									size="lg"
-									type="password"
-								/>
+				<span>Digital menu</span>
+			</div>
+			<div className="left-container">
+				<div className="form-group">
+					<p>WELCOME BACK</p>
+					<h1 className="title">Sign In</h1>
+					<div className="login-box">
+						{/*change to react hook form*/}
+						<p>Forgot your password? <Link href="/resetPassword">Reset password</Link></p>
+						<form onSubmit={login}>
+							<div className="row-input">
+								<Input name="username" type="text" placeholder="Username" size="lg" onChange={onUsernameChanged} />
 							</div>
-						)}
-					</Transition>
-					{btn}
-				</form>
-			</main>
+							<div>
+								<div className="input-group">
+									<Input name="password" type="password" placeholder="Password" size="lg"
+												 onChange={onPasswordChanged} />
+								</div>
+							</div>
+							<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />
+							<Button type="submit" className="login-button">Log In</Button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	)
 }

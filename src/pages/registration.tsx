@@ -3,34 +3,33 @@ import Input from "../components/Input/Input"
 import Button from "../components/Button/Button"
 // import { Transition } from "react-transition-group"
 import axiosInstance from "../api/axios";
-// import Image from "next/image"
+import Image from "next/image"
+import Link from "next/link";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CustomEvent } from "../types"
 
-interface ITransition {
-	[key: string]: Record<string, number | string>;
-}
+// interface ITransition {
+// 	[key: string]: Record<string, number | string>;
+// }
 
-//move to common types
-type CustomEvent = { preventDefault: () => void; target: { value: React.SetStateAction<string>; }; }
-
-const transitions: ITransition = {
-	entering: {
-		display: "block",
-	},
-	entered: {
-		opacity: 1,
-		display: "block",
-	},
-	exiting: {
-		display: "block",
-	},
-	exited: {
-		opacity: "0",
-		display: "none",
-	},
-}
+// const transitions: ITransition = {
+// 	entering: {
+// 		display: "block",
+// 	},
+// 	entered: {
+// 		opacity: 1,
+// 		display: "block",
+// 	},
+// 	exiting: {
+// 		display: "block",
+// 	},
+// 	exited: {
+// 		opacity: "0",
+// 		display: "none",
+// 	},
+// }
 
 const Registration: React.FC = () => {
 	// const [placeValid, setPlaceValid] = useState(true);
@@ -80,26 +79,24 @@ const Registration: React.FC = () => {
 
 	return (
 		<div className="login-container">
-			<div>Header</div>
-			<div className="left">
-				<div>
+			<div className="header">
+				<div className="logo">
+					<Image src="/logo_2.png" alt="Logo"
+								 width={70} height={70} />
+				</div>
+				<span>Digital menu</span>
+			</div>
+			<div className="left-container">
+				<div className="form-group">
 					<p>START FOR FREE</p>
-					<h1>Create new account</h1>
+					<h1 className="title">Create new account</h1>
 					<div className="login-box">
-						{/*<div className="logo">*/}
-						{/*	<Image src="/logo_2.png" alt="Logo"*/}
-						{/*				 width={140} height={140}/>*/}
-						{/*</div>*/}
 						{/*change to react hook form*/}
-						<p>Already a Member? <a>Log In</a></p>
+						<p>Already a Member? <Link href="/login">Log In</Link></p>
 						<form onSubmit={register}>
 							<div className="row-input">
-								<div className="input-group">
-									<Input name="username" type="text" placeholder="Username" size="lg" onChange={onUsernameChanged} />
-								</div>
-								<div className="input-group">
-									<Input name="email" type="email" placeholder="Email" size="lg" onChange={onEmailChanged} />
-								</div>
+								<Input name="username" type="text" placeholder="Username" size="lg" onChange={onUsernameChanged} />
+								<Input name="email" type="email" placeholder="Email" size="lg" onChange={onEmailChanged} />
 							</div>
 							<div>
 								<div className="input-group">
