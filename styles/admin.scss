@@ -1,0 +1,13 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  background: linear-gradient(95deg, rgb(29, 29, 37, 0.98) 50%, rgba(255, 255, 255, 0.07) 100%);
+  background-size: cover;
+  backdrop-filter: blur(20px);
+  color: #fff;
+}
+
+.main-container aside {
+  flex-basis: 30%
+}
