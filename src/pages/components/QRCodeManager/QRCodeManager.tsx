@@ -1,8 +1,13 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
+import { useReactToPrint } from "react-to-print";
 import QrCodeIcon from "../../../inline-img/svg/qr-code.svg";
+import PrintIcon from "../../../inline-img/svg/print.svg";
 import styles from "./styles.module.scss";
+import Button from "../../../components/Button/Button";
+import Input from "../../../components/Input/Input";
+import axiosInstance from "../../../api/axios";
+import { CustomEvent } from "../../../types"
 
 interface QRCodeManagerProps {
 	table: string;
@@ -10,89 +15,108 @@ interface QRCodeManagerProps {
 }
 
 const QrCodeManager = () => {
-	const [id, setId] = useState("");
-	const [tables, setTables] = useState([]);
-	const [qrCodes, setQrCodes] = useState<QRCodeManagerProps[]>([]);
+	const [fromTable, setFromTable] = useState(0);
+	const [toTable, setToTable] = useState<number | null>(null);
+	const [qrCodes, setQrCodes] = useState<QRCodeManagerProps[]>([
+	]);
+
+	const componentRef = useRef<HTMLDivElement>(null);
+	const handlePrint = useReactToPrint({
+		content: () => componentRef.current,
+	});
 
 	const handleGenerateQrCodes = async () => {
+		const tables = [];
+		if (toTable) {
+			for (let i = fromTable; i <= toTable; i++) {
+				tables.push(i.toString());
+			}
+		} else {
+			tables.push(fromTable);
+		}
+
 		try {
-			const response = await axios.post("/api/qr/generate", { id, tables });
+			const response = await axiosInstance.post("/qr/generate", {
+				id: "asd",
+				tables,
+			});
 			setQrCodes(response.data.qrCodes);
 		} catch (error) {
 			console.error("Error generating QR Codes:", error);
-			alert("Failed to generate QR Codes");
 		}
 	};
 
-	const handleAddTable = () => {
-		setTables([...tables, ""]);
+	const handleFromTableChange = (e: CustomEvent) => {
+		setFromTable(Number(e.target.value));
 	};
 
-	const handleTableChange = (index, value) => {
-		const updatedTables = [...tables];
-		updatedTables[index] = value;
-		setTables(updatedTables);
+	const handleToTableChange = (e: CustomEvent) => {
+		setToTable(Number(e.target.value));
 	};
 
 	return (
-		<div>
-			{/*<div>*/}
-			{/*	<label>*/}
-			{/*		ID:*/}
-			{/*		<input*/}
-			{/*			type="text"*/}
-			{/*			value={id}*/}
-			{/*			onChange={(e) => setId(e.target.value)}*/}
-			{/*			placeholder="Enter ID"*/}
-			{/*		/>*/}
-			{/*	</label>*/}
-			{/*</div>*/}
+		<>
 			<div>
 				<h2>Tables</h2>
-				{tables.map((table, index) => (
-					<div key={index}>
-						<label>
-							Table {index + 1}:
-							<input
-								type="text"
-								value={table}
-								onChange={(e) => handleTableChange(index, e.target.value)}
-								placeholder={`Enter Table ${index + 1}`}
-							/>
-						</label>
-					</div>
-				))}
-				<button onClick={handleAddTable}>Add Table</button>
-			</div>
-			<button onClick={handleGenerateQrCodes}>Generate QR Codes</button>
-
-			{!qrCodes.length && (
-				<div className={styles.noQRCodeContainer}>
-					<Image
-						height={60}
-						width={60}
-						src={QrCodeIcon}
-						alt="Generate QR Code"
+				<div className={styles.inputGroup}>
+					<Input
+						name="from"
+						type="text"
+						placeholder="From"
+						size="lg"
+						onChange={handleFromTableChange}
 					/>
-					<p>There are no active QR codes. Please generate any to proceed </p>
+					<Input
+						name="from"
+						type="text"
+						placeholder="To"
+						size="lg"
+						onChange={handleToTableChange}
+					/>
+					<Button className={styles.btn} onClick={handleGenerateQrCodes}>
+						Generate
+					</Button>
+					{qrCodes.length > 0 && (<Button className={styles.btn} onClick={handlePrint}>
+						{PrintIcon ? <Image
+							src={PrintIcon}
+							alt="print"
+							width={25}
+							height={25}
+						/> : "Print"}
+					</Button>)}
 				</div>
-			)}
+			</div>
 
-			{qrCodes.length > 0 && (
-				<div>
-					<h2>Generated QR Codes</h2>
-					{qrCodes.map((qrCode, index) => (
-						<div key={index}>
-							<h3>Table {qrCode.table}</h3>
-							<img
-								src={qrCode.qrCodeData}
-								alt={`QR Code for Table ${qrCode.table}`}
-							/>
+			<div className={styles.qrCodesContainer}>
+				{qrCodes.length > 0 ? (
+					<>
+						<div ref={componentRef} className={styles.qrGridWrapper}>
+							{qrCodes.map((qrCode, index) => (
+								<div key={index}>
+									<p>Table {qrCode.table}</p>
+									<Image
+										src={qrCode.qrCodeData}
+										alt={`QR Code for Table ${qrCode.table}`}
+										width={150}
+										height={150}
+									/>
+								</div>
+							))}
 						</div>
-					))}
-				</div>
-			)}
-		</div>
+					</>
+				) : (
+					<div className={styles.noQRCodeContainer}>
+						<Image
+							height={60}
+							width={60}
+							src={QrCodeIcon}
+							alt="Generate QR Code"
+						/>
+						<p>There are no active QR codes. Please generate any to proceed </p>
+					</div>
+				)}
+			</div>
+		</>
 	);
 };
 

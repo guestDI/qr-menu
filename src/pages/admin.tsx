@@ -9,10 +9,10 @@ import QRCodeManager from "./components/QRCodeManager/QRCodeManager";
 const SIDEBAR_ITEMS = [
 	{
 		title: "My Menu",
-		component: <QRCodeManager />
 	},
 	{
 		title: "QR Codes",
+		component: <QRCodeManager />,
 	},
 	{
 		title: "Settings",
@@ -26,7 +26,7 @@ const Admin: NextPage = () => {
 	const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 
 	const renderContent = () => {
-		return SIDEBAR_ITEMS[selectedItemIndex].component
+		return SIDEBAR_ITEMS[selectedItemIndex].component;
 	};
 
 	return (

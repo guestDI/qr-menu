@@ -6,6 +6,7 @@ import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../api/axios";
 import { CustomEvent } from "../types";
+import Cookies from "js-cookie"
 
 const Login: NextPage = () => {
 	const [username, setUsername] = useState("");
@@ -31,8 +32,10 @@ const Login: NextPage = () => {
 
 		try {
 			const response = await axiosInstance.post("/users/login", data);
+			Cookies.set("authToken", response.data.token, { expires: 1 });
 			console.log("Registration successful:", response.data);
-		} catch (error: any) {
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		} catch (error: unknown) {
 			toast("An unexpected error occurred");
 		}
 	};

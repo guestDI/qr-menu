@@ -1,3 +1,5 @@
+@import "./_mixins.scss";
+
 .main-container {
 	height: 100%;
 	overflow: hidden;
@@ -49,4 +51,8 @@ aside ul li {
 
 .profile-btn img {
 	margin-right: 5px;
+}
+
+.profile-btn:active {
+	@include active-btn(#b23a5a);
 }
