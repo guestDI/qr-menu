@@ -1,5 +1,5 @@
-import React from "react"
-import styles from "./styles.module.scss"
+import React from "react";
+import styles from "./styles.module.scss";
 
 const Layout: React.FC = ({ children }) => {
 	return (
@@ -11,7 +11,7 @@ const Layout: React.FC = ({ children }) => {
 				</p>
 			</footer>
 		</div>
-	)
-}
+	);
+};
 
-export default Layout
+export default Layout;

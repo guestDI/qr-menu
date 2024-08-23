@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import Image from "next/image"
-import React, { useCallback, useMemo } from "react"
-import Button from "../Button/Button"
-import { useDataLayerContext } from "../../context/DataLayerContext"
-import { getCurrencySign } from "../../helpers/helpers"
-import addIcon from "../../inline-img/svg/add.svg"
-import classes from "./styles.module.scss"
+import Image from "next/image";
+import React, { useCallback, useMemo } from "react";
+import Button from "../Button/Button";
+import { useDataLayerContext } from "../../context/DataLayerContext";
+import { getCurrencySign } from "../../helpers/helpers";
+import addIcon from "../../inline-img/svg/add.svg";
+import classes from "./styles.module.scss";
 
 interface CardProps {
-	uid: string
-	name: string
-	price: string
-	priceCurrency?: string
-	shortDescription: string
-	onCardClick: () => void
-	addToBasket: () => void
+	uid: string;
+	name: string;
+	price: string;
+	priceCurrency?: string;
+	shortDescription: string;
+	onCardClick: () => void;
+	addToBasket: () => void;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -26,21 +26,21 @@ const Card: React.FC<CardProps> = ({
 	onCardClick,
 	addToBasket,
 }) => {
-	const { grouppedCardItems } = useDataLayerContext()
+	const { grouppedCardItems } = useDataLayerContext();
 	const onAddToBasket = useCallback(
 		(e: Event) => {
-			e.stopPropagation()
-			addToBasket()
+			e.stopPropagation();
+			addToBasket();
 		},
 		[addToBasket]
-	)
+	);
 
 	const currencySign = useMemo(
 		() => getCurrencySign(priceCurrency || ""),
 		[priceCurrency]
-	)
+	);
 
-	const itemCount = grouppedCardItems[uid]?.count
+	const itemCount = grouppedCardItems[uid]?.count;
 
 	return (
 		<div className={classes.card} onClick={onCardClick}>
@@ -79,19 +79,14 @@ const Card: React.FC<CardProps> = ({
 						type={itemCount ? "primary" : "default"}
 						className={classes.btn}
 					>
-						{itemCount ??
-							<Image
-								priority
-								src={addIcon}
-								alt="Add"
-								height={16}
-							/>
-						}
+						{itemCount ?? (
+							<Image priority src={addIcon} alt="Add" height={16} />
+						)}
 					</Button>
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Card
+export default Card;

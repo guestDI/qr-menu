@@ -1,8 +1,8 @@
 export class MenuItem {
-	category: string
+	category: string;
 
 	constructor(category: string) {
-		this.category = category
+		this.category = category;
 	}
 }
 

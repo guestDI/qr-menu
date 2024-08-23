@@ -1,11 +1,11 @@
 /* eslint react/prop-types: 0 */
-import clsx from "clsx"
-import Faq from "react-faq-component"
-import styles from "./styles.module.scss"
+import clsx from "clsx";
+import Faq from "react-faq-component";
+import styles from "./styles.module.scss";
 
 interface FaqProps {
-	data?: { rows: Array<{ title: string; content: string }> }
-	className?: string
+	data?: { rows: Array<{ title: string; content: string }> };
+	className?: string;
 }
 
 const FaqComponent: React.FC<FaqProps> = ({ data = [], className }) => {
@@ -22,7 +22,7 @@ const FaqComponent: React.FC<FaqProps> = ({ data = [], className }) => {
 				}}
 			/>
 		</div>
-	)
-}
+	);
+};
 
-export default FaqComponent
+export default FaqComponent;

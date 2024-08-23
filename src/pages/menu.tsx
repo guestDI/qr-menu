@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import clsx from "clsx"
+import clsx from "clsx";
 // import Head from "next/head"
-import { NextPage } from "next"
-import React, { useCallback, useEffect, useMemo, useState } from "react"
-import styles from "../../styles/Menu.module.scss"
+import { NextPage } from "next";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import styles from "../../styles/Menu.module.scss";
 import {
 	Button,
 	Card,
@@ -12,15 +12,15 @@ import {
 	DetailsView,
 	Modal,
 	ShoppingCart,
-} from "../components"
-import { useDataLayerContext } from "../context/DataLayerContext"
+} from "../components";
+import { useDataLayerContext } from "../context/DataLayerContext";
 
 const ButtonContent: React.FC<{ total: number }> = ({ total }) => (
 	<div className={styles.shoppingCartBtnContent}>
 		<span>Make order</span>
 		<span>{total}</span>
 	</div>
-)
+);
 
 const renderCards = (
 	category: string,
@@ -28,7 +28,7 @@ const renderCards = (
 	onCardClick: (category: string, id: string) => void,
 	addToBasket: (value: any) => void
 ) => {
-	const { uid, name, price, priceCurrency, shortDescription = "" } = item
+	const { uid, name, price, priceCurrency, shortDescription = "" } = item;
 
 	return (
 		<Card
@@ -41,11 +41,11 @@ const renderCards = (
 			shortDescription={shortDescription}
 			addToBasket={() => addToBasket({ category, uid })}
 		/>
-	)
-}
+	);
+};
 
 const Menu: NextPage = () => {
-	const [showModal, setShowModal] = useState(false)
+	const [showModal, setShowModal] = useState(false);
 
 	const {
 		items,
@@ -56,54 +56,54 @@ const Menu: NextPage = () => {
 		removeItemFromShoppingCart,
 		decreaseItemCount,
 		total,
-	} = useDataLayerContext()
+	} = useDataLayerContext();
 	const [selectedMenuItem, setSelectedMenuItem] = useState<
 		Record<string, string>
-	>({})
+	>({});
 
 	const categories = useMemo(
 		() => items.map((menuItem: any) => menuItem.category),
 		[items]
-	)
+	);
 
-	const itemIsSelected = !!Object.keys(selectedMenuItem).length
+	const itemIsSelected = !!Object.keys(selectedMenuItem).length;
 
 	useEffect(() => {
 		if (!shoppingCart.length && !itemIsSelected) {
-			setShowModal(false)
+			setShowModal(false);
 		}
-	}, [shoppingCart, itemIsSelected])
+	}, [shoppingCart, itemIsSelected]);
 
 	const toggleModal = useCallback(
 		(category?: string, itemId?: string) => {
-			setShowModal((prevState) => !prevState)
+			setShowModal((prevState) => !prevState);
 			if (category && itemId) {
-				setSelectedMenuItem({ category, itemId })
+				setSelectedMenuItem({ category, itemId });
 			} else {
-				setSelectedMenuItem({})
+				setSelectedMenuItem({});
 			}
 		},
 		[showModal]
-	)
+	);
 
 	const clearCart = useCallback(() => {
-		clearShoppingCart()
-		setShowModal(false)
-	}, [clearShoppingCart])
+		clearShoppingCart();
+		setShowModal(false);
+	}, [clearShoppingCart]);
 
 	const removeFromShoppingCart = useCallback(
 		(uid: string) => {
-			removeItemFromShoppingCart(uid)
+			removeItemFromShoppingCart(uid);
 		},
 		[removeItemFromShoppingCart]
-	)
+	);
 
 	const decreaseCount = useCallback(
 		(uid: string) => {
-			decreaseItemCount(uid)
+			decreaseItemCount(uid);
 		},
 		[decreaseItemCount]
-	)
+	);
 
 	const moveToCategory = useCallback((category: string) => {
 		// const currentRef: any = sectionRefs[categories.indexOf(category)]
@@ -112,7 +112,7 @@ const Menu: NextPage = () => {
 		// 	top: offset - 80,
 		// 	behavior: "smooth",
 		// })
-	}, [])
+	}, []);
 
 	const menuCards = useMemo(
 		() =>
@@ -137,12 +137,12 @@ const Menu: NextPage = () => {
 							)}
 						</div>
 					</section>
-				)
+				);
 			}),
 		[items]
-	)
+	);
 
-	const placement = itemIsSelected ? "center" : "bottom"
+	const placement = itemIsSelected ? "center" : "bottom";
 	const modalContent = itemIsSelected ? (
 		<DetailsView selectedItem={selectedMenuItem} />
 	) : (
@@ -151,7 +151,7 @@ const Menu: NextPage = () => {
 			removeItemFromShoppingCart={removeFromShoppingCart}
 			decreaseItemCount={decreaseCount}
 		/>
-	)
+	);
 
 	return (
 		<div className={styles.container}>
@@ -189,7 +189,7 @@ const Menu: NextPage = () => {
 			{/*	{modalContent}*/}
 			{/*</Modal>*/}
 		</div>
-	)
-}
+	);
+};
 
-export default Menu
+export default Menu;

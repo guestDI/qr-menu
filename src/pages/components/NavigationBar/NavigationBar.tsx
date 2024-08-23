@@ -1,6 +1,6 @@
-import { Link } from "react-scroll"
-import { Button } from "../../../components"
-import styles from "./styles.module.scss"
+import { Link } from "react-scroll";
+import { Button } from "../../../components";
+import styles from "./styles.module.scss";
 
 const NavigationBar: React.FC = () => {
 	return (
@@ -42,7 +42,7 @@ const NavigationBar: React.FC = () => {
 				<Button className={styles.btn}>Try for free</Button>
 			</ul>
 		</div>
-	)
-}
+	);
+};
 
-export default NavigationBar
+export default NavigationBar;

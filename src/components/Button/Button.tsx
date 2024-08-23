@@ -1,14 +1,14 @@
-import clsx from "clsx"
-import React from "react"
-import styles from "./styles.module.scss"
+import clsx from "clsx";
+import React from "react";
+import styles from "./styles.module.scss";
 
 interface ButtonProps {
-	children: React.ReactNode
-	onClick?: (e: Event) => void
-	round?: boolean
-	size?: "sm" | "md" | "lg"
-	className?: string
-	type?: "default" | "primary" | "submit" | "link"
+	children: React.ReactNode;
+	onClick?: (e: Event) => void;
+	round?: boolean;
+	size?: "sm" | "md" | "lg";
+	className?: string;
+	type?: "default" | "primary" | "submit" | "link";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,10 +19,10 @@ const Button: React.FC<ButtonProps> = ({
 	type = "default",
 	children,
 }) => {
-	const btnSize = `btn__${size}`
-	const btnClass = clsx(styles.btn, styles[btnSize], styles[type])
-	const roundBtnSize = `roundBtn__${size}`
-	const computedRoundBtnClass = [styles.roundBtn, styles[roundBtnSize]]
+	const btnSize = `btn__${size}`;
+	const btnClass = clsx(styles.btn, styles[btnSize], styles[type]);
+	const roundBtnSize = `roundBtn__${size}`;
+	const computedRoundBtnClass = [styles.roundBtn, styles[roundBtnSize]];
 
 	return (
 		<button
@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
 		>
 			{children}
 		</button>
-	)
-}
+	);
+};
 
-export default Button
+export default Button;

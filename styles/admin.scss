@@ -1,50 +1,52 @@
 .main-container {
-  height: 100%;
-  overflow: hidden;
+	height: 100%;
+	overflow: hidden;
 }
 
 .content {
-  display: flex;
-  height: calc(100% - 100px);
-  border-top: rgba(214, 214, 214, 0.67) 1px solid;
+	display: flex;
+	height: calc(100% - 100px);
+	border-top: rgba(214, 214, 214, 0.67) 1px solid;
 }
 
 .content main {
-  padding: 10px 30px 10px 30px;
-  background: rgba(214, 214, 214, 0.67);
-  width: 100%;
+	padding: 10px 30px 10px 30px;
+	background: rgba(244, 244, 244, 0.67);
+	width: 100%;
 }
 
 .content aside {
-  flex-basis: 20%;
-  border-right: rgba(214, 214, 214, 0.67) 1px solid;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+	flex-basis: 20%;
+	border-right: rgba(214, 214, 214, 0.67) 1px solid;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 aside ul {
-  list-style-type: none;
+	list-style-type: none;
+	padding: 0;
+	margin: 40px auto;
 }
 
 aside ul li {
-  font-size: 14px;
+	font-size: 14px;
 }
 
 .profile-btn-container {
-  padding: 10px;
+	padding: 10px;
 }
 
 .profile-btn {
-  margin-bottom: 15px;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ff3166;
-  color: #fff;
+	margin-bottom: 15px;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ff3166;
+	color: #fff;
 }
 
 .profile-btn img {
-  margin-right: 5px;
+	margin-right: 5px;
 }

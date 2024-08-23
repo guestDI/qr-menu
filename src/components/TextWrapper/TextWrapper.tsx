@@ -1,11 +1,11 @@
-import clsx from "clsx"
-import React from "react"
-import classes from "./styles.module.scss"
+import clsx from "clsx";
+import React from "react";
+import classes from "./styles.module.scss";
 
 interface TextWrapperProps {
-	children: React.ReactNode
-	numberOfRows?: number
-	className?: any
+	children: React.ReactNode;
+	numberOfRows?: number;
+	className?: any;
 }
 
 const TextWrapper: React.FC<TextWrapperProps> = ({
@@ -20,7 +20,7 @@ const TextWrapper: React.FC<TextWrapperProps> = ({
 		>
 			{children}
 		</p>
-	)
-}
+	);
+};
 
-export default TextWrapper
+export default TextWrapper;

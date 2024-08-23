@@ -1,23 +1,23 @@
 export type CartMenuItem = {
-	category: string
-	uid: string
-}
+	category: string;
+	uid: string;
+};
 
 type CategoryItem = {
-	uid: string
-	count: number
-}
+	uid: string;
+	count: number;
+};
 
 export interface CartItemType {
-	category: string
-	items: CategoryItem[]
+	category: string;
+	items: CategoryItem[];
 }
 
 export interface ShoppingCartItem {
-	category: string
-	uid: string
-	name: string
-	price: number
-	priceCurrency: string
-	count: number
+	category: string;
+	uid: string;
+	name: string;
+	price: number;
+	priceCurrency: string;
+	count: number;
 }

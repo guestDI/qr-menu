@@ -1,0 +1,15 @@
+.noQRCodeContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	& > img {
+		margin-bottom: 10px;
+	}
+
+	& > p,
+	span {
+		font-size: 1.5rem;
+	}
+}

@@ -1,10 +1,10 @@
-import clsx from "clsx"
-import type { NextPage } from "next"
-import Head from "next/head"
-import questions from "../../data/faq.json"
-import features from "../../data/features.json"
-import goals from "../../data/goals.json"
-import styles from "../../styles/index.module.scss"
+import clsx from "clsx";
+import type { NextPage } from "next";
+import Head from "next/head";
+import questions from "../../data/faq.json";
+import features from "../../data/features.json";
+import goals from "../../data/goals.json";
+import styles from "../../styles/index.module.scss";
 import {
 	Contacts,
 	Faq,
@@ -14,7 +14,7 @@ import {
 	NavigationBar,
 	PriceCard,
 	SectionLayout,
-} from "./components"
+} from "./components";
 
 const social_contacts: any = [
 	{
@@ -29,7 +29,7 @@ const social_contacts: any = [
 	{
 		linkedIn: "https://www.linkedin.com/in/dzmitry-ihnatovich-096b8a36/",
 	},
-]
+];
 
 const Home: NextPage = () => {
 	return (
@@ -116,7 +116,7 @@ const Home: NextPage = () => {
 				</div>
 			</footer>
 		</div>
-	)
-}
+	);
+};
 
-export default Home
+export default Home;

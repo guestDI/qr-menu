@@ -1,50 +1,50 @@
-import Image from "next/image"
-import React, { useCallback, useMemo, useState } from "react"
-import { useDataLayerContext } from "../../context/DataLayerContext"
-import { getCurrencySign } from "../../helpers/helpers"
-import { Add } from "../../inline-img/svg"
-import Button from "../Button/Button"
-import InputCounter from "../InputCounter/InputCounter"
-import classes from "./styles.module.scss"
+import Image from "next/image";
+import React, { useCallback, useMemo, useState } from "react";
+import { useDataLayerContext } from "../../context/DataLayerContext";
+import { getCurrencySign } from "../../helpers/helpers";
+import { Add } from "../../inline-img/svg";
+import Button from "../Button/Button";
+import InputCounter from "../InputCounter/InputCounter";
+import classes from "./styles.module.scss";
 
 interface DetailsViewProp {
-	selectedItem: Record<string, string>
+	selectedItem: Record<string, string>;
 }
 
 const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 	const { items, addItemToShoppingCart, decreaseItemCount, grouppedCardItems } =
-		useDataLayerContext()
+		useDataLayerContext();
 
-	const [category, uid] = Object.values(selectedItem)
+	const [category, uid] = Object.values(selectedItem);
 	const categoryItems = useMemo(
 		() => items.find((item: any) => item.category === category),
 		[items, category]
-	)
+	);
 
-	const [count, setCount] = useState(grouppedCardItems[uid]?.count ?? 0)
+	const [count, setCount] = useState(grouppedCardItems[uid]?.count ?? 0);
 
 	const itemDetails = useMemo(
 		() => categoryItems?.items.find((item: any) => item.uid === uid),
 		[items, category, uid]
-	)
+	);
 
 	const increaseCount = useCallback(
 		(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
-			e.stopPropagation()
-			addItemToShoppingCart({ category, uid })
-			setCount((prevState: any) => prevState + 1)
+			e.stopPropagation();
+			addItemToShoppingCart({ category, uid });
+			setCount((prevState: any) => prevState + 1);
 		},
 		[count, addItemToShoppingCart]
-	)
+	);
 
 	const decreaseCount = useCallback(
 		(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
-			e.stopPropagation()
-			decreaseItemCount(uid)
-			setCount((prevState: any) => prevState - 1)
+			e.stopPropagation();
+			decreaseItemCount(uid);
+			setCount((prevState: any) => prevState - 1);
 		},
 		[count, decreaseItemCount]
-	)
+	);
 
 	return (
 		<div className={classes.detailsContainer}>
@@ -95,7 +95,7 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default DetailsView
+export default DetailsView;

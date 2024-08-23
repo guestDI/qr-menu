@@ -1,6 +1,6 @@
-import React from "react"
-import { EntityBox } from "../../../../types"
-import styles from "./styles.module.scss"
+import React from "react";
+import { EntityBox } from "../../../../types";
+import styles from "./styles.module.scss";
 
 const GoalBox: React.FC<EntityBox> = ({ imgUri, title, description }) => {
 	return (
@@ -13,7 +13,7 @@ const GoalBox: React.FC<EntityBox> = ({ imgUri, title, description }) => {
 				<p>{description}</p>
 			</div>
 		</article>
-	)
-}
+	);
+};
 
-export default GoalBox
+export default GoalBox;

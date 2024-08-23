@@ -1,11 +1,11 @@
-import clsx from "clsx"
-import React from "react"
-import { Button } from "../../../components"
-import mobile from "../../../inline-img/mobile.png"
-import styles from "./styles.module.scss"
+import clsx from "clsx";
+import React from "react";
+import { Button } from "../../../components";
+import mobile from "../../../inline-img/mobile.png";
+import styles from "./styles.module.scss";
 
 interface HeroProps extends Partial<Pick<HTMLElement, "className" | "id">> {
-	children?: React.ReactNode
+	children?: React.ReactNode;
 }
 
 const Hero: React.FC<HeroProps> = ({ className, id, children }) => {
@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ className, id, children }) => {
 				</div>
 			</div>
 		</section>
-	)
-}
+	);
+};
 
-export default Hero
+export default Hero;

@@ -1,18 +1,18 @@
-import React, { useCallback, useRef, useState } from "react"
-import { Link } from "react-scroll"
-import classes from "./styles.module.scss"
+import React, { useCallback, useRef, useState } from "react";
+import { Link } from "react-scroll";
+import classes from "./styles.module.scss";
 
 interface CategoriesPanelProps {
-	onClick?: (category: string) => void
-	categories: string[]
+	onClick?: (category: string) => void;
+	categories: string[];
 }
 
 const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 	categories,
 	// onClick,
 }) => {
-	const [selectedCategory, setSelectedCategory] = useState<string | null>()
-	const myRefs = useRef<any>([])
+	const [selectedCategory, setSelectedCategory] = useState<string | null>();
+	const myRefs = useRef<any>([]);
 	// const onButtonClick = useCallback(
 	// 	(value: string) => {
 	// 		setSelectedCategory(value)
@@ -32,16 +32,16 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 
 	const onScroll = useCallback(
 		(index: number) => {
-			setSelectedCategory(categories[index])
+			setSelectedCategory(categories[index]);
 
 			myRefs?.current[index]?.scrollIntoView({
 				inline: "center",
-			})
+			});
 		},
 		[selectedCategory]
-	)
+	);
 
-	console.log(selectedCategory, "sel")
+	console.log(selectedCategory, "sel");
 
 	return (
 		<ul className={classes.container}>
@@ -66,7 +66,7 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 				</li>
 			))}
 		</ul>
-	)
-}
+	);
+};
 
-export default CategoriesPanel
+export default CategoriesPanel;

@@ -1,15 +1,18 @@
-import React from "react"
-import styles from "./styles.module.scss"
+import React from "react";
+import styles from "./styles.module.scss";
 
-type CustomEvent = { preventDefault: () => void; target: { value: React.SetStateAction<string>; }; }
+type CustomEvent = {
+	preventDefault: () => void;
+	target: { value: React.SetStateAction<string> };
+};
 
 interface InputProps {
-	placeholder: string
-	name: string
-	type: "text" | "email" | "password"
-	onChange?: (e: CustomEvent) => void
-	disabled?: boolean
-	size?: "sm" | "md" | "lg"
+	placeholder: string;
+	name: string;
+	type: "text" | "email" | "password";
+	onChange?: (e: CustomEvent) => void;
+	disabled?: boolean;
+	size?: "sm" | "md" | "lg";
 }
 
 const Input: React.FC<InputProps> = ({
@@ -32,7 +35,7 @@ const Input: React.FC<InputProps> = ({
 				{...rest}
 			/>
 		</div>
-	)
-}
+	);
+};
 
-export default Input
+export default Input;

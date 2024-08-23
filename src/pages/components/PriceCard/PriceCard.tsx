@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss"
+import styles from "./styles.module.scss";
 
 const PriceCard: React.FC = () => {
 	// let popular = (
@@ -33,7 +33,7 @@ const PriceCard: React.FC = () => {
 				</li>
 			</ul>
 		</div>
-	)
-}
+	);
+};
 
-export default PriceCard
+export default PriceCard;

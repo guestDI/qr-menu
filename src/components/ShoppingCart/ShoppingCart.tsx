@@ -1,11 +1,11 @@
-import { TextWrapper } from ".."
-import { useDataLayerContext } from "../../context/DataLayerContext"
-import { getCurrencySign } from "../../helpers/helpers"
-import { Close } from "../../inline-img/svg"
-import { ShoppingCartItem } from "../../model/types"
-import Button from "../Button/Button"
-import InputCounter from "../InputCounter/InputCounter"
-import classes from "./styles.module.scss"
+import { TextWrapper } from "..";
+import { useDataLayerContext } from "../../context/DataLayerContext";
+import { getCurrencySign } from "../../helpers/helpers";
+import { Close } from "../../inline-img/svg";
+import { ShoppingCartItem } from "../../model/types";
+import Button from "../Button/Button";
+import InputCounter from "../InputCounter/InputCounter";
+import classes from "./styles.module.scss";
 
 const renderOrderRow = (
 	item: ShoppingCartItem,
@@ -13,7 +13,7 @@ const renderOrderRow = (
 	decreaseItemCount: (uid: string) => void,
 	removeItemFromShoppingCart: (uid: string) => void
 ) => {
-	const { count, priceCurrency, price, name, uid, category } = item
+	const { count, priceCurrency, price, name, uid, category } = item;
 
 	return (
 		<div key={uid} className={classes.row}>
@@ -41,20 +41,20 @@ const renderOrderRow = (
 				</span>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 const ShoppingCart = ({
 	clearShoppingCart,
 	removeItemFromShoppingCart,
 	decreaseItemCount,
 }: {
-	clearShoppingCart: () => void
-	removeItemFromShoppingCart: (uid: string) => void
-	decreaseItemCount: (uid: string) => void
+	clearShoppingCart: () => void;
+	removeItemFromShoppingCart: (uid: string) => void;
+	decreaseItemCount: (uid: string) => void;
 }) => {
 	const { grouppedCardItems, addItemToShoppingCart, total } =
-		useDataLayerContext()
+		useDataLayerContext();
 
 	return (
 		<div>
@@ -81,7 +81,7 @@ const ShoppingCart = ({
 				</Button>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default ShoppingCart
+export default ShoppingCart;

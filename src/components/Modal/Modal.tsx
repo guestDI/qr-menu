@@ -1,16 +1,16 @@
-import clsx from "clsx"
-import React, { useCallback, useEffect, useMemo } from "react"
-import { Close } from "../../inline-img/svg"
-import Button from "../Button/Button"
-import styles from "./styles.module.scss"
+import clsx from "clsx";
+import React, { useCallback, useEffect, useMemo } from "react";
+import { Close } from "../../inline-img/svg";
+import Button from "../Button/Button";
+import styles from "./styles.module.scss";
 
 interface ModalProps {
-	show: boolean
-	onClose: () => void
-	children: React.ReactNode
-	closeOnBackdrop?: boolean
-	className?: string
-	placement: "center" | "bottom"
+	show: boolean;
+	onClose: () => void;
+	children: React.ReactNode;
+	closeOnBackdrop?: boolean;
+	className?: string;
+	placement: "center" | "bottom";
 }
 
 const ModalOverlay: React.FC<ModalProps> = ({
@@ -23,16 +23,16 @@ const ModalOverlay: React.FC<ModalProps> = ({
 }) => {
 	const handleClose = useCallback(
 		(e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>) => {
-			e.stopPropagation()
-			onClose()
+			e.stopPropagation();
+			onClose();
 		},
 		[onClose]
-	)
+	);
 
 	const displayStyle = useMemo(
 		() => (show ? styles.displayBlock : styles.displayNone),
 		[show]
-	)
+	);
 
 	return (
 		<>
@@ -55,8 +55,8 @@ const ModalOverlay: React.FC<ModalProps> = ({
 				{children}
 			</section>
 		</>
-	)
-}
+	);
+};
 
 const Modal: React.FC<ModalProps> = ({
 	show,
@@ -67,9 +67,9 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
 	// hack to prevent scrolling when modal is open
 	useEffect(() => {
-		const overflowState = show ? "hidden" : "unset"
-		document.body.style.overflow = overflowState
-	}, [show])
+		const overflowState = show ? "hidden" : "unset";
+		document.body.style.overflow = overflowState;
+	}, [show]);
 
 	return (
 		<ModalOverlay
@@ -80,7 +80,7 @@ const Modal: React.FC<ModalProps> = ({
 		>
 			{children}
 		</ModalOverlay>
-	)
-}
+	);
+};
 
-export default Modal
+export default Modal;

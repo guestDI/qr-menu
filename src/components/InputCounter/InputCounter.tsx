@@ -1,15 +1,15 @@
-import React from "react"
-import { Add, Minus } from "../../inline-img/svg"
-import classes from "./styles.module.scss"
+import React from "react";
+import { Add, Minus } from "../../inline-img/svg";
+import classes from "./styles.module.scss";
 
 interface InputCounterProps {
-	value: number
+	value: number;
 	increaseCount: (
 		e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>
-	) => void
+	) => void;
 	decreaseCount: (
 		e: React.MouseEvent<HTMLElement> | React.TouchEvent<HTMLElement>
-	) => void
+	) => void;
 }
 
 const InputCounter: React.FC<InputCounterProps> = ({
@@ -27,7 +27,7 @@ const InputCounter: React.FC<InputCounterProps> = ({
 				<Add height={14} width={14} />
 			</button>
 		</div>
-	)
-}
+	);
+};
 
-export default InputCounter
+export default InputCounter;

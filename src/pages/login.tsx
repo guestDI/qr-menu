@@ -1,11 +1,11 @@
-import type { NextPage } from "next"
-import Image from "next/image"
-import React, { FormEvent, useState } from "react"
-import { Button, Input } from "../components"
-import Link from "next/link"
-import { toast, ToastContainer } from "react-toastify"
-import axiosInstance from "../api/axios"
-import { CustomEvent } from "../types"
+import type { NextPage } from "next";
+import Image from "next/image";
+import React, { FormEvent, useState } from "react";
+import { Button, Input } from "../components";
+import Link from "next/link";
+import { toast, ToastContainer } from "react-toastify";
+import axiosInstance from "../api/axios";
+import { CustomEvent } from "../types";
 
 const Login: NextPage = () => {
 	const [username, setUsername] = useState("");
@@ -14,12 +14,12 @@ const Login: NextPage = () => {
 	const onUsernameChanged = (e: CustomEvent) => {
 		e.preventDefault();
 		setUsername(e.target.value);
-	}
+	};
 
 	const onPasswordChanged = (e: CustomEvent) => {
 		e.preventDefault();
 		setPassword(e.target.value);
-	}
+	};
 
 	const login = async (e: FormEvent) => {
 		e.preventDefault();
@@ -32,7 +32,6 @@ const Login: NextPage = () => {
 		try {
 			const response = await axiosInstance.post("/users/login", data);
 			console.log("Registration successful:", response.data);
-
 		} catch (error: any) {
 			toast("An unexpected error occurred");
 		}
@@ -42,8 +41,7 @@ const Login: NextPage = () => {
 		<div className="login-container">
 			<div className="header">
 				<div className="logo">
-					<Image src="/logo_2.png" alt="Logo"
-								 width={60} height={60} />
+					<Image src="/logo_2.png" alt="Logo" width={60} height={60} />
 				</div>
 				<span>Digital menu</span>
 				<div className="header-menu">
@@ -59,25 +57,45 @@ const Login: NextPage = () => {
 					<h1 className="title">Sign In</h1>
 					<div className="login-box">
 						{/*change to react hook form*/}
-						<p>Forgot your password? <Link href="/resetPassword">Reset password</Link></p>
+						<p>
+							Forgot your password?{" "}
+							<Link href="/resetPassword">Reset password</Link>
+						</p>
 						<form onSubmit={login}>
 							<div className="row-input">
-								<Input name="username" type="text" placeholder="Username" size="lg" onChange={onUsernameChanged} />
+								<Input
+									name="username"
+									type="text"
+									placeholder="Username"
+									size="lg"
+									onChange={onUsernameChanged}
+								/>
 							</div>
 							<div>
 								<div className="input-group">
-									<Input name="password" type="password" placeholder="Password" size="lg"
-												 onChange={onPasswordChanged} />
+									<Input
+										name="password"
+										type="password"
+										placeholder="Password"
+										size="lg"
+										onChange={onPasswordChanged}
+									/>
 								</div>
 							</div>
-							<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />
-							<Button type="submit" className="login-button">Log In</Button>
+							<ToastContainer
+								theme="dark"
+								autoClose={3000}
+								position="bottom-right"
+							/>
+							<Button type="submit" className="login-button">
+								Log In
+							</Button>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Login
+export default Login;
