@@ -2,21 +2,22 @@ import React, { FC } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import Image from "next/image";
-import SettingsIcon from "../../../inline-img/svg/people-nearby.svg";
+// import SettingsIcon from "../../../inline-img/svg/people-nearby.svg";
 
 interface MenuItemProps {
 	title: string;
 	onClick: () => void;
 	selected: boolean;
+	icon: string
 }
 
-const SidebarItem: FC<MenuItemProps> = ({ title, onClick, selected }) => {
+const SidebarItem: FC<MenuItemProps> = ({ title, onClick, selected, icon }) => {
 	return (
 		<li
 			onClick={onClick}
 			className={clsx(styles.sidebarItem, { [styles.selected]: selected })}
 		>
-			<Image src={SettingsIcon} alt="Settings" width={40} height={40} />
+			<Image src={icon} alt="Settings" width={30} height={30} />
 			<span>{title}</span>
 		</li>
 	);

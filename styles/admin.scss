@@ -3,6 +3,11 @@
 .main-container {
 	height: 100%;
 	overflow: hidden;
+	background: linear-gradient(
+									95deg,
+									rgb(29, 29, 37, 0.98) 50%,
+									rgb(57, 57, 57) 100%
+	);
 }
 
 .content {
@@ -13,7 +18,6 @@
 
 .content main {
 	padding: 10px 30px 10px 30px;
-	background: rgba(244, 244, 244, 0.67);
 	width: 100%;
 }
 

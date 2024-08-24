@@ -3,22 +3,29 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Button from "../components/Button/Button";
 import SettingsIcon from "../inline-img/svg/settings.svg";
+import QRCodeIcon from "../inline-img/svg/qr-code.svg";
+import PeopleIcon from "../inline-img/svg/people-nearby.svg";
+import MenuIcon from "../inline-img/svg/menu.svg";
 import SidebarItem from "./components/SidebarItem/SidebarItem";
 import QRCodeManager from "./components/QRCodeManager/QRCodeManager";
 
 const SIDEBAR_ITEMS = [
 	{
 		title: "My Menu",
+		icon: MenuIcon
 	},
 	{
 		title: "QR Codes",
 		component: <QRCodeManager />,
+		icon: QRCodeIcon
 	},
 	{
 		title: "Settings",
+		icon: SettingsIcon,
 	},
 	{
 		title: "Staff",
+		icon: PeopleIcon
 	},
 ];
 
@@ -46,6 +53,7 @@ const Admin: NextPage = () => {
 								title={item.title}
 								onClick={() => setSelectedItemIndex(i)}
 								selected={selectedItemIndex === i}
+								icon={item.icon}
 							/>
 						))}
 					</ul>
