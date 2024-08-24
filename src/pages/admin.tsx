@@ -8,16 +8,17 @@ import PeopleIcon from "../inline-img/svg/people-nearby.svg";
 import MenuIcon from "../inline-img/svg/menu.svg";
 import SidebarItem from "./components/SidebarItem/SidebarItem";
 import QRCodeManager from "./components/QRCodeManager/QRCodeManager";
+import Staff from "./components/Staff/Staff";
 
 const SIDEBAR_ITEMS = [
 	{
 		title: "My Menu",
-		icon: MenuIcon
+		icon: MenuIcon,
 	},
 	{
 		title: "QR Codes",
 		component: <QRCodeManager />,
-		icon: QRCodeIcon
+		icon: QRCodeIcon,
 	},
 	{
 		title: "Settings",
@@ -25,7 +26,8 @@ const SIDEBAR_ITEMS = [
 	},
 	{
 		title: "Staff",
-		icon: PeopleIcon
+		component: <Staff />,
+		icon: PeopleIcon,
 	},
 ];
 

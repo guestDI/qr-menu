@@ -2,13 +2,12 @@ import React, { FC } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import Image from "next/image";
-// import SettingsIcon from "../../../inline-img/svg/people-nearby.svg";
 
 interface MenuItemProps {
 	title: string;
 	onClick: () => void;
 	selected: boolean;
-	icon: string
+	icon: string;
 }
 
 const SidebarItem: FC<MenuItemProps> = ({ title, onClick, selected, icon }) => {

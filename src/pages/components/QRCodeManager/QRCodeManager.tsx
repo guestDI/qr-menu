@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
 import axiosInstance from "../../../api/axios";
-import { CustomEvent } from "../../../types"
+import { CustomEvent } from "../../../types";
 
 interface QRCodeManagerProps {
 	table: string;
@@ -17,8 +17,7 @@ interface QRCodeManagerProps {
 const QrCodeManager = () => {
 	const [fromTable, setFromTable] = useState(0);
 	const [toTable, setToTable] = useState<number | null>(null);
-	const [qrCodes, setQrCodes] = useState<QRCodeManagerProps[]>([
-	]);
+	const [qrCodes, setQrCodes] = useState<QRCodeManagerProps[]>([]);
 
 	const componentRef = useRef<HTMLDivElement>(null);
 	const handlePrint = useReactToPrint({
@@ -76,14 +75,15 @@ const QrCodeManager = () => {
 					<Button className={styles.btn} onClick={handleGenerateQrCodes}>
 						Generate
 					</Button>
-					{qrCodes.length > 0 && (<Button className={styles.btn} onClick={handlePrint}>
-						{PrintIcon ? <Image
-							src={PrintIcon}
-							alt="print"
-							width={25}
-							height={25}
-						/> : "Print"}
-					</Button>)}
+					{qrCodes.length > 0 && (
+						<Button className={styles.btn} onClick={handlePrint}>
+							{PrintIcon ? (
+								<Image src={PrintIcon} alt="print" width={25} height={25} />
+							) : (
+								"Print"
+							)}
+						</Button>
+					)}
 				</div>
 			</div>
 

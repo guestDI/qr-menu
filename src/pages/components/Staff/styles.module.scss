@@ -1,0 +1,44 @@
+@import "../../../../styles/_mixins.scss";
+
+.title {
+	color: #fff;
+}
+
+.table {
+	color: #fff;
+	width: 100%;
+	margin-top: 20px;
+	border-collapse: collapse;
+	font-size: 14px;
+}
+
+.btn {
+	width: 15rem;
+	background-color: #ff3166;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.3s;
+	box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+		0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+		0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+}
+
+.btn img {
+	margin-right: 5px;
+}
+
+.btn:active {
+	@include active-btn(#b23a5a);
+}
+
+.btnRow {
+	display: flex;
+}
+
+.btnRow .btn:first-of-type {
+	margin-right: 10px;
+}

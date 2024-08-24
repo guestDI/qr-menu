@@ -6,11 +6,15 @@ import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../api/axios";
 import { CustomEvent } from "../types";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 const Login: NextPage = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+
+	const router = useRouter();
 
 	const onUsernameChanged = (e: CustomEvent) => {
 		e.preventDefault();
@@ -33,7 +37,7 @@ const Login: NextPage = () => {
 		try {
 			const response = await axiosInstance.post("/users/login", data);
 			Cookies.set("authToken", response.data.token, { expires: 1 });
-			console.log("Registration successful:", response.data);
+			router.push("/admin");
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		} catch (error: unknown) {
 			toast("An unexpected error occurred");
