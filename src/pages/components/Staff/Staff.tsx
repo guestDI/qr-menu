@@ -1,16 +1,32 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useTable } from "react-table";
 import Button from "../../../components/Button/Button";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import AddUserIcon from "../../../inline-img/svg/user-add.svg";
+import DeleteIcon from "../../../inline-img/svg/delete.svg";
+import EditIcon from "../../../inline-img/svg/edit.svg";
+import clsx from "clsx";
+import axiosInstance from "../../../api/axios";
+import Input from "../../../components/Input/Input";
 
 const Staff = () => {
-	// Изначальный список сотрудников
-	const [staffData, setStaffData] = useState([
-		{ id: 1, username: "john_doe", role: "Admin" },
-		{ id: 2, username: "jane_smith", role: "Editor" },
-	]);
+	const [staffData, setStaffData] = useState([]);
+
+	useEffect(() => {
+		const fetchStaffData = async () => {
+			try {
+				const response = await axiosInstance.get(
+					"/users/66c4bec16c999e564df47a78"
+				);
+				setStaffData(response.data.result);
+			} catch (error) {
+				console.error("Error fetching staff data:", error);
+			}
+		};
+
+		fetchStaffData();
+	}, []);
 
 	const handleDelete = (id) => {
 		setStaffData(staffData.filter((staff) => staff.id !== id));
@@ -25,7 +41,6 @@ const Staff = () => {
 		setStaffData([...staffData, newStaff]);
 	};
 
-	// Функция для редактирования записи
 	const handleEdit = (id: string) => {
 		const updatedStaff = staffData.map((staff) => {
 			if (staff.id === id) {
@@ -56,16 +71,21 @@ const Staff = () => {
 				Cell: ({ row }) => (
 					<div className={styles.btnRow}>
 						<Button
-							className={styles.btn}
+							className={clsx(styles.btn, styles.actionBtn)}
 							onClick={() => handleEdit(row.original.id)}
 						>
-							Edit
+							<Image src={EditIcon} alt="Edit User" width={20} height={20} />{" "}
 						</Button>
 						<Button
-							className={styles.btn}
+							className={clsx(styles.btn, styles.actionBtn)}
 							onClick={() => handleDelete(row.original.id)}
 						>
-							Delete
+							<Image
+								src={DeleteIcon}
+								alt="Delete User"
+								width={20}
+								height={20}
+							/>{" "}
 						</Button>
 					</div>
 				),
@@ -83,14 +103,21 @@ const Staff = () => {
 	return (
 		<div>
 			<h2 className={styles.title}>Staff Management</h2>
-			<Button className={styles.btn} onClick={handleAddNew}>
-				<Image src={AddUserIcon} alt="Add User" width={20} height={20} />{" "}
-			</Button>
+			<div className={styles.row}>
+				<Input size="lg" placeholder="Username" name="Username" type="text" onChange={() => {}} />
+				<Input size="lg" placeholder="Email (optional)" name="Email" type="text" onChange={() => {}}/>
+				<Button
+					className={clsx(styles.btn, styles.addBtn)}
+					onClick={handleAddNew}
+				>
+					<Image src={AddUserIcon} alt="Add User" width={20} height={20} />{" "}
+				</Button>
+			</div>
 			<table {...getTableProps()} className={styles.table}>
 				<thead>
-					{headerGroups.map((headerGroup) => (
-						<tr {...headerGroup.getHeaderGroupProps()}>
-							{headerGroup.headers.map((column) => (
+					{headerGroups.map((headerGroup, index) => (
+						<tr {...headerGroup.getHeaderGroupProps()} key={index}>
+							{headerGroup.headers.map((column, index) => (
 								<th
 									{...column.getHeaderProps()}
 									style={{
@@ -98,6 +125,7 @@ const Staff = () => {
 										padding: "10px",
 										textAlign: "left",
 									}}
+									key={index}
 								>
 									{column.render("Header")}
 								</th>
@@ -106,14 +134,15 @@ const Staff = () => {
 					))}
 				</thead>
 				<tbody {...getTableBodyProps()}>
-					{rows.map((row) => {
+					{rows.map((row, index) => {
 						prepareRow(row);
 						return (
-							<tr {...row.getRowProps()}>
-								{row.cells.map((cell) => (
+							<tr {...row.getRowProps()} key={index}>
+								{row.cells.map((cell, index) => (
 									<td
 										{...cell.getCellProps()}
 										style={{ borderBottom: "1px solid #ccc", padding: "10px" }}
+										key={index}
 									>
 										{cell.render("Cell")}
 									</td>

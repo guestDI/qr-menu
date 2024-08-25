@@ -35,8 +35,25 @@
 	@include active-btn(#b23a5a);
 }
 
-.btnRow {
+.addBtn,
+.actionBtn {
+	width: 4rem;
+}
+
+.addBtnContainer {
+	justify-content: end;
+}
+
+.row {
 	display: flex;
+}
+
+.row input {
+	border-radius: 7px;
+	color: #bbb;
+	background: rgba(53, 53, 67, 0.98);
+	border-color: rgba(45, 45, 57, 0.98);
+	box-shadow: rgba(43, 40, 40, 0.45) 0px 5px 15px;
 }
 
 .btnRow .btn:first-of-type {

@@ -29,6 +29,11 @@ const SIDEBAR_ITEMS = [
 		component: <Staff />,
 		icon: PeopleIcon,
 	},
+	{
+		title: "Orders",
+		component: <Staff />,
+		icon: PeopleIcon,
+	},
 ];
 
 const Admin: NextPage = () => {
