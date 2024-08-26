@@ -3,12 +3,11 @@ import { useTable } from "react-table";
 import Button from "../../../components/Button/Button";
 import styles from "./styles.module.scss";
 import Image from "next/image";
-import AddUserIcon from "../../../inline-img/svg/user-add.svg";
 import DeleteIcon from "../../../inline-img/svg/delete.svg";
 import EditIcon from "../../../inline-img/svg/edit.svg";
 import clsx from "clsx";
 import axiosInstance from "../../../api/axios";
-import Input from "../../../components/Input/Input";
+import AddUserForm from "./AddUserForm";
 
 const Staff = () => {
 	const [staffData, setStaffData] = useState([]);
@@ -103,16 +102,7 @@ const Staff = () => {
 	return (
 		<div>
 			<h2 className={styles.title}>Staff Management</h2>
-			<div className={styles.row}>
-				<Input size="lg" placeholder="Username" name="Username" type="text" onChange={() => {}} />
-				<Input size="lg" placeholder="Email (optional)" name="Email" type="text" onChange={() => {}}/>
-				<Button
-					className={clsx(styles.btn, styles.addBtn)}
-					onClick={handleAddNew}
-				>
-					<Image src={AddUserIcon} alt="Add User" width={20} height={20} />{" "}
-				</Button>
-			</div>
+			<AddUserForm />
 			<table {...getTableProps()} className={styles.table}>
 				<thead>
 					{headerGroups.map((headerGroup, index) => (

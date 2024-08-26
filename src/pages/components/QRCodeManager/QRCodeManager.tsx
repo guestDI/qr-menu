@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
 import axiosInstance from "../../../api/axios";
-import { CustomEvent } from "../../../types";
+import { CustomEvent } from "../../../model/types";
 
 interface QRCodeManagerProps {
 	table: string;

@@ -5,7 +5,7 @@ import { Button, Input } from "../components";
 import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../api/axios";
-import { CustomEvent } from "../types";
+import { CustomEvent } from "../model/types";
 import Cookies from "js-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
@@ -36,10 +36,11 @@ const Login: NextPage = () => {
 
 		try {
 			const response = await axiosInstance.post("/users/login", data);
-			Cookies.set("authToken", response.data.token, { expires: 1 });
+			Cookies.set("authToken", response.data.token, );
 			router.push("/admin");
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		} catch (error: unknown) {
+			console.log("error", error);
 			toast("An unexpected error occurred");
 		}
 	};

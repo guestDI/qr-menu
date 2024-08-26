@@ -8,7 +8,7 @@ import Link from "next/link";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { CustomEvent } from "../types";
+import { CustomEvent } from "../model/types";
 
 // interface ITransition {
 // 	[key: string]: Record<string, number | string>;

@@ -1,10 +1,6 @@
 import React from "react";
 import styles from "./styles.module.scss";
-
-type CustomEvent = {
-	preventDefault: () => void;
-	target: { value: React.SetStateAction<string> };
-};
+import { CustomEvent } from "../../model/types";
 
 interface InputProps {
 	placeholder: string;

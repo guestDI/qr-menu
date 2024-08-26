@@ -1,46 +1,56 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { FC, useMemo, useState } from "react"
 import Button from "../components/Button/Button";
 import SettingsIcon from "../inline-img/svg/settings.svg";
 import QRCodeIcon from "../inline-img/svg/qr-code.svg";
 import PeopleIcon from "../inline-img/svg/people-nearby.svg";
 import MenuIcon from "../inline-img/svg/menu.svg";
-import SidebarItem from "./components/SidebarItem/SidebarItem";
 import QRCodeManager from "./components/QRCodeManager/QRCodeManager";
 import Staff from "./components/Staff/Staff";
+import withAuth from "../hoc/withAuth"
+import Sidebar from "./components/Sidebar/Sidebar"
 
-const SIDEBAR_ITEMS = [
-	{
-		title: "My Menu",
-		icon: MenuIcon,
-	},
-	{
-		title: "QR Codes",
-		component: <QRCodeManager />,
-		icon: QRCodeIcon,
-	},
-	{
-		title: "Settings",
-		icon: SettingsIcon,
-	},
-	{
-		title: "Staff",
-		component: <Staff />,
-		icon: PeopleIcon,
-	},
-	{
-		title: "Orders",
-		component: <Staff />,
-		icon: PeopleIcon,
-	},
-];
+const getSidebarItems = (role: string) => {
+	return [
+		{
+			title: "My Menu",
+			icon: MenuIcon,
+			visible: true
+		},
+		{
+			title: "QR Codes",
+			component: <QRCodeManager />,
+			icon: QRCodeIcon,
+			visible: true
+		},
+		{
+			title: "Settings",
+			icon: SettingsIcon,
+			visible: role === "admin"
+		},
+		{
+			title: "Staff",
+			component: <Staff />,
+			icon: PeopleIcon,
+			visible: role === "admin"
+		},
+		{
+			title: "Orders",
+			component: <Staff />,
+			icon: PeopleIcon,
+			visible: true
+		},
+	].filter((item => item.visible));
+}
 
-const Admin: NextPage = () => {
+const Admin: NextPage<{ role: string }> = ({ role }) => {
 	const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 
+	const sidebarItems = useMemo(() => getSidebarItems(role), [role]);
+
 	const renderContent = () => {
-		return SIDEBAR_ITEMS[selectedItemIndex].component;
+		return sidebarItems[selectedItemIndex].component;
 	};
 
 	return (
@@ -52,29 +62,11 @@ const Admin: NextPage = () => {
 				<span>Digital menu</span>
 			</div>
 			<div className="content">
-				<aside>
-					<ul>
-						{SIDEBAR_ITEMS.map((item, i) => (
-							<SidebarItem
-								key={i}
-								title={item.title}
-								onClick={() => setSelectedItemIndex(i)}
-								selected={selectedItemIndex === i}
-								icon={item.icon}
-							/>
-						))}
-					</ul>
-					<div className="profile-btn-container">
-						<Button onClick={() => {}} className="profile-btn">
-							<Image src={SettingsIcon} alt="Settings" width={20} height={20} />{" "}
-							Profile
-						</Button>
-					</div>
-				</aside>
+				<Sidebar sidebarItems={sidebarItems} onClick={(i) => setSelectedItemIndex(i)} selectedIdx={selectedItemIndex}/>
 				<main>{renderContent()}</main>
 			</div>
 		</div>
 	);
 };
 
-export default Admin;
+export default withAuth(Admin);
