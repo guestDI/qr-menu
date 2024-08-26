@@ -1,23 +1,27 @@
-import React from "react"
+import React, { ReactElement } from "react";
 import SettingsIcon from "../../../inline-img/svg/settings.svg";
-import Button from "../../../components/Button/Button"
-import Image from "next/image"
-import SidebarItem from "./SidebarItem/SidebarItem"
+import Button from "../../../components/Button/Button";
+import Image from "next/image";
+import SidebarItem from "./SidebarItem/SidebarItem";
 
 interface SidebarItem {
 	title: string;
 	icon: string;
-	component?: Element;
+	component: ReactElement;
 	visible: boolean;
 }
 
 interface SidebarProps {
-	sidebarItems: SidebarItem[]
+	sidebarItems: Array<SidebarItem>;
 	onClick: (i: number) => void;
-	selectedIdx: number
+	selectedIdx: number;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ sidebarItems, onClick, selectedIdx }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+	sidebarItems,
+	onClick,
+	selectedIdx,
+}) => {
 	return (
 		<aside>
 			<ul>
@@ -32,8 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarItems, onClick, selectedIdx })
 				))}
 			</ul>
 			<div className="profile-btn-container">
-				<Button onClick={() => {
-				}} className="profile-btn">
+				<Button onClick={() => {}} className="profile-btn">
 					<Image src={SettingsIcon} alt="Settings" width={20} height={20} />{" "}
 					Profile
 				</Button>

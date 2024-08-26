@@ -2,7 +2,7 @@ import { Link } from "react-scroll";
 import { Button } from "../../../components";
 import styles from "./styles.module.scss";
 
-const NavigationBar: React.FC = () => {
+const NavigationBar: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 	return (
 		<div className={styles.wrapper}>
 			<ul className={styles.tabs}>
@@ -39,8 +39,10 @@ const NavigationBar: React.FC = () => {
 						Pricing
 					</Link>
 				</li>
-				<Button className={styles.btn}>Try for free</Button>
 			</ul>
+			<Button onClick={onClick} className={styles.btn}>
+				Try for free
+			</Button>
 		</div>
 	);
 };

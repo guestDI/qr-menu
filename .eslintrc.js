@@ -24,6 +24,7 @@ module.exports = {
 		"linebreak-style": ["error", "unix"],
 		quotes: ["error", "double"],
 		"react/react-in-jsx-scope": "off",
+		"react/prop-types": "off",
 		"no-empty-function": "off",
 		"@typescript-eslint/no-empty-function": [
 			"error",

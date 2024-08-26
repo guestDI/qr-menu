@@ -1,7 +1,5 @@
 "use client";
 
-import clsx from "clsx";
-// import Head from "next/head"
 import { NextPage } from "next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "../../styles/Menu.module.scss";
@@ -10,7 +8,6 @@ import {
 	Card,
 	CategoriesPanel,
 	DetailsView,
-	Modal,
 	ShoppingCart,
 } from "../components";
 import { useDataLayerContext } from "../context/DataLayerContext";

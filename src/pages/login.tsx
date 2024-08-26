@@ -36,7 +36,7 @@ const Login: NextPage = () => {
 
 		try {
 			const response = await axiosInstance.post("/users/login", data);
-			Cookies.set("authToken", response.data.token, );
+			Cookies.set("authToken", response.data.token);
 			router.push("/admin");
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		} catch (error: unknown) {

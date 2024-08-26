@@ -6,21 +6,12 @@ import styles from "./styles.module.scss";
 
 interface HeroProps extends Partial<Pick<HTMLElement, "className" | "id">> {
 	children?: React.ReactNode;
+	onClick: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ className, id, children }) => {
+const Hero: React.FC<HeroProps> = ({ className, id, onClick }) => {
 	return (
-		<section
-			className={clsx(styles.container, className)}
-			style={{
-				backgroundImage: "url(/city_main.png)",
-				backgroundSize: "auto auto",
-				backgroundRepeat: "no-repeat",
-				width: "100%",
-				backgroundPosition: "center bottom",
-			}}
-			id={id}
-		>
+		<section className={clsx(styles.container, className)} id={id}>
 			<div className={styles.main}>
 				<div className={styles.left}>
 					<h1>Best app for managing your online menu</h1>
@@ -29,7 +20,9 @@ const Hero: React.FC<HeroProps> = ({ className, id, children }) => {
 						restaurant business
 					</p>
 					<div className={styles.buttons}>
-						<Button className={styles.primary}>Try for free</Button>
+						<Button onClick={onClick} className={styles.btn}>
+							Try for free
+						</Button>
 						<Button className={styles.secondary} type="link">
 							Watch demo
 						</Button>

@@ -12,11 +12,12 @@ import {
 	Goals,
 	Hero,
 	NavigationBar,
-	PriceCard,
 	SectionLayout,
 } from "./components";
+import { useRouter } from "next/navigation";
+import Footer from "./components/Footer/Footer";
 
-const social_contacts: any = [
+const social_contacts: Record<string, string>[] = [
 	{
 		twitter: "https://twitter.com/",
 	},
@@ -32,6 +33,12 @@ const social_contacts: any = [
 ];
 
 const Home: NextPage = () => {
+	const router = useRouter();
+
+	const onClick = () => {
+		router.push("/registration");
+	};
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -49,11 +56,15 @@ const Home: NextPage = () => {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<nav className="navbar navbar-fixed-top mainNav">
-				<NavigationBar />
+			<nav className={styles.mainNav}>
+				<NavigationBar onClick={onClick} />
 			</nav>
 			<main className={styles.main}>
-				<Hero id="intro" className={clsx(styles.section, styles.intro)} />
+				<Hero
+					id="intro"
+					className={clsx(styles.section, styles.intro)}
+					onClick={onClick}
+				/>
 				<SectionLayout id="goals" separator={false}>
 					<Goals data={goals} />
 				</SectionLayout>
@@ -67,17 +78,17 @@ const Home: NextPage = () => {
 					<FeaturesGrid data={features} />
 				</SectionLayout>
 				{/* Prices section */}
-				<SectionLayout
-					id="prices"
-					title="Get awesome features, without extra charges"
-					subTitle="sub"
-					separator={false}
-				>
-					<div className={styles.prices}>
-						<PriceCard />
-						<PriceCard />
-					</div>
-				</SectionLayout>
+				{/*<SectionLayout*/}
+				{/*	id="prices"*/}
+				{/*	title="Get awesome features, without extra charges"*/}
+				{/*	subTitle="sub"*/}
+				{/*	separator={false}*/}
+				{/*>*/}
+				{/*	<div className={styles.prices}>*/}
+				{/*		<PriceCard />*/}
+				{/*		<PriceCard />*/}
+				{/*	</div>*/}
+				{/*</SectionLayout>*/}
 				<SectionLayout
 					id="faq"
 					title="Frequently asked questions"
@@ -90,31 +101,7 @@ const Home: NextPage = () => {
 				</SectionLayout>
 			</main>
 
-			<footer
-				id="contact"
-				className={clsx(styles["footer-base-color"], styles["contact-section"])}
-			>
-				<div className="container">
-					<div className="row row-centered">
-						<div className="col-md-3 contact-section__contacts">
-							{/* <Contacts /> */}
-						</div>
-						{/*<div className="col-md-3 contact-section__about">*/}
-						{/*<AboutUs about_links={about_links}/>*/}
-						{/*</div>*/}
-					</div>
-					<div className="row row-centered social_icons">
-						<Contacts contacts={social_contacts} />
-					</div>
-					<hr />
-					<div className="copyright">© 2022 DI team, made with love</div>
-					<div className="scroll_top">
-						<div className="scroll_top__button" style={{ display: "block" }}>
-							<span className="tooltip">Scroll To Top</span>
-						</div>
-					</div>
-				</div>
-			</footer>
+			<Footer />
 		</div>
 	);
 };

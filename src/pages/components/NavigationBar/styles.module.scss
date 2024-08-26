@@ -2,6 +2,9 @@
 	text-align: right;
 	margin: 0 3% auto;
 	padding: 1.6rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: end;
 }
 
 .tabs {
@@ -20,7 +23,7 @@
 
 .tabs li {
 	list-style: none;
-	color: black;
+	//color: black;
 	padding: 10px 15px;
 	display: inline-block;
 	position: relative;
@@ -60,7 +63,7 @@
 
 .tabs a {
 	padding: 10px 10px;
-	color: #777;
+	color: #fff;
 }
 
 .tabs a::before {
@@ -86,21 +89,17 @@
 }
 
 .btn {
-	background-color: #16100d;
-	color: #fefdff;
+	background-color: #ff3166;
+	color: #fff;
 	border: none;
-	width: 12rem;
-	padding: 1rem;
-	font-size: 1.2rem;
-	font-weight: 700;
-	border-radius: 2rem;
-	margin-right: 3rem;
+	padding: 10px;
+	width: 150px;
+	border-radius: 50px;
 	cursor: pointer;
-	transition: all 0.3s ease-in-out;
+	font-size: 14px;
+	transition: background-color 0.3s;
+}
 
-	&:hover {
-		background-color: #fefdff;
-		color: #16100d;
-		border: 1px solid #504d4c86;
-	}
+.btn:hover {
+	background-color: #ff6686;
 }
