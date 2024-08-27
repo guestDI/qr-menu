@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { SocialContacts, SocialNetwork } from "../../../types";
 import { getSocialIcon } from "./helpers";
@@ -18,10 +18,10 @@ const Contacts: React.FC<SocialContactsProps> = ({ contacts }) => {
 
 			return (
 				<a key={`${index}`} href={`${link}`}>
-					<FontAwesomeIcon
-						icon={icon}
-						style={{ fontSize: 20, color: "orange" }}
-					/>
+					{/*<FontAwesomeIcon*/}
+					{/*	icon={icon}*/}
+					{/*	style={{ fontSize: 20, color: "orange" }}*/}
+					{/*/>*/}
 				</a>
 			);
 		}

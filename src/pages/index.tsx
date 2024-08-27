@@ -89,16 +89,16 @@ const Home: NextPage = () => {
 				{/*		<PriceCard />*/}
 				{/*	</div>*/}
 				{/*</SectionLayout>*/}
-				<SectionLayout
-					id="faq"
-					title="Frequently asked questions"
-					subTitle="The rise of mobile devices transforms the way we consume information entirely and we need to know how to use it."
-					separator={false}
-					className={styles.faq}
-					bottomMargin={false}
-				>
-					<Faq data={questions} />
-				</SectionLayout>
+				{/*<SectionLayout*/}
+				{/*	id="faq"*/}
+				{/*	title="Frequently asked questions"*/}
+				{/*	subTitle="The rise of mobile devices transforms the way we consume information entirely and we need to know how to use it."*/}
+				{/*	separator={false}*/}
+				{/*	className={styles.faq}*/}
+				{/*	bottomMargin={false}*/}
+				{/*>*/}
+				{/*	<Faq data={questions} />*/}
+				{/*</SectionLayout>*/}
 			</main>
 
 			<Footer />
