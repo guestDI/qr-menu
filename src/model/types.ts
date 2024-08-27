@@ -33,8 +33,12 @@ export type CustomEvent = {
 	target: { value: React.SetStateAction<string> };
 };
 
-export interface EntityBox {
+export interface IEntityData {
 	imgUri: string;
 	title: string;
 	description: string;
+}
+
+export interface IFaqData {
+	 rows: Array<{ title: string; content: string }>;
 }

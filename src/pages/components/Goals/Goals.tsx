@@ -1,10 +1,10 @@
 import React from "react";
 import mobile from "../../../inline-img/goals-image.png";
-import { EntityBox } from "../../../types";
+import { IEntityData } from "../../../model/types";
 import GoalBox from "./GoalBoard/GoalBox";
 import styles from "./styles.module.scss";
 
-const Goals: React.FC<{ data: EntityBox[] }> = ({ data }) => {
+const Goals: React.FC<{ data: IEntityData[] }> = ({ data }) => {
 	const goals = data.map((goal, index) => {
 		return <GoalBox key={index} {...goal} />;
 	});

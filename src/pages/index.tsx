@@ -1,12 +1,8 @@
 import clsx from "clsx";
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next"
 import Head from "next/head";
-import questions from "../../data/faq.json";
-import features from "../../data/features.json";
-import goals from "../../data/goals.json";
 import styles from "../../styles/index.module.scss";
 import {
-	Contacts,
 	Faq,
 	FeaturesGrid,
 	Goals,
@@ -16,23 +12,15 @@ import {
 } from "./components";
 import { useRouter } from "next/navigation";
 import Footer from "./components/Footer/Footer";
+import { IFaqData, IEntityData } from "../model/types"
 
-const social_contacts: Record<string, string>[] = [
-	{
-		twitter: "https://twitter.com/",
-	},
-	{
-		instagram: "https://www.instagram.com",
-	},
-	{
-		facebook: "https://www.facebook.com/st1ll",
-	},
-	{
-		linkedIn: "https://www.linkedin.com/in/dzmitry-ihnatovich-096b8a36/",
-	},
-];
+type HomeProps = {
+	goals: IEntityData[];
+	features: IEntityData[];
+	questions: IFaqData;
+};
 
-const Home: NextPage = () => {
+const Home: NextPage<HomeProps> = ({ goals, features, questions }) => {
 	const router = useRouter();
 
 	const onClick = () => {
@@ -99,5 +87,20 @@ const Home: NextPage = () => {
 		</div>
 	);
 };
+
+export const getStaticProps: GetStaticProps = async () => {
+	const goals = (await import("../../data/goals.json")).default;
+	const features = (await import("../../data/features.json")).default;
+	const questions = (await import("../../data/faq.json")).default;
+
+	return {
+		props: {
+			goals,
+			features,
+			questions,
+		},
+	};
+};
+
 
 export default Home;
