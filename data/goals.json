@@ -1,17 +1,17 @@
 [
 	{
-		"imgUri": "speed.png",
+		"imgUri": "speedometer.svg",
 		"title": "Faster orders",
 		"description": "Reduce time to order by up to 50%"
 	},
 	{
-		"imgUri": "bill.png",
+		"imgUri": "bill.svg",
 		"title": "Automatic bills",
 		"description": "Easier to pay for your orders"
 	},
 	{
-		"imgUri": "badge.png",
-		"title": "Instant response",
+		"imgUri": "badge.svg",
+		"title": "See most popular menu items",
 		"description": "Possibility to see most popular items in your menu"
 	}
 ]

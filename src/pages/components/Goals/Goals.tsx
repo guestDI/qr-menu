@@ -14,11 +14,7 @@ const Goals: React.FC<{ data: EntityBox[] }> = ({ data }) => {
 			<div className={styles.left}>
 				<img src={mobile.src} alt="Goals" />;
 			</div>
-			<div className={styles.right}>
-				<h3>Our goals</h3>
-				<p>Increase productivity with a simple app for managing menu.</p>
-				{goals}
-			</div>
+			<div className={styles.right}>{goals}</div>
 		</div>
 	);
 };

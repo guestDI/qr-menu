@@ -65,7 +65,13 @@ const Home: NextPage = () => {
 					className={clsx(styles.section, styles.intro)}
 					onClick={onClick}
 				/>
-				<SectionLayout id="goals" separator={false}>
+				<SectionLayout
+					id="goals"
+					separator={false}
+					title="Our Goals"
+					subTitle="Increase productivity with a simple app for managing menu."
+					className={styles.goals}
+				>
 					<Goals data={goals} />
 				</SectionLayout>
 				{/* Features section */}
@@ -77,28 +83,16 @@ const Home: NextPage = () => {
 				>
 					<FeaturesGrid data={features} />
 				</SectionLayout>
-				{/* Prices section */}
-				{/*<SectionLayout*/}
-				{/*	id="prices"*/}
-				{/*	title="Get awesome features, without extra charges"*/}
-				{/*	subTitle="sub"*/}
-				{/*	separator={false}*/}
-				{/*>*/}
-				{/*	<div className={styles.prices}>*/}
-				{/*		<PriceCard />*/}
-				{/*		<PriceCard />*/}
-				{/*	</div>*/}
-				{/*</SectionLayout>*/}
-				{/*<SectionLayout*/}
-				{/*	id="faq"*/}
-				{/*	title="Frequently asked questions"*/}
-				{/*	subTitle="The rise of mobile devices transforms the way we consume information entirely and we need to know how to use it."*/}
-				{/*	separator={false}*/}
-				{/*	className={styles.faq}*/}
-				{/*	bottomMargin={false}*/}
-				{/*>*/}
-				{/*	<Faq data={questions} />*/}
-				{/*</SectionLayout>*/}
+				<SectionLayout
+					id="faq"
+					title="Frequently asked questions"
+					subTitle="The rise of mobile devices transforms the way we consume information entirely and we need to know how to use it."
+					separator={false}
+					className={styles.faq}
+					bottomMargin={false}
+				>
+					<Faq data={questions} />
+				</SectionLayout>
 			</main>
 
 			<Footer />

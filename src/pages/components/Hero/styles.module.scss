@@ -1,12 +1,13 @@
 .container {
 	width: 100%;
-	padding-top: 15rem;
+	padding-top: 10rem;
 	height: 60rem;
 	color: #fff;
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
 	flex-direction: column;
+
 	//background: linear-gradient(
 	//		95deg,
 	//		rgb(29, 29, 37, 0.98) 50%,
@@ -50,6 +51,12 @@
 				align-items: center;
 				width: 60%;
 				margin-top: 1.6rem;
+				transition: opacity 0.3s ease, visibility 0.3s ease;
+
+				&.hidden {
+					opacity: 0;
+					visibility: hidden;
+				}
 
 				.btn {
 					background-color: #ff3166;

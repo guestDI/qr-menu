@@ -13,20 +13,5 @@
 		"imgUri": "/support.png",
 		"title": "Customization",
 		"description": "You can change menu as many times as you want."
-	},
-	{
-		"imgUri": "/customer-service.png",
-		"title": "Customer support",
-		"description": "Team will jump on your request and help you with any questions you have."
-	},
-	{
-		"imgUri": "/cloud.png",
-		"title": "Orders storage",
-		"description": "You can get grouped orders to see what users order more often."
-	},
-	{
-		"imgUri": "/ui.png",
-		"title": "Customizable UI",
-		"description": "You can customize the UI to your needs, apply colors, fonts and layouts"
 	}
 ]
