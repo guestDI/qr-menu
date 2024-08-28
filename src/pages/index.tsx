@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { GetStaticProps, NextPage } from "next"
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import styles from "../../styles/index.module.scss";
 import {
@@ -12,7 +12,7 @@ import {
 } from "./components";
 import { useRouter } from "next/navigation";
 import Footer from "./components/Footer/Footer";
-import { IFaqData, IEntityData } from "../model/types"
+import { IFaqData, IEntityData } from "../model/types";
 
 type HomeProps = {
 	goals: IEntityData[];
@@ -101,6 +101,5 @@ export const getStaticProps: GetStaticProps = async () => {
 		},
 	};
 };
-
 
 export default Home;

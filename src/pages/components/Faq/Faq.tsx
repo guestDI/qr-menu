@@ -17,12 +17,16 @@ interface FaqProps {
 const FaqComponent: React.FC<FaqProps> = ({ data, className }) => {
 	return (
 		<div className={clsx(styles.faq, className)}>
-			<Accordion className={styles.accordion} allowMultipleExpanded allowZeroExpanded>
+			<Accordion
+				className={styles.accordion}
+				allowMultipleExpanded
+				allowZeroExpanded
+			>
 				{data.rows.map((row, index) => {
 					return (
 						<AccordionItem key={index} className={styles.accordion__item}>
 							<AccordionItemHeading>
-								<AccordionItemButton className={styles.accordion__button} >
+								<AccordionItemButton className={styles.accordion__button}>
 									{row.title}
 								</AccordionItemButton>
 							</AccordionItemHeading>

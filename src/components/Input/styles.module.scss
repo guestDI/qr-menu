@@ -10,7 +10,8 @@
 }
 
 .inputContainer > input::placeholder {
-	color: #b2b2b2;
+	color: rgba(178, 178, 178, 0.5);
+	font-style: italic;
 }
 
 .sm {

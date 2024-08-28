@@ -7,6 +7,7 @@ interface InputProps {
 	name: string;
 	type: "text" | "email" | "password";
 	onChange?: (e: CustomEvent) => void;
+	value?: string;
 	disabled?: boolean;
 	size?: "sm" | "md" | "lg";
 }
@@ -16,6 +17,7 @@ const Input: React.FC<InputProps> = ({
 	name,
 	placeholder,
 	size = "md",
+	value,
 	type = "text",
 	...rest
 }) => {
@@ -27,6 +29,7 @@ const Input: React.FC<InputProps> = ({
 				name={name}
 				type={type}
 				onChange={onChange}
+				value={value}
 				className={styles[size]}
 				{...rest}
 			/>

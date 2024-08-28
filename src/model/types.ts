@@ -40,5 +40,5 @@ export interface IEntityData {
 }
 
 export interface IFaqData {
-	 rows: Array<{ title: string; content: string }>;
+	rows: Array<{ title: string; content: string }>;
 }
