@@ -7,7 +7,6 @@ import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../api/axios";
 import { CustomEvent } from "../model/types";
 import Cookies from "js-cookie";
-import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 
 const Login: NextPage = () => {
@@ -17,12 +16,10 @@ const Login: NextPage = () => {
 	const router = useRouter();
 
 	const onUsernameChanged = (e: CustomEvent) => {
-		e.preventDefault();
 		setUsername(e.target.value);
 	};
 
 	const onPasswordChanged = (e: CustomEvent) => {
-		e.preventDefault();
 		setPassword(e.target.value);
 	};
 

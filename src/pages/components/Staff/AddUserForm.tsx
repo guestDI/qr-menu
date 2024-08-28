@@ -51,19 +51,19 @@ const AddUserForm: FC<AddUserFormProps> = ({ onClick }) => {
 			/>
 			<Input
 				size="lg"
+				placeholder="Email"
+				name="email"
+				type="text"
+				onChange={onEmailChanged}
+			/>
+			<Input
+				size="lg"
 				placeholder="Role"
 				name="role"
 				type="text"
 				value={role}
 				disabled={true}
 				onChange={onRoleChanged}
-			/>
-			<Input
-				size="lg"
-				placeholder="Email"
-				name="email"
-				type="text"
-				onChange={onEmailChanged}
 			/>
 			<Button className={clsx(styles.btn, styles.addBtn)} onClick={addUser}>
 				<Image src={AddUserIcon} alt="Add User" width={20} height={20} />{" "}

@@ -8,6 +8,7 @@ import EditIcon from "../../../inline-img/svg/edit.svg";
 import clsx from "clsx";
 import axiosInstance from "../../../api/axios";
 import AddUserForm from "./AddUserForm";
+import { toast, ToastContainer } from "react-toastify"
 
 const Staff = () => {
 	const [staffData, setStaffData] = useState([]);
@@ -50,11 +51,10 @@ const Staff = () => {
 			})
 			.then(({ data }) => {
 				console.log(data);
-				// const newStaffData = staffData.filter((staff) => staff._id !== data.id);
-				// setStaffData(newStaffData);
+				toast("User was added successfully!");
 			})
-			.catch((error: unknown) => {
-				console.error("Error deleting user:", error);
+			.catch(() => {
+				toast("An unexpected error occurred");
 			});
 
 		// setStaffData([...staffData, newStaff]);
@@ -162,6 +162,11 @@ const Staff = () => {
 					})}
 				</tbody>
 			</table>
+			<ToastContainer
+				theme="dark"
+				autoClose={3000}
+				position="bottom-right"
+			/>
 		</div>
 	);
 };

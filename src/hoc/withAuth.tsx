@@ -25,6 +25,9 @@ const withAuth = <P extends WithAuthProps>(
 		useEffect(() => {
 			const token = Cookies.get("authToken");
 
+			if(!token) {
+				return
+			}
 			setRole(getUserRole(token || ""));
 		}, []);
 
