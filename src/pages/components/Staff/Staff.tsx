@@ -8,7 +8,7 @@ import EditIcon from "../../../inline-img/svg/edit.svg";
 import clsx from "clsx";
 import axiosInstance from "../../../api/axios";
 import AddUserForm from "./AddUserForm";
-import { toast, ToastContainer } from "react-toastify"
+import { toast, ToastContainer } from "react-toastify";
 
 const Staff = () => {
 	const [staffData, setStaffData] = useState([]);
@@ -47,7 +47,7 @@ const Staff = () => {
 			.post("/admin/66c4bec16c999e564df47a78/register", {
 				username,
 				role,
-				email
+				email,
 			})
 			.then(({ data }) => {
 				console.log(data);
@@ -162,11 +162,7 @@ const Staff = () => {
 					})}
 				</tbody>
 			</table>
-			<ToastContainer
-				theme="dark"
-				autoClose={3000}
-				position="bottom-right"
-			/>
+			<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />
 		</div>
 	);
 };

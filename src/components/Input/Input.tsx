@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styles from "./styles.module.scss";
 import { CustomEvent } from "../../model/types";
 
@@ -10,31 +10,42 @@ interface InputProps {
 	value?: string;
 	disabled?: boolean;
 	size?: "sm" | "md" | "lg";
+	error?: string;
 }
 
-const Input: React.FC<InputProps> = ({
-	onChange,
-	name,
-	placeholder,
-	size = "md",
-	value,
-	type = "text",
-	...rest
-}) => {
-	return (
-		<div className={styles.inputContainer}>
-			<input
-				placeholder={placeholder}
-				id={`${name}-input`}
-				name={name}
-				type={type}
-				onChange={onChange}
-				value={value}
-				className={styles[size]}
-				{...rest}
-			/>
-		</div>
-	);
-};
+const Input = forwardRef<HTMLInputElement, InputProps>(
+	(
+		{
+			onChange,
+			name,
+			placeholder,
+			size = "md",
+			value,
+			type = "text",
+			error,
+			...rest
+		},
+		ref
+	) => {
+		return (
+			<div className={styles.inputContainer}>
+				<input
+					placeholder={placeholder}
+					id={`${name}-input`}
+					name={name}
+					type={type}
+					onChange={onChange}
+					value={value}
+					className={styles[size]}
+					ref={ref}
+					{...rest}
+				/>
+				{error && <small className={styles.error}>{error}</small>}
+			</div>
+		);
+	}
+);
+
+Input.displayName = "Input";
 
 export default Input;

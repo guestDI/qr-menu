@@ -8,7 +8,7 @@ interface ButtonProps {
 	round?: boolean;
 	size?: "sm" | "md" | "lg";
 	className?: string;
-	type?: "default" | "primary" | "submit" | "link";
+	type?: "submit" | "reset" | "button" | undefined;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,7 +16,7 @@ const Button: React.FC<ButtonProps> = ({
 	round,
 	size = "md",
 	className,
-	type = "default",
+	type = "button",
 	children,
 }) => {
 	const btnSize = `btn__${size}`;
@@ -26,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
 
 	return (
 		<button
+			type={type}
 			onClick={onClick}
 			className={clsx(
 				btnClass,

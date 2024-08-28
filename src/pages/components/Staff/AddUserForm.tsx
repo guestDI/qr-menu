@@ -1,11 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styles from "./styles.module.scss";
 import Input from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
 import clsx from "clsx";
 import Image from "next/image";
 import AddUserIcon from "../../../inline-img/svg/user-add.svg";
-import { CustomEvent } from "../../../model/types";
+import { useForm } from "react-hook-form";
 
 interface AddUserFormProps {
 	onClick: ({
@@ -19,56 +19,56 @@ interface AddUserFormProps {
 	}) => void;
 }
 
+const registerOptions = {
+	username: { required: "UsernameName is required" },
+	email: {
+		required: "Email is required",
+		pattern: {
+			value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+			message: "Invalid email address",
+		},
+	},
+};
+
 const AddUserForm: FC<AddUserFormProps> = ({ onClick }) => {
-	const [username, setUsername] = useState("");
-	const [role, setRole] = useState("manager");
-	const [email, setEmail] = useState("");
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
-	const onUsernameChanged = (e: CustomEvent) => {
-		setUsername(e.target.value);
+	const addUser = (data: { username: string; role: string; email: string }) => {
+		onClick(data);
 	};
-
-	const onRoleChanged = (e: CustomEvent) => {
-		setRole(e.target.value);
-	};
-
-	const onEmailChanged = (e: CustomEvent) => {
-		setEmail(e.target.value);
-	};
-
-	const addUser = () => {
-		onClick({username, role, email})
-	}
 
 	return (
-		<div className={styles.row}>
+		<form onSubmit={handleSubmit(addUser)} className={styles.row}>
 			<Input
 				size="lg"
 				placeholder="Username"
-				name="Username"
 				type="text"
-				onChange={onUsernameChanged}
+				error={errors?.username?.message}
+				{...register("username", registerOptions.username)}
 			/>
 			<Input
 				size="lg"
 				placeholder="Email"
-				name="email"
 				type="text"
-				onChange={onEmailChanged}
+				error={errors?.email?.message}
+				{...register("email", registerOptions.email)}
 			/>
 			<Input
 				size="lg"
 				placeholder="Role"
-				name="role"
 				type="text"
-				value={role}
+				value="manager"
 				disabled={true}
-				onChange={onRoleChanged}
+				{...register("role", { value: "manager" })}
 			/>
-			<Button className={clsx(styles.btn, styles.addBtn)} onClick={addUser}>
+			<Button className={clsx(styles.btn, styles.addBtn)} type="submit">
 				<Image src={AddUserIcon} alt="Add User" width={20} height={20} />{" "}
 			</Button>
-		</div>
+		</form>
 	);
 };
 
