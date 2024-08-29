@@ -137,3 +137,39 @@ section {
 	border: 1px solid;
 	color: white;
 }
+
+//move to its own style
+.reset-link-wrapper {
+	display: flex;
+	padding-top: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.link-btn {
+	background: none;
+	border: none;
+	color: #ff3166;
+	text-decoration: none;
+	cursor: pointer;
+	padding: 0;
+	font: inherit;
+	height: 0;
+	display: inline;
+	margin-left: 1rem;
+	width: fit-content !important;
+}
+
+.link-btn:hover {
+	color: #ff6686;
+}
+
+.link-btn:focus {
+	outline: none;
+	color: #ff6686;
+	text-decoration: none;
+}
+
+.link-btn:active {
+	color: #003865; /* Ещё более тёмный цвет при нажатии */
+}

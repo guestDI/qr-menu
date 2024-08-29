@@ -1,20 +1,19 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import React from "react";
-import { Button, Input } from "../components";
+import { Button, Input } from "../../components";
 import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
-import axiosInstance from "../api/axios";
-import Cookies from "js-cookie";
+import axiosInstance from "../../api/axios";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form"
 
 const registerOptions = {
-	username: { required: "Username is required" },
 	password: { required: "Password is required" },
+	confirmPassword: { required: "Password is required" },
 };
 
-const Login: NextPage = () => {
+const Token: NextPage<{token: string}> = ({ token }) => {
 	const router = useRouter();
 	const {
 		register,
@@ -22,27 +21,19 @@ const Login: NextPage = () => {
 		formState: { errors },
 	} = useForm();
 
-	const login = async (data: any): Promise<void> => {
+	const resetPassword = async (data: { password: string; confirmPassword: string; }) => {
 		try {
-			const response = await axiosInstance.post("/users/login", data);
-			Cookies.set("authToken", response.data.token);
-			router.push("/admin");
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			await axiosInstance.post("/users/reset-password", {
+				token: token,
+				password: data.password,
+				confirmPassword: data.confirmPassword,
+			});
+			router.push("/login");
 		} catch (error: unknown) {
 			console.log("error", error);
 			toast("An unexpected error occurred");
 		}
 	};
-
-	const requestResetPassword = async () => {
-		try {
-			await axiosInstance.post("/users/request-password-reset", { username: "dihnatov" });
-			toast("Reset link sent to your email");
-		} catch (error: unknown) {
-			console.log("error", error);
-			toast("An unexpected error occurred");
-		}
-	}
 
 	return (
 		<div className="login-container">
@@ -52,32 +43,23 @@ const Login: NextPage = () => {
 				</div>
 				<span>Digital menu</span>
 				<div className="header-menu">
-					<Link href="/">Home</Link>
+					<Link href="/public">Home</Link>
 				</div>
 				<div className="header-menu">
-					<Link href="/">Our mission</Link>
+					<Link href="/public">Our mission</Link>
 				</div>
 			</div>
 			<div className="left-container">
 				<div className="form-group">
 					<p>WELCOME BACK</p>
-					<h1 className="title">Sign In</h1>
+					<h1 className="title">Reset my password</h1>
 					<div className="login-box">
 						{/*change to react hook form*/}
-						<p className="reset-link-wrapper">
-							<span>Forgot your password?</span>
-							<Button className="link-btn" type="link" onClick={requestResetPassword}>Reset</Button>
+						<p>
+							Ready to log in?{" "}
+							<Link href="/login">Login</Link>
 						</p>
-						<form onSubmit={handleSubmit(login)}>
-							<div className="registration-row-input">
-								<Input
-									type="text"
-									placeholder="Username"
-									size="lg"
-									error={errors?.username?.message as string}
-									{...register("username", registerOptions.username)}
-								/>
-							</div>
+						<form onSubmit={handleSubmit(resetPassword)}>
 							<div>
 								<div className="input-group">
 									<Input
@@ -87,6 +69,13 @@ const Login: NextPage = () => {
 										error={errors?.password?.message as string}
 										{...register("password", registerOptions.password)}
 									/>
+									<Input
+										type="password"
+										placeholder="Confirm password"
+										size="lg"
+										error={errors?.password?.message as string}
+										{...register("confirmPassword", registerOptions.password)}
+									/>
 								</div>
 							</div>
 							<ToastContainer
@@ -95,7 +84,7 @@ const Login: NextPage = () => {
 								position="bottom-right"
 							/>
 							<Button type="submit" className="login-button">
-								Log In
+								Reset Password
 							</Button>
 						</form>
 					</div>
@@ -105,4 +94,23 @@ const Login: NextPage = () => {
 	);
 };
 
-export default Login;
+// @ts-ignore
+export async function getStaticPaths() {
+	return {
+		paths: [], // No paths are pre-rendered at build time
+		fallback: 'blocking', // Pages will be generated on-demand
+	};
+}
+
+export async function getStaticProps({ params }: {params: Record<string, string>}) {
+	const { token } = params;
+
+	return {
+		props: {
+			token
+		},
+	};
+}
+
+
+export default Token;

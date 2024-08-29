@@ -100,27 +100,26 @@ form {
 	margin-top: 20px;
 }
 
-.row-input {
+.registration-row-input {
 	display: flex;
 	justify-content: space-between;
 }
 
 .input-group,
-.row-input {
+.registration-row-input {
 	min-width: 300px;
-	margin-bottom: 10px;
 }
 
 .input-group input,
-.row-input input {
+.registration-row-input input {
 	padding: 10px;
 	border-radius: 12px;
 	border: none;
 	outline: none;
 }
 
-.row-input div:first-child {
-	margin-right: 10px;
+.registration-row-input div:first-child {
+	//margin-right: 10px;
 }
 
 .login-button {
@@ -131,7 +130,7 @@ form {
 	width: 100%;
 	border-radius: 50px;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 14px;
 	transition: background-color 0.3s;
 }
 

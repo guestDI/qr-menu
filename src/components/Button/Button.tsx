@@ -1,14 +1,14 @@
 import clsx from "clsx";
-import React from "react";
+import React, { MouseEventHandler } from "react"
 import styles from "./styles.module.scss";
 
 interface ButtonProps {
 	children: React.ReactNode;
-	onClick?: (e: Event) => void;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
 	round?: boolean;
 	size?: "sm" | "md" | "lg";
 	className?: string;
-	type?: "submit" | "reset" | "button" | undefined;
+	type?: "submit" | "reset" | "button" | "link";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -26,12 +26,13 @@ const Button: React.FC<ButtonProps> = ({
 
 	return (
 		<button
+			// @ts-ignore
 			type={type}
 			onClick={onClick}
 			className={clsx(
+				round && computedRoundBtnClass,
 				btnClass,
-				className,
-				round && computedRoundBtnClass
+				className
 				// type === "primary" ? styles.btnPrimary : styles.btnDefault
 			)}
 		>

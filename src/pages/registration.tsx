@@ -104,7 +104,7 @@ const Registration: React.FC = () => {
 							Already a Member? <Link href="/login">Log In</Link>
 						</p>
 						<form onSubmit={register}>
-							<div className="row-input">
+							<div className="registration-row-input">
 								<Input
 									name="username"
 									type="text"
