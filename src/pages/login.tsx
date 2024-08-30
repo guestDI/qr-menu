@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../api/axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 
 const registerOptions = {
 	username: { required: "Username is required" },
@@ -36,13 +36,15 @@ const Login: NextPage = () => {
 
 	const requestResetPassword = async () => {
 		try {
-			await axiosInstance.post("/users/request-password-reset", { username: "dihnatov" });
+			await axiosInstance.post("/users/request-password-reset", {
+				username: "dihnatov",
+			});
 			toast("Reset link sent to your email");
 		} catch (error: unknown) {
 			console.log("error", error);
 			toast("An unexpected error occurred");
 		}
-	}
+	};
 
 	return (
 		<div className="login-container">
@@ -66,7 +68,13 @@ const Login: NextPage = () => {
 						{/*change to react hook form*/}
 						<p className="reset-link-wrapper">
 							<span>Forgot your password?</span>
-							<Button className="link-btn" type="link" onClick={requestResetPassword}>Reset</Button>
+							<Button
+								className="link-btn"
+								type="link"
+								onClick={requestResetPassword}
+							>
+								Reset
+							</Button>
 						</p>
 						<form onSubmit={handleSubmit(login)}>
 							<div className="registration-row-input">

@@ -42,3 +42,9 @@ export interface IEntityData {
 export interface IFaqData {
 	rows: Array<{ title: string; content: string }>;
 }
+
+export interface IDecodedToken {
+	id: string;
+	role: string;
+	organizationId: string;
+}

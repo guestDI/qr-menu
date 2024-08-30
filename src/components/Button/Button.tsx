@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { MouseEventHandler } from "react"
+import React, { MouseEventHandler } from "react";
 import styles from "./styles.module.scss";
 
 interface ButtonProps {

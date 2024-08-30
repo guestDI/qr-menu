@@ -1,14 +1,16 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react"
 import SettingsIcon from "../inline-img/svg/settings.svg";
 import QRCodeIcon from "../inline-img/svg/qr-code.svg";
 import PeopleIcon from "../inline-img/svg/people-nearby.svg";
 import MenuIcon from "../inline-img/svg/menu.svg";
 import QRCodeManager from "./components/QRCodeManager/QRCodeManager";
 import Staff from "./components/Staff/Staff";
-import withAuth from "../hoc/withAuth";
 import Sidebar from "./components/Sidebar/Sidebar";
+import { jwtDecode } from "jwt-decode";
+import { IDecodedToken } from "@/model/types";
+import useUserStore from "@/stores/userStore"
 
 const getSidebarItems = (role: string) => {
 	return [
@@ -46,10 +48,20 @@ const getSidebarItems = (role: string) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const Admin: NextPage<{ role: string }> = ({ role }) => {
+const Admin: NextPage<{ user: IDecodedToken | null }> = ({ user }) => {
 	const [selectedItemIndex, setSelectedItemIndex] = useState(0);
+	const setUser = useUserStore((state) => state.setUser);
 
-	const sidebarItems = useMemo(() => getSidebarItems(role), [role]);
+	useEffect(() => {
+		if (user) {
+			setUser(user);
+		}
+	}, [user, setUser]);
+
+	const sidebarItems = useMemo(
+		() => getSidebarItems(user ? user.role : ""),
+		[user?.role]
+	);
 
 	const renderContent = () => {
 		return sidebarItems[selectedItemIndex].component;
@@ -75,4 +87,19 @@ const Admin: NextPage<{ role: string }> = ({ role }) => {
 	);
 };
 
-export default withAuth(Admin);
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const token = context.req.cookies.authToken;
+	let decodedToken: IDecodedToken | null = null;
+
+	if (token) {
+		decodedToken = jwtDecode<IDecodedToken>(token);
+	}
+
+	return {
+		props: {
+			user: decodedToken,
+		},
+	};
+};
+
+export default Admin;

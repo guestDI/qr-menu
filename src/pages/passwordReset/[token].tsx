@@ -6,14 +6,14 @@ import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../../api/axios";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 
 const registerOptions = {
 	password: { required: "Password is required" },
 	confirmPassword: { required: "Password is required" },
 };
 
-const Token: NextPage<{token: string}> = ({ token }) => {
+const Token: NextPage<{ token: string }> = ({ token }) => {
 	const router = useRouter();
 	const {
 		register,
@@ -21,7 +21,10 @@ const Token: NextPage<{token: string}> = ({ token }) => {
 		formState: { errors },
 	} = useForm();
 
-	const resetPassword = async (data: { password: string; confirmPassword: string; }) => {
+	const resetPassword = async (data: {
+		password: string;
+		confirmPassword: string;
+	}) => {
 		try {
 			await axiosInstance.post("/users/reset-password", {
 				token: token,
@@ -56,8 +59,7 @@ const Token: NextPage<{token: string}> = ({ token }) => {
 					<div className="login-box">
 						{/*change to react hook form*/}
 						<p>
-							Ready to log in?{" "}
-							<Link href="/login">Login</Link>
+							Ready to log in? <Link href="/login">Login</Link>
 						</p>
 						<form onSubmit={handleSubmit(resetPassword)}>
 							<div>
@@ -98,19 +100,22 @@ const Token: NextPage<{token: string}> = ({ token }) => {
 export async function getStaticPaths() {
 	return {
 		paths: [], // No paths are pre-rendered at build time
-		fallback: 'blocking', // Pages will be generated on-demand
+		fallback: "blocking", // Pages will be generated on-demand
 	};
 }
 
-export async function getStaticProps({ params }: {params: Record<string, string>}) {
+export async function getStaticProps({
+	params,
+}: {
+	params: Record<string, string>;
+}) {
 	const { token } = params;
 
 	return {
 		props: {
-			token
+			token,
 		},
 	};
 }
-
 
 export default Token;

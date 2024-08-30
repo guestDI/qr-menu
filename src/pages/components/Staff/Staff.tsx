@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useTable } from "react-table";
 import Button from "../../../components/Button/Button";
 import styles from "./styles.module.scss";
@@ -9,15 +9,30 @@ import clsx from "clsx";
 import axiosInstance from "../../../api/axios";
 import AddUserForm from "./AddUserForm";
 import { toast, ToastContainer } from "react-toastify";
+import useStaffStore from "../../../stores/staffStore";
+import useUserStore from "@/stores/userStore"
+
+interface INewStaffMember {
+	username: string;
+	role: string;
+	email: string;
+}
 
 const Staff = () => {
-	const [staffData, setStaffData] = useState([]);
+	const {
+		staffData,
+		setStaffData,
+		removeStaffMember,
+		addStaffMember,
+		updateStaffMember,
+	} = useStaffStore();
+	const user = useUserStore((state) => state.user);
 
 	useEffect(() => {
 		const fetchStaffData = async () => {
 			try {
 				const response = await axiosInstance.get(
-					"/users/66c4bec16c999e564df47a78"
+					"/users/" + user?.organizationId
 				);
 				setStaffData(response.data.result);
 			} catch (error) {
@@ -26,23 +41,21 @@ const Staff = () => {
 		};
 
 		fetchStaffData();
-	}, []);
+	}, [setStaffData]);
 
 	const handleDelete = async (e: Event, id: string) => {
 		e.preventDefault();
 		await axiosInstance
 			.delete("/users/" + id)
-			.then(({ data }) => {
-				const newStaffData = staffData.filter((staff) => staff._id !== data.id);
-				setStaffData(newStaffData);
+			.then(() => {
+				removeStaffMember(id);
 			})
 			.catch((error: unknown) => {
 				console.error("Error deleting user:", error);
 			});
 	};
 
-	const handleAddNew = async ({ username, role, email }) => {
-		// e.preventDefault();
+	const handleAddNew = async ({ username, role, email }: INewStaffMember) => {
 		await axiosInstance
 			.post("/admin/66c4bec16c999e564df47a78/register", {
 				username,
@@ -50,28 +63,23 @@ const Staff = () => {
 				email,
 			})
 			.then(({ data }) => {
-				console.log(data);
+				addStaffMember(data);
 				toast("User was added successfully!");
 			})
 			.catch(() => {
 				toast("An unexpected error occurred");
 			});
-
-		// setStaffData([...staffData, newStaff]);
 	};
 
 	const handleEdit = (id: string) => {
-		const updatedStaff = staffData.map((staff) => {
-			if (staff.id === id) {
-				return {
-					...staff,
-					username:
-						prompt("Enter new username:", staff.username) || staff.username,
-				};
-			}
-			return staff;
-		});
-		setStaffData(updatedStaff);
+		const updatedUsername = prompt("Enter new username:", "");
+		if (updatedUsername) {
+			const updatedMember = {
+				_id: id,
+				username: updatedUsername,
+			};
+			updateStaffMember(updatedMember);
+		}
 	};
 
 	// Определение колонок для таблицы
