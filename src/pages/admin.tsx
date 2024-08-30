@@ -1,22 +1,26 @@
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react";
 import SettingsIcon from "../inline-img/svg/settings.svg";
 import QRCodeIcon from "../inline-img/svg/qr-code.svg";
 import PeopleIcon from "../inline-img/svg/people-nearby.svg";
 import MenuIcon from "../inline-img/svg/menu.svg";
-import QRCodeManager from "./components/QRCodeManager/QRCodeManager";
-import Staff from "./components/Staff/Staff";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { jwtDecode } from "jwt-decode";
 import { IDecodedToken } from "@/model/types";
-import useUserStore from "@/stores/userStore"
+import useUserStore from "@/stores/userStore";
+import dynamic from "next/dynamic";
+
+const QRCodeManager = dynamic(
+	() => import("./components/QRCodeManager/QRCodeManager")
+);
+const Staff = dynamic(() => import("./components/Staff/Staff"));
 
 const getSidebarItems = (role: string) => {
 	return [
 		{
 			title: "My Menu",
-			component: <QRCodeManager />,
+			component: <div>My menu</div>,
 			icon: MenuIcon,
 			visible: true,
 		},
@@ -26,12 +30,12 @@ const getSidebarItems = (role: string) => {
 			icon: QRCodeIcon,
 			visible: true,
 		},
-		{
-			title: "Settings",
-			component: <QRCodeManager />,
-			icon: SettingsIcon,
-			visible: role === "admin",
-		},
+		// {
+		// 	title: "Settings",
+		// 	component: <div>Settings</div>,
+		// 	icon: SettingsIcon,
+		// 	visible: role === "admin",
+		// },
 		{
 			title: "Staff",
 			component: <Staff />,
@@ -40,7 +44,7 @@ const getSidebarItems = (role: string) => {
 		},
 		{
 			title: "Orders",
-			component: <Staff />,
+			component: <div>Orders</div>,
 			icon: PeopleIcon,
 			visible: true,
 		},

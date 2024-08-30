@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export interface StaffMember {
-	_id: string;
+	id: string;
 	username: string;
 	role: string;
 	email: string;
@@ -24,12 +24,12 @@ const useStaffStore = create<StaffStore>((set) => ({
 		})),
 	removeStaffMember: (id) =>
 		set((state) => ({
-			staffData: state.staffData.filter((staff) => staff._id !== id),
+			staffData: state.staffData.filter((staff) => staff.id !== id),
 		})),
 	updateStaffMember: (updatedMember) =>
 		set((state) => ({
 			staffData: state.staffData.map((staff) =>
-				staff._id === updatedMember._id ? updatedMember : staff
+				staff.id === updatedMember.id ? updatedMember : staff
 			),
 		})),
 }));

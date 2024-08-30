@@ -1,28 +1,33 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { useReactToPrint } from "react-to-print";
 import QrCodeIcon from "../../../inline-img/svg/qr-code.svg";
+import GenerateIcon from "../../../inline-img/svg/generate.svg";
 import PrintIcon from "../../../inline-img/svg/print.svg";
+import ClearIcon from "../../../inline-img/svg/clear.svg";
 import styles from "./styles.module.scss";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
 import axiosInstance from "../../../api/axios";
-import { CustomEvent } from "../../../model/types";
-
-interface QRCodeManagerProps {
-	table: string;
-	qrCodeData: string;
-}
+import { CustomEvent } from "@/model/types";
+import useQrCodeStore from "@/stores/codeStore";
+import useUserStore from "@/stores/userStore";
 
 const QrCodeManager = () => {
 	const [fromTable, setFromTable] = useState(0);
 	const [toTable, setToTable] = useState<number | null>(null);
-	const [qrCodes, setQrCodes] = useState<QRCodeManagerProps[]>([]);
+	const { qrCodes, setQrCodes, clearQrCodes } = useQrCodeStore();
+
+	const user = useUserStore((state) => state.user);
 
 	const componentRef = useRef<HTMLDivElement>(null);
 	const handlePrint = useReactToPrint({
 		content: () => componentRef.current,
 	});
+
+	const clear = useCallback(() => {
+		clearQrCodes();
+	}, [clearQrCodes]);
 
 	const handleGenerateQrCodes = async () => {
 		const tables = [];
@@ -36,7 +41,7 @@ const QrCodeManager = () => {
 
 		try {
 			const response = await axiosInstance.post("/qr/generate", {
-				id: "asd",
+				id: user?.organizationId,
 				tables,
 			});
 			setQrCodes(response.data.qrCodes);
@@ -55,8 +60,8 @@ const QrCodeManager = () => {
 
 	return (
 		<>
-			<div>
-				<h2>Tables</h2>
+			<div className={styles.container}>
+				<h2>Codes</h2>
 				<div className={styles.inputGroup}>
 					<Input
 						name="from"
@@ -73,16 +78,29 @@ const QrCodeManager = () => {
 						onChange={handleToTableChange}
 					/>
 					<Button className={styles.btn} onClick={handleGenerateQrCodes}>
-						Generate
+						{GenerateIcon ? (
+							<Image src={GenerateIcon} alt="print" width={20} height={20} />
+						) : (
+							"Generate"
+						)}
 					</Button>
 					{qrCodes.length > 0 && (
-						<Button className={styles.btn} onClick={handlePrint}>
-							{PrintIcon ? (
-								<Image src={PrintIcon} alt="print" width={25} height={25} />
-							) : (
-								"Print"
-							)}
-						</Button>
+						<div className={styles.printBtnContainer}>
+							<Button className={styles.btn} onClick={handlePrint}>
+								{PrintIcon ? (
+									<Image src={PrintIcon} alt="print" width={25} height={25} />
+								) : (
+									"Print"
+								)}
+							</Button>
+							<Button className={styles.btn} onClick={clear}>
+								{ClearIcon ? (
+									<Image src={ClearIcon} alt="print" width={25} height={25} />
+								) : (
+									"Clear"
+								)}
+							</Button>
+						</div>
 					)}
 				</div>
 			</div>

@@ -35,10 +35,12 @@ const AddUserForm: FC<AddUserFormProps> = ({ onClick }) => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm();
 
 	const addUser = (data: { username: string; role: string; email: string }) => {
 		onClick(data);
+		reset();
 	};
 
 	return (

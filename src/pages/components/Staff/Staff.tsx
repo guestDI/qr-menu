@@ -10,7 +10,7 @@ import axiosInstance from "../../../api/axios";
 import AddUserForm from "./AddUserForm";
 import { toast, ToastContainer } from "react-toastify";
 import useStaffStore from "../../../stores/staffStore";
-import useUserStore from "@/stores/userStore"
+import useUserStore from "@/stores/userStore";
 
 interface INewStaffMember {
 	username: string;
@@ -43,7 +43,7 @@ const Staff = () => {
 		fetchStaffData();
 	}, [setStaffData]);
 
-	const handleDelete = async (e: Event, id: string) => {
+	const handleDelete = async (e, id: string) => {
 		e.preventDefault();
 		await axiosInstance
 			.delete("/users/" + id)
@@ -63,6 +63,7 @@ const Staff = () => {
 				email,
 			})
 			.then(({ data }) => {
+				console.log(data);
 				addStaffMember(data);
 				toast("User was added successfully!");
 			})
@@ -94,18 +95,22 @@ const Staff = () => {
 				accessor: "role",
 			},
 			{
+				Header: "Email",
+				accessor: "email",
+			},
+			{
 				Header: "Actions",
-				Cell: ({ row }) => (
+				Cell: ({ row }: { row: { original: { id: string } } }) => (
 					<div className={styles.btnRow}>
 						<Button
 							className={clsx(styles.btn, styles.actionBtn)}
-							onClick={() => handleEdit(row.original._id)}
+							onClick={() => handleEdit(row.original.id)}
 						>
 							<Image src={EditIcon} alt="Edit User" width={20} height={20} />{" "}
 						</Button>
 						<Button
 							className={clsx(styles.btn, styles.actionBtn)}
-							onClick={(e) => handleDelete(e, row.original._id)}
+							onClick={(e) => handleDelete(e, row.original.id)}
 						>
 							<Image
 								src={DeleteIcon}
@@ -123,6 +128,7 @@ const Staff = () => {
 
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
 		useTable({
+			// @ts-ignore
 			columns,
 			data: staffData,
 		});
