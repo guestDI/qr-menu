@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useMemo } from "react";
 import { Close } from "../../inline-img/svg";
 import Button from "../Button/Button";
 import styles from "./styles.module.scss";
+import Image from "next/image"
 
 interface ModalProps {
 	show: boolean;
@@ -41,7 +42,12 @@ const ModalOverlay: React.FC<ModalProps> = ({
 				className={clsx(styles.modalBackdrop, displayStyle)}
 			>
 				<Button className={styles.btnClose} round={true} onClick={handleClose}>
-					<Close width={24} height={24} />
+					<Image
+						src={Close}
+						alt="Closr Modal"
+						width={20}
+						height={20}
+					/>{" "}
 				</Button>
 			</div>
 			<section

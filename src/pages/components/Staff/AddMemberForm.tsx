@@ -30,7 +30,7 @@ const registerOptions = {
 	},
 };
 
-const AddUserForm: FC<AddUserFormProps> = ({ onClick }) => {
+const AddMemberForm: FC<AddUserFormProps> = ({ onClick }) => {
 	const {
 		register,
 		handleSubmit,
@@ -74,4 +74,4 @@ const AddUserForm: FC<AddUserFormProps> = ({ onClick }) => {
 	);
 };
 
-export default AddUserForm;
+export default AddMemberForm;

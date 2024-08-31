@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react"
 import { useTable } from "react-table";
 import Button from "../../../components/Button/Button";
 import styles from "./styles.module.scss";
@@ -7,10 +7,13 @@ import DeleteIcon from "../../../inline-img/svg/delete.svg";
 import EditIcon from "../../../inline-img/svg/edit.svg";
 import clsx from "clsx";
 import axiosInstance from "../../../api/axios";
-import AddUserForm from "./AddUserForm";
+import AddMemberForm from "./AddMemberForm";
 import { toast, ToastContainer } from "react-toastify";
 import useStaffStore from "../../../stores/staffStore";
 import useUserStore from "@/stores/userStore";
+import Modal from "@/components/Modal/Modal"
+import EditMemberForm from "@/pages/components/Staff/EditMemberForm"
+import { CustomEvent } from "@/model/types"
 
 interface INewStaffMember {
 	username: string;
@@ -18,7 +21,12 @@ interface INewStaffMember {
 	email: string;
 }
 
+interface IStaffMember extends INewStaffMember{
+	id: string
+}
+
 const Staff = () => {
+	const [show, setShow] = useState(false);
 	const {
 		staffData,
 		setStaffData,
@@ -43,12 +51,13 @@ const Staff = () => {
 		fetchStaffData();
 	}, [setStaffData]);
 
-	const handleDelete = async (e, id: string) => {
+	const handleDelete = async (e: CustomEvent, id: string) => {
 		e.preventDefault();
 		await axiosInstance
 			.delete("/users/" + id)
 			.then(() => {
 				removeStaffMember(id);
+				toast("Successfully deleted staff data");
 			})
 			.catch((error: unknown) => {
 				console.error("Error deleting user:", error);
@@ -72,16 +81,26 @@ const Staff = () => {
 			});
 	};
 
-	const handleEdit = (id: string) => {
-		const updatedUsername = prompt("Enter new username:", "");
-		if (updatedUsername) {
-			const updatedMember = {
-				_id: id,
-				username: updatedUsername,
-			};
-			updateStaffMember(updatedMember);
-		}
+	const handleEdit = async ({ id, username, role, email }: IStaffMember) => {
+		await axiosInstance
+			.post("/admin/66c4bec16c999e564df47a78/register", {
+				username,
+				role,
+				email,
+			})
+			.then(({ data }) => {
+				console.log(data);
+				updateStaffMember(data);
+				toast("User was updated successfully!");
+			})
+			.catch(() => {
+				toast("An unexpected error occurred");
+			});
 	};
+
+	const openShowModal = () => {
+		setShow(true);
+	}
 
 	// Определение колонок для таблицы
 	const columns = useMemo(
@@ -104,7 +123,7 @@ const Staff = () => {
 					<div className={styles.btnRow}>
 						<Button
 							className={clsx(styles.btn, styles.actionBtn)}
-							onClick={() => handleEdit(row.original.id)}
+							onClick={openShowModal}
 						>
 							<Image src={EditIcon} alt="Edit User" width={20} height={20} />{" "}
 						</Button>
@@ -136,7 +155,7 @@ const Staff = () => {
 	return (
 		<div>
 			<h2 className={styles.title}>Staff Management</h2>
-			<AddUserForm onClick={handleAddNew} />
+			<AddMemberForm onClick={handleAddNew} />
 			<table {...getTableProps()} className={styles.table}>
 				<thead>
 					{headerGroups.map((headerGroup, index) => (
@@ -176,6 +195,9 @@ const Staff = () => {
 					})}
 				</tbody>
 			</table>
+			<Modal show={show} onClose={() => setShow(false)} placement="center" className={styles.editModal}>
+				<EditMemberForm onClick={handleEdit} onCancel={() => setShow(false)}/>
+			</Modal>
 			<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />
 		</div>
 	);

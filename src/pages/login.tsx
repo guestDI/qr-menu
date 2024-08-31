@@ -24,9 +24,10 @@ const Login: NextPage = () => {
 
 	const login = async (data: any): Promise<void> => {
 		try {
-			const response = await axiosInstance.post("/users/login", data);
-			Cookies.set("authToken", response.data.token);
-			router.push("/admin");
+			await axiosInstance.post("/users/login", data).then((response) => {
+				Cookies.set("authToken", response.data.token);
+				router.push("/admin");
+			});
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		} catch (error: unknown) {
 			console.log("error", error);
@@ -65,7 +66,6 @@ const Login: NextPage = () => {
 					<p>WELCOME BACK</p>
 					<h1 className="title">Sign In</h1>
 					<div className="login-box">
-						{/*change to react hook form*/}
 						<p className="reset-link-wrapper">
 							<span>Forgot your password?</span>
 							<Button

@@ -1,26 +1,25 @@
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react";
-import SettingsIcon from "../inline-img/svg/settings.svg";
+import React, { useEffect, useMemo, useState } from "react"
+// import SettingsIcon from "../inline-img/svg/settings.svg";
 import QRCodeIcon from "../inline-img/svg/qr-code.svg";
 import PeopleIcon from "../inline-img/svg/people-nearby.svg";
 import MenuIcon from "../inline-img/svg/menu.svg";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { jwtDecode } from "jwt-decode";
 import { IDecodedToken } from "@/model/types";
-import useUserStore from "@/stores/userStore";
-import dynamic from "next/dynamic";
+import useUserStore from "@/stores/userStore"
+import dynamic from "next/dynamic"
 
-const QRCodeManager = dynamic(
-	() => import("./components/QRCodeManager/QRCodeManager")
-);
-const Staff = dynamic(() => import("./components/Staff/Staff"));
+const QRCodeManager = dynamic(() => import('./components/QRCodeManager/QRCodeManager'))
+const Staff = dynamic(() => import('./components/Staff/Staff'))
+const Menu = dynamic(() => import('./components/Menu/Menu'))
 
 const getSidebarItems = (role: string) => {
 	return [
 		{
 			title: "My Menu",
-			component: <div>My menu</div>,
+			component: <Menu/>,
 			icon: MenuIcon,
 			visible: true,
 		},
