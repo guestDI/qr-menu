@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { useForm } from "react-hook-form";
 
 interface EditMemberFormProps {
-	onClick: (id: string) => void;
+	onClick: (id: { username: string; role: string; email: string }) => void;
 	onCancel: () => void;
 }
 
@@ -30,12 +30,17 @@ const EditMemberForm: FC<EditMemberFormProps> = ({ onClick, onCancel }) => {
 		reset,
 	} = useForm();
 
-	const editMember = (data: { username: string; role: string; email: string }) => {
+	const editMember = (data: {
+		username: string;
+		role: string;
+		email: string;
+	}) => {
 		onClick(data);
 		reset();
 	};
 
 	return (
+		// @ts-ignore
 		<form onSubmit={handleSubmit(editMember)} className={styles.editMemberForm}>
 			<h3>Edit member</h3>
 			<div className={styles.row}>
@@ -43,14 +48,14 @@ const EditMemberForm: FC<EditMemberFormProps> = ({ onClick, onCancel }) => {
 					size="lg"
 					placeholder="Username"
 					type="text"
-					error={errors?.username?.message}
+					error={errors?.username?.message as string}
 					{...register("username", registerOptions.username)}
 				/>
 				<Input
 					size="lg"
 					placeholder="Email"
 					type="text"
-					error={errors?.email?.message}
+					error={errors?.email?.message as string}
 					{...register("email", registerOptions.email)}
 				/>
 				<Input

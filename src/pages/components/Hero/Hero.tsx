@@ -11,11 +11,12 @@ interface HeroProps extends Partial<Pick<HTMLElement, "className" | "id">> {
 
 const Hero: React.FC<HeroProps> = ({ className, id, onClick }) => {
 	const [isScrolled, setIsScrolled] = useState(false);
-	const sectionRef = useRef(null);
+	const sectionRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
 			const offset = window.scrollY;
+			// @ts-ignore
 			if (offset <= sectionRef.current.offsetHeight / 2) {
 				setIsScrolled(false);
 			} else {
@@ -48,7 +49,7 @@ const Hero: React.FC<HeroProps> = ({ className, id, onClick }) => {
 						<Button onClick={onClick} className={styles.btn}>
 							Try for free
 						</Button>
-						<Button className={styles.secondary} type="link">
+						<Button className={styles.secondary} type="button">
 							Watch demo
 						</Button>
 					</div>

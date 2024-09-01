@@ -61,7 +61,7 @@ const NavigationBar: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 				</li>
 			</ul>
 			<div className={clsx(styles.navButtons, { [styles.show]: showButtons })}>
-				<Button className={styles.secondary} type="link">
+				<Button className={styles.secondary} type="button">
 					Watch demo
 				</Button>
 				<Button onClick={onClick} className={styles.btn}>

@@ -8,7 +8,8 @@ import Link from "next/link";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { CustomEvent } from "../model/types";
+import { CustomEvent } from "@/model/types";
+import { useRouter } from "next/navigation"
 
 // interface ITransition {
 // 	[key: string]: Record<string, number | string>;
@@ -32,11 +33,12 @@ import { CustomEvent } from "../model/types";
 // }
 
 const Registration: React.FC = () => {
-	// const [placeValid, setPlaceValid] = useState(true);
 	const [placeName, setPlaceName] = useState("");
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	const router = useRouter();
 
 	const register = async (e: FormEvent) => {
 		e.preventDefault();
@@ -54,6 +56,7 @@ const Registration: React.FC = () => {
 				data
 			);
 			console.log("Registration successful:", response.data);
+			router.push("/login");
 
 			// Redirect to another page or display success message
 		} catch (error: any) {
@@ -103,6 +106,7 @@ const Registration: React.FC = () => {
 						<p>
 							Already a Member? <Link href="/login">Log In</Link>
 						</p>
+						{/*change to react hook form*/}
 						<form onSubmit={register}>
 							<div className="registration-row-input">
 								<Input
