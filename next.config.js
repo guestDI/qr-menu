@@ -7,7 +7,7 @@ const path = require("path")
 module.exports = {
 	reactStrictMode: true,
 	images: {
-		domains: ["images.immediate.co.uk"],
+		domains: ["images.immediate.co.uk", "www.aperol.com", "www.everyday-delicious.com", "cocktail-society.com", "www.acouplecooks.com"],
 	},
 	...withReactSvg({
 		include: path.resolve(__dirname, "src/inline-img/svg"),

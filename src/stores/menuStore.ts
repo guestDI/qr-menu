@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { IMenuItem } from "@/model/types";
 
 export interface MenuItem {
 	id: string;
@@ -8,11 +9,11 @@ export interface MenuItem {
 }
 
 interface MenuStore {
-	menuData: MenuItem[];
-	setMenuData: (data: MenuItem[]) => void;
-	addMenuItem: (newMember: MenuItem) => void;
+	menuData: IMenuItem[];
+	setMenuData: (data: IMenuItem[]) => void;
+	addMenuItem: (newMember: IMenuItem) => void;
 	removeMenuItem: (id: string) => void;
-	updateMenuItem: (updatedMember: MenuItem) => void;
+	updateMenuItem: (updatedMember: IMenuItem) => void;
 }
 
 const useMenuStore = create<MenuStore>((set) => ({

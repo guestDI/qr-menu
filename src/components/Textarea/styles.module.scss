@@ -1,0 +1,23 @@
+.textareaContainer {
+  width: 100%;
+}
+
+.textareaContainer > textarea {
+  width: 100%;
+  margin-bottom: 0.6rem;
+  border: 1px solid #e5e5e4;
+  padding: 1rem;
+  resize: none;
+}
+
+.textareaContainer > textarea::placeholder {
+  color: rgba(178, 178, 178, 0.5);
+  font-style: italic;
+}
+
+.error {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(255, 38, 38, 0.73);
+  margin-top: 0.5rem;
+}

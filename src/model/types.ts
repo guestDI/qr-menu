@@ -1,5 +1,15 @@
 import React from "react";
 
+export interface IMenuItem {
+	id: string;
+	category: string;
+	currency: string;
+	description: string;
+	image: string;
+	price: number;
+	title: string;
+}
+
 export type CartMenuItem = {
 	category: string;
 	uid: string;

@@ -21,24 +21,6 @@
 	width: 100%;
 }
 
-.content aside {
-	flex-basis: 20%;
-	border-right: rgba(214, 214, 214, 0.67) 1px solid;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-aside ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 40px auto;
-}
-
-aside ul li {
-	font-size: 14px;
-}
-
 .profile-btn-container {
 	padding: 10px;
 }

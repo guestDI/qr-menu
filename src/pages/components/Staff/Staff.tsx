@@ -4,16 +4,12 @@ import Button from "../../../components/Button/Button";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import DeleteIcon from "../../../inline-img/svg/delete.svg";
-// import EditIcon from "../../../inline-img/svg/edit.svg";
 import clsx from "clsx";
 import axiosInstance from "../../../api/axios";
 import AddMemberForm from "./AddMemberForm";
 import { toast, ToastContainer } from "react-toastify";
 import useStaffStore from "../../../stores/staffStore";
 import useUserStore from "@/stores/userStore";
-// import Modal from "@/components/Modal/Modal";
-// import EditMemberForm from "@/pages/components/Staff/EditMemberForm";
-// import { CustomEvent } from "@/model/types";
 
 interface INewStaffMember {
 	username: string;
@@ -21,17 +17,9 @@ interface INewStaffMember {
 	email: string;
 }
 
-// interface IStaffMember extends INewStaffMember {
-// 	id: string;
-// }
-
 const Staff = () => {
-	const {
-		staffData,
-		setStaffData,
-		removeStaffMember,
-		addStaffMember,
-	} = useStaffStore();
+	const { staffData, setStaffData, removeStaffMember, addStaffMember } =
+		useStaffStore();
 	const user = useUserStore((state) => state.user);
 
 	useEffect(() => {
@@ -49,7 +37,10 @@ const Staff = () => {
 		fetchStaffData();
 	}, [setStaffData]);
 
-	const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
+	const handleDelete = async (
+		e: React.MouseEvent<HTMLButtonElement>,
+		id: string
+	) => {
 		e.preventDefault();
 		await axiosInstance
 			.delete("/users/" + id)
@@ -79,28 +70,6 @@ const Staff = () => {
 			});
 	};
 
-	// const handleEdit = async ({ id, username, role, email }: IStaffMember) => {
-	// 	await axiosInstance
-	// 		.post("/admin/66c4bec16c999e564df47a78/register", {
-	// 			username,
-	// 			role,
-	// 			email,
-	// 		})
-	// 		.then(({ data }) => {
-	// 			console.log(data);
-	// 			updateStaffMember(data);
-	// 			toast("User was updated successfully!");
-	// 		})
-	// 		.catch(() => {
-	// 			toast("An unexpected error occurred");
-	// 		});
-	// };
-
-	// const openShowModal = () => {
-	// 	setShow(true);
-	// };
-
-	// Определение колонок для таблицы
 	const columns = useMemo(
 		() => [
 			{
@@ -187,9 +156,6 @@ const Staff = () => {
 					})}
 				</tbody>
 			</table>
-			{/*<Modal show={show} onClose={() => setShow(false)} placement="center" className={styles.editModal}>*/}
-			{/*	<EditMemberForm onClick={handleEdit} onCancel={() => setShow(false)}/>*/}
-			{/*</Modal>*/}
 			<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />
 		</div>
 	);

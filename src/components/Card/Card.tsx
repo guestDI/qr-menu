@@ -6,13 +6,15 @@ import { useDataLayerContext } from "../../context/DataLayerContext";
 import { getCurrencySign } from "../../helpers/helpers";
 import addIcon from "../../inline-img/svg/add.svg";
 import classes from "./styles.module.scss";
+import TextWrapper from "@/components/TextWrapper/TextWrapper";
 
 interface CardProps {
 	uid: string;
 	name: string;
 	price: string;
 	priceCurrency?: string;
-	shortDescription: string;
+	description: string;
+	image: string;
 	onCardClick: () => void;
 	addToBasket: () => void;
 }
@@ -22,7 +24,8 @@ const Card: React.FC<CardProps> = ({
 	name,
 	price,
 	priceCurrency,
-	shortDescription,
+	description,
+	image,
 	onCardClick,
 	addToBasket,
 }) => {
@@ -45,26 +48,26 @@ const Card: React.FC<CardProps> = ({
 	return (
 		<div className={classes.card} onClick={onCardClick}>
 			<div>
-				{/*<Image*/}
-				{/*	alt="Dishes"*/}
-				{/*	src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/mexican-chicken-burger_1-b5cca6f.jpg?quality=90&resize=440,400"*/}
-				{/*	width={400}*/}
-				{/*	height={400}*/}
-				{/*	loading="eager" //check this property in future*/}
-				{/*	className={classes.cardImage}*/}
-				{/*	quality={50}*/}
-				{/*/>*/}
+				<Image
+					alt="Dishes"
+					src={image}
+					width={200}
+					height={200}
+					loading="eager" //check this property in future
+					className={classes.cardImage}
+					quality={50}
+				/>
 				<div className={classes.cardContent}>
-					{/*<TextWrapper className={classes.cardContent__title} numberOfRows={1}>*/}
-					{/*	{name}*/}
-					{/*</TextWrapper>*/}
-					{/*<TextWrapper className={classes.cardContent__desc}>*/}
-					{/*	{shortDescription || (*/}
-					{/*		<span style={{ fontStyle: "italic" }}>*/}
-					{/*			No description available*/}
-					{/*		</span>*/}
-					{/*	)}*/}
-					{/*</TextWrapper>*/}
+					<TextWrapper className={classes.cardContent__title} numberOfRows={1}>
+						{name}
+					</TextWrapper>
+					<TextWrapper className={classes.cardContent__desc}>
+						{description || (
+							<span style={{ fontStyle: "italic" }}>
+								No description available
+							</span>
+						)}
+					</TextWrapper>
 				</div>
 			</div>
 

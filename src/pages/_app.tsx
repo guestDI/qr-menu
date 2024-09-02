@@ -18,4 +18,5 @@ function MyApp({ Component, pageProps }: AppProps) {
 		</DataLayerContextProvider>
 	);
 }
+
 export default MyApp;

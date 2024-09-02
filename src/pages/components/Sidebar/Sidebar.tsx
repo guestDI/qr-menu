@@ -3,6 +3,7 @@ import SettingsIcon from "../../../inline-img/svg/settings.svg";
 import Button from "../../../components/Button/Button";
 import Image from "next/image";
 import SidebarItem from "./SidebarItem/SidebarItem";
+import styles from "./styles.module.scss";
 
 interface SidebarItem {
 	title: string;
@@ -23,7 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 	selectedIdx,
 }) => {
 	return (
-		<aside>
+		<aside className={styles.asideContent}>
 			<ul>
 				{sidebarItems.map((item, i) => (
 					<SidebarItem
@@ -35,12 +36,6 @@ const Sidebar: React.FC<SidebarProps> = ({
 					/>
 				))}
 			</ul>
-			<div className="profile-btn-container">
-				<Button onClick={() => {}} className="profile-btn">
-					<Image src={SettingsIcon} alt="Settings" width={20} height={20} />{" "}
-					Profile
-				</Button>
-			</div>
 		</aside>
 	);
 };

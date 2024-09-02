@@ -1,0 +1,134 @@
+@import "../../../../styles/_mixins.scss";
+
+.main {
+	display: flex;
+
+	.container {
+		flex-basis: 80%;
+		h2 {
+			color: #fff;
+		}
+	}
+
+	.creatorForm {
+		flex-basis: 15%;
+		padding: 0 2rem;
+		border-left: rgba(214, 214, 214, 0.67) 1px solid;
+
+		form {
+			input, textarea {
+				border-radius: 7px;
+				color: #bbb;
+				background: rgba(53, 53, 67, 0.98);
+				border-color: rgba(45, 45, 57, 0.98);
+				box-shadow: rgba(43, 40, 40, 0.45) 0px 5px 15px;
+				max-width: 25rem;
+			}
+
+			.btn {
+				width: 15rem;
+				background-color: #ff3166;
+				color: #fff;
+				border: none;
+				padding: 10px;
+				border-radius: 5px;
+				cursor: pointer;
+				font-size: 14px;
+				transition: background-color 0.3s;
+				box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+					0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+					0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+			}
+
+			.btn img {
+				margin-right: 5px;
+			}
+
+			.btn:active {
+				@include active-btn(#b23a5a);
+			}
+		}
+	}
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+
+	.btnContainer {
+		display: flex;
+		align-items: center;
+
+		.btn {
+			padding: 5px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #ff3166;
+			color: #fff;
+			width: 7rem;
+			border-radius: 0.5rem;
+			cursor: pointer;
+			margin-left: 1rem;
+		}
+
+		.btnSecondary {
+			width: 10rem;
+			font-size: 1.2rem;
+			color: #fff;
+			border: 1px solid #3e3e3e;
+			border-radius: 0.5rem;
+			background-color: inherit;
+			cursor: pointer;
+		}
+
+		.btnSecondary:hover {
+			background-color: #3e3e3e;
+		}
+	}
+}
+
+.cards-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+	grid-gap: 2rem;
+}
+
+.card-container {
+	color: #fff;
+	border: 1px solid rgba(56, 56, 69, 0.98);
+	background: rgba(53, 53, 67, 0.98);
+	box-shadow: rgba(43, 40, 40, 0.45) 0px 5px 15px;
+	border-radius: 0.5rem;
+	padding: 2rem;
+	width: 25rem;
+
+	.imageContainer {
+		width: 100%;
+		img {
+			box-shadow: rgba(43, 40, 40, 0.45) 0px 5px 15px;
+		}
+	}
+
+	.title {
+		padding: 0;
+		margin: 0 0 0.5rem;
+		font-size: 1.5rem;
+	}
+
+	.card-price {
+		font-size: 1.5rem;
+		font-weight: 500;
+		margin-top: 0.5rem;
+	}
+
+	.desc {
+		padding: 0 1rem;
+
+		li {
+			font-size: 1.2rem;
+			line-height: 1.6rem;
+		}
+	}
+}

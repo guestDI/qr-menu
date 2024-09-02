@@ -10,7 +10,7 @@ import {
 	DetailsView,
 	ShoppingCart,
 } from "../components";
-import { useDataLayerContext } from "../context/DataLayerContext";
+import { useDataLayerContext } from "@/context/DataLayerContext";
 
 const ButtonContent: React.FC<{ total: number }> = ({ total }) => (
 	<div className={styles.shoppingCartBtnContent}>
@@ -25,23 +25,24 @@ const renderCards = (
 	onCardClick: (category: string, id: string) => void,
 	addToBasket: (value: any) => void
 ) => {
-	const { uid, name, price, priceCurrency, shortDescription = "" } = item;
+	const { id, title, price, image, description = "" } = item;
 
 	return (
 		<Card
-			uid={uid}
-			key={uid}
-			name={name}
+			uid={id}
+			key={id}
+			name={title}
 			price={price}
-			priceCurrency={priceCurrency}
-			onCardClick={() => onCardClick(category, uid)}
-			shortDescription={shortDescription}
-			addToBasket={() => addToBasket({ category, uid })}
+			image={image}
+			// priceCurrency={priceCurrency}
+			onCardClick={() => onCardClick(category, id)}
+			description={description}
+			addToBasket={() => addToBasket({ category, id })}
 		/>
 	);
 };
 
-const Menu: NextPage = () => {
+const Menu: NextPage = ({ menuData }) => {
 	const [showModal, setShowModal] = useState(false);
 
 	const {
@@ -59,8 +60,8 @@ const Menu: NextPage = () => {
 	>({});
 
 	const categories = useMemo(
-		() => items.map((menuItem: any) => menuItem.category),
-		[items]
+		() => menuData.map((menuItem: any) => menuItem.category),
+		[menuData]
 	);
 
 	const itemIsSelected = !!Object.keys(selectedMenuItem).length;
@@ -113,7 +114,7 @@ const Menu: NextPage = () => {
 
 	const menuCards = useMemo(
 		() =>
-			items.map((menuItem: any, i: number) => {
+			menuData.map((menuItem: any, i: number) => {
 				return (
 					<section
 						id={menuItem.category}
@@ -124,7 +125,7 @@ const Menu: NextPage = () => {
 					>
 						<h1 className={styles.categoryTitle}>{menuItem.category}</h1>
 						<div className={styles.cardsContainer}>
-							{menuItem.items.map((item: any) =>
+							{menuData.map((item: any) =>
 								renderCards(
 									menuItem.category,
 									item,

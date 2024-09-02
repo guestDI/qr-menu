@@ -9,7 +9,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CustomEvent } from "@/model/types";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 
 // interface ITransition {
 // 	[key: string]: Record<string, number | string>;

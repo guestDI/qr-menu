@@ -1,0 +1,17 @@
+.asideContent {
+	flex-basis: 15%;
+	border-right: rgba(214, 214, 214, 0.67) 1px solid;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 40px auto;
+
+		li {
+			font-size: 14px;
+		}
+	}
+}
