@@ -1,7 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
-// import SettingsIcon from "../inline-img/svg/settings.svg";
 import QRCodeIcon from "../inline-img/svg/qr-code.svg";
 import PeopleIcon from "../inline-img/svg/people-nearby.svg";
 import MenuIcon from "../inline-img/svg/menu.svg";
@@ -13,8 +12,6 @@ import dynamic from "next/dynamic";
 import useAppStore from "@/stores/appStore";
 import axiosInstance from "@/api/axios";
 import useMenuStore from "@/stores/menuStore";
-import Menu from "@/pages/menu";
-import { createPortal } from "react-dom";
 
 const QRCodeManager = dynamic(
 	() => import("./components/QRCodeManager/QRCodeManager")
@@ -148,13 +145,7 @@ const Admin: NextPage<{ user: IDecodedToken | null }> = ({ user }) => {
 					onClick={(i) => setSelectedItemIndex(i)}
 					selectedIdx={selectedItemIndex}
 				/>
-				<main style={{ flex: 1 }}>{renderContent()}</main>
-				{/*{isPreviewOpen && (*/}
-
-				{/*	<iframe ref={setRef}>*/}
-				{/*		{container && createPortal(<Menu menuData={menuData} />, container)}*/}
-				{/*	</iframe>*/}
-				{/*)}*/}
+				<main>{renderContent()}</main>
 			</div>
 		</div>
 	);

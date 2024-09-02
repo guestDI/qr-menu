@@ -4,21 +4,18 @@ import Button from "../../../components/Button/Button";
 
 import useMenuStore from "@/stores/menuStore";
 import MenuCard from "@/pages/components/MenuCreator/MenuCard";
-import useAppStore from "@/stores/appStore";
 import Input from "../../../components/Input/Input";
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import Textarea from "@/components/Textarea/Textarea"
 
 const MenuCreator = () => {
-	const { isPreviewOpen, togglePreview } = useAppStore((state) => state);
 	const { menuData } = useMenuStore();
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-		reset,
 	} = useForm();
 
 	const add = () => {};

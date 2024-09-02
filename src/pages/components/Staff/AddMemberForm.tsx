@@ -49,14 +49,14 @@ const AddMemberForm: FC<AddUserFormProps> = ({ onClick }) => {
 				size="lg"
 				placeholder="Username"
 				type="text"
-				error={errors?.username?.message}
+				error={errors?.username?.message as string}
 				{...register("username", registerOptions.username)}
 			/>
 			<Input
 				size="lg"
 				placeholder="Email"
 				type="text"
-				error={errors?.email?.message}
+				error={errors?.email?.message as string}
 				{...register("email", registerOptions.email)}
 			/>
 			<Input
