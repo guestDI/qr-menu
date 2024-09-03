@@ -1,19 +1,12 @@
 import { create } from "zustand";
-import { IMenuItem } from "@/model/types";
-
-export interface MenuItem {
-	id: string;
-	username: string;
-	role: string;
-	email: string;
-}
+import { IMenu } from "@/model/types";
 
 interface MenuStore {
-	menuData: IMenuItem[];
-	setMenuData: (data: IMenuItem[]) => void;
-	addMenuItem: (newMember: IMenuItem) => void;
+	menuData: IMenu[];
+	setMenuData: (data: IMenu[]) => void;
+	addMenuItem: (newMenuItem: IMenu) => void;
 	removeMenuItem: (id: string) => void;
-	updateMenuItem: (updatedMember: IMenuItem) => void;
+	updateMenuItem: (updatedMenu: IMenu) => void;
 }
 
 const useMenuStore = create<MenuStore>((set) => ({

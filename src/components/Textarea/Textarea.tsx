@@ -12,17 +12,7 @@ interface InputProps {
 }
 
 const Textarea = forwardRef<HTMLTextAreaElement, InputProps>(
-	(
-		{
-			onChange,
-			name,
-			placeholder,
-			value,
-			error,
-			...rest
-		},
-		ref
-	) => {
+	({ onChange, name, placeholder, value, error, ...rest }, ref) => {
 		return (
 			<div className={styles.textareaContainer}>
 				<textarea

@@ -1,7 +1,4 @@
 import React, { ReactElement } from "react";
-import SettingsIcon from "../../../inline-img/svg/settings.svg";
-import Button from "../../../components/Button/Button";
-import Image from "next/image";
 import SidebarItem from "./SidebarItem/SidebarItem";
 import styles from "./styles.module.scss";
 

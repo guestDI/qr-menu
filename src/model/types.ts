@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface IMenuItem {
+interface IMenuItem {
 	id: string;
 	category: string;
 	currency: string;
@@ -8,6 +8,11 @@ export interface IMenuItem {
 	image: string;
 	price: number;
 	title: string;
+}
+
+export interface IMenu {
+	category: string;
+	items: IMenuItem[];
 }
 
 export type CartMenuItem = {

@@ -24,13 +24,13 @@ const MenuCreator = dynamic(
 const getSidebarItems = (role: string) => {
 	return [
 		{
-			title: "Menu Creator",
+			title: "Creator",
 			component: <MenuCreator />,
 			icon: MenuIcon,
 			visible: true,
 		},
 		{
-			title: "QR Codes",
+			title: "Codes",
 			component: <QRCodeManager />,
 			icon: QRCodeIcon,
 			visible: true,

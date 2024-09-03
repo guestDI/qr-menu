@@ -7,10 +7,20 @@ import MenuCard from "@/pages/components/MenuCreator/MenuCard";
 import Input from "../../../components/Input/Input";
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
-import Textarea from "@/components/Textarea/Textarea"
+import Textarea from "@/components/Textarea/Textarea";
+import Select from "@/components/Select/Select";
+import {
+	Accordion,
+	AccordionItem,
+	AccordionItemButton,
+	AccordionItemHeading,
+	AccordionItemPanel,
+} from "react-accessible-accordion";
 
 const MenuCreator = () => {
 	const { menuData } = useMenuStore();
+
+	const categories = menuData.map((item) => item.category);
 
 	const {
 		register,
@@ -27,20 +37,41 @@ const MenuCreator = () => {
 					<h2>Menu Creator</h2>
 				</div>
 				<div>
-					<div className={styles["cards-container"]}>
-						{menuData.map((item) => (
-							<MenuCard key={item.id} menuItem={item} />
-						))}
-					</div>
+					<Accordion className={styles.accordion} allowZeroExpanded>
+						{menuData.map((menuItem, index) => {
+							return (
+								<AccordionItem key={index} className={styles.accordion__item}>
+									<AccordionItemHeading>
+										<AccordionItemButton className={styles.accordion__button}>
+											{menuItem.category}
+										</AccordionItemButton>
+									</AccordionItemHeading>
+									<AccordionItemPanel className={styles.accordion__panel}>
+										<div className={styles["cards-container"]}>
+											{menuItem.items.map((item) => (
+												<MenuCard key={item.id} menuItem={item} />
+											))}
+										</div>
+									</AccordionItemPanel>
+								</AccordionItem>
+							);
+						})}
+					</Accordion>
 				</div>
 			</div>
 			<aside className={styles.creatorForm}>
 				<form onSubmit={handleSubmit(add)}>
-					<Input
+					<Select
+						options={[
+							{ label: "Option 1", value: "1" },
+							{ label: "Option 2", value: "2" },
+						]}
 						size="lg"
-						placeholder="Category"
-						type="text"
-						{...register("category")}
+						placeholder="Select Category"
+						name="category"
+						onAdd={() => {
+							console.log("Add new option clicked");
+						}}
 					/>
 					<Input
 						size="lg"
@@ -49,7 +80,7 @@ const MenuCreator = () => {
 						error={errors?.username?.message as string}
 						{...register("title")}
 					/>
-					<Textarea placeholder="Description" name="description"/>
+					<Textarea placeholder="Description" name="description" />
 					<Input
 						size="lg"
 						placeholder="Price"
