@@ -1,7 +1,8 @@
-import styles from "./styles.module.scss";
-
+import Button from "@/components/Button/Button";
 import MenuCard from "@/pages/components/MenuCreator/MenuCard/MenuCard";
 import useMenuStore from "@/stores/menuStore";
+import clsx from "clsx";
+import { useMemo, useState } from "react";
 import {
 	Accordion,
 	AccordionItem,
@@ -10,9 +11,24 @@ import {
 	AccordionItemPanel,
 } from "react-accessible-accordion";
 import CreatorForm, { CreatorFormProps } from "./CreatorForm";
+import styles from "./styles.module.scss";
 
 const MenuCreator = () => {
 	const { menuData } = useMenuStore();
+	const [isFormVisible, setFormVisible] = useState(false);
+
+	const toggleForm = () => {
+		setFormVisible((prev) => !prev); // Toggle visibility
+	};
+
+	const categories = useMemo(() => {
+		return menuData.map((menuItem) => {
+			return {
+				label: menuItem.category,
+				value: menuItem.category.toLowerCase(),
+			};
+		});
+	}, [menuData]);
 
 	const add: CreatorFormProps["onSubmit"] = () => {};
 
@@ -21,6 +37,9 @@ const MenuCreator = () => {
 			<div className={styles.container}>
 				<div className={styles.header}>
 					<h2>Menu Creator</h2>
+					<Button onClick={toggleForm} className={styles.toggleButton}>
+						{isFormVisible ? "Hide Form" : "Show Form"}
+					</Button>
 				</div>
 				<div className={styles.accordionWrapper}>
 					<Accordion className={styles.accordion} allowZeroExpanded>
@@ -45,8 +64,13 @@ const MenuCreator = () => {
 					</Accordion>
 				</div>
 			</div>
-			<aside className={styles.creatorForm}>
-				<CreatorForm onSubmit={add} />
+			<aside
+				className={clsx(
+					styles.creatorForm,
+					isFormVisible ? styles.visible : styles.hidden
+				)}
+			>
+				<CreatorForm onSubmit={add} categories={categories} />
 			</aside>
 		</div>
 	);

@@ -37,12 +37,14 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onImageSelect }) => {
 			</label>
 			{selectedImage ? (
 				<div className={styles.previewContainer}>
-					<img src={selectedImage} alt="Selected" className={styles.previewImage} />
+					<img
+						src={selectedImage}
+						alt="Selected"
+						className={styles.previewImage}
+					/>
 				</div>
 			) : (
-				<div className={styles.placeholder}>
-					No image selected
-				</div>
+				<div className={styles.placeholder}>No image selected</div>
 			)}
 		</div>
 	);

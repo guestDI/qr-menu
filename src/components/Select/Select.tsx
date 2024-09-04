@@ -1,6 +1,6 @@
-import React, { forwardRef } from "react";
-import styles from "./styles.module.scss";
 import { CustomEvent } from "@/model/types";
+import { forwardRef } from "react";
+import styles from "./styles.module.scss";
 
 interface Option {
 	label: string;
@@ -48,8 +48,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
 					<option value="" disabled>
 						{placeholder}
 					</option>
-					{options.map((option) => (
-						<option key={option.value} value={option.value}>
+					{options.map((option, index) => (
+						<option key={index} value={option.value}>
 							{option.label}
 						</option>
 					))}

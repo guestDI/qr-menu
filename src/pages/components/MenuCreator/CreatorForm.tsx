@@ -7,8 +7,14 @@ import { useForm } from "react-hook-form";
 import ImagePicker from "./ImagePicker/ImagePicker";
 import styles from "./styles.module.scss";
 
+interface ICategories {
+	label: string;
+	value: string;
+}
+
 export interface CreatorFormProps {
 	onSubmit: () => void;
+	categories: ICategories[];
 }
 
 interface FormData {
@@ -18,7 +24,7 @@ interface FormData {
 	price: string;
 }
 
-const CreatorForm: React.FC<CreatorFormProps> = ({ onSubmit }) => {
+const CreatorForm: React.FC<CreatorFormProps> = ({ onSubmit, categories }) => {
 	const {
 		register,
 		handleSubmit,
@@ -33,13 +39,10 @@ const CreatorForm: React.FC<CreatorFormProps> = ({ onSubmit }) => {
 
 	return (
 		<div className={styles.formContainer}>
-			<h2>Add / Edit</h2>
+			<h2>Add </h2>
 			<form onSubmit={handleSubmit(add)}>
 				<Select
-					options={[
-						{ label: "Option 1", value: "1" },
-						{ label: "Option 2", value: "2" },
-					]}
+					options={categories}
 					size="lg"
 					placeholder="Select Category"
 					name="category"
