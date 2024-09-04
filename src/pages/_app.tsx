@@ -8,7 +8,7 @@ import "../../styles/admin.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { DataLayerContextProvider } from "../context/DataLayerContext";
 import useCheckAuth from "../hooks/useCheckAuth";
-import Head from "next/head"
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	useCheckAuth();
@@ -22,7 +22,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
 				<link
 					href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-					rel="stylesheet" />
+					rel="stylesheet"
+				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Component {...pageProps} />

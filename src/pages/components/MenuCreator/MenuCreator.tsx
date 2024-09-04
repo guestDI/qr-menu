@@ -1,14 +1,7 @@
-import React from "react";
 import styles from "./styles.module.scss";
-import Button from "../../../components/Button/Button";
 
+import MenuCard from "@/pages/components/MenuCreator/MenuCard/MenuCard";
 import useMenuStore from "@/stores/menuStore";
-import MenuCard from "@/pages/components/MenuCreator/MenuCard";
-import Input from "../../../components/Input/Input";
-import clsx from "clsx";
-import { useForm } from "react-hook-form";
-import Textarea from "@/components/Textarea/Textarea";
-import Select from "@/components/Select/Select";
 import {
 	Accordion,
 	AccordionItem,
@@ -16,19 +9,12 @@ import {
 	AccordionItemHeading,
 	AccordionItemPanel,
 } from "react-accessible-accordion";
+import CreatorForm, { CreatorFormProps } from "./CreatorForm";
 
 const MenuCreator = () => {
 	const { menuData } = useMenuStore();
 
-	const categories = menuData.map((item) => item.category);
-
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm();
-
-	const add = () => {};
+	const add: CreatorFormProps["onSubmit"] = () => {};
 
 	return (
 		<div className={styles.main}>
@@ -36,7 +22,7 @@ const MenuCreator = () => {
 				<div className={styles.header}>
 					<h2>Menu Creator</h2>
 				</div>
-				<div>
+				<div className={styles.accordionWrapper}>
 					<Accordion className={styles.accordion} allowZeroExpanded>
 						{menuData.map((menuItem, index) => {
 							return (
@@ -60,38 +46,7 @@ const MenuCreator = () => {
 				</div>
 			</div>
 			<aside className={styles.creatorForm}>
-				<form onSubmit={handleSubmit(add)}>
-					<Select
-						options={[
-							{ label: "Option 1", value: "1" },
-							{ label: "Option 2", value: "2" },
-						]}
-						size="lg"
-						placeholder="Select Category"
-						name="category"
-						onAdd={() => {
-							console.log("Add new option clicked");
-						}}
-					/>
-					<Input
-						size="lg"
-						placeholder="Title"
-						type="text"
-						error={errors?.username?.message as string}
-						{...register("title")}
-					/>
-					<Textarea placeholder="Description" name="description" />
-					<Input
-						size="lg"
-						placeholder="Price"
-						type="text"
-						error={errors?.email?.message as string}
-						{...register("price")}
-					/>
-					<Button className={clsx(styles.btn, styles.addBtn)} type="submit">
-						Save
-					</Button>
-				</form>
+				<CreatorForm onSubmit={add} />
 			</aside>
 		</div>
 	);

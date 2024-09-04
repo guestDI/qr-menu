@@ -1,13 +1,12 @@
 import type { NextPage } from "next";
-import Image from "next/image";
 import React from "react";
 import { Button, Input } from "../components";
-import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../api/axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import Header from "@/components/Header/Header";
 
 const registerOptions = {
 	username: { required: "Username is required" },
@@ -49,18 +48,7 @@ const Login: NextPage = () => {
 
 	return (
 		<div className="login-container">
-			<div className="header">
-				<div className="logo">
-					<Image src="/logo_2.png" alt="Logo" width={60} height={60} />
-				</div>
-				<span>Digital menu</span>
-				<div className="header-menu">
-					<Link href="/">Home</Link>
-				</div>
-				<div className="header-menu">
-					<Link href="/">Our mission</Link>
-				</div>
-			</div>
+			<Header />
 			<div className="left-container">
 				<div className="form-group">
 					<p>WELCOME BACK</p>

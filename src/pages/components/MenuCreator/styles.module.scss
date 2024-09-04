@@ -17,6 +17,10 @@
 		padding: 0 0 0 2rem;
 		border-left: rgba(214, 214, 214, 0.67) 1px solid;
 
+		h2 {
+			color: #fff;
+		}
+
 		form {
 			input,
 			textarea,
@@ -54,6 +58,18 @@
 			}
 		}
 	}
+
+	@media (max-width: 768px) {
+		.container {
+			padding: 10px;
+		}
+		.header h2 {
+			font-size: 1.5rem;
+		}
+		.accordionWrapper {
+			margin: 0;
+		}
+	}
 }
 
 .header {
@@ -76,6 +92,11 @@
 			border-radius: 0.5rem;
 			cursor: pointer;
 			margin-left: 1rem;
+
+			@media (max-width: 768px) {
+				width: 100%;
+				font-size: 1rem;
+			}
 		}
 
 		.btnSecondary {
@@ -100,42 +121,18 @@
 	grid-gap: 2rem;
 }
 
-.card-container {
-	color: #fff;
-	border: 1px solid rgba(56, 56, 69, 0.98);
-	background: rgba(53, 53, 67, 0.98);
-	box-shadow: rgba(43, 40, 40, 0.45) 0px 5px 15px;
-	border-radius: 0.5rem;
-	padding: 2rem;
-	width: 25rem;
-
-	.imageContainer {
-		width: 100%;
-		img {
-			box-shadow: rgba(43, 40, 40, 0.45) 0px 5px 15px;
+.formContainer {
+	form {
+		@media (max-width: 768px) {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
 		}
 	}
+}
 
-	.title {
-		padding: 0;
-		margin: 0 0 0.5rem;
-		font-size: 1.5rem;
-	}
-
-	.card-price {
-		font-size: 1.5rem;
-		font-weight: 500;
-		margin-top: 0.5rem;
-	}
-
-	.desc {
-		padding: 0 1rem;
-
-		li {
-			font-size: 1.2rem;
-			line-height: 1.6rem;
-		}
-	}
+.accordionWrapper {
+	padding-right: 3rem;
 }
 
 .accordion {

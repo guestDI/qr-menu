@@ -3,13 +3,13 @@ import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 // import { Transition } from "react-transition-group"
 import axiosInstance from "../api/axios";
-import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CustomEvent } from "@/model/types";
 import { useRouter } from "next/navigation";
+import Header from "@/components/Header/Header";
 
 // interface ITransition {
 // 	[key: string]: Record<string, number | string>;
@@ -85,18 +85,7 @@ const Registration: React.FC = () => {
 
 	return (
 		<div className="login-container">
-			<div className="header">
-				<div className="logo">
-					<Image src="/logo_2.png" alt="Logo" width={60} height={60} />
-				</div>
-				<span>Digital menu</span>
-				<div className="header-menu">
-					<Link href="/">Home</Link>
-				</div>
-				<div className="header-menu">
-					<Link href="/">Our mission</Link>
-				</div>
-			</div>
+			<Header />
 			<div className="left-container">
 				<div className="form-group">
 					<p>START FOR FREE</p>

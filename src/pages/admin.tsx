@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import useAppStore from "@/stores/appStore";
 import axiosInstance from "@/api/axios";
 import useMenuStore from "@/stores/menuStore";
+import Logo from "@/inline-img/mobile-logo.png";
 
 const QRCodeManager = dynamic(
 	() => import("./components/QRCodeManager/QRCodeManager")
@@ -89,38 +90,38 @@ const Admin: NextPage<{ user: IDecodedToken | null }> = ({ user }) => {
 		}
 	}, [setMenuData, user]);
 
-	useEffect(() => {
-		if (ref?.contentDocument) {
-			// Получение всех стилей из основного документа
-			const styleSheets = Array.from(document.styleSheets);
-			const iframeDocument = ref.contentDocument;
-
-			styleSheets.forEach((styleSheet) => {
-				try {
-					if (styleSheet.cssRules) {
-						const newStyleElement = iframeDocument.createElement("style");
-
-						for (let i = 0; i < styleSheet.cssRules.length; i++) {
-							const cssRule = styleSheet.cssRules[i];
-							newStyleElement.appendChild(
-								iframeDocument.createTextNode(cssRule.cssText)
-							);
-						}
-
-						iframeDocument.head.appendChild(newStyleElement);
-					} else if (styleSheet.href) {
-						// Если стили подключены через <link>
-						const newLinkElement = iframeDocument.createElement("link");
-						newLinkElement.rel = "stylesheet";
-						newLinkElement.href = styleSheet.href;
-						iframeDocument.head.appendChild(newLinkElement);
-					}
-				} catch (error) {
-					console.error("Ошибка при вставке стилей в iframe:", error);
-				}
-			});
-		}
-	}, [ref]);
+	// useEffect(() => {
+	// 	if (ref?.contentDocument) {
+	// 		// Получение всех стилей из основного документа
+	// 		const styleSheets = Array.from(document.styleSheets);
+	// 		const iframeDocument = ref.contentDocument;
+	//
+	// 		styleSheets.forEach((styleSheet) => {
+	// 			try {
+	// 				if (styleSheet.cssRules) {
+	// 					const newStyleElement = iframeDocument.createElement("style");
+	//
+	// 					for (let i = 0; i < styleSheet.cssRules.length; i++) {
+	// 						const cssRule = styleSheet.cssRules[i];
+	// 						newStyleElement.appendChild(
+	// 							iframeDocument.createTextNode(cssRule.cssText)
+	// 						);
+	// 					}
+	//
+	// 					iframeDocument.head.appendChild(newStyleElement);
+	// 				} else if (styleSheet.href) {
+	// 					// Если стили подключены через <link>
+	// 					const newLinkElement = iframeDocument.createElement("link");
+	// 					newLinkElement.rel = "stylesheet";
+	// 					newLinkElement.href = styleSheet.href;
+	// 					iframeDocument.head.appendChild(newLinkElement);
+	// 				}
+	// 			} catch (error) {
+	// 				console.error("Ошибка при вставке стилей в iframe:", error);
+	// 			}
+	// 		});
+	// 	}
+	// }, [ref]);
 
 	const sidebarItems = useMemo(
 		() => getSidebarItems(user ? user.role : ""),
@@ -133,12 +134,6 @@ const Admin: NextPage<{ user: IDecodedToken | null }> = ({ user }) => {
 
 	return (
 		<div className="main-container">
-			<div className="header">
-				<div className="logo">
-					<Image src="/logo_2.png" alt="Logo" width={60} height={60} />
-				</div>
-				<span>Digital menu</span>
-			</div>
 			<div className="content">
 				<Sidebar
 					sidebarItems={sidebarItems}

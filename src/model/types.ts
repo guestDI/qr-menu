@@ -1,6 +1,6 @@
 import React from "react";
 
-interface IMenuItem {
+export interface IMenuItem {
 	id: string;
 	category: string;
 	currency: string;

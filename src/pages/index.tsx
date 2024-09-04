@@ -11,7 +11,7 @@ import {
 } from "./components";
 import { useRouter } from "next/navigation";
 import Footer from "./components/Footer/Footer";
-import { IFaqData, IEntityData } from "../model/types";
+import { IFaqData, IEntityData } from "@/model/types";
 
 type HomeProps = {
 	goals: IEntityData[];
