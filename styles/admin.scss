@@ -8,17 +8,30 @@
 		rgb(29, 29, 37, 0.98) 50%,
 		rgb(57, 57, 57) 100%
 	);
+
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+	}
 }
 
 .content {
 	display: flex;
 	height: 100%;
 	border-top: rgba(214, 214, 214, 0.67) 1px solid;
+
+	@media (max-width: 768px) {
+		padding: 2rem;
+	}
 }
 
 .content main {
 	padding: 10px 0 10px 30px;
 	width: 100%;
+
+	@media (max-width: 768px) {
+		padding: 0;
+	}
 }
 
 .profile-btn-container {

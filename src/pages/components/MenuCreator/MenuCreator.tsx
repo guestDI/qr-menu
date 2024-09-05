@@ -1,4 +1,5 @@
 import Button from "@/components/Button/Button";
+import useScreenResolution from "@/hooks/useScreenResolution";
 import MenuCard from "@/pages/components/MenuCreator/MenuCard/MenuCard";
 import useMenuStore from "@/stores/menuStore";
 import clsx from "clsx";
@@ -16,6 +17,7 @@ import styles from "./styles.module.scss";
 const MenuCreator = () => {
 	const { menuData } = useMenuStore();
 	const [isFormVisible, setFormVisible] = useState(false);
+	const { isMobile } = useScreenResolution();
 
 	const toggleForm = () => {
 		setFormVisible((prev) => !prev); // Toggle visibility
@@ -34,7 +36,12 @@ const MenuCreator = () => {
 
 	return (
 		<div className={styles.main}>
-			<div className={styles.container}>
+			<div
+				className={clsx(
+					styles.container,
+					isFormVisible ? styles.shortWidth : styles.fullWidth
+				)}
+			>
 				<div className={styles.header}>
 					<h2>Menu Creator</h2>
 					<Button onClick={toggleForm} className={styles.toggleButton}>
@@ -70,7 +77,12 @@ const MenuCreator = () => {
 					isFormVisible ? styles.visible : styles.hidden
 				)}
 			>
-				<CreatorForm onSubmit={add} categories={categories} />
+				<CreatorForm
+					onSubmit={add}
+					categories={categories}
+					onClose={toggleForm}
+					isMobile={isMobile}
+				/>
 			</aside>
 		</div>
 	);

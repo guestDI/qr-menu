@@ -1,23 +1,30 @@
-import React, { FC } from "react";
 import clsx from "clsx";
-import styles from "./styles.module.scss";
 import Image from "next/image";
+import { FC } from "react";
+import styles from "./styles.module.scss";
 
 interface MenuItemProps {
 	title: string;
 	onClick: () => void;
 	selected: boolean;
 	icon: string;
+	isMobile: boolean;
 }
 
-const SidebarItem: FC<MenuItemProps> = ({ title, onClick, selected, icon }) => {
+const SidebarItem: FC<MenuItemProps> = ({
+	title,
+	onClick,
+	selected,
+	icon,
+	isMobile,
+}) => {
 	return (
 		<li
 			onClick={onClick}
 			className={clsx(styles.sidebarItem, { [styles.selected]: selected })}
 		>
 			<Image src={icon} alt="Settings" width={30} height={30} />
-			<span>{title}</span>
+			{!isMobile && <span>{title}</span>}
 		</li>
 	);
 };

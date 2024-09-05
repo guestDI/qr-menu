@@ -2,7 +2,9 @@ import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import Select from "@/components/Select/Select";
 import Textarea from "@/components/Textarea/Textarea";
+import CloseIcon from "@/inline-img/svg/close.svg";
 import clsx from "clsx";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import ImagePicker from "./ImagePicker/ImagePicker";
 import styles from "./styles.module.scss";
@@ -15,6 +17,8 @@ interface ICategories {
 export interface CreatorFormProps {
 	onSubmit: () => void;
 	categories: ICategories[];
+	onClose: () => void;
+	isMobile: boolean;
 }
 
 interface FormData {
@@ -24,7 +28,12 @@ interface FormData {
 	price: string;
 }
 
-const CreatorForm: React.FC<CreatorFormProps> = ({ onSubmit, categories }) => {
+const CreatorForm: React.FC<CreatorFormProps> = ({
+	onSubmit,
+	categories,
+	onClose,
+	isMobile,
+}) => {
 	const {
 		register,
 		handleSubmit,
@@ -39,7 +48,14 @@ const CreatorForm: React.FC<CreatorFormProps> = ({ onSubmit, categories }) => {
 
 	return (
 		<div className={styles.formContainer}>
-			<h2>Add </h2>
+			<div className={styles.header}>
+				<h2>Add new item</h2>
+				{isMobile && (
+					<Button round={true} onClick={onClose}>
+						<Image src={CloseIcon} alt="close" width={15} height={15} />
+					</Button>
+				)}
+			</div>
 			<form onSubmit={handleSubmit(add)}>
 				<Select
 					options={categories}

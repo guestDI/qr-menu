@@ -13,15 +13,17 @@ interface SidebarProps {
 	sidebarItems: Array<SidebarItem>;
 	onClick: (i: number) => void;
 	selectedIdx: number;
+	isMobile: boolean;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
 	sidebarItems,
 	onClick,
 	selectedIdx,
+	isMobile,
 }) => {
 	return (
-		<aside className={styles.asideContent}>
+		<div className={styles.asideContent}>
 			<ul>
 				{sidebarItems.map((item, i) => (
 					<SidebarItem
@@ -30,10 +32,11 @@ const Sidebar: React.FC<SidebarProps> = ({
 						onClick={() => onClick(i)}
 						selected={selectedIdx === i}
 						icon={item.icon}
+						isMobile={isMobile}
 					/>
 				))}
 			</ul>
-		</aside>
+		</div>
 	);
 };
 

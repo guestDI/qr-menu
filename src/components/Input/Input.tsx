@@ -1,6 +1,6 @@
-import React, { forwardRef } from "react";
-import styles from "./styles.module.scss";
+import { forwardRef } from "react";
 import { CustomEvent } from "../../model/types";
+import styles from "./styles.module.scss";
 
 interface InputProps {
 	placeholder: string;

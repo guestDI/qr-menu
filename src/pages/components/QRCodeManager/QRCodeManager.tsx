@@ -1,17 +1,17 @@
-import React, { useState, useRef, useCallback } from "react";
-import Image from "next/image";
-import { useReactToPrint } from "react-to-print";
-import QrCodeIcon from "../../../inline-img/svg/qr-code.svg";
-import GenerateIcon from "../../../inline-img/svg/generate.svg";
-import PrintIcon from "../../../inline-img/svg/print.svg";
-import ClearIcon from "../../../inline-img/svg/clear.svg";
-import styles from "./styles.module.scss";
-import Button from "../../../components/Button/Button";
-import Input from "../../../components/Input/Input";
-import axiosInstance from "../../../api/axios";
 import { CustomEvent } from "@/model/types";
 import useQrCodeStore from "@/stores/codeStore";
 import useUserStore from "@/stores/userStore";
+import Image from "next/image";
+import { useCallback, useRef, useState } from "react";
+import { useReactToPrint } from "react-to-print";
+import axiosInstance from "../../../api/axios";
+import Button from "../../../components/Button/Button";
+import Input from "../../../components/Input/Input";
+import ClearIcon from "../../../inline-img/svg/clear.svg";
+import GenerateIcon from "../../../inline-img/svg/generate.svg";
+import PrintIcon from "../../../inline-img/svg/print.svg";
+import QrCodeIcon from "../../../inline-img/svg/qr-code.svg";
+import styles from "./styles.module.scss";
 
 const QrCodeManager = () => {
 	const [fromTable, setFromTable] = useState(0);
@@ -105,10 +105,11 @@ const QrCodeManager = () => {
 				</div>
 			</div>
 
-			<div className={styles.qrCodesContainer}>
+			{/* fix printing */}
+			<div ref={componentRef} className={styles.qrCodesContainer}>
 				{qrCodes.length > 0 ? (
 					<>
-						<div ref={componentRef} className={styles.qrGridWrapper}>
+						<div className={styles.qrGridWrapper}>
 							{qrCodes.map((qrCode, index) => (
 								<div key={index}>
 									<p>Table {qrCode.table}</p>

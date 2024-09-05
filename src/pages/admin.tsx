@@ -1,18 +1,16 @@
-import { GetServerSideProps, NextPage } from "next";
-import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react";
-import QRCodeIcon from "../inline-img/svg/qr-code.svg";
-import PeopleIcon from "../inline-img/svg/people-nearby.svg";
-import MenuIcon from "../inline-img/svg/menu.svg";
-import Sidebar from "./components/Sidebar/Sidebar";
-import { jwtDecode } from "jwt-decode";
-import { IDecodedToken } from "@/model/types";
-import useUserStore from "@/stores/userStore";
-import dynamic from "next/dynamic";
-import useAppStore from "@/stores/appStore";
 import axiosInstance from "@/api/axios";
+import useScreenResolution from "@/hooks/useScreenResolution";
+import { IDecodedToken } from "@/model/types";
 import useMenuStore from "@/stores/menuStore";
-import Logo from "@/inline-img/mobile-logo.png";
+import useUserStore from "@/stores/userStore";
+import { jwtDecode } from "jwt-decode";
+import { GetServerSideProps, NextPage } from "next";
+import dynamic from "next/dynamic";
+import { useEffect, useMemo, useState } from "react";
+import MenuIcon from "../inline-img/svg/menu.svg";
+import PeopleIcon from "../inline-img/svg/people-nearby.svg";
+import QRCodeIcon from "../inline-img/svg/qr-code.svg";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 const QRCodeManager = dynamic(
 	() => import("./components/QRCodeManager/QRCodeManager")
@@ -62,7 +60,7 @@ const Admin: NextPage<{ user: IDecodedToken | null }> = ({ user }) => {
 	const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 	const setUser = useUserStore((state) => state.setUser);
 	const { menuData, setMenuData } = useMenuStore();
-	const isPreviewOpen = useAppStore((state) => state.isPreviewOpen);
+	const { isMobile, isTablet, isDesktop } = useScreenResolution();
 
 	const [ref, setRef] = useState();
 	const container = ref?.contentWindow?.document?.body;
@@ -133,16 +131,29 @@ const Admin: NextPage<{ user: IDecodedToken | null }> = ({ user }) => {
 	};
 
 	return (
-		<div className="main-container">
-			<div className="content">
+		<>
+			<div className="main-container">
+				<div className="content">
+					{(isDesktop || isTablet) && (
+						<Sidebar
+							sidebarItems={sidebarItems}
+							onClick={(i) => setSelectedItemIndex(i)}
+							selectedIdx={selectedItemIndex}
+							isMobile={false}
+						/>
+					)}
+					<main>{renderContent()}</main>
+				</div>
+			</div>
+			{isMobile && (
 				<Sidebar
 					sidebarItems={sidebarItems}
 					onClick={(i) => setSelectedItemIndex(i)}
 					selectedIdx={selectedItemIndex}
+					isMobile={true}
 				/>
-				<main>{renderContent()}</main>
-			</div>
-		</div>
+			)}
+		</>
 	);
 };
 
