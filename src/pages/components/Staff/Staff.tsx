@@ -1,15 +1,15 @@
-import React, { useMemo, useEffect } from "react";
-import { useTable } from "react-table";
-import Button from "../../../components/Button/Button";
-import styles from "./styles.module.scss";
-import Image from "next/image";
-import DeleteIcon from "../../../inline-img/svg/delete.svg";
-import clsx from "clsx";
-import axiosInstance from "../../../api/axios";
-import AddMemberForm from "./AddMemberForm";
-import { toast, ToastContainer } from "react-toastify";
-import useStaffStore from "../../../stores/staffStore";
 import useUserStore from "@/stores/userStore";
+import clsx from "clsx";
+import Image from "next/image";
+import React, { useEffect, useMemo } from "react";
+import { useTable } from "react-table";
+import { toast, ToastContainer } from "react-toastify";
+import axiosInstance from "../../../api/axios";
+import Button from "../../../components/Button/Button";
+import DeleteIcon from "../../../inline-img/svg/delete.svg";
+import useStaffStore from "../../../stores/staffStore";
+import AddMemberForm from "./AddMemberForm";
+import styles from "./styles.module.scss";
 
 interface INewStaffMember {
 	username: string;
@@ -138,22 +138,29 @@ const Staff = () => {
 					))}
 				</thead>
 				<tbody {...getTableBodyProps()}>
-					{rows.map((row, index) => {
-						prepareRow(row);
-						return (
-							<tr {...row.getRowProps()} key={index}>
-								{row.cells.map((cell, index) => (
-									<td
-										{...cell.getCellProps()}
-										style={{ borderBottom: "1px solid #ccc", padding: "10px" }}
-										key={index}
-									>
-										{cell.render("Cell")}
-									</td>
-								))}
-							</tr>
-						);
-					})}
+					{!rows.length ? (
+						<p>No staff members found</p>
+					) : (
+						rows.map((row, index) => {
+							prepareRow(row);
+							return (
+								<tr {...row.getRowProps()} key={index}>
+									{row.cells.map((cell, index) => (
+										<td
+											{...cell.getCellProps()}
+											style={{
+												borderBottom: "1px solid #ccc",
+												padding: "10px",
+											}}
+											key={index}
+										>
+											{cell.render("Cell")}
+										</td>
+									))}
+								</tr>
+							);
+						})
+					)}
 				</tbody>
 			</table>
 			<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />
