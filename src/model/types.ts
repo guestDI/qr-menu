@@ -1,11 +1,11 @@
 import React from "react";
 
 export interface IMenuItem {
-	id: string;
+	id?: string;
 	category: string;
-	currency: string;
+	currency?: string;
 	description: string;
-	image: string;
+	image?: string;
 	price: number;
 	title: string;
 }

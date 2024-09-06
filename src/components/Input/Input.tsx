@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 interface InputProps {
 	placeholder: string;
 	name: string;
-	type: "text" | "email" | "password";
+	type: "text" | "email" | "password" | "number";
 	onChange?: (e: CustomEvent) => void;
 	value?: string;
 	disabled?: boolean;

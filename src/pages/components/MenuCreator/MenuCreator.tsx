@@ -1,7 +1,10 @@
+import axiosInstance from "@/api/axios";
 import Button from "@/components/Button/Button";
 import useScreenResolution from "@/hooks/useScreenResolution";
+import { IMenuItem } from "@/model/types";
 import MenuCard from "@/pages/components/MenuCreator/MenuCard/MenuCard";
 import useMenuStore from "@/stores/menuStore";
+import useUserStore from "@/stores/userStore";
 import clsx from "clsx";
 import { useMemo, useState } from "react";
 import {
@@ -11,13 +14,15 @@ import {
 	AccordionItemHeading,
 	AccordionItemPanel,
 } from "react-accessible-accordion";
+import { toast, ToastContainer } from "react-toastify";
 import CreatorForm, { CreatorFormProps } from "./CreatorForm";
 import styles from "./styles.module.scss";
 
 const MenuCreator = () => {
-	const { menuData } = useMenuStore();
+	const { menuData, addMenuItem } = useMenuStore();
 	const [isFormVisible, setFormVisible] = useState(false);
 	const { isMobile } = useScreenResolution();
+	const { user } = useUserStore();
 
 	const toggleForm = () => {
 		setFormVisible((prev) => !prev); // Toggle visibility
@@ -32,7 +37,31 @@ const MenuCreator = () => {
 		});
 	}, [menuData]);
 
-	const add: CreatorFormProps["onSubmit"] = () => {};
+	const add: CreatorFormProps["onSubmit"] = async (data: IMenuItem) => {
+		const categoryTitle = categories.find(
+			(category) => category.value === data.category
+		)?.label;
+		await axiosInstance
+			.put("/menu/add-menu-items", {
+				menuItems: [
+					{
+						title: data.title,
+						description: data.description,
+						category: categoryTitle,
+						currency: "Euro",
+						price: data.price,
+					},
+				],
+				placeId: user?.organizationId,
+			})
+			.then(({ data }) => {
+				addMenuItem(data);
+				toast("User was added successfully!");
+			})
+			.catch(() => {
+				toast("An unexpected error occurred");
+			});
+	};
 
 	return (
 		<div className={styles.main}>
@@ -84,6 +113,7 @@ const MenuCreator = () => {
 					isMobile={isMobile}
 				/>
 			</aside>
+			<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />
 		</div>
 	);
 };

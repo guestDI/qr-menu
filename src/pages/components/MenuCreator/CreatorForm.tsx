@@ -3,6 +3,7 @@ import Input from "@/components/Input/Input";
 import Select from "@/components/Select/Select";
 import Textarea from "@/components/Textarea/Textarea";
 import CloseIcon from "@/inline-img/svg/close.svg";
+import { IMenuItem } from "@/model/types";
 import clsx from "clsx";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
@@ -15,7 +16,7 @@ interface ICategories {
 }
 
 export interface CreatorFormProps {
-	onSubmit: () => void;
+	onSubmit: (data: IMenuItem) => void;
 	categories: ICategories[];
 	onClose: () => void;
 	isMobile: boolean;
@@ -25,7 +26,7 @@ interface FormData {
 	category: string;
 	title: string;
 	description: string;
-	price: string;
+	price: number;
 }
 
 const CreatorForm: React.FC<CreatorFormProps> = ({
@@ -41,9 +42,7 @@ const CreatorForm: React.FC<CreatorFormProps> = ({
 	} = useForm<FormData>();
 
 	const add = (data: FormData) => {
-		// Handle form submission
-		console.log(data);
-		onSubmit(); // Call the onSubmit prop
+		onSubmit(data); // Call the onSubmit prop
 	};
 
 	return (
@@ -61,10 +60,10 @@ const CreatorForm: React.FC<CreatorFormProps> = ({
 					options={categories}
 					size="lg"
 					placeholder="Select Category"
-					name="category"
 					onAdd={() => {
 						console.log("Add new option clicked");
 					}}
+					{...register("category")}
 				/>
 				<Input
 					size="lg"
@@ -77,7 +76,7 @@ const CreatorForm: React.FC<CreatorFormProps> = ({
 				<Input
 					size="lg"
 					placeholder="Price"
-					type="text"
+					type="number"
 					error={errors?.price?.message as string}
 					{...register("price")}
 				/>

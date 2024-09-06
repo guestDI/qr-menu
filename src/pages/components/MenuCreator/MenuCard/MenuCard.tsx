@@ -20,12 +20,16 @@ const MenuCard: FC<MenuCardProps> = ({ menuItem }) => {
 			</div>
 			<div className={styles.content}>
 				<div>
-					<Image
-						width={110}
-						height={110}
-						src={menuItem.image}
-						alt="menu item"
-					/>
+					{menuItem.image ? (
+						<Image
+							width={110}
+							height={110}
+							src={menuItem.image}
+							alt="menu item"
+						/>
+					) : (
+						<div className={styles.placeholder}>No image</div>
+					)}
 					<p className={styles["card-price"]}>&euro;{menuItem.price}</p>
 				</div>
 

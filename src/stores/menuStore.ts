@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import { IMenu } from "@/model/types";
+import { create } from "zustand";
 
 interface MenuStore {
 	menuData: IMenu[];
@@ -12,10 +12,25 @@ interface MenuStore {
 const useMenuStore = create<MenuStore>((set) => ({
 	menuData: [],
 	setMenuData: (data) => set({ menuData: data }),
-	addMenuItem: (newMember) =>
-		set((state) => ({
-			menuData: [...state.menuData, newMember],
-		})),
+	addMenuItem: (newItems) =>
+		set((state) => {
+			const existingMenu = state.menuData.find(
+				(menu) => menu.placeId === placeId
+			);
+			if (existingMenu) {
+				return {
+					menuData: state.menuData.map((menu) =>
+						menu.placeId === placeId
+							? { ...menu, menuItems: [...menu.menuItems, newItem] }
+							: menu
+					),
+				};
+			} else {
+				return {
+					menuData: [...state.menuData, { placeId, menuItems: [newItem] }],
+				};
+			}
+		}),
 	removeMenuItem: (id) =>
 		set((state) => ({
 			menuData: state.menuData.filter((staff) => staff.id !== id),

@@ -191,9 +191,12 @@
 .accordionWrapper {
 	padding-right: 3rem;
 	overflow-y: auto;
+	max-height: 87vh;
 
 	@media (max-width: 768px) {
 		padding: 0%;
+		overflow-y: auto;
+		max-height: 80vh;
 	}
 }
 

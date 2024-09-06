@@ -1,7 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { jwtDecode } from "jwt-decode"
 
 const axiosInstance = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3003/api",

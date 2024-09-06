@@ -1,6 +1,8 @@
 "use client";
 
-import { NextPage } from "next";
+import axiosInstance from "@/api/axios";
+import { useDataLayerContext } from "@/context/DataLayerContext";
+import { GetStaticProps, NextPage } from "next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "../../styles/Menu.module.scss";
 import {
@@ -10,7 +12,6 @@ import {
 	DetailsView,
 	ShoppingCart,
 } from "../components";
-import { useDataLayerContext } from "@/context/DataLayerContext";
 
 const ButtonContent: React.FC<{ total: number }> = ({ total }) => (
 	<div className={styles.shoppingCartBtnContent}>
@@ -30,11 +31,10 @@ const renderCards = (
 	return (
 		<Card
 			uid={id}
-			key={id}
+			key={`${category}-${id}`}
 			name={title}
 			price={price}
 			image={image}
-			// priceCurrency={priceCurrency}
 			onCardClick={() => onCardClick(category, id)}
 			description={description}
 			addToBasket={() => addToBasket({ category, id })}
@@ -42,7 +42,12 @@ const renderCards = (
 	);
 };
 
-const Menu: NextPage = ({ menuData }) => {
+interface MenuProps {
+	menuData: any[];
+}
+
+const Menu: NextPage<MenuProps> = ({ menuData }) => {
+	console.log("menuData", menuData);
 	const [showModal, setShowModal] = useState(false);
 
 	const {
@@ -104,12 +109,7 @@ const Menu: NextPage = ({ menuData }) => {
 	);
 
 	const moveToCategory = useCallback((category: string) => {
-		// const currentRef: any = sectionRefs[categories.indexOf(category)]
-		// const offset = currentRef?.current?.offsetTop ?? 0
-		// window.scrollTo({
-		// 	top: offset - 80,
-		// 	behavior: "smooth",
-		// })
+		// Implementation for moving to category
 	}, []);
 
 	const menuCards = useMemo(
@@ -118,14 +118,12 @@ const Menu: NextPage = ({ menuData }) => {
 				return (
 					<section
 						id={menuItem.category}
-						// ref={sectionRefs[i]}
-						// ref={setRef(menuItem.category) as LegacyRef<HTMLElement>}
 						className={styles.categoryContainer}
 						key={i}
 					>
 						<h1 className={styles.categoryTitle}>{menuItem.category}</h1>
 						<div className={styles.cardsContainer}>
-							{menuData.map((item: any) =>
+							{menuItem.items.map((item: any) =>
 								renderCards(
 									menuItem.category,
 									item,
@@ -153,41 +151,42 @@ const Menu: NextPage = ({ menuData }) => {
 
 	return (
 		<div className={styles.container}>
-			{/*<Head>*/}
-			{/*	<link rel="preconnect" href="https://fonts.googleapis.com" />*/}
-			{/*	<link*/}
-			{/*		rel="preconnect"*/}
-			{/*		href="https://fonts.gstatic.com"*/}
-			{/*		crossOrigin="anonymous"*/}
-			{/*	/>*/}
-			{/*	<link*/}
-			{/*		href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,500;0,600;0,700;1,100&display=swap"*/}
-			{/*		rel="stylesheet"*/}
-			{/*	/>*/}
-			{/*</Head>*/}
 			<CategoriesPanel categories={categories} onClick={moveToCategory} />
 			{Object.keys(grouppedCardItems).length > 0 && (
 				<Button
-					onClick={toggleModal}
+					onClick={() => toggleModal()}
 					className={styles.shoppingCartBtn}
-					type="primary"
+					type="button"
 				>
 					<ButtonContent total={total} />
 				</Button>
 			)}
 			{menuCards}
-			{/*<Modal*/}
-			{/*	onClose={toggleModal}*/}
-			{/*	show={showModal}*/}
-			{/*	className={clsx(*/}
-			{/*		placement === "center" ? styles.modalCenter : styles.modalBottom*/}
-			{/*	)}*/}
-			{/*	placement={placement}*/}
-			{/*>*/}
-			{/*	{modalContent}*/}
-			{/*</Modal>*/}
 		</div>
 	);
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+	try {
+		const response = await axiosInstance.get(
+			"/menu/public/66d4c257ada272575bccd7d8"
+		);
+		const menuData = response.data;
+
+		return {
+			props: {
+				menuData,
+			},
+			revalidate: 60, // Revalidate every 60 seconds
+		};
+	} catch (error) {
+		console.error("Failed to fetch menu data:", error);
+		return {
+			props: {
+				menuData: [],
+			},
+		};
+	}
 };
 
 export default Menu;

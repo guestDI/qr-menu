@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+import TextWrapper from "@/components/TextWrapper/TextWrapper";
 import Image from "next/image";
 import React, { useCallback, useMemo } from "react";
-import Button from "../Button/Button";
 import { useDataLayerContext } from "../../context/DataLayerContext";
 import { getCurrencySign } from "../../helpers/helpers";
 import addIcon from "../../inline-img/svg/add.svg";
-import classes from "./styles.module.scss";
-import TextWrapper from "@/components/TextWrapper/TextWrapper";
+import Button from "../Button/Button";
+import { default as classes, default as styles } from "./styles.module.scss";
 
 interface CardProps {
 	uid: string;
@@ -48,15 +48,19 @@ const Card: React.FC<CardProps> = ({
 	return (
 		<div className={classes.card} onClick={onCardClick}>
 			<div>
-				<Image
-					alt="Dishes"
-					src={image}
-					width={200}
-					height={200}
-					loading="eager" //check this property in future
-					className={classes.cardImage}
-					quality={50}
-				/>
+				{image ? (
+					<Image
+						alt="Dishes"
+						src={image}
+						width={180}
+						height={180}
+						loading="eager" //check this property in future
+						className={classes.cardImage}
+						quality={50}
+					/>
+				) : (
+					<div className={styles.placeholder}>No image</div>
+				)}
 				<div className={classes.cardContent}>
 					<TextWrapper className={classes.cardContent__title} numberOfRows={1}>
 						{name}
