@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface QRCode {
-	table: string;
-	qrCodeData: string;
+	table: number;
+	url: string;
 }
 
 interface QRCodeStore {

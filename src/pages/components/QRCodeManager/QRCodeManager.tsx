@@ -4,13 +4,13 @@ import useUserStore from "@/stores/userStore";
 import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
-import axiosInstance from "../../../api/axios";
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
 import ClearIcon from "../../../inline-img/svg/clear.svg";
 import GenerateIcon from "../../../inline-img/svg/generate.svg";
 import PrintIcon from "../../../inline-img/svg/print.svg";
 import QrCodeIcon from "../../../inline-img/svg/qr-code.svg";
+import QRCodeGenerator from "./QRCodeGenerator/QRCodeGenerator";
 import styles from "./styles.module.scss";
 
 const QrCodeManager = () => {
@@ -29,25 +29,22 @@ const QrCodeManager = () => {
 		clearQrCodes();
 	}, [clearQrCodes]);
 
-	const handleGenerateQrCodes = async () => {
+	const handleGenerateQrCodes = () => {
 		const tables = [];
 		if (toTable) {
 			for (let i = fromTable; i <= toTable; i++) {
-				tables.push(i.toString());
+				tables.push(i);
 			}
 		} else {
 			tables.push(fromTable);
 		}
 
-		try {
-			const response = await axiosInstance.post("/qr/generate", {
-				id: user?.organizationId,
-				tables,
-			});
-			setQrCodes(response.data.qrCodes);
-		} catch (error) {
-			console.error("Error generating QR Codes:", error);
-		}
+		const generatedQrCodes = tables.map((table) => ({
+			table: table,
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/public/menu/${user?.organizationId}/${table}`,
+		}));
+
+		setQrCodes(generatedQrCodes);
 	};
 
 	const handleFromTableChange = (e: CustomEvent) => {
@@ -71,7 +68,7 @@ const QrCodeManager = () => {
 						onChange={handleFromTableChange}
 					/>
 					<Input
-						name="from"
+						name="to"
 						type="text"
 						placeholder="To"
 						size="lg"
@@ -79,7 +76,7 @@ const QrCodeManager = () => {
 					/>
 					<Button className={styles.btn} onClick={handleGenerateQrCodes}>
 						{GenerateIcon ? (
-							<Image src={GenerateIcon} alt="print" width={20} height={20} />
+							<Image src={GenerateIcon} alt="generate" width={20} height={20} />
 						) : (
 							"Generate"
 						)}
@@ -95,7 +92,7 @@ const QrCodeManager = () => {
 							</Button>
 							<Button className={styles.btn} onClick={clear}>
 								{ClearIcon ? (
-									<Image src={ClearIcon} alt="print" width={25} height={25} />
+									<Image src={ClearIcon} alt="clear" width={25} height={25} />
 								) : (
 									"Clear"
 								)}
@@ -105,24 +102,16 @@ const QrCodeManager = () => {
 				</div>
 			</div>
 
-			{/* fix printing */}
 			<div ref={componentRef} className={styles.qrCodesContainer}>
 				{qrCodes.length > 0 ? (
-					<>
-						<div className={styles.qrGridWrapper}>
-							{qrCodes.map((qrCode, index) => (
-								<div key={index}>
-									<p>Table {qrCode.table}</p>
-									<Image
-										src={qrCode.qrCodeData}
-										alt={`QR Code for Table ${qrCode.table}`}
-										width={150}
-										height={150}
-									/>
-								</div>
-							))}
-						</div>
-					</>
+					<div className={styles.qrGridWrapper}>
+						{qrCodes.map((qrCode, index) => (
+							<div key={index} className={styles.qrCodeItem}>
+								<p>Table {qrCode.table}</p>
+								<QRCodeGenerator url={qrCode.url} />
+							</div>
+						))}
+					</div>
 				) : (
 					<div className={styles.noQRCodeContainer}>
 						<Image

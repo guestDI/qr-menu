@@ -47,7 +47,6 @@ interface MenuProps {
 }
 
 const Menu: NextPage<MenuProps> = ({ menuData }) => {
-	console.log("menuData", menuData);
 	const [showModal, setShowModal] = useState(false);
 
 	const {

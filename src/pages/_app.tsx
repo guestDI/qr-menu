@@ -1,17 +1,16 @@
 import type { AppProps } from "next/app";
 
+import Head from "next/head";
+import "react-toastify/dist/ReactToastify.css";
+import "../../styles/admin.scss";
 import "../../styles/faq.scss";
 import "../../styles/globals.scss";
-import "../../styles/utilities.scss";
 import "../../styles/registration.scss";
-import "../../styles/admin.scss";
-import "react-toastify/dist/ReactToastify.css";
+import "../../styles/utilities.scss";
 import { DataLayerContextProvider } from "../context/DataLayerContext";
-import useCheckAuth from "../hooks/useCheckAuth";
-import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
-	useCheckAuth();
+	// useCheckAuth();
 
 	return (
 		<DataLayerContextProvider>
