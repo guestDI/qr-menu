@@ -7,13 +7,8 @@ import useCartStore from "@/stores/cartStore";
 import { GetStaticProps, NextPage } from "next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "../../../styles/Menu.module.scss";
-import {
-	Button,
-	Card,
-	CategoriesPanel,
-	DetailsView,
-	Modal,
-} from "../../components";
+import { Button, Card, DetailsView, Modal } from "../../components";
+import CategoriesBar from "../components/CategoriesBar/CategoriesBar";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
 
 const ButtonContent: React.FC<{ total: number }> = ({ total }) => (
@@ -66,10 +61,21 @@ const Menu: NextPage<MenuProps> = ({ menuData }) => {
 		Record<string, string>
 	>({});
 
-	const categories = useMemo(
-		() => menuData.map((menuItem: any) => menuItem.category),
-		[menuData]
-	);
+	const categories = useMemo(() => {
+		const res = menuData.map((menuItem: any) => ({
+			key: menuItem.category,
+			count: menuItem.items.length,
+		}));
+
+		res.push(
+			...[
+				{ key: "Desert", count: 4 },
+				{ key: "Wine", count: 4 },
+				{ key: "Salads", count: 4 },
+			]
+		);
+		return res;
+	}, [menuData]);
 
 	const itemIsSelected = !!Object.keys(selectedMenuItem).length;
 
@@ -158,7 +164,7 @@ const Menu: NextPage<MenuProps> = ({ menuData }) => {
 	return (
 		<>
 			<div className={styles.container}>
-				<CategoriesPanel categories={categories} onClick={moveToCategory} />
+				<CategoriesBar categories={categories} onClick={moveToCategory} />
 				{cart.length > 0 && (
 					<Button
 						onClick={toggleModal}
