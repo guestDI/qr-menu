@@ -2,16 +2,18 @@
 
 import axiosInstance from "@/api/axios";
 import { useDataLayerContext } from "@/context/DataLayerContext";
+import useCartStore from "@/stores/cartStore";
 import { GetStaticProps, NextPage } from "next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import styles from "../../styles/Menu.module.scss";
+import styles from "../../../styles/Menu.module.scss";
 import {
 	Button,
 	Card,
 	CategoriesPanel,
 	DetailsView,
-	ShoppingCart,
-} from "../components";
+	Modal,
+} from "../../components";
+import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
 
 const ButtonContent: React.FC<{ total: number }> = ({ total }) => (
 	<div className={styles.shoppingCartBtnContent}>
@@ -49,10 +51,10 @@ interface MenuProps {
 const Menu: NextPage<MenuProps> = ({ menuData }) => {
 	const [showModal, setShowModal] = useState(false);
 
+	const { addItemToShoppingCart, cart } = useCartStore();
+
 	const {
 		items,
-		addItemToShoppingCart,
-		grouppedCardItems,
 		shoppingCart,
 		clearShoppingCart,
 		removeItemFromShoppingCart,
@@ -149,27 +151,51 @@ const Menu: NextPage<MenuProps> = ({ menuData }) => {
 	);
 
 	return (
-		<div className={styles.container}>
-			<CategoriesPanel categories={categories} onClick={moveToCategory} />
-			{Object.keys(grouppedCardItems).length > 0 && (
-				<Button
-					onClick={() => toggleModal()}
-					className={styles.shoppingCartBtn}
-					type="button"
-				>
-					<ButtonContent total={total} />
-				</Button>
-			)}
-			{menuCards}
-		</div>
+		<>
+			<div className={styles.container}>
+				<CategoriesPanel categories={categories} onClick={moveToCategory} />
+				{cart.length > 0 && (
+					<Button
+						onClick={toggleModal}
+						className={styles.shoppingCartBtn}
+						type="button"
+					>
+						<ButtonContent total={total} />
+					</Button>
+				)}
+				{menuCards}
+			</div>
+			<Modal
+				placement={placement}
+				show={showModal}
+				onClose={() => setShowModal(false)}
+			>
+				{modalContent}
+			</Modal>
+		</>
 	);
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export async function getStaticPaths() {
+	return {
+		paths: [], // No paths are pre-rendered at build time
+		fallback: "blocking", // Pages will be generated on-demand
+	};
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+	const { params } = context;
+
+	if (!params) {
+		return {
+			notFound: true,
+		};
+	}
+
+	const organizationId = params.place as string;
+
 	try {
-		const response = await axiosInstance.get(
-			"/menu/public/66d4c257ada272575bccd7d8"
-		);
+		const response = await axiosInstance.get("/menu/public/" + organizationId);
 		const menuData = response.data;
 
 		return {

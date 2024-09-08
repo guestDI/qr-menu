@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDataLayerContext } from "../../context/DataLayerContext";
 import { getCurrencySign } from "../../helpers/helpers";
@@ -52,7 +51,7 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 				className={classes.imgContainer}
 				style={{ display: "flex", alignSelf: "center", margin: "0 4rem" }}
 			>
-				<Image
+				{/* <Image
 					alt="Dishes"
 					src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/mexican-chicken-burger_1-b5cca6f.jpg?quality=90&resize=440,400"
 					width={300}
@@ -60,7 +59,7 @@ const DetailsView: React.FC<DetailsViewProp> = ({ selectedItem }) => {
 					loading="eager" //check this property in future
 					quality={50}
 					className={classes.img}
-				/>
+				/> */}
 			</div>
 			<div className={classes.mainContainer}>
 				<div className={classes.content}>

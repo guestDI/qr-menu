@@ -41,7 +41,7 @@ const QrCodeManager = () => {
 
 		const generatedQrCodes = tables.map((table) => ({
 			table: table,
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/public/menu/${user?.organizationId}/${table}`,
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/${user?.organizationId}/menu?table=${table}`,
 		}));
 
 		setQrCodes(generatedQrCodes);

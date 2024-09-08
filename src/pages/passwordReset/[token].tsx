@@ -1,12 +1,11 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import React from "react";
-import { Button, Input } from "../../components";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../../api/axios";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { Button, Input } from "../../components";
 
 const registerOptions = {
 	password: { required: "Password is required" },
@@ -61,7 +60,11 @@ const Token: NextPage<{ token: string }> = ({ token }) => {
 						<p>
 							Ready to log in? <Link href="/login">Login</Link>
 						</p>
-						<form onSubmit={handleSubmit(resetPassword)}>
+						<form
+							onSubmit={handleSubmit(
+								resetPassword as SubmitHandler<FieldValues>
+							)}
+						>
 							<div>
 								<div className="input-group">
 									<Input

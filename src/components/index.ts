@@ -6,5 +6,4 @@ export { default as Input } from "./Input/Input";
 export { default as InputCounter } from "./InputCounter/InputCounter";
 export { default as Layout } from "./Layout/Layout";
 export { default as Modal } from "./Modal/Modal";
-export { default as ShoppingCart } from "./ShoppingCart/ShoppingCart";
 export { default as TextWrapper } from "./TextWrapper/TextWrapper";
