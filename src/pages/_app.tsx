@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-
+// import { Head } from "next/document";
 import Head from "next/head";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/admin.scss";

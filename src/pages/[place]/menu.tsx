@@ -2,6 +2,7 @@
 
 import axiosInstance from "@/api/axios";
 import { useDataLayerContext } from "@/context/DataLayerContext";
+import useScreenResolution from "@/hooks/useScreenResolution";
 import useCartStore from "@/stores/cartStore";
 import { GetStaticProps, NextPage } from "next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
@@ -26,7 +27,7 @@ const renderCards = (
 	category: string,
 	item: any,
 	onCardClick: (category: string, id: string) => void,
-	addToBasket: (value: any) => void
+	addToCart: (value: any) => void
 ) => {
 	const { id, title, price, image, description = "" } = item;
 
@@ -39,7 +40,7 @@ const renderCards = (
 			image={image}
 			onCardClick={() => onCardClick(category, id)}
 			description={description}
-			addToBasket={() => addToBasket({ category, id })}
+			addToBasket={() => addToCart({ category, id, title, price, image })}
 		/>
 	);
 };
@@ -50,17 +51,17 @@ interface MenuProps {
 
 const Menu: NextPage<MenuProps> = ({ menuData }) => {
 	const [showModal, setShowModal] = useState(false);
-
-	const { addItemToShoppingCart, cart } = useCartStore();
+	const { isDesktop } = useScreenResolution();
 
 	const {
-		items,
-		shoppingCart,
-		clearShoppingCart,
+		addItemToShoppingCart,
 		removeItemFromShoppingCart,
+		clearShoppingCart,
 		decreaseItemCount,
-		total,
-	} = useDataLayerContext();
+		cart,
+	} = useCartStore();
+
+	const { items, total } = useDataLayerContext();
 	const [selectedMenuItem, setSelectedMenuItem] = useState<
 		Record<string, string>
 	>({});
@@ -73,10 +74,10 @@ const Menu: NextPage<MenuProps> = ({ menuData }) => {
 	const itemIsSelected = !!Object.keys(selectedMenuItem).length;
 
 	useEffect(() => {
-		if (!shoppingCart.length && !itemIsSelected) {
+		if (!cart.length && !itemIsSelected) {
 			setShowModal(false);
 		}
-	}, [shoppingCart, itemIsSelected]);
+	}, [cart, itemIsSelected]);
 
 	const toggleModal = useCallback(
 		(category?: string, itemId?: string) => {
@@ -96,15 +97,15 @@ const Menu: NextPage<MenuProps> = ({ menuData }) => {
 	}, [clearShoppingCart]);
 
 	const removeFromShoppingCart = useCallback(
-		(uid: string) => {
-			removeItemFromShoppingCart(uid);
+		(id: string) => {
+			removeItemFromShoppingCart(id);
 		},
 		[removeItemFromShoppingCart]
 	);
 
 	const decreaseCount = useCallback(
-		(uid: string) => {
-			decreaseItemCount(uid);
+		(id: string) => {
+			decreaseItemCount(id);
 		},
 		[decreaseItemCount]
 	);
@@ -139,15 +140,19 @@ const Menu: NextPage<MenuProps> = ({ menuData }) => {
 		[items]
 	);
 
-	const placement = itemIsSelected ? "center" : "bottom";
+	const placement = itemIsSelected || isDesktop ? "center" : "bottom";
 	const modalContent = itemIsSelected ? (
 		<DetailsView selectedItem={selectedMenuItem} />
 	) : (
-		<ShoppingCart
-			clearShoppingCart={clearCart}
-			removeItemFromShoppingCart={removeFromShoppingCart}
-			decreaseItemCount={decreaseCount}
-		/>
+		cart.length > 0 && (
+			<ShoppingCart
+				cart={cart}
+				addItemToShoppingCart={addItemToShoppingCart}
+				clearShoppingCart={clearCart}
+				removeItemFromShoppingCart={removeFromShoppingCart}
+				decreaseItemCount={decreaseCount}
+			/>
+		)
 	);
 
 	return (

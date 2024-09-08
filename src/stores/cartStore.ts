@@ -1,8 +1,11 @@
 import { create } from "zustand";
 
-interface CartItem {
-	uid: string;
-	count: number;
+export interface CartItem {
+	id: string;
+	title: string;
+	price: number;
+	quantity: number;
+	image: string;
 	// Add other necessary properties
 }
 
@@ -19,34 +22,34 @@ const useCartStore = create<CartState>((set) => ({
 	addItemToShoppingCart: (newItem: CartItem) =>
 		set((state) => {
 			const existingItemIndex = state.cart.findIndex(
-				(item) => item.uid === newItem.uid
+				(item) => item.id === newItem.id
 			);
 			if (existingItemIndex !== -1) {
 				// If item already exists, increase its count
 				const updatedCart = [...state.cart];
 				updatedCart[existingItemIndex] = {
 					...updatedCart[existingItemIndex],
-					count: updatedCart[existingItemIndex].count + 1,
+					quantity: updatedCart[existingItemIndex].quantity + 1,
 				};
 				return { cart: updatedCart };
 			} else {
 				// If item is new, add it to the cart
-				return { cart: [...state.cart, { ...newItem, count: 1 }] };
+				return { cart: [...state.cart, { ...newItem, quantity: 1 }] };
 			}
 		}),
-	removeItemFromShoppingCart: (uid: string) =>
+	removeItemFromShoppingCart: (id: string) =>
 		set((state) => ({
-			cart: state.cart.filter((item) => item.uid !== uid),
+			cart: state.cart.filter((item) => item.id !== id),
 		})),
-	decreaseItemCount: (uid: string) =>
+	decreaseItemCount: (id: string) =>
 		set((state) => ({
 			cart: state.cart
 				.map((item) =>
-					item.uid === uid
-						? { ...item, count: Math.max(0, item.count - 1) }
+					item.id === id
+						? { ...item, quantity: Math.max(0, item.quantity - 1) }
 						: item
 				)
-				.filter((item) => item.count > 0),
+				.filter((item) => item.quantity > 0),
 		})),
 	clearShoppingCart: () => set({ cart: [] }),
 }));

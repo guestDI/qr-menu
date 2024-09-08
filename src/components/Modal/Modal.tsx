@@ -1,9 +1,9 @@
 import clsx from "clsx";
-import React, { useCallback, useEffect, useMemo } from "react";
+import Image from "next/image";
+import React, { useCallback, useMemo } from "react";
 import { Close } from "../../inline-img/svg";
 import Button from "../Button/Button";
 import styles from "./styles.module.scss";
-import Image from "next/image";
 
 interface ModalProps {
 	show: boolean;
@@ -67,10 +67,10 @@ const Modal: React.FC<ModalProps> = ({
 	placement = "center",
 }) => {
 	// hack to prevent scrolling when modal is open
-	useEffect(() => {
-		const overflowState = show ? "hidden" : "unset";
-		document.body.style.overflow = overflowState;
-	}, [show]);
+	// useEffect(() => {
+	// 	const overflowState = show ? "hidden" : "unset";
+	// 	document.body.style.overflow = overflowState;
+	// }, [show]);
 
 	return (
 		<ModalOverlay

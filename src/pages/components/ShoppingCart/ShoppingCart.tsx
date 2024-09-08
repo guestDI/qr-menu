@@ -1,79 +1,79 @@
-import useCartStore from "@/stores/cartStore";
-import { useState } from "react";
+import Button from "@/components/Button/Button";
+import { CartItem } from "@/stores/cartStore";
+import Image from "next/image";
+import { useMemo } from "react";
 import styles from "./styles.module.scss";
 
-const ShoppingCart = () => {
-	const { cart } = useCartStore();
-	console.log(cart);
-	// Sample cart items
-	const [cartItems, setCartItems] = useState([
-		{
-			id: 1,
-			name: "Spaghetti",
-			price: 32.5,
-			quantity: 1,
-			imageUrl: "/images/spaghetti.jpg",
-			extras: ["Cheese", "Petty"],
-		},
-		{
-			id: 2,
-			name: "Pizza",
-			price: 32.5,
-			quantity: 1,
-			imageUrl: "/images/pizza.jpg",
-			extras: ["Cheese", "Petty"],
-		},
-	]);
+interface IShoppingCartProps {
+	cart: CartItem[];
+	addItemToShoppingCart: (item: CartItem) => void;
+	removeItemFromShoppingCart: (id: string) => void;
+	clearShoppingCart: () => void;
+	decreaseItemCount: (id: string) => void;
+}
 
-	const [promoCode, setPromoCode] = useState("");
-	const [totalPrice, setTotalPrice] = useState(2565.0);
-	const tax = 25.65;
-	const delivery = 4.99;
-	const discount = 0;
+const calculateTotalPrice = (cart: CartItem[]) => {
+	return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+};
 
-	// Handle removing an item
-	const handleRemoveItem = (id) => {
-		const updatedCart = cartItems.filter((item) => item.id !== id);
-		setCartItems(updatedCart);
-	};
+const ShoppingCart = ({
+	cart,
+	addItemToShoppingCart,
+	removeItemFromShoppingCart,
+	clearShoppingCart,
+	decreaseItemCount,
+}: IShoppingCartProps) => {
+	const tax = "Included";
+
+	const totalPrice = useMemo(() => {
+		return calculateTotalPrice(cart);
+	}, [cart]);
 
 	return (
 		<div className={styles.cartContainer}>
-			<h1 className={styles.cartTitle}>Your Food Cart</h1>
+			<h1 className={styles.cartTitle}>Your Cart</h1>
 
-			{cartItems.map((item) => (
-				<div key={item.id} className={styles.cartItem}>
-					<div className={styles.quantityControl}>
-						<button>-</button>
-						<span>{item.quantity}</span>
-						<button>+</button>
-					</div>
-					<img
-						src={item.imageUrl}
-						alt={item.name}
-						className={styles.itemImage}
-					/>
-					<div className={styles.itemDetails}>
-						<h2>{item.name}</h2>
-						<p>${item.price.toFixed(2)}</p>
-						<div className={styles.extras}>
+			<div className={styles.cartItems}>
+				{cart.map((item) => (
+					<div key={item.id} className={styles.cartItem}>
+						<div className={styles.quantityControl}>
+							<Button round={true} onClick={() => decreaseItemCount(item.id)}>
+								-
+							</Button>
+							<span>{item.quantity}</span>
+							<Button round={true} onClick={() => addItemToShoppingCart(item)}>
+								+
+							</Button>
+						</div>
+						<Image
+							src={item.image}
+							alt={item.title}
+							className={styles.itemImage}
+							width={30}
+							height={30}
+						/>
+						<div className={styles.itemDetails}>
+							<h2>{item.title}</h2>
+							<p>${item.price.toFixed(2)}</p>
+							{/* <div className={styles.extras}>
 							{item.extras.map((extra, index) => (
 								<span key={index} className={styles.extra}>
 									{extra} <span className={styles.removeExtra}>×</span>
 								</span>
 							))}
+						</div> */}
 						</div>
+						<button
+							className={styles.removeItem}
+							onClick={() => removeItemFromShoppingCart(item.id)}
+						>
+							×
+						</button>
 					</div>
-					<button
-						className={styles.removeItem}
-						onClick={() => handleRemoveItem(item.id)}
-					>
-						×
-					</button>
-				</div>
-			))}
-
-			<div className={styles.promoCodeContainer}>
+				))}
+			</div>
+			{/* commented for now, will be possible to change in admin settings */}
+			{/* <div className={styles.promoCodeContainer}>
 				<input
 					type="text"
 					placeholder="Promo Code"
@@ -81,6 +81,16 @@ const ShoppingCart = () => {
 					onChange={(e) => setPromoCode(e.target.value)}
 				/>
 				<button>Apply</button>
+			</div> */}
+
+			<div className={styles.clearCart}>
+				<Button
+					className={styles.clearCartButton}
+					type="link"
+					onClick={clearShoppingCart}
+				>
+					Clear cart
+				</Button>
 			</div>
 
 			<div className={styles.summary}>
@@ -90,22 +100,13 @@ const ShoppingCart = () => {
 				</p>
 				<p>
 					<span>Tax</span>
-					<span>${tax.toFixed(2)}</span>
-				</p>
-				<p>
-					<span>Delivery</span>
-					<span>${delivery.toFixed(2)}</span>
-				</p>
-				<p>
-					<span>Promo Discount</span>
-					<span>-${discount.toFixed(2)}</span>
+					<span>${tax}</span>
 				</p>
 				<p className={styles.subtotal}>
 					<span>Subtotal</span>
-					<span>${(totalPrice + tax + delivery - discount).toFixed(2)}</span>
+					<span>{totalPrice}</span>
 				</p>
 			</div>
-
 			<button className={styles.checkoutButton}>Proceed to Checkout</button>
 		</div>
 	);
