@@ -1,7 +1,8 @@
 import Button from "@/components/Button/Button";
 import { CartItem } from "@/stores/cartStore";
+import { loadStripe } from "@stripe/stripe-js";
 import Image from "next/image";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import styles from "./styles.module.scss";
 
 interface IShoppingCartProps {
@@ -16,6 +17,8 @@ const calculateTotalPrice = (cart: CartItem[]) => {
 	return cart.reduce((total, item) => total + item.price * item.quantity, 0);
 };
 
+const tax = "Included";
+
 const ShoppingCart = ({
 	cart,
 	addItemToShoppingCart,
@@ -23,7 +26,41 @@ const ShoppingCart = ({
 	clearShoppingCart,
 	decreaseItemCount,
 }: IShoppingCartProps) => {
-	const tax = "Included";
+	const [loading, setLoading] = useState(false);
+	const stripePromise = loadStripe(
+		process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+	);
+
+	const handleCheckout = async () => {
+		setLoading(true);
+
+		// Get Stripe.js instance
+		const stripe = await stripePromise;
+
+		// Call your API to create a Checkout session
+		const res = await fetch("/api/checkout-session", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				cartItems: cart,
+			}),
+		});
+
+		const { sessionId } = await res.json();
+
+		// Redirect to Stripe Checkout
+		const { error } = await stripe.redirectToCheckout({
+			sessionId,
+		});
+
+		if (error) {
+			console.error("Stripe Checkout failed:", error);
+		}
+
+		setLoading(false);
+	};
 
 	const totalPrice = useMemo(() => {
 		return calculateTotalPrice(cart);
@@ -100,14 +137,20 @@ const ShoppingCart = ({
 				</p>
 				<p>
 					<span>Tax</span>
-					<span>${tax}</span>
+					<span>{tax}</span>
 				</p>
 				<p className={styles.subtotal}>
 					<span>Subtotal</span>
-					<span>{totalPrice}</span>
+					<span>${totalPrice}</span>
 				</p>
 			</div>
-			<button className={styles.checkoutButton}>Proceed to Checkout</button>
+			<button
+				className={styles.checkoutButton}
+				disabled={loading}
+				onClick={handleCheckout}
+			>
+				{loading ? "Loading..." : "Proceed to Checkout"}
+			</button>
 		</div>
 	);
 };

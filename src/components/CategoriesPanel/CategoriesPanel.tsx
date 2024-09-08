@@ -41,8 +41,6 @@ const CategoriesPanel: React.FC<CategoriesPanelProps> = ({
 		[selectedCategory]
 	);
 
-	console.log(selectedCategory, "sel");
-
 	return (
 		<ul className={classes.container}>
 			{categories.map((category, i) => (
