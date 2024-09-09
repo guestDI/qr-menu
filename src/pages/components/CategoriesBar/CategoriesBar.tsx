@@ -7,9 +7,9 @@ interface ICategoriesBarProps {
 }
 
 const CategoriesBar = ({ categories }: ICategoriesBarProps) => {
-	const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
-	console.log(categories);
+	const [activeCategory, setActiveCategory] = useState<string | null>(
+		categories[0].key
+	);
 
 	return (
 		<div className={styles.navbarContainer}>

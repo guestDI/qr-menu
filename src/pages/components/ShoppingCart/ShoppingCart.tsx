@@ -1,3 +1,4 @@
+import axiosInstance from "@/api/axios";
 import Button from "@/components/Button/Button";
 import { CartItem } from "@/stores/cartStore";
 import { loadStripe } from "@stripe/stripe-js";
@@ -35,28 +36,57 @@ const ShoppingCart = ({
 		setLoading(true);
 
 		// Get Stripe.js instance
-		const stripe = await stripePromise;
+		// const stripe = await stripePromise;
+
+		// const response = await axiosInstance.post(`/orders/create-payment-intent`, {
+		// 	items: cart,
+		// 	totalAmount: totalPrice,
+		// 	payNow: true,
+		// 	tableId: 0,
+		// });
+
+		// const { clientSecret } = response.data;
 
 		// Call your API to create a Checkout session
-		const res = await fetch("/api/checkout-session", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				cartItems: cart,
-			}),
-		});
+		// const res = await fetch("/api/checkout-session", {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify({
+		// 		cartItems: cart,
+		// 	}),
+		// });
 
-		const { sessionId } = await res.json();
+		// const { sessionId } = await res.json();
 
 		// Redirect to Stripe Checkout
-		const { error } = await stripe.redirectToCheckout({
-			sessionId,
-		});
+		// const { error } = await stripe.redirectToCheckout({
+		// 	sessionId: clientSecret,
+		// });
 
-		if (error) {
-			console.error("Stripe Checkout failed:", error);
+		// if (error) {
+		// 	console.error("Stripe Checkout failed:", error);
+		// }
+
+		try {
+			const { data } = await axiosInstance.post("/orders", {
+				tableId: "0",
+				items: cart,
+			});
+
+			const response = await axiosInstance.post(
+				"/orders/create-checkout-session",
+				{
+					orderId: data.order._id,
+				}
+			);
+			const stripe = await stripePromise;
+			await stripe.redirectToCheckout({ sessionId: response.data.sessionId });
+
+			// setOrderId(data.order._id);
+		} catch (error) {
+			console.error("Error creating order:", error);
 		}
 
 		setLoading(false);
