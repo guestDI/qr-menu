@@ -42,9 +42,10 @@ const renderCards = (
 
 interface MenuProps {
 	menuData: any[];
+	organizationId: string;
 }
 
-const Menu: NextPage<MenuProps> = ({ menuData }) => {
+const Menu: NextPage<MenuProps> = ({ menuData, organizationId }) => {
 	const [showModal, setShowModal] = useState(false);
 	const { isDesktop } = useScreenResolution();
 
@@ -55,6 +56,10 @@ const Menu: NextPage<MenuProps> = ({ menuData }) => {
 		decreaseItemCount,
 		cart,
 	} = useCartStore();
+
+	useEffect(() => {
+		sessionStorage.setItem("organizationId", organizationId);
+	}, [organizationId]);
 
 	const { items, total } = useDataLayerContext();
 	const [selectedMenuItem, setSelectedMenuItem] = useState<
@@ -212,6 +217,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		return {
 			props: {
 				menuData,
+				organizationId,
 			},
 			revalidate: 60, // Revalidate every 60 seconds
 		};

@@ -35,40 +35,6 @@ const ShoppingCart = ({
 	const handleCheckout = async () => {
 		setLoading(true);
 
-		// Get Stripe.js instance
-		// const stripe = await stripePromise;
-
-		// const response = await axiosInstance.post(`/orders/create-payment-intent`, {
-		// 	items: cart,
-		// 	totalAmount: totalPrice,
-		// 	payNow: true,
-		// 	tableId: 0,
-		// });
-
-		// const { clientSecret } = response.data;
-
-		// Call your API to create a Checkout session
-		// const res = await fetch("/api/checkout-session", {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify({
-		// 		cartItems: cart,
-		// 	}),
-		// });
-
-		// const { sessionId } = await res.json();
-
-		// Redirect to Stripe Checkout
-		// const { error } = await stripe.redirectToCheckout({
-		// 	sessionId: clientSecret,
-		// });
-
-		// if (error) {
-		// 	console.error("Stripe Checkout failed:", error);
-		// }
-
 		try {
 			const { data } = await axiosInstance.post("/orders", {
 				tableId: "0",
@@ -112,13 +78,19 @@ const ShoppingCart = ({
 								+
 							</Button>
 						</div>
-						<Image
-							src={item.image}
-							alt={item.title}
-							className={styles.itemImage}
-							width={30}
-							height={30}
-						/>
+						{item.image ? (
+							<Image
+								src={item.image}
+								alt={item.title}
+								className={styles.itemImage}
+								width={30}
+								height={30}
+							/>
+						) : (
+							<div className={styles.noImage}>
+								<span>No image</span>
+							</div>
+						)}
 						<div className={styles.itemDetails}>
 							<h2>{item.title}</h2>
 							<p>${item.price.toFixed(2)}</p>
