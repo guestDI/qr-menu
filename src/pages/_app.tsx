@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 // import { Head } from "next/document";
+import useCheckAuth from "@/hooks/useCheckAuth";
 import Head from "next/head";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/admin.scss";
@@ -10,7 +11,7 @@ import "../../styles/utilities.scss";
 import { DataLayerContextProvider } from "../context/DataLayerContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
-	// useCheckAuth();
+	useCheckAuth();
 
 	return (
 		<DataLayerContextProvider>

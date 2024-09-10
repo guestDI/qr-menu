@@ -29,7 +29,7 @@ const ShoppingCart = ({
 }: IShoppingCartProps) => {
 	const [loading, setLoading] = useState(false);
 	const stripePromise = loadStripe(
-		process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+		process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
 	);
 
 	const handleCheckout = async () => {
@@ -48,6 +48,9 @@ const ShoppingCart = ({
 				}
 			);
 			const stripe = await stripePromise;
+			if (!stripe) {
+				throw new Error("Stripe.js has not loaded.");
+			}
 			await stripe.redirectToCheckout({ sessionId: response.data.sessionId });
 
 			// setOrderId(data.order._id);

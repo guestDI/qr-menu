@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 import MenuIcon from "../inline-img/svg/menu.svg";
 import PeopleIcon from "../inline-img/svg/people-nearby.svg";
 import QRCodeIcon from "../inline-img/svg/qr-code.svg";
+import Orders from "./components/Orders/Orders";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 const QRCodeManager = dynamic(
@@ -20,17 +21,17 @@ const MenuCreator = dynamic(
 	() => import("@/pages/components/MenuCreator/MenuCreator")
 );
 
-const getSidebarItems = (role: string) => {
+const getSidebarItems = (role: string, organizationId: string) => {
 	return [
 		{
 			title: "Creator",
-			component: <MenuCreator />,
+			component: <MenuCreator organizationId={organizationId} />,
 			icon: MenuIcon,
 			visible: true,
 		},
 		{
 			title: "Codes",
-			component: <QRCodeManager />,
+			component: <QRCodeManager organizationId={organizationId} />,
 			icon: QRCodeIcon,
 			visible: true,
 		},
@@ -42,13 +43,13 @@ const getSidebarItems = (role: string) => {
 		// },
 		{
 			title: "Staff",
-			component: <Staff />,
+			component: <Staff organizationId={organizationId} />,
 			icon: PeopleIcon,
 			visible: role === "admin",
 		},
 		{
 			title: "Orders",
-			component: <div>Orders</div>,
+			component: <Orders organizationId={organizationId} />,
 			icon: PeopleIcon,
 			visible: true,
 		},
@@ -122,8 +123,9 @@ const Admin: NextPage<{ user: IDecodedToken | null }> = ({ user }) => {
 	// }, [ref]);
 
 	const sidebarItems = useMemo(
-		() => getSidebarItems(user ? user.role : ""),
-		[user?.role]
+		() =>
+			getSidebarItems(user ? user.role : "", user?.organizationId as string),
+		[user?.role, user?.organizationId]
 	);
 
 	const renderContent = () => {

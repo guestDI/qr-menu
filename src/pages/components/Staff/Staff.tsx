@@ -1,4 +1,3 @@
-import useUserStore from "@/stores/userStore";
 import clsx from "clsx";
 import Image from "next/image";
 import React, { useEffect, useMemo } from "react";
@@ -17,17 +16,14 @@ interface INewStaffMember {
 	email: string;
 }
 
-const Staff = () => {
+const Staff = ({ organizationId }: { organizationId: string }) => {
 	const { staffData, setStaffData, removeStaffMember, addStaffMember } =
 		useStaffStore();
-	const user = useUserStore((state) => state.user);
 
 	useEffect(() => {
 		const fetchStaffData = async () => {
 			try {
-				const response = await axiosInstance.get(
-					"/users/" + user?.organizationId
-				);
+				const response = await axiosInstance.get("/users/" + organizationId);
 				setStaffData(response.data.result);
 			} catch (error) {
 				console.error("Error fetching staff data:", error);
@@ -55,7 +51,7 @@ const Staff = () => {
 
 	const handleAddNew = async ({ username, role, email }: INewStaffMember) => {
 		await axiosInstance
-			.post("/admin/66c4bec16c999e564df47a78/register", {
+			.post(`/admin/${organizationId}/register`, {
 				username,
 				role,
 				email,

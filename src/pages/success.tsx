@@ -14,7 +14,7 @@ const SuccessPage = () => {
 	const router = useRouter();
 	const { session_id } = router.query;
 	const [loading, setLoading] = useState(false);
-	const [orderStatus, setOrderStatus] = useState("completed");
+	const [orderStatus, setOrderStatus] = useState("pending");
 	const [orderDetails, setOrderDetails] = useState<IOrderDetails>({
 		createdAt: "",
 		email: "",

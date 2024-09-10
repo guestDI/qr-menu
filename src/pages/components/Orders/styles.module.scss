@@ -1,0 +1,104 @@
+@import "../../../../styles/_mixins.scss";
+
+.title {
+	color: #fff;
+}
+
+.table {
+	color: #fff;
+	width: 100%;
+	margin-top: 20px;
+	border-collapse: collapse;
+	font-size: 1.2rem;
+}
+
+.btn {
+	width: 15rem;
+	background-color: #ff3166;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.3s;
+	box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+		0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+		0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+}
+
+.btn img {
+	margin-right: 5px;
+}
+
+.btn:active {
+	@include active-btn(#b23a5a);
+}
+
+.addBtn,
+.actionBtn {
+	width: 4rem;
+}
+
+.saveBtn {
+	width: 9rem;
+}
+
+.addBtnContainer {
+	justify-content: end;
+}
+
+.row {
+	display: flex;
+}
+
+.row input {
+	border-radius: 7px;
+	color: #bbb;
+	background: rgba(53, 53, 67, 0.98);
+	border-color: rgba(45, 45, 57, 0.98);
+	box-shadow: rgba(43, 40, 40, 0.45) 0px 5px 15px;
+	max-width: 25rem;
+}
+
+.btnRow .btn:first-of-type {
+	margin-right: 10px;
+}
+
+.status,
+.totalAmount {
+	width: 9rem;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	border: 1px solid #808080;
+	text-align: center;
+
+	&.pending {
+		color: #ff8a31;
+		border-color: #ff8a31;
+	}
+
+	&.paid {
+		color: #00ff00;
+		border-color: #00ff00;
+	}
+}
+
+.totalAmount {
+	display: block;
+}
+
+// .secondary {
+// 	width: 9rem;
+// 	font-size: 1.4rem;
+// 	color: #fff;
+// 	margin-right: 2rem;
+// 	border: 1px solid #808080;
+// 	cursor: pointer;
+// 	background-color: inherit;
+// 	border-radius: 5px;
+// }
+
+// .secondary:hover {
+// 	background-color: #3e3e3e;
+// }
