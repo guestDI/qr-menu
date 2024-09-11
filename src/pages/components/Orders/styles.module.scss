@@ -66,7 +66,8 @@
 }
 
 .status,
-.totalAmount {
+.totalAmount,
+.tableNum {
 	width: 9rem;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
@@ -86,6 +87,15 @@
 
 .totalAmount {
 	display: block;
+}
+
+.tableNum {
+	display: block;
+	width: 5rem;
+}
+
+.item {
+	line-height: 2rem;
 }
 
 // .secondary {

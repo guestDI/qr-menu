@@ -138,24 +138,6 @@
 		display: flex;
 		align-items: center;
 
-		.btn {
-			padding: 5px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background-color: #ff3166;
-			color: #fff;
-			width: 7rem;
-			border-radius: 0.5rem;
-			cursor: pointer;
-			margin-left: 1rem;
-
-			@media (max-width: 768px) {
-				width: 100%;
-				font-size: 1rem;
-			}
-		}
-
 		.btnSecondary {
 			width: 10rem;
 			font-size: 1.2rem;
@@ -169,6 +151,60 @@
 		.btnSecondary:hover {
 			background-color: #3e3e3e;
 		}
+	}
+}
+
+.btn {
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ff3166;
+	color: #fff;
+	width: 7rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		font-size: 1rem;
+	}
+}
+
+.uploadButtonsContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.fileInput {
+	display: none;
+}
+
+.uploadButton {
+	width: 14rem;
+	font-size: 1.4rem;
+	color: #fff;
+	padding: 0.5rem;
+	text-align: center;
+	border: 1px solid #3e3e3e;
+	border-radius: 0.5rem;
+	background-color: inherit;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+		0 1px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+		0 4px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+
+	&:hover {
+		background-color: #3e3e3e;
+	}
+
+	&:active {
+		scale: 0.95;
+		box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+			0 1px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+			0 4px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
 	}
 }
 

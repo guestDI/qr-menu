@@ -18,7 +18,7 @@ import { toast, ToastContainer } from "react-toastify";
 import CreatorForm, { CreatorFormProps } from "./CreatorForm";
 import styles from "./styles.module.scss";
 
-const MenuCreator = () => {
+const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 	const { menuData, addMenuItem } = useMenuStore();
 	const [isFormVisible, setFormVisible] = useState(false);
 	const { isMobile } = useScreenResolution();
@@ -111,6 +111,7 @@ const MenuCreator = () => {
 					categories={categories}
 					onClose={toggleForm}
 					isMobile={isMobile}
+					organizationId={organizationId}
 				/>
 			</aside>
 			<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />

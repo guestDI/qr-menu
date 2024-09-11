@@ -31,6 +31,9 @@ const Orders = ({ organizationId }: { organizationId: string }) => {
 			{
 				Header: "Table Number",
 				accessor: "tableId",
+				Cell: ({ value }: { value: number }) => (
+					<span className={styles.tableNum}>{value}</span>
+				),
 			},
 			{
 				Header: "Items",
@@ -38,7 +41,7 @@ const Orders = ({ organizationId }: { organizationId: string }) => {
 				Cell: ({ value }: { value: any[] }) => (
 					<div>
 						{value.map((item, index) => (
-							<div key={index}>
+							<div className={styles.item} key={index}>
 								{item.menuItem.title} - Quantity: {item.quantity} - Price: $
 								{item.menuItem.price}
 							</div>
@@ -72,6 +75,7 @@ const Orders = ({ organizationId }: { organizationId: string }) => {
 				Cell: ({ row }: { row: { original: { id: string } } }) => (
 					<div className={styles.btnRow}>
 						<Button
+							size="sm"
 							className={clsx(styles.btn, styles.actionBtn)}
 							onClick={(e) => {}}
 						>
