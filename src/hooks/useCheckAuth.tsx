@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { NextRouter, useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
+import { NextRouter, useRouter } from "next/router";
+import { useEffect } from "react";
 import axiosInstance from "../api/axios";
 
 interface DecodedToken {
@@ -26,11 +26,28 @@ const checkAuthToken = async (router: NextRouter | string[]) => {
 						token: refreshToken,
 					});
 					Cookies.set("authToken", data.accessToken);
-					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 				} catch (_) {
 					router.push("/login");
 				}
 			} else {
+				router.push("/login");
+			}
+		} else {
+			try {
+				const { data: user } = await axiosInstance.get("/auth/me", {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				});
+
+				if (!user) {
+					Cookies.remove("authToken");
+					Cookies.remove("refreshToken");
+					router.push("/login");
+				}
+			} catch (error) {
+				Cookies.remove("authToken");
+				Cookies.remove("refreshToken");
 				router.push("/login");
 			}
 		}

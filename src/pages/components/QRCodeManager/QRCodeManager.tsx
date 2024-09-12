@@ -13,7 +13,7 @@ import QrCodeIcon from "../../../inline-img/svg/qr-code.svg";
 import QRCodeGenerator from "./QRCodeGenerator/QRCodeGenerator";
 import styles from "./styles.module.scss";
 
-const QrCodeManager = () => {
+const QrCodeManager = ({ organizationId }: { organizationId: string }) => {
 	const [fromTable, setFromTable] = useState(0);
 	const [toTable, setToTable] = useState<number | null>(null);
 	const { qrCodes, setQrCodes, clearQrCodes } = useQrCodeStore();

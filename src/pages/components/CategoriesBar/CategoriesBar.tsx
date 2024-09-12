@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 interface ICategoriesBarProps {
 	categories: { key: string; count: number }[];
 	activeCategory: string;
+	onClick: (category: string) => void;
 }
 
 const CategoriesBar = ({ categories }: ICategoriesBarProps) => {

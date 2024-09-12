@@ -3,9 +3,11 @@ import useScreenResolution from "@/hooks/useScreenResolution";
 import { IDecodedToken } from "@/model/types";
 import useMenuStore from "@/stores/menuStore";
 import useUserStore from "@/stores/userStore";
+import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { GetServerSideProps, NextPage } from "next";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import MenuIcon from "../inline-img/svg/menu.svg";
 import PeopleIcon from "../inline-img/svg/people-nearby.svg";
@@ -60,11 +62,12 @@ const getSidebarItems = (role: string, organizationId: string) => {
 const Admin: NextPage<{ user: IDecodedToken | null }> = ({ user }) => {
 	const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 	const setUser = useUserStore((state) => state.setUser);
-	const { menuData, setMenuData } = useMenuStore();
+	const { setMenuData } = useMenuStore();
 	const { isMobile, isTablet, isDesktop } = useScreenResolution();
 
-	const [ref, setRef] = useState();
-	const container = ref?.contentWindow?.document?.body;
+	// const [ref, setRef] = useState();
+	const router = useRouter();
+	// const container = ref?.contentWindow?.document?.body;
 
 	useEffect(() => {
 		if (user) {
@@ -80,6 +83,9 @@ const Admin: NextPage<{ user: IDecodedToken | null }> = ({ user }) => {
 				);
 				setMenuData(response.data);
 			} catch (error) {
+				Cookies.remove("authToken");
+				Cookies.remove("refreshToken");
+				router.push("/login");
 				console.error("Error fetching menu data:", error);
 			}
 		};

@@ -131,7 +131,7 @@ const CreatorForm: React.FC<CreatorFormProps> = ({
 				</Button>
 			</form>
 			<p style={{ color: "#fff" }}>OR</p>
-			<p style={{ color: "#fff" }}>UPLOAD CSV</p>
+			<p className={styles.uploadText}>upload CSV</p>
 			<div className={styles.uploadButtonsContainer}>
 				<input
 					type="file"
@@ -152,8 +152,11 @@ const CreatorForm: React.FC<CreatorFormProps> = ({
 				>
 					{uploading ? "Uploading..." : "Upload"}
 				</Button>
-				{message && <p>{message}</p>}
+				{/* {message && <p>{message}</p>} */}
 			</div>
+			<p className={styles.uploadNote}>
+				Note: accepts only CSV files. File should contain data in format:
+			</p>
 		</div>
 	);
 };

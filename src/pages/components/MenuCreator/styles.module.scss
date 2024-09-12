@@ -171,10 +171,17 @@
 	}
 }
 
+.uploadText {
+	color: #fff;
+	margin-bottom: 0.5rem;
+}
+
 .uploadButtonsContainer {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	height: 2.5rem;
+	color: #fff;
 }
 
 .fileInput {
@@ -183,9 +190,11 @@
 
 .uploadButton {
 	width: 14rem;
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	color: #fff;
+	height: 3rem;
 	padding: 0.5rem;
+	margin-right: 1rem;
 	text-align: center;
 	border: 1px solid #3e3e3e;
 	border-radius: 0.5rem;
@@ -206,6 +215,10 @@
 			0 1px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
 			0 4px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
 	}
+}
+
+.uploadNote {
+	color: rgba(232, 201, 197, 0.4);
 }
 
 .cards-container {

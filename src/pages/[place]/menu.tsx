@@ -169,10 +169,17 @@ const Menu: NextPage<MenuProps> = ({ menuData, organizationId }) => {
 	return (
 		<>
 			<div className={styles.container}>
-				<CategoriesBar categories={categories} onClick={moveToCategory} />
+				<CategoriesBar
+					activeCategory="Drinks"
+					categories={categories}
+					onClick={moveToCategory}
+				/>
 				{cart.length > 0 && (
 					<Button
-						onClick={toggleModal}
+						onClick={(event) => {
+							event.preventDefault();
+							toggleModal();
+						}}
 						className={styles.shoppingCartBtn}
 						type="button"
 					>

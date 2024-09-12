@@ -11,8 +11,6 @@ import styles from "./styles.module.scss";
 const Orders = ({ organizationId }: { organizationId: string }) => {
 	const { orderData, setOrderData } = useOrderStore();
 
-	console.log(orderData);
-
 	useEffect(() => {
 		const fetchOrderData = async () => {
 			try {
