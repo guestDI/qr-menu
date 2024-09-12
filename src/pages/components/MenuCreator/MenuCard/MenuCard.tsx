@@ -7,20 +7,21 @@ import styles from "./styles.module.scss";
 
 interface MenuCardProps {
 	menuItem: IMenuItem;
+	onEdit: () => void;
 }
 
-const MenuCard: FC<MenuCardProps> = ({ menuItem }) => {
+const MenuCard: FC<MenuCardProps> = ({ menuItem, onEdit }) => {
 	return (
 		<div className={styles["card-container"]}>
 			<div className={styles.cardHeader}>
 				<p className={styles.title}>{menuItem.title}</p>
-				<Button size="sm">
+				<Button size="sm" onClick={onEdit}>
 					<Image width={18} height={18} src={Edit} alt="edit menu item" />
 				</Button>
 			</div>
 			<div className={styles.content}>
 				<div>
-					{menuItem.image ? (
+					{menuItem.image && menuItem.image !== "null" ? (
 						<Image
 							width={110}
 							height={110}

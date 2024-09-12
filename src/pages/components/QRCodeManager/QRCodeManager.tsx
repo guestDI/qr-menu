@@ -1,6 +1,5 @@
 import { CustomEvent } from "@/model/types";
 import useQrCodeStore from "@/stores/codeStore";
-import useUserStore from "@/stores/userStore";
 import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
@@ -17,8 +16,6 @@ const QrCodeManager = ({ organizationId }: { organizationId: string }) => {
 	const [fromTable, setFromTable] = useState(0);
 	const [toTable, setToTable] = useState<number | null>(null);
 	const { qrCodes, setQrCodes, clearQrCodes } = useQrCodeStore();
-
-	const user = useUserStore((state) => state.user);
 
 	const componentRef = useRef<HTMLDivElement>(null);
 	const handlePrint = useReactToPrint({
@@ -41,7 +38,7 @@ const QrCodeManager = ({ organizationId }: { organizationId: string }) => {
 
 		const generatedQrCodes = tables.map((table) => ({
 			table: table,
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/${user?.organizationId}/menu?table=${table}`,
+			url: `${process.env.NEXT_PUBLIC_BASE_URL}/${organizationId}/menu?table=${table}`,
 		}));
 
 		setQrCodes(generatedQrCodes);

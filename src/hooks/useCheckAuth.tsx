@@ -13,6 +13,8 @@ const isTokenExpired = (token: string): boolean => {
 	return decoded.exp * 1000 < Date.now();
 };
 
+const authFreeRoutes = ["/login", "/register", "/public-page"];
+
 const checkAuthToken = async (router: NextRouter | string[]) => {
 	const token = Cookies.get("authToken");
 
@@ -34,7 +36,7 @@ const checkAuthToken = async (router: NextRouter | string[]) => {
 			}
 		} else {
 			try {
-				const { data: user } = await axiosInstance.get("/auth/me", {
+				const { data: user } = await axiosInstance.get("users/auth/me", {
 					headers: {
 						Authorization: `Bearer ${token}`,
 					},
@@ -60,6 +62,10 @@ const useCheckAuth = () => {
 	const router = useRouter();
 
 	useEffect(() => {
+		if (authFreeRoutes.includes(router.pathname)) {
+			return;
+		}
+
 		checkAuthToken(router);
 	}, [router]);
 };

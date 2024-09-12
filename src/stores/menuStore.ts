@@ -4,7 +4,7 @@ import { create } from "zustand";
 interface MenuStore {
 	menuData: IMenu[];
 	setMenuData: (data: IMenu[]) => void;
-	addMenuItem: (newMenuItem: IMenu) => void;
+	addMenuItem: (newMenuItem: IMenu[]) => void;
 	removeMenuItem: (id: string) => void;
 	updateMenuItem: (updatedMenu: IMenu) => void;
 }
@@ -12,24 +12,49 @@ interface MenuStore {
 const useMenuStore = create<MenuStore>((set) => ({
 	menuData: [],
 	setMenuData: (data) => set({ menuData: data }),
-	addMenuItem: (newItems) =>
+	addMenuItem: (newItems: IMenu[]) =>
 		set((state) => {
-			const existingMenu = state.menuData.find(
-				(menu) => menu.placeId === placeId
-			);
-			if (existingMenu) {
-				return {
-					menuData: state.menuData.map((menu) =>
-						menu.placeId === placeId
-							? { ...menu, menuItems: [...menu.menuItems, newItem] }
-							: menu
-					),
-				};
-			} else {
-				return {
-					menuData: [...state.menuData, { placeId, menuItems: [newItem] }],
-				};
-			}
+			const updatedMenuData = state.menuData.map((categoryData) => {
+				const matchingItems = newItems.filter(
+					(item) => item.category === categoryData.category
+				);
+
+				if (matchingItems.length > 0) {
+					return {
+						...categoryData,
+						items: [...categoryData.items, ...matchingItems],
+					};
+				}
+
+				return categoryData;
+			});
+
+			const newCategories = newItems.reduce((acc: any[], newItem) => {
+				const existingCategory = state.menuData.find(
+					(categoryData) => categoryData.category === newItem.category
+				);
+
+				if (!existingCategory) {
+					const newCategory = acc.find(
+						(cat) => cat.category === newItem.category
+					);
+
+					if (newCategory) {
+						newCategory.items.push(newItem);
+					} else {
+						acc.push({
+							category: newItem.category,
+							items: [newItem],
+						});
+					}
+				}
+
+				return acc;
+			}, []);
+
+			return {
+				menuData: [...updatedMenuData, ...newCategories],
+			};
 		}),
 	removeMenuItem: (id) =>
 		set((state) => ({

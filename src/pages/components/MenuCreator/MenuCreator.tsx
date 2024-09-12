@@ -4,9 +4,8 @@ import useScreenResolution from "@/hooks/useScreenResolution";
 import { IMenuItem } from "@/model/types";
 import MenuCard from "@/pages/components/MenuCreator/MenuCard/MenuCard";
 import useMenuStore from "@/stores/menuStore";
-import useUserStore from "@/stores/userStore";
 import clsx from "clsx";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
 	Accordion,
 	AccordionItem,
@@ -19,13 +18,25 @@ import CreatorForm, { CreatorFormProps } from "./CreatorForm";
 import styles from "./styles.module.scss";
 
 const MenuCreator = ({ organizationId }: { organizationId: string }) => {
+	const [selectedCard, setSelectedCard] = useState(null);
 	const { menuData, addMenuItem } = useMenuStore();
 	const [isFormVisible, setFormVisible] = useState(false);
 	const { isMobile } = useScreenResolution();
-	const { user } = useUserStore();
 
 	const toggleForm = () => {
-		setFormVisible((prev) => !prev); // Toggle visibility
+		setFormVisible((prev) => {
+			if (prev) {
+				setSelectedCard(null);
+			}
+			return !prev;
+		});
+	};
+
+	console.log(selectedCard);
+
+	const closeForm = () => {
+		setFormVisible(false);
+		setSelectedCard(null);
 	};
 
 	const categories = useMemo(() => {
@@ -41,6 +52,7 @@ const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 		const categoryTitle = categories.find(
 			(category) => category.value === data.category
 		)?.label;
+
 		await axiosInstance
 			.put("/menu/add-menu-items", {
 				menuItems: [
@@ -52,16 +64,28 @@ const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 						price: data.price,
 					},
 				],
-				placeId: user?.organizationId,
+				placeId: organizationId,
 			})
 			.then(({ data }) => {
-				addMenuItem(data);
-				toast("User was added successfully!");
+				console.log(data);
+				addMenuItem(data.menu);
+				toast("Menu item was added successfully!");
 			})
-			.catch(() => {
+			.catch((e) => {
+				console.log(e);
 				toast("An unexpected error occurred");
 			});
 	};
+
+	const editMenuItem = (item) => {
+		setSelectedCard(item);
+	};
+
+	useEffect(() => {
+		if (selectedCard) {
+			setFormVisible(true);
+		}
+	}, [selectedCard]);
 
 	return (
 		<div className={styles.main}>
@@ -89,8 +113,12 @@ const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 									</AccordionItemHeading>
 									<AccordionItemPanel className={styles.accordion__panel}>
 										<div className={styles["cards-container"]}>
-											{menuItem.items.map((item) => (
-												<MenuCard key={item.id} menuItem={item} />
+											{menuItem.items.map((item, index) => (
+												<MenuCard
+													key={item.id}
+													menuItem={item}
+													onEdit={() => editMenuItem(item)}
+												/>
 											))}
 										</div>
 									</AccordionItemPanel>
@@ -109,9 +137,10 @@ const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 				<CreatorForm
 					onSubmit={add}
 					categories={categories}
-					onClose={toggleForm}
+					onClose={closeForm}
 					isMobile={isMobile}
 					organizationId={organizationId}
+					selectedMenuCard={selectedCard}
 				/>
 			</aside>
 			<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />

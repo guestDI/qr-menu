@@ -7,7 +7,7 @@ import CloseIcon from "@/inline-img/svg/close.svg";
 import { IMenuItem } from "@/model/types";
 import clsx from "clsx";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ImagePicker from "./ImagePicker/ImagePicker";
 import styles from "./styles.module.scss";
@@ -23,6 +23,7 @@ export interface CreatorFormProps {
 	onClose: () => void;
 	isMobile: boolean;
 	organizationId: string;
+	selectedMenuCard: any;
 }
 
 interface FormData {
@@ -38,6 +39,7 @@ const CreatorForm: React.FC<CreatorFormProps> = ({
 	onClose,
 	isMobile,
 	organizationId,
+	selectedMenuCard,
 }) => {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [uploading, setUploading] = useState(false);
@@ -45,8 +47,29 @@ const CreatorForm: React.FC<CreatorFormProps> = ({
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<FormData>();
+
+	useEffect(() => {
+		if (selectedMenuCard) {
+			reset({
+				category: selectedMenuCard?.category || "", // Set default value or empty string
+				title: selectedMenuCard?.title || "",
+				description: selectedMenuCard?.description || "",
+				price: selectedMenuCard?.price || 0,
+			});
+		} else {
+			reset({
+				category: "",
+				title: "",
+				description: "",
+				price: 0,
+			});
+		}
+	}, [selectedMenuCard, reset]);
+
+	console.log(categories);
 
 	const add = (data: FormData) => {
 		onSubmit(data);

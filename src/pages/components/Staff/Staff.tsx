@@ -30,8 +30,10 @@ const Staff = ({ organizationId }: { organizationId: string }) => {
 			}
 		};
 
-		fetchStaffData();
-	}, [setStaffData]);
+		if (!staffData.length) {
+			fetchStaffData();
+		}
+	}, [staffData, setStaffData]);
 
 	const handleDelete = async (
 		e: React.MouseEvent<HTMLButtonElement>,
@@ -57,7 +59,6 @@ const Staff = ({ organizationId }: { organizationId: string }) => {
 				email,
 			})
 			.then(({ data }) => {
-				console.log(data);
 				addStaffMember(data);
 				toast("User was added successfully!");
 			})
