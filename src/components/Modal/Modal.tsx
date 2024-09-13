@@ -41,9 +41,15 @@ const ModalOverlay: React.FC<ModalProps> = ({
 				onClick={closeOnBackdrop ? handleClose : () => {}}
 				className={clsx(styles.modalBackdrop, displayStyle)}
 			>
-				<Button className={styles.btnClose} round={true} onClick={handleClose}>
-					<Image src={Close} alt="Closr Modal" width={20} height={20} />{" "}
-				</Button>
+				{closeOnBackdrop && (
+					<Button
+						className={styles.btnClose}
+						round={true}
+						onClick={handleClose}
+					>
+						<Image src={Close} alt="Close Modal" width={20} height={20} />{" "}
+					</Button>
+				)}
 			</div>
 			<section
 				className={clsx(
@@ -65,6 +71,7 @@ const Modal: React.FC<ModalProps> = ({
 	className,
 	children,
 	placement = "center",
+	closeOnBackdrop = false,
 }) => {
 	// hack to prevent scrolling when modal is open
 	// useEffect(() => {
@@ -78,6 +85,7 @@ const Modal: React.FC<ModalProps> = ({
 			onClose={onClose}
 			show={show}
 			className={className}
+			closeOnBackdrop={closeOnBackdrop}
 		>
 			{children}
 		</ModalOverlay>

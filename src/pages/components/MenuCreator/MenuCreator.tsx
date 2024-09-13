@@ -1,26 +1,22 @@
 import axiosInstance from "@/api/axios";
+import { Modal } from "@/components";
 import Button from "@/components/Button/Button";
 import useScreenResolution from "@/hooks/useScreenResolution";
 import { IMenuItem } from "@/model/types";
-import MenuCard from "@/pages/components/MenuCreator/MenuCard/MenuCard";
 import useMenuStore from "@/stores/menuStore";
 import clsx from "clsx";
 import { useEffect, useMemo, useState } from "react";
-import {
-	Accordion,
-	AccordionItem,
-	AccordionItemButton,
-	AccordionItemHeading,
-	AccordionItemPanel,
-} from "react-accessible-accordion";
 import { toast, ToastContainer } from "react-toastify";
 import CreatorForm, { CreatorFormProps } from "./CreatorForm";
+import MenuCategoryList from "./MenuCategoryList/MenuCategoryList";
 import styles from "./styles.module.scss";
 
 const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 	const [selectedCard, setSelectedCard] = useState(null);
-	const { menuData, addMenuItem } = useMenuStore();
+	const [cardToDelete, setCardToDelete] = useState<string | null>(null);
+	const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 	const [isFormVisible, setFormVisible] = useState(false);
+	const { menuData, addMenuItem, removeMenuItem } = useMenuStore();
 	const { isMobile } = useScreenResolution();
 
 	const toggleForm = () => {
@@ -31,8 +27,6 @@ const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 			return !prev;
 		});
 	};
-
-	console.log(selectedCard);
 
 	const closeForm = () => {
 		setFormVisible(false);
@@ -81,11 +75,44 @@ const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 		setSelectedCard(item);
 	};
 
+	const handleDeleteItem = (id: string) => {
+		setCardToDelete(id);
+		setShowConfirmationModal(true);
+	};
+
+	const deleteMenuItem = async (id: string) => {
+		await axiosInstance
+			.delete(`/menu/delete-menu-items/`, {
+				data: {
+					menuIds: [id],
+				},
+			})
+			.then(() => {
+				toast("Menu item was deleted successfully!");
+				removeMenuItem(id); // Update the menu store
+			})
+			.catch((e) => {
+				console.log(e);
+				toast("An unexpected error occurred");
+			});
+	};
+
+	const handleConfirm = () => {
+		deleteMenuItem(cardToDelete);
+	};
+
+	const handleCancel = () => {
+		setShowConfirmationModal(false);
+		setSelectedCard(null);
+	};
+
 	useEffect(() => {
 		if (selectedCard) {
 			setFormVisible(true);
 		}
 	}, [selectedCard]);
+
+	console.log("aaa", menuData);
 
 	return (
 		<div className={styles.main}>
@@ -101,32 +128,11 @@ const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 						{isFormVisible ? "Hide Form" : "Show Form"}
 					</Button>
 				</div>
-				<div className={styles.accordionWrapper}>
-					<Accordion className={styles.accordion} allowZeroExpanded>
-						{menuData.map((menuItem, index) => {
-							return (
-								<AccordionItem key={index} className={styles.accordion__item}>
-									<AccordionItemHeading>
-										<AccordionItemButton className={styles.accordion__button}>
-											{menuItem.category}
-										</AccordionItemButton>
-									</AccordionItemHeading>
-									<AccordionItemPanel className={styles.accordion__panel}>
-										<div className={styles["cards-container"]}>
-											{menuItem.items.map((item, index) => (
-												<MenuCard
-													key={item.id}
-													menuItem={item}
-													onEdit={() => editMenuItem(item)}
-												/>
-											))}
-										</div>
-									</AccordionItemPanel>
-								</AccordionItem>
-							);
-						})}
-					</Accordion>
-				</div>
+				<MenuCategoryList
+					menuData={menuData}
+					editMenuItem={editMenuItem}
+					handleDeleteItem={handleDeleteItem}
+				/>
 			</div>
 			<aside
 				className={clsx(
@@ -143,6 +149,35 @@ const MenuCreator = ({ organizationId }: { organizationId: string }) => {
 					selectedMenuCard={selectedCard}
 				/>
 			</aside>
+			<Modal
+				className={styles.confirmModal}
+				placement="center"
+				show={showConfirmationModal}
+				closeOnBackdrop={false}
+				onClose={() => setShowConfirmationModal(false)}
+			>
+				<div className={styles.body}>
+					<div className={styles.header}>
+						<h3>Are you sure?</h3>
+						<Button
+							className={styles.closeBtn}
+							round={true}
+							onClick={handleCancel}
+						>
+							X
+						</Button>
+					</div>
+
+					<div className={styles.footer}>
+						<Button className={styles.secondaryBtn} onClick={handleCancel}>
+							Cancel
+						</Button>
+						<Button className={styles.primaryBtn} onClick={handleConfirm}>
+							Confirm
+						</Button>
+					</div>
+				</div>
+			</Modal>
 			<ToastContainer theme="dark" autoClose={3000} position="bottom-right" />
 		</div>
 	);

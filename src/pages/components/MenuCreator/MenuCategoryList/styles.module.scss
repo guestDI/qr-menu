@@ -1,0 +1,82 @@
+.accordionWrapper {
+	padding-right: 3rem;
+	overflow-y: auto;
+	max-height: 87vh;
+
+	@media (max-width: 768px) {
+		padding: 0%;
+		overflow-y: auto;
+		max-height: 80vh;
+	}
+}
+
+.accordion {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+}
+
+.accordion__item + .accordion__item {
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cards-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+	grid-gap: 2rem;
+}
+
+.accordion__button {
+	border: 1px solid rgb(82, 82, 82);
+	color: #fff;
+	cursor: pointer;
+	padding: 18px;
+	font-size: 1.4rem;
+	width: 100%;
+	text-align: left;
+	background: linear-gradient(
+		95deg,
+		rgb(29, 29, 37, 50) 70%,
+		rgb(68, 68, 68) 100%
+	);
+	border-radius: 0.5rem;
+	box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+		0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+		0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+}
+
+.accordion__button:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.accordion__button:before {
+	display: inline-block;
+	content: "";
+	height: 10px;
+	width: 10px;
+	margin-right: 12px;
+	border-bottom: 2px solid currentColor;
+	border-right: 2px solid currentColor;
+	transform: rotate(-45deg);
+}
+
+.accordion__button[aria-expanded="true"]::before,
+.accordion__button[aria-selected="true"]::before {
+	transform: rotate(45deg);
+}
+
+.accordion__panel {
+	padding: 20px;
+	animation: fadein 0.35s ease-in;
+	border: 1px solid rgba(255, 255, 255, 0.07);
+	// background: rgba(119, 119, 119, 0.17);
+	text-align: left;
+	background: linear-gradient(
+		95deg,
+		rgb(29, 29, 37, 50) 70%,
+		rgb(70, 70, 70) 100%
+	);
+
+	&.hidden {
+		display: none;
+	}
+}

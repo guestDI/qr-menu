@@ -57,9 +57,25 @@ const useMenuStore = create<MenuStore>((set) => ({
 			};
 		}),
 	removeMenuItem: (id) =>
-		set((state) => ({
-			menuData: state.menuData.filter((staff) => staff.id !== id),
-		})),
+		set((state) => {
+			const updatedMenuData = state.menuData
+				.map((categoryData) => {
+					const updatedItems = categoryData.items.filter(
+						(item) => item.id !== id
+					);
+
+					return {
+						...categoryData,
+						items: updatedItems,
+					};
+				})
+				.filter((categoryData) => categoryData.items.length > 0);
+
+			// Обновляем store
+			return {
+				menuData: updatedMenuData,
+			};
+		}),
 	updateMenuItem: (updatedMember) =>
 		set((state) => ({
 			menuData: state.menuData.map((staff) =>
